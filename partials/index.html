@@ -1,7 +1,7 @@
 <div class="row m-t">
-  <div class="col-lg-6" ng-repeat="category in performance.categories">
+  <div class="col-lg-6" ng-repeat="category in performance.categories|limitTo:4">
 	<section class="panel">
-		 <headlines category="category" type="category.type" limit="5"></headlines>
+		 <headlines category="category" type="category.type" limit="4"></headlines>
 	</section> 
   </div> <!-- col -->
 </div> <!-- row -->
