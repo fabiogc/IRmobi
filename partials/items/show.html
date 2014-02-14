@@ -1,0 +1,16 @@
+<div class="row m-t">
+  <div class="col-lg-12">
+    <!-- .breadcrumb -->
+    <ul class="breadcrumb">
+      <li><a href="#/"><i class="icon-home"></i>Início</a></li>
+      <li class="active"><i class="icon-{{category.title|slugify}}"></i>{{category.title}}</li>
+    </ul>
+    <!-- / .breadcrumb -->
+   </div>
+    <div class="col-lg-12">
+      <section class="panel">
+      <header class="panel-heading" ng-bind-html="item.title"></header>
+      <div class="panel-body text-small" ng-bind-html="item.description"></div>
+    </section> 
+  </div> <!-- col -->
+</div>
