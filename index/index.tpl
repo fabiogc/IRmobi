@@ -81,7 +81,7 @@
   <script type="text/javascript">
 	var config_data = {};
 	{/literal}
-	config_data.DOMAIN = "santander.int-meumobi.com";
+	config_data.DOMAIN = "$domain";
 	config_data.API_URL = "{$smarty.const.SITE_BUILDER_URL}";
 	{literal}
   </script>
