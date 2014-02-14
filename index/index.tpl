@@ -45,11 +45,6 @@
         </a>
       </li>
       <li>
-        <a href="events_list.html">
-          <i class="icon-calendar-empty icon-xlarge"></i><span>Eventos</span>
-        </a>
-      </li>
-      <li>
         <a href="#/contact">
           <i class="icon-envelope-alt icon-xlarge"></i><span>Fale com RI</span>
         </a>
