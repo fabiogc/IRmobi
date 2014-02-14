@@ -19,22 +19,22 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
 	
     $routeProvider.
       when('/', {
-        templateUrl: '/themes/santander/partials/index.html'
+        templateUrl: '/themes/rimobi/partials/index.html'
       }).
       when('/categories/:id', {
-        templateUrl: '/themes/santander/partials/categories/show.html',
+        templateUrl: '/themes/rimobi/partials/categories/show.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/categories/:id/page/:page', {
-    	  templateUrl: '/themes/santander/partials/categories/show.html',
+    	  templateUrl: '/themes/rimobi/partials/categories/show.html',
           controller: 'CategoryShowCtrl'
       }).
       when('/items/:id', {
-        templateUrl: '/themes/santander/partials/items/show.html',
+        templateUrl: '/themes/rimobi/partials/items/show.html',
         controller: 'ItemShowCtrl'
       }).
       when('/contact', {
-          templateUrl: '/themes/santander/partials/contact.html',
+          templateUrl: '/themes/rimobi/partials/contact.html',
           controller: 'ContactCtrl'
       }).
       otherwise({

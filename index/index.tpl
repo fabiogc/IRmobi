@@ -6,17 +6,17 @@
   <title ng-bind-template="{{performance.site.title}}"></title>
   <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
-	<link rel="stylesheet" href="/themes/santander/css/bootstrap.css">
-  <link rel="stylesheet" href="/themes/santander/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/themes/santander/css/font.css" cache="false">
-  <link rel="stylesheet" href="/themes/santander/css/style.css">
-  <link rel="stylesheet" href="/themes/santander/css/plugin.css">
-  <link rel="stylesheet" href="/themes/santander/css/landing.css">
-  <link rel="stylesheet" href="/themes/santander/css/custom.css">
+	<link rel="stylesheet" href="/themes/rimobi/css/bootstrap.css">
+  <link rel="stylesheet" href="/themes/rimobi/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/themes/rimobi/css/font.css" cache="false">
+  <link rel="stylesheet" href="/themes/rimobi/css/style.css">
+  <link rel="stylesheet" href="/themes/rimobi/css/plugin.css">
+  <link rel="stylesheet" href="/themes/rimobi/css/landing.css">
+  <link rel="stylesheet" href="/themes/rimobi/css/custom.css">
   <!--[if lt IE 9]>
-    <script src="/themes/santander/js/ie/respond.min.js" cache="false"></script>
-    <script src="/themes/santander/js/ie/html5.js" cache="false"></script>
-    <script src="/themes/santander/js/ie/excanvas.js" cache="false"></script>
+    <script src="/themes/rimobi/js/ie/respond.min.js" cache="false"></script>
+    <script src="/themes/rimobi/js/ie/html5.js" cache="false"></script>
+    <script src="/themes/rimobi/js/ie/excanvas.js" cache="false"></script>
   <![endif]-->
 </head>
 <body>
@@ -62,12 +62,12 @@
     <div ng-view></div><!-- view -->
     <section class="panel text-center l-s-small">
       <div class="panel-body">
-        <img src="/themes/santander/images/icon-sanb.png" alt="SANB11" width="29">
-        <img src="/themes/santander/images/icon-ibovespa.png" alt="Ibovespa" width="36">
-        <img src="/themes/santander/images/icon-bsbr.png" alt="BSBR" width="17">
-        <img src="/themes/santander/images/icon-ibr.jpg" alt="IBrX" width="30">
-        <img src="/themes/santander/images/icon-igc.png" alt="IGC" width="18">
-        <img src="/themes/santander/images/icon-igct.png" alt="IGCT" width="52">
+        <img src="/themes/rimobi/images/icon-sanb.png" alt="SANB11" width="29">
+        <img src="/themes/rimobi/images/icon-ibovespa.png" alt="Ibovespa" width="36">
+        <img src="/themes/rimobi/images/icon-bsbr.png" alt="BSBR" width="17">
+        <img src="/themes/rimobi/images/icon-ibr.jpg" alt="IBrX" width="30">
+        <img src="/themes/rimobi/images/icon-igc.png" alt="IGC" width="18">
+        <img src="/themes/rimobi/images/icon-igct.png" alt="IGCT" width="52">
       </div>
     </section>
 
@@ -86,27 +86,27 @@
 	{literal}
   </script>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="/themes/santander/js/lib/angular.all.js"></script>
-  <script type="text/javascript" src="/themes/santander/js/lib/angular/i18n/angular-locale_pt-br.js"></script>
-  <script type="text/javascript" src="/themes/santander/js/lib/angularLocalStorage.js"></script>
-  <script type="text/javascript" src="/themes/santander/js/lib/angular-slugify.js"></script>
-  <script type="text/javascript" src="/themes/santander/js/app/services.js"></script><!-- define rest service -->
-  <script type="text/javascript" src="/themes/santander/js/app/controllers.js"></script><!-- the app controllers -->
-  <script type="text/javascript" src="/themes/santander/js/app/directives.js"></script><!-- define directives -->
-  <script type="text/javascript" src="/themes/santander/js/app/settings.js"></script><!-- define directives -->
-  <script type="text/javascript" src="/themes/santander/js/app/bootstrap.js"></script><!-- initial setup of the app and routers -->
+  <script type="text/javascript" src="/themes/rimobi/js/lib/angular.all.js"></script>
+  <script type="text/javascript" src="/themes/rimobi/js/lib/angular/i18n/angular-locale_pt-br.js"></script>
+  <script type="text/javascript" src="/themes/rimobi/js/lib/angularLocalStorage.js"></script>
+  <script type="text/javascript" src="/themes/rimobi/js/lib/angular-slugify.js"></script>
+  <script type="text/javascript" src="/themes/rimobi/js/app/services.js"></script><!-- define rest service -->
+  <script type="text/javascript" src="/themes/rimobi/js/app/controllers.js"></script><!-- the app controllers -->
+  <script type="text/javascript" src="/themes/rimobi/js/app/directives.js"></script><!-- define directives -->
+  <script type="text/javascript" src="/themes/rimobi/js/app/settings.js"></script><!-- define directives -->
+  <script type="text/javascript" src="/themes/rimobi/js/app/bootstrap.js"></script><!-- initial setup of the app and routers -->
   <!-- Bootstrap -->
-  <script src="/themes/santander/js/bootstrap.js"></script>
-  <script src="/themes/santander/js/parsley/parsley.min.js"></script>
+  <script src="/themes/rimobi/js/bootstrap.js"></script>
+  <script src="/themes/rimobi/js/parsley/parsley.min.js"></script>
 <!-- app -->
-  <script src="/themes/santander/js/app.js"></script>
-  <script src="/themes/santander/js/app.plugin.js"></script>
-  <script src="/themes/santander/js/app.data.js"></script>
+  <script src="/themes/rimobi/js/app.js"></script>
+  <script src="/themes/rimobi/js/app.plugin.js"></script>
+  <script src="/themes/rimobi/js/app.data.js"></script>
 
   <!-- Sparkline Chart -->
-  <script src="/themes/santander/js/charts/sparkline/jquery.sparkline.min.js"></script>  
+  <script src="/themes/rimobi/js/charts/sparkline/jquery.sparkline.min.js"></script>  
   <!-- Easy Pie Chart -->
-  <script src="/themes/santander/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+  <script src="/themes/rimobi/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
 </body>
 </html>
 {/literal}

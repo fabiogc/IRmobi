@@ -20,7 +20,7 @@ meumobiDirectives.directive('pagination', [ 'ITEM_PER_PAGE', function(ITEM_PER_P
 			current: '=',
 			uri: '='
 		},
-		templateUrl: '/themes/santander/partials/pagination.html',
+		templateUrl: '/themes/rimobi/partials/pagination.html',
 		link: function(scope) {
 			scope.pages = function(n){
 				var data = []
@@ -47,7 +47,7 @@ meumobiDirectives.directive('headlines', [ 'Categories', function(Categories) {
 			limit: '='
 		},
 		templateUrl: function (tElement, tAttrs) {
-			return '/themes/santander/partials/articles/headlines.html';
+			return '/themes/rimobi/partials/articles/headlines.html';
 		},
 		link: function(scope) {
 			Categories.items({id: scope.category.id, page:1}, function(data){
