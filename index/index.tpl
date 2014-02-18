@@ -39,12 +39,12 @@
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs">
     <ul class="nav" data-spy="affix" data-offset-top="50">
-      <li ng-repeat="category in performance.categories|filter: {parent_id: '!'}" >
+      <li ng-repeat="category in performance.categories|filter: {parent_id: '!'}" ng-class="getClass('/categories/' + category.id)">
         <a ng-href="#/categories/{{category.id}}" data-toggle="class:slide-nav slide-nav-left" data-target="body">
           <i class=" icon-xlarge icon-{{category.title|slugify}}"></i><span ng-bind="category.title"></span>
         </a>
       </li>
-      <li>
+      <li ng-class="getClass('/contact')">
         <a href="#/contact">
           <i class="icon-envelope-alt icon-xlarge"></i><span>Fale com RI</span>
         </a>

@@ -42,7 +42,7 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
       });
   }]);
 
-meumobiApp.run(function($rootScope, API_URL) {
+meumobiApp.run(function($rootScope, API_URL, $location) {
   $rootScope.isOnline = navigator.onLine;
 
   $rootScope.thumbify = function(imagePath, prefix, defaultImg) {
@@ -64,5 +64,13 @@ meumobiApp.run(function($rootScope, API_URL) {
       url = "http://" + url;
     }
     return url;
+  };
+
+  $rootScope.getClass = function(path) {
+    if ($location.path().substr(0, path.length) == path) {
+      return "active"
+    } else {
+      return ""
+    }
   };
 });
