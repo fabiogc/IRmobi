@@ -40,7 +40,7 @@
   <nav id="nav" class="nav-primary hidden-xs">
     <ul class="nav" data-spy="affix" data-offset-top="50">
       <li ng-repeat="category in performance.categories|filter: {parent_id: '!'}" >
-        <a ng-href="#/categories/{{category.id}}">
+        <a ng-href="#/categories/{{category.id}}" data-toggle="class:slide-nav slide-nav-left" data-target="body">
           <i class=" icon-xlarge icon-{{category.title|slugify}}"></i><span ng-bind="category.title"></span>
         </a>
       </li>
@@ -71,7 +71,7 @@
   <!-- footer -->
   <footer id="footer">
   </footer>
-  <a href="#" class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
+  <a class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
   <!-- / footer -->
   <script type="text/javascript">
 	var config_data = {};
