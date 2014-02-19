@@ -46,13 +46,12 @@ meumobiDirectives.directive('headlines', [ 'Categories', function(Categories) {
 			category: '=',
 			limit: '='
 		},
-		templateUrl: function (tElement, tAttrs) {
-			return '/themes/rimobi/partials/articles/headlines.html';
-		},
+		templateUrl: '/themes/rimobi/partials/categories/headlines.html',
 		link: function(scope) {
+      scope.template = '/themes/rimobi/partials/'+scope.category.type+'/headlines.html';
 			Categories.items({id: scope.category.id, page:1}, function(data){
 				scope.items = data.items;
-		    });
+		  });
 		}
 	};
 }]);

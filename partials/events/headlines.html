@@ -1,0 +1,18 @@
+      <header class="panel-heading" ng-bind="category.title"></header>
+      <ul class="list-group" ng-if="items">
+       <li class="list-group-item" ng-repeat="item in items|limitTo:limit" ng-class-even="'bg'">
+          <div class="media">
+            <span class="pull-left thumb-small m-t-mini">
+              <i class="icon-calendar-empty icon-xlarge text-default"></i>
+            </span>
+            <div id="todo-2" class="pull-right text-primary m-t-small">
+              <i class="icon-circle icon-large text text-default"></i>
+              <i class="icon-ok-sign icon-large text-active text-primary"></i>
+            </div>
+            <div class="media-body">
+              <div><a class="h5" ng-href="#/events/{{category.id}}" ng-bind-html="item.title"></a></div>
+              <small class="text-muted" ng-bind="item.date * 1000 |date:'MMMM, dd'"></small>
+            </div>
+          </div>
+        </li>
+      </ul>
