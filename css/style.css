@@ -378,7 +378,7 @@ input[type="text"], select, textarea{min-width: 40px;height: auto;}
 
 /* Site CSS */
 /* Header */
-.navbar{border:none;border-bottom: 1px solid #d1d4d7;box-shadow:0 0 5px rgba(0,0,0,.1);z-index: 1010;border-radius: 0;padding:0;margin-bottom: 0}
+.navbar{max-height: 50px; border:none;border-bottom: 1px solid #d1d4d7;box-shadow:0 0 5px rgba(0,0,0,.1);z-index: 1010;border-radius: 0;padding:0;margin-bottom: 0}
 .navbar.bg{border-bottom: 1px solid #162636;}
 .navbar-brand{min-width:90px;font-family: "Times New Roman", Georgia, serif; padding: 11px 0 18px 0;text-align: center;}
 .navbar-brand img{max-height: 50px}
