@@ -1,4 +1,7 @@
 <div class="row m-t">
+  <div class="banner hidden-xs m-b" style="overflow: hidden; height:220px; margin-top: -15px;">
+    <img class="" ng-if="performance.site.photos" ng-src="{{thumbify(performance.site.photos[0].path)}}" />
+  </div>
   <div class="col-sm-6" ng-repeat="category in performance.categories|limitTo:4">
     <headlines category="category" limit="4"></headlines>
 	</section> 
