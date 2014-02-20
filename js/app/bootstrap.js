@@ -71,6 +71,7 @@ meumobiApp.run(function($rootScope, API_URL, $location) {
   };
 
   $rootScope.getClass = function(path) {
+    console.log(path);
     if ($location.path().substr(0, path.length) == path) {
       return "active"
     } else {
