@@ -45,7 +45,7 @@
         </a>
       </li>
       <li ng-class="getClass('/contact')">
-        <a href="#/contact">
+        <a href="#/contact" data-toggle="class:slide-nav slide-nav-left" data-target="body">
           <i class="icon-envelope-alt icon-xlarge"></i><span>Fale com RI</span>
         </a>
       </li>
