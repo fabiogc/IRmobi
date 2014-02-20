@@ -22,15 +22,15 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
         templateUrl: '/themes/rimobi/partials/index.html'
       }).
       when('/articles/:id', {
-        templateUrl: '/themes/rimobi/partials/categories/show.html',
+        templateUrl: '/themes/rimobi/partials/articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/events/:id', {
         templateUrl: '/themes/rimobi/partials/events/list.html',
         controller: 'CategoryShowCtrl'
       }).
-      when('/categories/:id/page/:page', {
-        templateUrl: '/themes/rimobi/partials/categories/show.html',
+      when('/articles/:id/page/:page', {
+        templateUrl: '/themes/rimobi/partials/articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/items/:id', {
@@ -71,7 +71,6 @@ meumobiApp.run(function($rootScope, API_URL, $location) {
   };
 
   $rootScope.getClass = function(path) {
-    console.log(path);
     if ($location.path().substr(0, path.length) == path) {
       return "active"
     } else {
