@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/themes/rimobi/css/plugin.css">
   <link rel="stylesheet" href="/themes/rimobi/css/landing.css">
   <link rel="stylesheet" href="/themes/rimobi/css/custom.css">
+  {/literal}{stylesheets_links site=$site only_custon=1}{literal}
   <!--[if lt IE 9]>
     <script src="/themes/rimobi/js/ie/respond.min.js" cache="false"></script>
     <script src="/themes/rimobi/js/ie/html5.js" cache="false"></script>
