@@ -60,8 +60,8 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-signal:before{content:"\f012";}
 .icon-gear:before,.icon-cog:before{content:"\f013";}
 .icon-trash:before{content:"\f014";}
-.icon-home:before,.icon-relacoes-com-investidores:before{content:"\f015";}
-.icon-file-alt:before,.icon-relatorios-anuais:before{content:"\f016";}
+.icon-home:before{content:"\f015";}
+.icon-file-alt:before{content:"\f016";}
 .icon-time:before{content:"\f017";}
 .icon-road:before{content:"\f018";}
 .icon-download-alt:before{content:"\f019";}
@@ -106,7 +106,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-tint:before{content:"\f043";}
 .icon-edit:before{content:"\f044";}
 .icon-share:before{content:"\f045";}
-.icon-check:before, .icon-fatos-relevantes:before{content:"\f046";}
+.icon-check:before{content:"\f046";}
 .icon-move:before{content:"\f047";}
 .icon-step-backward:before{content:"\f048";}
 .icon-fast-backward:before{content:"\f049";}
@@ -259,7 +259,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-bell-alt:before{content:"\f0f3";}
 .icon-coffee:before{content:"\f0f4";}
 .icon-food:before{content:"\f0f5";}
-.icon-file-text-alt:before, .icon-atas:before{content:"\f0f6";}
+.icon-file-text-alt:before{content:"\f0f6";}
 .icon-building:before{content:"\f0f7";}
 .icon-hospital:before{content:"\f0f8";}
 .icon-ambulance:before{content:"\f0f9";}
@@ -296,7 +296,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-meh:before{content:"\f11a";}
 .icon-gamepad:before{content:"\f11b";}
 .icon-keyboard:before{content:"\f11c";}
-.icon-flag-alt:before, .icon-comunicados:before{content:"\f11d";}
+.icon-flag-alt:before{content:"\f11d";}
 .icon-flag-checkered:before{content:"\f11e";}
 .icon-terminal:before{content:"\f120";}
 .icon-code:before{content:"\f121";}
@@ -317,7 +317,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-microphone:before{content:"\f130";}
 .icon-microphone-off:before{content:"\f131";}
 .icon-shield:before{content:"\f132";}
-.icon-calendar-empty:before,.icon-eventos:before{content:"\f133";}
+.icon-calendar-empty:before{content:"\f133";}
 .icon-fire-extinguisher:before{content:"\f134";}
 .icon-rocket:before{content:"\f135";}
 .icon-maxcdn:before{content:"\f136";}
