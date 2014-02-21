@@ -5,15 +5,18 @@
   <meta charset="utf-8">
   <title ng-bind-template="{{performance.site.title}}"></title>
   <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
-	<link rel="stylesheet" href="/themes/rimobi/css/bootstrap.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
+  <link rel="stylesheet" href="/themes/rimobi/css/bootstrap.css">
   <link rel="stylesheet" href="/themes/rimobi/css/font-awesome.min.css">
   <link rel="stylesheet" href="/themes/rimobi/css/font.css" cache="false">
   <link rel="stylesheet" href="/themes/rimobi/css/style.css">
   <link rel="stylesheet" href="/themes/rimobi/css/plugin.css">
   <link rel="stylesheet" href="/themes/rimobi/css/landing.css">
   <link rel="stylesheet" href="/themes/rimobi/css/custom.css">
-	{/literal}{$site.css_token|cssOnline}{literal}
+  {/literal}
+  {$site.css_token|cssOnline}
+  {$performance.site.apple_touch_icon|appleTouchIcons}
+  {literal}
   <!--[if lt IE 9]>
     <script src="/themes/rimobi/js/ie/respond.min.js" cache="false"></script>
     <script src="/themes/rimobi/js/ie/html5.js" cache="false"></script>
