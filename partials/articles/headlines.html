@@ -15,5 +15,6 @@
       <a class="h5 text-muted" ng-href="#/items/{{item._id}}" ng-bind-html="item.title"></a>
     </div>
   </article>
-  <div class="line pull-in" ng-if="!$last" ng-repeat-end></div>
+  <div class="line pull-in" ng-repeat-end></div>
+  <div class="text-small text-center"><a ng-href="#/{{category.type}}/{{category.id}}">Ver mais</a></div>
 </section>
