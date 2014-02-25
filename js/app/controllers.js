@@ -5,6 +5,7 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site',
       storage.bind($scope,'performance');
       Site.get({}, function(data) {
         $scope.performance = data;
+        $scope.splitedCategories = $scope.splitArray(data.categories, 2);
       });
 
       //set correct items
