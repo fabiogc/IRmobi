@@ -3,7 +3,7 @@
     <img class="" ng-if="performance.site.photos" ng-src="{{thumbify(performance.site.photos[0].path)}}" />
   </div>
 </div>
-<div class="row m-t" ng-repeat="row in splitedCategories|limitTo:4">
+<div class="row m-t" ng-repeat="row in splitedCategories|limitTo:2">
   <div class="col-sm-6" ng-repeat="category in row">
     <headlines category="category" limit="4"></headlines>
   </div> <!-- col -->
