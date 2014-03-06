@@ -48,10 +48,21 @@ meumobiDirectives.directive('headlines', [ 'Categories', function(Categories) {
 		},
 		templateUrl: '/themes/rimobi/partials/categories/headlines.html',
 		link: function(scope) {
-      scope.template = '/themes/rimobi/partials/'+scope.category.type+'/headlines.html';
+			scope.template = '/themes/rimobi/partials/'+scope.category.type+'/headlines.html';
 			Categories.items({id: scope.category.id, page:1}, function(data){
 				scope.items = data.items;
-		  });
+		});
 		}
 	};
 }]);
+
+meumobiDirectives.directive('breadcrumb', function(Categories) {
+	return {
+		restrict: 'E',
+		scope: {
+			title: '@',
+			link: '@'
+		},
+		templateUrl: '/themes/rimobi/partials/utils/breadcrumb.html'
+		};
+});

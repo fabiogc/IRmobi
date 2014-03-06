@@ -1,22 +1,15 @@
-      <div class="row m-t">
-  <div class="col-lg-12">
-    <!-- .breadcrumb -->
-    <ul class="breadcrumb">
-      <li><a href="index.html"><i class="icon-home"></i>Início</a></li>
-      <li class="active"><i class="icon-flag-alt"></i>Fale com RI</li>
-    </ul>
-    <!-- / .breadcrumb -->
+<div class="row m-t">
+  <breadcrumb title="Fale com RI"></breadcrumb>
+   <div class="col-lg-12">
     <div ng-if="error" class="alert alert-danger">
       <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
       <i class="icon-ban-circle icon-large"></i> {{error}}
     </div>
-
     <div ng-if="success" class="alert alert-success">
       <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
       <i class="icon-ok-sign icon-large"></i> {{success}}
     </div>
-   </div>
-
+    </div>
     <div class="col-lg-12">
       <section class="panel">
       <div class="panel-body">
