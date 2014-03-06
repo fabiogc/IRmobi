@@ -45,7 +45,7 @@
     <ul class="nav" data-spy="affix" data-offset-top="50">
       <li ng-repeat="category in performance.categories|filter: {parent_id: '!'}" id="nav-category-{{category.id}}" ng-class="getClass('/{{category.type}}/' + category.id)">
         <a ng-href="#/{{category.type}}/{{category.id}}" data-toggle="class:slide-nav slide-nav-left" data-target="body">
-          <i class="icon-chevron-sign-right"></i><span ng-bind="category.title"></span>
+          <i class="icon-chevron-sign-right icon-xlarge"></i><span ng-bind="category.title"></span>
         </a>
       </li>
       <li id="contact" ng-class="getClass('/contact')">
