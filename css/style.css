@@ -86,7 +86,6 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge{color: #3a5
 .progress-mini{height: 6px}
 .progress-small{height: 10px}
 .progress-small .progress-bar{font-size: 10px;line-height: 1em}
-.navbar{background-color: #e52e2a}
 .navbar .nav .open > a, .navbar .nav .open > a:hover, .navbar .nav .open > a:focus{background: transparent;}
 .list-normal{background: transparent;}
 .list-normal > .list-group-item{border-radius: 0;border-width: 1px 0;background: transparent}
