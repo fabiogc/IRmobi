@@ -6,7 +6,7 @@
 				<div class="line m-l m-r"></div>
 				<p class="h1">
 					{{mainQuote.LastTradePriceOnly}}
-					<i ng-class="(parseFloat(mainQuote.ChangeinPercent) < 0) ? 'icon-caret-down text-danger' : 'icon-caret-up text-success'"><spam class="text-small">{{parseFloat(mainQuote.ChangeinPercent)}}</spam></i>
+					<i ng-class="(parseFloat(mainQuote.ChangeinPercent) < 0) ? 'icon-caret-down text-danger' : 'icon-caret-up text-success'"><spam class="text-small" style="vertical-align: 8px;">{{parseFloat(mainQuote.ChangeinPercent)}}</spam></i>
 				</p>
 			</div>
 		</section>
@@ -17,7 +17,7 @@
 				<p ng-repeat-start="quote in quotes" class="h4">
 					{{quote.symbol}} {{quote.LastTradePriceOnly}}
 					<spam class="h3">
-					<i ng-class="(parseFloat(quote.ChangeinPercent) < 0) ? 'icon-caret-down text-danger' : 'icon-caret-up text-success'"><spam class="text-small">{{parseFloat(quote.ChangeinPercent)}}</spam></i></spam>
+					<i ng-class="(parseFloat(quote.ChangeinPercent) < 0) ? 'icon-caret-down text-danger' : 'icon-caret-up text-success'"><spam class="text-small" style="vertical-align: 3px;">{{parseFloat(quote.ChangeinPercent)}}</spam></i></spam>
 				</p>
 				<div class="line m-l m-r" ng-repeat-end ng-if="!$last"></div>
 			</div>
