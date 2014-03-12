@@ -13,7 +13,7 @@
   </div> <!-- col -->
 </div> <!-- row -->
 
-<div class="row m-t" ng-repeat="row in splitedCategories|limitTo:2">
+<div class="row m-t" ng-repeat="row in splitedCategories|limitTo:headlinesRows">
   <div class="col-sm-6" ng-repeat="category in row">
     <headlines category="category" limit="4"></headlines>
   </div> <!-- col -->
