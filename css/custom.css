@@ -2,45 +2,10 @@
   border-left: 2px solid #e52e2a;
 }
 
-.quotes .panel-body {
-    padding: 15px 10px;
-}
-
-  .quotes .today .line {
-    margin-bottom: 5px;
-  }
-
-
-
 @media (min-width: 768px) {
-  .quotes .today .panel-body {
-    padding: 9px 10px 10px;
-  }
-
  .navbar-brand {
     border: none;
     margin: 0 10px;
   }
 }
 
-@media (max-width: 767px) {
-  .quotes .current {
-    padding-right: 5px;
-  }
- 
-  .quotes .current .h1 {
-    font-size: 30px;
-  }
-
-  .quotes .today {
-    padding-left: 5px;
-  }
-
-  .quotes .today .panel-body {
-    padding: 13px 10px;
-  }
-
-  .quotes .today p spam {
-    line-height: 12px;
-  }
-}
