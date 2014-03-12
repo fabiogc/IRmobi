@@ -2,6 +2,14 @@
   border-left: 2px solid #e52e2a;
 }
 
+.quotes i spam {
+	vertical-align: 3px;
+}
+
+.quotes .main i spam {
+  vertical-align: 8px;
+}
+
 @media (min-width: 768px) {
  .navbar-brand {
     border: none;
