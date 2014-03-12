@@ -64,5 +64,20 @@ meumobiDirectives.directive('breadcrumb', function(Categories) {
 			link: '@'
 		},
 		templateUrl: '/themes/rimobi/partials/utils/breadcrumb.html'
-		};
+	};
 });
+
+meumobiDirectives.directive('yahooFinance', ['$http', function($http) {
+	return {
+		restrict: 'E',
+		templateUrl: '/themes/rimobi/partials/widgets/yahoo_finance.html',
+		link: function(scope) {
+			var url = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22SANB11.SA%22%2C%22SANB3.SA%22%2C%22SANB4.SA%22%2C%22BSBR%22)%0A%09%09&format=json&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback=';
+			$http.get(url).success(function(data) {
+				scope.created_at = data.query.created;
+				scope.mainQuote = data.query.results.quote.shift();
+				scope.quotes = data.query.results.quote;
+			});
+		}
+	};
+}]);

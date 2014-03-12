@@ -109,4 +109,6 @@ meumobiApp.run(function($rootScope, API_URL, $location) {
         return arrayToReturn;
     }
   };
+  
+  $rootScope.parseFloat = parseFloat;
 });
