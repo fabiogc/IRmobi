@@ -10,7 +10,7 @@
     <div class="media-body">
       <div class="pull-right media-mini text-center text-muted">
         <strong class="h4" ng-bind="item.pubdate * 1000 |date:'dd'"></strong><br>
-        <small class="label bg-light" ng-bind="item.pubdate * 1000 |date:'MMM'"></small>
+        <small class="label bg-light" ng-bind="item.pubdate * 1000 |date:'MMM, yyyy'"></small>
       </div>
       <a class="h5 text-muted" ng-href="#/items/{{item._id}}" ng-bind-html="item.title"></a>
     </div>
