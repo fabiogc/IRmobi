@@ -4,15 +4,16 @@
 <head>
   <meta charset="utf-8">
   <title ng-bind-template="{{performance.site.title}}"></title>
-  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+  <meta name="description" content="RI Santander">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
-  <link rel="stylesheet" href="/themes/rimobi/css/bootstrap.css">
+  <link rel="stylesheet" href="/themes/rimobi/css/rimobi-min.css">
+<!--link rel="stylesheet" href="/themes/rimobi/css/bootstrap.css">
   <link rel="stylesheet" href="/themes/rimobi/css/font-awesome.min.css">
   <link rel="stylesheet" href="/themes/rimobi/css/font.css" cache="false">
   <link rel="stylesheet" href="/themes/rimobi/css/style.css">
   <link rel="stylesheet" href="/themes/rimobi/css/plugin.css">
   <link rel="stylesheet" href="/themes/rimobi/css/landing.css">
-  <link rel="stylesheet" href="/themes/rimobi/css/custom.css">
+  <link rel="stylesheet" href="/themes/rimobi/css/custom.css"-->
   {/literal}
   {$site.css_token|cssOnline}
   {$performance.site.apple_touch_icon|appleTouchIcons}
@@ -94,11 +95,7 @@
   <script type="text/javascript" src="/themes/rimobi/js/lib/angular/i18n/angular-locale_pt-br.js"></script>
   <script type="text/javascript" src="/themes/rimobi/js/lib/angularLocalStorage.js"></script>
   <script type="text/javascript" src="/themes/rimobi/js/lib/angular-slugify.js"></script>
-  <script type="text/javascript" src="/themes/rimobi/js/app/services.js"></script><!-- define rest service -->
-  <script type="text/javascript" src="/themes/rimobi/js/app/controllers.js"></script><!-- the app controllers -->
-  <script type="text/javascript" src="/themes/rimobi/js/app/directives.js"></script><!-- define directives -->
-  <script type="text/javascript" src="/themes/rimobi/js/app/settings.js"></script><!-- define directives -->
-  <script type="text/javascript" src="/themes/rimobi/js/app/bootstrap.js"></script><!-- initial setup of the app and routers -->
+  <script type="text/javascript" src="/themes/rimobi/js/app/rimobi-min.js"></script><!-- define rest service -->
   <!-- Bootstrap -->
   <script src="/themes/rimobi/js/bootstrap.js"></script>
   <script src="/themes/rimobi/js/parsley/parsley.min.js"></script>
@@ -108,9 +105,9 @@
   <script src="/themes/rimobi/js/app.data.js"></script>
 
   <!-- Sparkline Chart -->
-  <script src="/themes/rimobi/js/charts/sparkline/jquery.sparkline.min.js"></script>  
+  <!-- script src="/themes/rimobi/js/charts/sparkline/jquery.sparkline.min.js"></script -->  
   <!-- Easy Pie Chart -->
-  <script src="/themes/rimobi/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+  <!--script src="/themes/rimobi/js/charts/easypiechart/jquery.easy-pie-chart.js"></script-->
 </body>
 </html>
 {/literal}
