@@ -102,7 +102,11 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_pt-br.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/app/rimobi-min.js"></script><!-- define rest service -->
+  <script type="text/javascript" src="themes/rimobi/js/app/services.js"></script><!-- define rest service -->
+  <script type="text/javascript" src="themes/rimobi/js/app/controllers.js"></script><!-- the app controllers -->
+  <script type="text/javascript" src="themes/rimobi/js/app/directives.js"></script><!-- define directives -->
+  <script type="text/javascript" src="themes/rimobi/js/app/settings.js"></script><!-- define directives -->
+  <script type="text/javascript" src="themes/rimobi/js/app/bootstrap.js"></script><!-- initial setup of the app and routers -->
   <!-- Bootstrap -->
   <script src="themes/rimobi/js/bootstrap.js"></script>
   <script src="themes/rimobi/js/parsley/parsley.min.js"></script>
