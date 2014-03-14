@@ -83,11 +83,18 @@
   <a class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
   <!-- / footer -->
   <script type="text/javascript">
-	var config_data = {};
-	{/literal}
-	config_data.DOMAIN = "{$domain}";
-	config_data.API_URL = "{$smarty.const.SITE_BUILDER_URL}";
-	{literal}
+  var config_data = {};
+  {/literal}
+  config_data.DOMAIN = "{$domain}";
+  config_data.API_URL = "{$smarty.const.SITE_BUILDER_URL}";
+  {literal}
+  </script>
+
+  <script type="text/javascript" src="/themes/rimobi/js/lib/fastclick.js"></script>
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+    FastClick.attach(document.body);
+  }, false);
   </script>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="/themes/rimobi/js/lib/angular.all.js"></script>
