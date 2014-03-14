@@ -1,4 +1,4 @@
-<ul ng-if="category" class="pagination pagination-sm">
+<ul ng-if="category && totalPages > 1" class="pagination pagination-sm">
   <li ng-if="hasPreviusPage"><a ng-href="{{parseUri(previusPage)}}"><i class="icon-chevron-left"></i></a></li>
   <li ng-repeat="page in pages(totalPages)" ng-class="{'active': page == current}"><a ng-href="{{parseUri(page)}}" ng-bind="page"></a></li>
   <li ng-if="hasNextPage"><a ng-href="{{parseUri(nextPage)}}"><i class="icon-chevron-right"></i></a></li>

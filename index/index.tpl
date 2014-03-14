@@ -6,7 +6,7 @@
   <title ng-bind-template="{{performance.site.title}}"></title>
   <meta name="description" content="RI Santander">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
-  <link rel="stylesheet" href="/themes/rimobi/css/rimobi-min.css">
+  <link rel="stylesheet" href="themes/rimobi/css/rimobi-min.css">
 <!--link rel="stylesheet" href="/themes/rimobi/css/bootstrap.css">
   <link rel="stylesheet" href="/themes/rimobi/css/font-awesome.min.css">
   <link rel="stylesheet" href="/themes/rimobi/css/font.css" cache="false">
@@ -19,9 +19,9 @@
   {$performance.site.apple_touch_icon|appleTouchIcons}
   {literal}
   <!--[if lt IE 9]>
-    <script src="/themes/rimobi/js/ie/respond.min.js" cache="false"></script>
-    <script src="/themes/rimobi/js/ie/html5.js" cache="false"></script>
-    <script src="/themes/rimobi/js/ie/excanvas.js" cache="false"></script>
+    <script src="themes/rimobi/js/ie/respond.min.js" cache="false"></script>
+    <script src="themes/rimobi/js/ie/html5.js" cache="false"></script>
+    <script src="themes/rimobi/js/ie/excanvas.js" cache="false"></script>
   <![endif]-->
 </head>
 <body>
@@ -67,12 +67,12 @@
     <div ng-view></div><!-- view -->
     <section class="panel text-center l-s-small">
       <div class="panel-body">
-        <img src="/themes/rimobi/images/icon-sanb.png" alt="SANB11" width="29">
-        <img src="/themes/rimobi/images/icon-ibovespa.png" alt="Ibovespa" width="36">
-        <img src="/themes/rimobi/images/icon-bsbr.png" alt="BSBR" width="17">
-        <img src="/themes/rimobi/images/icon-ibr.jpg" alt="IBrX" width="30">
-        <img src="/themes/rimobi/images/icon-igc.png" alt="IGC" width="18">
-        <img src="/themes/rimobi/images/icon-igct.png" alt="IGCT" width="52">
+        <img src="themes/rimobi/images/icon-sanb.png" alt="SANB11" width="29">
+        <img src="themes/rimobi/images/icon-ibovespa.png" alt="Ibovespa" width="36">
+        <img src="themes/rimobi/images/icon-bsbr.png" alt="BSBR" width="17">
+        <img src="themes/rimobi/images/icon-ibr.jpg" alt="IBrX" width="30">
+        <img src="themes/rimobi/images/icon-igc.png" alt="IGC" width="18">
+        <img src="themes/rimobi/images/icon-igct.png" alt="IGCT" width="52">
       </div>
     </section>
 
@@ -91,30 +91,30 @@
   {literal}
   </script>
 
-  <script type="text/javascript" src="/themes/rimobi/js/lib/fastclick.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/fastclick.js"></script>
   <script type="text/javascript">
     window.addEventListener('load', function() {
     FastClick.attach(document.body);
   }, false);
   </script>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="/themes/rimobi/js/lib/angular.all.js"></script>
-  <script type="text/javascript" src="/themes/rimobi/js/lib/angular/i18n/angular-locale_pt-br.js"></script>
-  <script type="text/javascript" src="/themes/rimobi/js/lib/angularLocalStorage.js"></script>
-  <script type="text/javascript" src="/themes/rimobi/js/lib/angular-slugify.js"></script>
-  <script type="text/javascript" src="/themes/rimobi/js/app/rimobi-min.js"></script><!-- define rest service -->
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular.all.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_pt-br.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/rimobi-min.js"></script><!-- define rest service -->
   <!-- Bootstrap -->
-  <script src="/themes/rimobi/js/bootstrap.js"></script>
-  <script src="/themes/rimobi/js/parsley/parsley.min.js"></script>
+  <script src="themes/rimobi/js/bootstrap.js"></script>
+  <script src="themes/rimobi/js/parsley/parsley.min.js"></script>
 <!-- app -->
-  <script src="/themes/rimobi/js/app.js"></script>
-  <script src="/themes/rimobi/js/app.plugin.js"></script>
-  <script src="/themes/rimobi/js/app.data.js"></script>
+  <script src="themes/rimobi/js/app.js"></script>
+  <script src="themes/rimobi/js/app.plugin.js"></script>
+  <script src="themes/rimobi/js/app.data.js"></script>
 
   <!-- Sparkline Chart -->
-  <!-- script src="/themes/rimobi/js/charts/sparkline/jquery.sparkline.min.js"></script -->  
+  <!-- script src="themes/rimobi/js/charts/sparkline/jquery.sparkline.min.js"></script -->  
   <!-- Easy Pie Chart -->
-  <!--script src="/themes/rimobi/js/charts/easypiechart/jquery.easy-pie-chart.js"></script-->
+  <!--script src="themes/rimobi/js/charts/easypiechart/jquery.easy-pie-chart.js"></script-->
 </body>
 </html>
 {/literal}
