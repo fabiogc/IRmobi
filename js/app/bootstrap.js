@@ -111,4 +111,10 @@ meumobiApp.run(function($rootScope, API_URL, $location) {
   };
   
   $rootScope.parseFloat = parseFloat;
+
+  $rootScope.isFutureDate = function (timestamp) {
+    var date = new Date(timestamp * 1000);
+    var now  = new Date();
+    return date > now;
+  }
 });
