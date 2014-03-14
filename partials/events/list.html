@@ -11,7 +11,7 @@
               <strong class="h5" ng-bind="item.date * 1000 |date:'dd'"></strong><br>
               <small class="label bg-light" ng-bind="item.date * 1000 |date:'MMM, yyyy'"></small>
             </div>
-            <a class="h5 text-muted" ng-class="isFutureDate(item.date) ? 'add-event' : ''" ng-bind-html="item.title" data-title="{{item.title}}" data-address="{{item.address}}" data-description="{{item.description}}" data-date="{{item.date}}"></a>
+            <a class="h5 text-muted" ng-class="isFutureDate(item.date) ? 'add-event' : ''" ng-bind-html="item.title" data-confirm="Adicionar {{item.title}} ao calendário" data-title="{{item.title}}" data-address="{{item.address}}" data-description="{{item.description}}" data-date="{{item.date}}"></a>
           </div>
         </li>
       </ul>
