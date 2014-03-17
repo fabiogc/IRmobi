@@ -25,6 +25,10 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
         templateUrl: '/themes/rimobi/partials/articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
+      when('/articles/:id/page/:page', {
+        templateUrl: '/themes/rimobi/partials/articles/list.html',
+        controller: 'CategoryShowCtrl'
+      }).
       when('/extended_articles/:id', {
         templateUrl: '/themes/rimobi/partials/articles/list.html',
         controller: 'CategoryShowCtrl'
@@ -33,8 +37,8 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
         templateUrl: '/themes/rimobi/partials/events/list.html',
         controller: 'CategoryShowCtrl'
       }).
-      when('/articles/:id/page/:page', {
-        templateUrl: '/themes/rimobi/partials/articles/list.html',
+      when('/events/:id/page/:page', {
+        templateUrl: '/themes/rimobi/partials/events/list.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/items/:id', {
