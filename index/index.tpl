@@ -119,6 +119,8 @@
   <!-- script src="themes/rimobi/js/charts/sparkline/jquery.sparkline.min.js"></script -->  
   <!-- Easy Pie Chart -->
   <!--script src="themes/rimobi/js/charts/easypiechart/jquery.easy-pie-chart.js"></script-->
+  
+  {/literal}
+  {include file="common/_analytics.tpl"}
 </body>
 </html>
-{/literal}
