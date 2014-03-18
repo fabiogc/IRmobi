@@ -20,7 +20,7 @@ meumobiDirectives.directive('pagination', [ 'ITEM_PER_PAGE', function(ITEM_PER_P
 			current: '=',
 			uri: '='
 		},
-		templateUrl: '/themes/rimobi/partials/pagination.html',
+		templateUrl: '/themes/rimobi/partials/utils/pagination.html',
 		link: function(scope) {
 			scope.pages = function(n){
 				var data = []
@@ -30,7 +30,7 @@ meumobiDirectives.directive('pagination', [ 'ITEM_PER_PAGE', function(ITEM_PER_P
 				return data;
 			};
 			scope.parseUri = function(page) {
-				return scope.uri.replace(':page',page).replace(':id',scope.category.id);
+				return scope.uri.replace(':page',page).replace(':type',scope.category.type).replace(':id',scope.category.id);
 			};
 			scope.category.$promise.then(function(){
 				paginate(scope);
