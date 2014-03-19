@@ -49,9 +49,9 @@ meumobiControllers.controller('ContactCtrl', ['$scope', '$http',
           .success(function(data) {
             console.log(data);
             if (data.success) {
-              $scope.success = data.message;
+              $scope.success = 'Sua mensagem foi enviada com sucesso!';//data.message;
             } else {
-              $scope.error = data.message; 
+              $scope.error = 'Desculpe, mas sua mensagem não foi enviada!';//data.message; 
             }
           });
         }
