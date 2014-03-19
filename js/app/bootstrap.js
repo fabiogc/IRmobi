@@ -18,38 +18,38 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
     $httpProvider.interceptors.push('errorHttpInterceptor');
     $routeProvider.
       when('/', {
-        templateUrl: '/themes/rimobi/partials/index.html'
+        templateUrl: 'themes/rimobi/partials/index.html'
       }).
       when('/articles/:id', {
-        templateUrl: '/themes/rimobi/partials/articles/list.html',
+        templateUrl: 'themes/rimobi/partials/articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/articles/:id/page/:page', {
-        templateUrl: '/themes/rimobi/partials/articles/list.html',
+        templateUrl: 'themes/rimobi/partials/articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/extended_articles/:id', {
-        templateUrl: '/themes/rimobi/partials/extended_articles/list.html',
+        templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/extended_articles/:id/page/:page', {
-        templateUrl: '/themes/rimobi/partials/extended_articles/list.html',
+        templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/events/:id', {
-        templateUrl: '/themes/rimobi/partials/events/list.html',
+        templateUrl: 'themes/rimobi/partials/events/list.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/events/:id/page/:page', {
-        templateUrl: '/themes/rimobi/partials/events/list.html',
+        templateUrl: 'themes/rimobi/partials/events/list.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/items/:id', {
-        templateUrl: '/themes/rimobi/partials/items/show.html',
+        templateUrl: 'themes/rimobi/partials/items/show.html',
         controller: 'ItemShowCtrl'
       }).
       when('/contact', {
-        templateUrl: '/themes/rimobi/partials/contact.html',
+        templateUrl: 'themes/rimobi/partials/contact.html',
         controller: 'ContactCtrl'
       }).
       otherwise({
