@@ -14,9 +14,8 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
     //-- unless # is added to the templates
     //$locationProvider.html5Mode(true);
 
-	//handle http errors
-	$httpProvider.interceptors.push('errorHttpInterceptor');
-	
+    //handle http errors
+    $httpProvider.interceptors.push('errorHttpInterceptor');
     $routeProvider.
       when('/', {
         templateUrl: '/themes/rimobi/partials/index.html'
@@ -30,7 +29,11 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
         controller: 'CategoryShowCtrl'
       }).
       when('/extended_articles/:id', {
-        templateUrl: '/themes/rimobi/partials/articles/list.html',
+        templateUrl: '/themes/rimobi/partials/extended_articles/list.html',
+        controller: 'CategoryShowCtrl'
+      }).
+      when('/extended_articles/:id/page/:page', {
+        templateUrl: '/themes/rimobi/partials/extended_articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
       when('/events/:id', {
