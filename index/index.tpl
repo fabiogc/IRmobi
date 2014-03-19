@@ -35,10 +35,6 @@
     </button>
     <ul class="nav navbar-nav hidden-xs">
     </ul>
-    <!--form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
-      <i class="icon-search text-muted"></i>
-      <input type="text" class="input-sm form-control" placeholder="Search">
-    </form-->
 	</header>
   <!-- / header -->
   <!-- nav -->
@@ -114,13 +110,6 @@
   <script src="themes/rimobi/js/app.js"></script>
   <script src="themes/rimobi/js/app.plugin.js"></script>
   <script src="themes/rimobi/js/app.data.js"></script>
-
-  <!-- Sparkline Chart -->
-  <!-- script src="themes/rimobi/js/charts/sparkline/jquery.sparkline.min.js"></script -->  
-  <!-- Easy Pie Chart -->
-  <!--script src="themes/rimobi/js/charts/easypiechart/jquery.easy-pie-chart.js"></script-->
-  
   {/literal}
-  {include file="common/_analytics.tpl"}
 </body>
 </html>
