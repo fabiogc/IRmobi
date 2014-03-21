@@ -168,5 +168,9 @@ Date.now = Date.now || function() { return +new Date; };
   	   	$window.width() >= 768 && mobile('reset');
   	});
 
+		jQuery('#nav').on('click', 'a', function(){
+			jQuery('body').removeClass('slide-nav slide-nav-left');
+		});
+
   });
 }(window.jQuery);

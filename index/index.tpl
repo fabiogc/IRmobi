@@ -41,17 +41,17 @@
   <nav id="nav" class="nav-primary hidden-xs">
     <ul class="nav" data-spy="affix" data-offset-top="50">
       <li id="home" ng-class="getClass('/')">
-        <a href="#/" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+        <a href="#/">
           <i class="icon-home icon-xlarge"></i><span>Início</span>
         </a>
       </li>
       <li ng-repeat="category in performance.categories|filter: {parent_id: '!'}" id="nav-category-{{category.id}}" ng-class="getClass('/{{category.type}}/' + category.id)">
-        <a ng-href="#/{{category.type}}/{{category.id}}" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+        <a ng-href="#/{{category.type}}/{{category.id}}">
           <i class="icon-chevron-sign-right icon-xlarge"></i><span ng-bind="category.title"></span>
         </a>
       </li>
       <li id="contact" ng-class="getClass('/contact')">
-        <a href="#/contact" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+        <a href="#/contact">
           <i class="icon-envelope-alt icon-xlarge"></i><span>Fale com RI</span>
         </a>
       </li>
