@@ -35,14 +35,15 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', 'Items', 'Categories', 
       });
     }]);
 
-meumobiControllers.controller('ContactCtrl', ['$scope', '$http',
-    function($scope, $http) {
+meumobiControllers.controller('ContactCtrl', ['$scope', '$http', 'DOMAIN',
+    function($scope, $http, DOMAIN) {
       $scope.formData = {};
+      var url = 'http://' + DOMAIN + '/index/contact';
       $scope.submit = function() {
         if ($('#contact-form').parsley('validate')) {//this is a validation a from "first" theme
           $http({
             method: 'POST',
-            url:'/index/contact',
+            url: url,
             data: $.param($scope.formData),
             headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json'}
           })
