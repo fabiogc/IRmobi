@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<html lang="en" {if !$build}ng-app="meumobiApp"{/if} ng-controller="SiteCtrl">
 {literal}
-<html lang="en" ng-app="meumobiApp"  ng-controller="SiteCtrl">
 <head>
   <meta charset="utf-8">
   <title ng-bind-template="{{performance.site.title}}"></title>
@@ -16,13 +16,16 @@
   <link rel="stylesheet" href="/themes/rimobi/css/custom.css"-->
   {/literal}
   {$site.css_token|cssOnline}
+
+  {if !$build}
   {$performance.site.apple_touch_icon|appleTouchIcons}
-  {literal}
   <!--[if lt IE 9]>
     <script src="themes/rimobi/js/ie/respond.min.js" cache="false"></script>
     <script src="themes/rimobi/js/ie/html5.js" cache="false"></script>
     <script src="themes/rimobi/js/ie/excanvas.js" cache="false"></script>
   <![endif]-->
+  {/if}
+  {literal}
 </head>
 <body>
   <!-- header -->
@@ -93,7 +96,13 @@
     FastClick.attach(document.body);
   }, false);
   </script>
+  {/literal}
+  {if $build}
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  {else}
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  {/if}
   <script type="text/javascript" src="themes/rimobi/js/lib/angular.all.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_pt-br.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
@@ -110,6 +119,12 @@
   <script src="themes/rimobi/js/app.js"></script>
   <script src="themes/rimobi/js/app.plugin.js"></script>
   <script src="themes/rimobi/js/app.data.js"></script>
-  {/literal}
+{if $build}
+  <script type="text/javascript" src="themes/rimobi/js/phonegap/utils/Calendar.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript">
+    app.initialize();
+  </script>
+{/if}
 </body>
 </html>
