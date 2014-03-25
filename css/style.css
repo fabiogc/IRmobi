@@ -513,10 +513,10 @@ input[type="text"], select, textarea{min-width: 40px;height: auto;}
   .nav-vertical.nav-icon > ul > li > a i{margin: 8px auto;}
   .nav-primary.nav-vertical > ul > li > a > .badge{position: absolute;top: 4px;right: 15px;font-size: 11px;padding:3px 6px}
 
-  #nav{position: relative;width: 230px;position: absolute;z-index:1000;left:0;top:50px;bottom: 0;border-right:1px solid #162636}
+  #nav{position: relative;width: 245px;position: absolute;z-index:1000;left:0;top:50px;bottom: 0;border-right:1px solid #162636}
   #nav.bg-light{border-color:#bfc7d0}
   #nav.nav-vertical {width: 90px}
-  #nav + #content{padding-left: 230px;}
+  #nav + #content{padding-left: 245px;}
   #nav.nav-vertical + #content {padding-left: 90px;}
   .nav-primary.nav-doc > ul > li > a{border-bottom: none;padding: 3px 20px;text-shadow:none;}
   .nav-primary .affix{top: 0;min-width: 149px}
