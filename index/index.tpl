@@ -27,7 +27,7 @@
   {/if}
   {literal}
 </head>
-<body>
+<body class="navbar-fixed">
   <!-- header -->
     <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
     <a class="navbar-brand" href="#/">
