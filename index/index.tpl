@@ -16,8 +16,8 @@
   <link rel="stylesheet" href="/themes/rimobi/css/custom.css"-->
   {/literal}
   {$site.css_token|cssOnline}
-
   {if !$build}
+  <link rel="shortcut icon" href="/ri/{$performance.site.title|parseSlug}.ico">
   {$performance.site.apple_touch_icon|appleTouchIcons}
   <!--[if lt IE 9]>
     <script src="themes/rimobi/js/ie/respond.min.js" cache="false"></script>
