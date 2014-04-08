@@ -48,11 +48,10 @@ meumobiControllers.controller('ContactCtrl', ['$scope', '$http', 'DOMAIN',
             headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json'}
           })
           .success(function(data) {
-            console.log(data);
             if (data.success) {
-              $scope.success = 'Sua mensagem foi enviada com sucesso!';//data.message;
+              alert('Sua mensagem foi enviada com sucesso!');//data.message;
             } else {
-              $scope.error = 'Desculpe, mas sua mensagem não foi enviada!';//data.message; 
+              alert('Desculpe, mas sua mensagem não foi enviada!');//data.message; 
             }
           });
         }
