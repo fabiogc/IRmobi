@@ -5,15 +5,16 @@ var meumobiApp = angular.module('meumobiApp', [
   'meumobiServices',
   'meumobiDirectives',
   'meumobiControllers',
-  'slugifier'
+  'slugifier',
+  'angulartics',
+  'angulartics.google.analytics'
 ]);
 
-meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
-  function($routeProvider, $locationProvider, $httpProvider) {
-    //commenting out this line (switching to hashbang mode) breaks the app
-    //-- unless # is added to the templates
-    //$locationProvider.html5Mode(true);
-
+meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$analyticsProvider',
+  function($routeProvider, $locationProvider, $httpProvider, $analyticsProvider) {
+    if (!navigator.onLine) {
+      $analyticsProvider.virtualPageviews(false);
+    }
     //handle http errors
     $httpProvider.interceptors.push('errorHttpInterceptor');
     $routeProvider.
