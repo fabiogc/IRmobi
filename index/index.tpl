@@ -86,6 +86,8 @@
   var config_data = {};
   {/literal}
   config_data.DOMAIN = "{$domain}";
+  config_data.ENV = "{$smarty.const.BKF_ENV}";
+  config_data.SERVICES_URL = "{$smarty.const.SERVICES_URL}";
   config_data.API_URL = "{$smarty.const.SITE_BUILDER_URL}";
   {literal}
   </script>

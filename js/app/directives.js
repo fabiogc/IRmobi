@@ -67,16 +67,28 @@ meumobiDirectives.directive('breadcrumb', function(Categories) {
 	};
 });
 
-meumobiDirectives.directive('yahooFinance', ['$http','TIMEOUT', function($http, TIMEOUT) {
+meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 	return {
 		restrict: 'E',
-		templateUrl: 'themes/rimobi/partials/widgets/yahoo_finance.html',
+		scope: {code: '='},
+		template: '<ng-include src="templatePath"></ng-include>',
 		link: function(scope) {
-			var url = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22SANB11.SA%22%2C%22SANB3.SA%22%2C%22SANB4.SA%22%2C%22BSBR%22)%0A%09%09&format=json&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback=';
-			$http.get(url,{timeout: TIMEOUT}).success(function(data) {
-				scope.created_at = data.query.created;
-				scope.mainQuote = data.query.results.quote.shift();
-				scope.quotes = data.query.results.quote;
+			Stock.getQuotes(scope.code).then(function(data) {
+				console.log(data)
+				var quotes = data.query.results.quotes;
+				if (quotes.length >=4) {
+					scope.quotes = quotes;
+					scope.mainQuote = quotes.shift();
+					scope.templatePath = 'themes/rimobi/partials/widgets/stock/multi-quotes.html';
+				} else {
+					var first = quotes.shift();
+					scope.tradePrice = first.LastTradePriceOnly;
+					scope.change = first.ChangeinPercent;
+					scope.high = first.DaysHigh;
+					scope.low = first.DaysLow;
+					scope.volume = first.Volume
+					scope.templatePath = 'themes/rimobi/partials/widgets/stock/single-quotes.html';
+				}
 			});
 		}
 	};

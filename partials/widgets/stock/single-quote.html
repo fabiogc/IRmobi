@@ -1,0 +1,35 @@
+<div class="row quotes">
+  <div class="col-xs-12">
+    <section class="panel text-center m-b-mini main">
+      <div class="panel-body">
+        <p class="h4">Cotaçao</p>
+        <div class="line m-l m-r"></div>
+        <p class="h1">
+          {{tradePrice}}
+          <i ng-class="(parseFloat(mainQuote.ChangeinPercent) < 0) ? 'icon-caret-down text-danger' : 'icon-caret-up text-success'"><spam class="text-small">{{mainQuote.ChangeinPercent}}</spam></i>
+        </p>
+      </div>
+    </section>
+  </div>
+  <div class="col-xs-12">
+    <section class="panel m-b-mini text-center">
+      <div class="panel-body">
+        <p class="h4">
+          Variaçao {{change}}
+        </p>
+        <div class="line m-l m-r"></div>
+        <p class="h4">
+          Maxima  {{high}}
+        </p>
+        <div class="line m-l m-r"></div>
+        <p class="h4">
+          Minima  {{low}}
+        </p>
+        <div class="line m-l m-r"></div>
+        <p class="h4">
+          Volume {{volume}}
+        </p>
+      </div>
+    </section>
+  </div>
+</div>
