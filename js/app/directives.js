@@ -75,16 +75,17 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 		link: function(scope) {
 			if (!scope.code) return;
 			Stock.getQuotes(scope.code).then(function(data) {
+				console.log(data);
 				var quotes = data.query.results.quote;
 				scope.source = "atraso de 15'  Fonte: ";
 				scope.source += (scope.code.indexOf(':') === 0) ? 'Enfoque' : 'Yahoo';
-				if (!quotes.length) return;
 				if (quotes.length >=4) {
 					scope.quotes = quotes;
 					scope.mainQuote = quotes.shift();
 					scope.templatePath = 'themes/rimobi/partials/widgets/stock/multi-quotes.html';
 				} else {
-					var first = quotes.shift();
+					console.log(quotes instanceof Array);
+					var first = (quotes instanceof Array) ? quotes.shift() : quotes;
 					scope.title = first.symbol;
 					scope.tradePrice = first.LastTradePriceOnly;
 					scope.change = first.ChangeinPercent;

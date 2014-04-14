@@ -6,7 +6,7 @@
         <div class="line m-l m-r"></div>
         <p class="h1">
           {{tradePrice}}
-          <i ng-class="(parseFloat(mainQuote.ChangeinPercent) < 0) ? 'icon-caret-down text-danger' : 'icon-caret-up text-success'"><spam class="text-small">{{mainQuote.ChangeinPercent}}</spam></i>
+          <i ng-class="(parseFloat(change) < 0) ? 'icon-caret-down text-danger' : 'icon-caret-up text-success'"><spam class="text-small">{{change}}</spam></i>
         </p>
       </div>
     </section>
@@ -14,10 +14,6 @@
   <div class="col-xs-12">
     <section class="panel m-b-mini text-center">
       <div class="panel-body">
-        <p class="h4">
-          Variação {{change}}
-        </p>
-        <div class="line m-l m-r"></div>
         <p class="h4">
           Máxima  {{high}}
         </p>
