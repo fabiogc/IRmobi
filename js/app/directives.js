@@ -78,6 +78,7 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 				var quotes = data.query.results.quote;
 				scope.source = "atraso de 15'  Fonte: ";
 				scope.source += (scope.code.indexOf(':') === 0) ? 'Enfoque' : 'Yahoo';
+				if (!quotes.length) return;
 				if (quotes.length >=4) {
 					scope.quotes = quotes;
 					scope.mainQuote = quotes.shift();
