@@ -73,10 +73,10 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 		scope: {code: '='},
 		template: '<ng-include src="templatePath"></ng-include>',
 		link: function(scope) {
-			console.log(scope.code);
+			if (!scope.code) return;
 			Stock.getQuotes(scope.code).then(function(data) {
 				console.log(data);
-				var quotes = data.query.results.quote;
+				var quotes = data.query.results.quotes;
 				if (quotes.length >=4) {
 					scope.quotes = quotes;
 					scope.mainQuote = quotes.shift();
