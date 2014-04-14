@@ -76,7 +76,7 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 			if (!scope.code) return;
 			Stock.getQuotes(scope.code).then(function(data) {
 				console.log(data);
-				var quotes = data.query.results.quotes;
+				var quotes = data.query.results.quote;
 				if (quotes.length >=4) {
 					scope.quotes = quotes;
 					scope.mainQuote = quotes.shift();
