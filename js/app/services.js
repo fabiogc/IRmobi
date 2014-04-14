@@ -30,7 +30,6 @@ meumobiServices.factory('Stock', ['$http', '$q', 'TIMEOUT', 'SERVICES_URL', func
 				params.action = 'yahoofy';
 				params.codes = code;
 			}
-			params.time= Date.now();
 			$http.get(SERVICES_URL + '/stocks/',{timeout: TIMEOUT, params: params})
 			.success(function(data) {
 				deferred.resolve(data);

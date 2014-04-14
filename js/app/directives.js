@@ -73,21 +73,23 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 		scope: {code: '='},
 		template: '<ng-include src="templatePath"></ng-include>',
 		link: function(scope) {
+			console.log(scope.code);
 			Stock.getQuotes(scope.code).then(function(data) {
-				console.log(data)
-				var quotes = data.query.results.quotes;
+				console.log(data);
+				var quotes = data.query.results.quote;
 				if (quotes.length >=4) {
 					scope.quotes = quotes;
 					scope.mainQuote = quotes.shift();
 					scope.templatePath = 'themes/rimobi/partials/widgets/stock/multi-quotes.html';
 				} else {
 					var first = quotes.shift();
+					scope.title = first.symbol;
 					scope.tradePrice = first.LastTradePriceOnly;
 					scope.change = first.ChangeinPercent;
 					scope.high = first.DaysHigh;
 					scope.low = first.DaysLow;
 					scope.volume = first.Volume
-					scope.templatePath = 'themes/rimobi/partials/widgets/stock/single-quotes.html';
+					scope.templatePath = 'themes/rimobi/partials/widgets/stock/single-quote.html';
 				}
 			});
 		}
