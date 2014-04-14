@@ -8,7 +8,7 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site',
       Site.get({}, function(data) {
         $scope.performance = data;
         var categories = data.categories.slice(0);
-        if (data.site.title == "Santander") {
+        if (data.site.stock_symbols) {
             $scope.firstCategory = categories.shift();
             $scope.headlinesRows = 1;
         }
