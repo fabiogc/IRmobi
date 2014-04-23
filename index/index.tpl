@@ -125,6 +125,7 @@
   <script src="themes/rimobi/js/app.data.js"></script>
   
   <script>
+  {if $performance.site.analytics_token}
   {literal}
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -133,6 +134,7 @@
     {/literal}ga('create', '{$performance.site.analytics_token}',{literal}
     { 'cookieDomain': 'none' });
   {/literal}
+  {/if}
   </script>
   
 {if $build}
