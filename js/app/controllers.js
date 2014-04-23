@@ -28,6 +28,17 @@ meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', '$rou
       });
     }]);
 
+meumobiControllers.controller('EventListCtrl', ['$scope', 'Categories', '$routeParams',
+    function($scope, Categories, $routeParams) {
+      $scope.category = Categories.get({id: $routeParams.id});
+
+      $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
+
+      $scope.items = Categories.items({id: $routeParams.id, page: $scope.currentPage, order: 'start_date,DESC'}, function(data){
+        $scope.items = data.items;
+      });
+    }]);
+
 meumobiControllers.controller('ItemShowCtrl', ['$scope', 'Items', 'Categories', '$routeParams',
     function($scope, Items, Categories, $routeParams) {
       $scope.item = Items.get({id: $routeParams.id}, function(data) {

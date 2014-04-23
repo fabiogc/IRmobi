@@ -39,11 +39,11 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$ana
       }).
       when('/events/:id', {
         templateUrl: 'themes/rimobi/partials/events/list.html',
-        controller: 'CategoryShowCtrl'
+        controller: 'EventListCtrl'
       }).
       when('/events/:id/page/:page', {
         templateUrl: 'themes/rimobi/partials/events/list.html',
-        controller: 'CategoryShowCtrl'
+        controller: 'EventListCtrl'
       }).
       when('/items/:id', {
         templateUrl: 'themes/rimobi/partials/items/show.html',
