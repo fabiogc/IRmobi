@@ -1,12 +1,16 @@
 <div class="row m-t">
-  <breadcrumb title="{{category.title}}" link="#/{{category.type}}/{{category.id}}"></breadcrumb>
-  <div class="col-lg-12">
-    <section class="panel">
-      <header class="panel-heading" ng-bind-html="item.title"></header>
-      <div class="panel-body text-small"> 
-        <div ng-bind-html="item.description"></div>
-        <p><a ng-if="item.enclosure" ng-href="{{item.enclosure}}" target="_blank" class="btn btn-white btn-xs">Download</a></p>
-      </div>
-    </section> 
-  </div> <!-- col -->
+	<breadcrumb title="{{category.title}}" link="#/{{category.type}}/{{category.id}}"></breadcrumb>
+	<div class="col-lg-12">
+		<section class="panel">
+			<header class="panel-heading" ng-bind-html="item.title"></header>
+			<div class="panel-body text-small"> 
+				<div ng-bind-html="item.description"></div>
+				<div>
+					<p ng-repeat="media in item.medias|filter:{type:'application/pdf'}">
+					<a ng-href="{{media.url}}" target="_blank"><span class="btn btn-white btn-xs">Download</span> {{media.title}}</a>
+					</p>
+				</div>
+			</div>
+		</section> 
+	</div> <!-- col -->
 </div>
