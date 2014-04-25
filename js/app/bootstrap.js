@@ -6,17 +6,19 @@ var meumobiApp = angular.module('meumobiApp', [
   'meumobiDirectives',
   'meumobiControllers',
   'slugifier',
+  'pascalprecht.translate',
   'angulartics',
   'angulartics.google.analytics'
 ]);
 
-meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$analyticsProvider',
-  function($routeProvider, $locationProvider, $httpProvider, $analyticsProvider) {
+meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$translateProvider', '$analyticsProvider',
+  function($routeProvider, $locationProvider, $httpProvider, $translateProvider,$analyticsProvider) {
     if (!navigator.onLine) {
       $analyticsProvider.virtualPageviews(false);
     }
     //handle http errors
     $httpProvider.interceptors.push('errorHttpInterceptor');
+    //configure routes
     $routeProvider.
       when('/', {
         templateUrl: 'themes/rimobi/partials/index.html'
@@ -56,6 +58,20 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$ana
       otherwise({
         redirectTo: '/'
       });
+    //configure translations
+    for (var lang in translations) {
+      $translateProvider.translations(lang, translations[lang]);
+    }
+    $translateProvider
+    .registerAvailableLanguageKeys(['en', 'pt'], {
+        'en_US': 'en',
+        'en_UK': 'en',
+        'en-US': 'en',
+        'pt-BR': 'pt',
+        'pt_BR': 'pt'
+    })
+    .fallbackLanguage('pt')
+    .determinePreferredLanguage();
   }]);
 
 meumobiApp.run(function($rootScope, API_URL, $location) {

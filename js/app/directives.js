@@ -75,7 +75,6 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 		link: function(scope) {
 			if (!scope.code) return;
 			Stock.getQuotes(scope.code).then(function(data) {
-				console.log(data);
 				var quotes = data.query.results.quote;
 				scope.source = "atraso de 15'  Fonte: ";
 				scope.source += (scope.code.indexOf(':') === 0) ? 'Enfoque' : 'Yahoo';
@@ -84,7 +83,6 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 					scope.mainQuote = quotes.shift();
 					scope.templatePath = 'themes/rimobi/partials/widgets/stock/multi-quotes.html';
 				} else {
-					console.log(quotes instanceof Array);
 					var first = (quotes instanceof Array) ? quotes.shift() : quotes;
 					scope.title = first.symbol;
 					scope.tradePrice = first.LastTradePriceOnly;

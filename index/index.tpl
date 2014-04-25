@@ -45,7 +45,7 @@
     <ul class="nav" data-spy="affix" data-offset-top="50">
       <li id="home" ng-class="getClass('/')">
         <a href="#/">
-          <i class="icon-home icon-xlarge"></i><span>Início</span>
+          <i class="icon-home icon-xlarge"></i><span translate>Home</span>
         </a>
       </li>
       <li ng-repeat="category in performance.categories|filter: {parent_id: '!'}" id="nav-category-{{category.id}}" ng-class="getClass('/{{category.type}}/' + category.id)">
@@ -55,7 +55,7 @@
       </li>
       <li id="contact" ng-class="getClass('/contact')">
         <a href="#/contact">
-          <i class="icon-envelope-alt icon-xlarge"></i><span>Fale com RI</span>
+          <i class="icon-envelope-alt icon-xlarge"></i><span translate>Contact RI</span>
         </a>
       </li>
     </ul>
@@ -89,6 +89,7 @@
   config_data.ENV = "{$smarty.const.BKF_ENV}";
   config_data.SERVICES_URL = "{$smarty.const.SERVICES_URL}";
   config_data.API_URL = "{$smarty.const.SITE_BUILDER_URL}";
+  var translations = {translations};
   {literal}
   </script>
 
@@ -108,6 +109,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular.all.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_pt-br.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics-ga.js"></script>
@@ -124,7 +126,7 @@
   <script src="themes/rimobi/js/app.plugin.js"></script>
   <script src="themes/rimobi/js/app.data.js"></script>
   
-  <script>
+  <script  type="text/javascript">
   {if $performance.site.analytics_token}
   {literal}
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -135,7 +137,7 @@
     { 'cookieDomain': 'none' });
   {/literal}
   {/if}
-  </script>
+	</script>
   
 {if $build}
   <script type="text/javascript" src="themes/rimobi/js/phonegap/utils/Calendar.js"></script>
