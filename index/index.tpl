@@ -89,7 +89,8 @@
   config_data.ENV = "{$smarty.const.BKF_ENV}";
   config_data.SERVICES_URL = "{$smarty.const.SERVICES_URL}";
   config_data.API_URL = "{$smarty.const.SITE_BUILDER_URL}";
-  var translations = {translations};
+  config_data.LOCALE = "{$current_locale}";
+  var translations = {translations lang=$current_locale};
   {literal}
   </script>
 
@@ -107,7 +108,7 @@
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   {/if}
   <script type="text/javascript" src="themes/rimobi/js/lib/angular.all.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_pt-br.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_{$current_locale}.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js"></script>

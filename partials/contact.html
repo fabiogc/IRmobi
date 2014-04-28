@@ -1,15 +1,15 @@
 <div class="row m-t">
-	<breadcrumb title="Fale com RI"></breadcrumb>
+	<breadcrumb title="{{'Contact RI'|translate}}"></breadcrumb>
 	<div class="col-sm-6">
 		<section class="panel">
 			<div class="panel-body">
 				<form id="contact-form" class="form-horizontal" ng-submit="submit()"
 					method="post" data-validate="parsley">
 					<div class="form-group">
-						<label class="col-lg-3 control-label">Nome*</label>
+						<label class="col-lg-3 control-label capitalize">{{'name'|translate}}*</label>
 						<div class="col-lg-8">
 							<input type="text" ng-model="formData.name" name="name"
-								placeholder="Nome" data-required="true"
+								placeholder="{{'name'|translate}}" data-required="true"
 								class="form-control parsley-validated">
 						</div>
 					</div>
@@ -17,22 +17,22 @@
 						<label class="col-lg-3 control-label">Email*</label>
 						<div class="col-lg-8">
 							<input type="email" ng-model="formData.mail" name="email"
-								placeholder="teste@examplo.com"
+								placeholder="test@example.com"
 								class="bg-focus form-control parsley-validated"
 								data-required="true" data-type="email">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-3 control-label">Mensagem</label>
+						<label class="col-lg-3 control-label capitalize">{{'message'|translate}}</label>
 						<div class="col-lg-8">
-							<textarea ng-model="formData.message" placeholder="Mensagem"
+							<textarea ng-model="formData.message" placeholder="{{'message'|translate}}"
 								rows="5" class="form-control parsley-validated"
 								data-trigger="keyup" data-rangelength="[10,200]"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-lg-9 col-lg-offset-3">
-							<button type="submit" class="btn btn-primary">Enviar</button>
+							<button type="submit" class="btn btn-primary capitalize" translate>submit</button>
 						</div>
 					</div>
 				</form>
@@ -47,15 +47,15 @@
 					<strong ng-bind-html="performance.site.title"></strong>
 				</p>
 				<p>
-					<strong>Atendimento a investidores</strong>
+					<strong translate>Investors service</strong>
 				</p>
 				<p class="m-b-none" ng-bind-html="performance.business.address">
 				<p class="m-b-none">
-					Tel.: <a ng-if="performance.business.phone"
+					{{'Phone'|translate}}.: <a ng-if="performance.business.phone"
 						href="tel:{{performance.business.phone}}">{{performance.business.phone}}</a>
 				</p>
 				<p class="m-b-none">
-					E-mail: <a ng-if="performance.business.email"
+					Email: <a ng-if="performance.business.email"
 						href="mailto:{{performance.business.email}}">{{performance.business.email}}</a>
 				</p>
 			</div>

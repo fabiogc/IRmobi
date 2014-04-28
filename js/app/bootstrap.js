@@ -11,8 +11,8 @@ var meumobiApp = angular.module('meumobiApp', [
   'angulartics.google.analytics'
 ]);
 
-meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$translateProvider', '$analyticsProvider',
-  function($routeProvider, $locationProvider, $httpProvider, $translateProvider,$analyticsProvider) {
+meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$translateProvider', '$analyticsProvider', 'LOCALE',
+  function($routeProvider, $locationProvider, $httpProvider, $translateProvider,$analyticsProvider, LOCALE) {
     if (!navigator.onLine) {
       $analyticsProvider.virtualPageviews(false);
     }
@@ -71,7 +71,7 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
         'pt_BR': 'pt'
     })
     .fallbackLanguage('pt')
-    .determinePreferredLanguage();
+    .preferredLanguage(LOCALE);
   }]);
 
 meumobiApp.run(function($rootScope, API_URL, $location) {
