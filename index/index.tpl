@@ -43,17 +43,25 @@
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs">
     <ul class="nav" data-spy="affix" data-offset-top="50">
-      <li id="home" ng-class="getClass('/')">
+      <li id="home" class="dropdown-submenu" ng-class="getClass('/')">
         <a href="#/">
           <i class="icon-home icon-xlarge"></i><span translate>Home</span>
         </a>
       </li>
-      <li ng-repeat="category in performance.categories|filter: {parent_id: '!'}" id="nav-category-{{category.id}}" ng-class="getClass('/{{category.type}}/' + category.id)">
+      <li ng-repeat="category in performance.categories"
+        id="nav-category-{{category.id}}"
+        class="dropdown-submenu"
+        ng-class="getClass('/{{category.type}}/' + category.id)">
         <a ng-href="#/{{category.type}}/{{category.id}}">
           <i class="icon-chevron-sign-right icon-xlarge"></i><span ng-bind="category.title"></span>
         </a>
+        <ul class="dropdown-menu" ng-if="category.children">
+          <li ng-repeat="subCategory in category.children">
+            <a ng-href="#/{{subCategory.type}}/{{subCategory.id}}" ng-bind="subCategory.title"></a>
+          </li>
+        </ul>
       </li>
-      <li id="contact" ng-class="getClass('/contact')">
+      <li id="contact" ng-class="getClass('/contact')" class="dropdown-submenu">
         <a href="#/contact">
           <i class="icon-envelope-alt icon-xlarge"></i><span translate>Contact RI</span>
         </a>

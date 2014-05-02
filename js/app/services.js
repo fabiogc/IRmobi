@@ -13,10 +13,27 @@ meumobiServices.factory('Items', ['$resource', 'utils','TIMEOUT', function($reso
 	});
 }]);
 meumobiServices.factory('Categories', ['$resource', 'utils', 'TIMEOUT', function($resource, utils, TIMEOUT) {
-	return $resource(utils.getApiUrl() + '/categories/:id', {}, {
+	var categories = $resource(utils.getApiUrl() + '/categories/:id', {}, {
 		get: {cache: true, method: 'GET', timeout: TIMEOUT},
 		items: {method: 'GET', cache: true, url: utils.getApiUrl() + '/categories/:id/items', timeout: TIMEOUT}
 	});
+	categories.getTree = function getTree(categories) {//TODO remove parameter
+		children = [];
+		for(var key in categories) {
+			var parent_id = categories[key].parent_id != null ? categories[key].parent_id : 0;
+			if (!children[parent_id])
+				children[parent_id] = [];
+			children[parent_id].push(categories[key]);
+		}
+		for(var key in categories) {
+			var category = categories[key];
+			category.children = [];
+			if (children[category.id])
+				category.children = children[category.id];
+		}
+		return children[0];
+	}
+	return categories;
 }]);
 meumobiServices.factory('Stock', ['$http', '$q', 'TIMEOUT', 'SERVICES_URL', function($http, $q, TIMEOUT, SERVICES_URL) {
 	return {

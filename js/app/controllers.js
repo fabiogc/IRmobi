@@ -1,10 +1,9 @@
 var meumobiControllers = angular.module('meumobiControllers', ['angularLocalStorage']);
 
-meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site',
-    function($scope, storage, Site, Category) {
+meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site','Categories',
+    function($scope, storage, Site, Categories) {
       storage.bind($scope,'performance');
       $scope.headlinesRows = 2;
-
       Site.get({}, function(data) {
         $scope.performance = data;
         var categories = data.categories.slice(0);
@@ -12,8 +11,8 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site',
             $scope.firstCategory = categories.shift();
             $scope.headlinesRows = 1;
         }
- 
         $scope.splitedCategories = $scope.splitArray(categories, 2);
+        $scope.performance.categories = Categories.getTree($scope.performance.categories);
       });
     }]);
 
