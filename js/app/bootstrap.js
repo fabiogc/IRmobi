@@ -70,8 +70,12 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
         'pt-BR': 'pt',
         'pt_BR': 'pt'
     })
-    .fallbackLanguage('pt')
-    .preferredLanguage(LOCALE);
+    .fallbackLanguage('en')
+    if (LOCALE == 'auto') {
+      $translateProvider.determinePreferredLanguage();
+    } else {
+      $translateProvider.preferredLanguage(LOCALE);
+    }
   }]);
 
 meumobiApp.run(function($rootScope, API_URL, $location) {

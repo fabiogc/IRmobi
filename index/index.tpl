@@ -89,8 +89,8 @@
   config_data.ENV = "{$smarty.const.BKF_ENV}";
   config_data.SERVICES_URL = "{$smarty.const.SERVICES_URL}";
   config_data.API_URL = "{$smarty.const.SITE_BUILDER_URL}";
-  config_data.LOCALE = "{$current_locale}";
-  var translations = {translations lang=$current_locale};
+  config_data.LOCALE = "{$performance.site.language}";
+  var translations = {if $performance.site.language != 'auto'}{translations lang=$performance.site.language}{else}{translations}{/if};
   {literal}
   </script>
 
