@@ -43,7 +43,7 @@
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs">
     <ul class="nav" data-spy="affix" data-offset-top="50">
-      <li id="home" class="dropdown-submenu" ng-class="getClass('/')">
+      <li id="home" ng-class="getClass('/')">
         <a href="#/">
           <i class="icon-home icon-xlarge"></i><span translate>Home</span>
         </a>
@@ -52,16 +52,19 @@
         id="nav-category-{{category.id}}"
         class="dropdown-submenu"
         ng-class="getClass('/{{category.type}}/' + category.id)">
-        <a ng-href="#/{{category.type}}/{{category.id}}">
+        <a ng-if="!category.children.length" ng-href="#/{{category.type}}/{{category.id}}">
           <i class="icon-chevron-sign-right icon-xlarge"></i><span ng-bind="category.title"></span>
         </a>
-        <ul class="dropdown-menu" ng-if="category.children">
+        <a ng-if="category.children.length">
+          <i class="icon-chevron-sign-right icon-xlarge"></i><span ng-bind="category.title"></span>
+        </a>
+        <ul class="dropdown-menu" ng-if="category.children.length">
           <li ng-repeat="subCategory in category.children">
             <a ng-href="#/{{subCategory.type}}/{{subCategory.id}}" ng-bind="subCategory.title"></a>
           </li>
         </ul>
       </li>
-      <li id="contact" ng-class="getClass('/contact')" class="dropdown-submenu">
+      <li id="contact" ng-class="getClass('/contact')">
         <a href="#/contact">
           <i class="icon-envelope-alt icon-xlarge"></i><span translate>Contact RI</span>
         </a>
