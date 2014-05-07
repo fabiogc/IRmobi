@@ -78,7 +78,7 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
     }
   }]);
 
-meumobiApp.run(function($rootScope, API_URL, $location) {
+meumobiApp.run(function($rootScope, $location, API_URL, IS_APP) {
   $rootScope.isOnline = navigator.onLine;
 
   $rootScope.thumbify = function(imagePath, prefix, defaultImg) {
@@ -137,12 +137,24 @@ meumobiApp.run(function($rootScope, API_URL, $location) {
         return arrayToReturn;
     }
   };
-  
+
   $rootScope.parseFloat = parseFloat;
 
   $rootScope.isFutureDate = function (timestamp) {
     var date = new Date(timestamp * 1000);
     var now  = new Date();
     return date > now;
+  }
+
+  if (IS_APP && gaPlugin){
+	function nativePluginResultHandler (result) {
+			console.log('nativePluginResultHandler: '+result);
+		}
+		function nativePluginErrorHandler (error) {
+			console.log('nativePluginErrorHandler: '+error);
+	}
+    $rootScope.$on('$routeChangeSuccess', function(){
+      gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, ''+$location.url());
+    });
   }
 });

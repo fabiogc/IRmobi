@@ -33,3 +33,9 @@ meumobiSettings.factory('errorHttpInterceptor', function($q) {
 	}
 	};
 });
+var gaPlugin = null;
+//phonegap analitycs
+if (config_data.IS_APP && config_data.ANALYTICS) {
+	gaPlugin = window.plugins.gaPlugin;
+	gaPlugin.init(successHandler, errorHandler, config_data.ANALYTICS, 10);
+}

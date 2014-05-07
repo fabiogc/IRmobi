@@ -100,6 +100,8 @@
   config_data.SERVICES_URL = "{$smarty.const.SERVICES_URL}";
   config_data.API_URL = "{$smarty.const.SITE_BUILDER_URL}";
   config_data.LOCALE = "{$performance.site.language}";
+  config_data.IS_APP = {if $build}true{else}false{/if};
+  config_data.ANALYTICS = '{$performance.site.analytics_token}';
   var translations = {if $performance.site.language != 'auto'}{translations lang=$performance.site.language}{else}{translations}{/if};
   {literal}
   </script>
@@ -136,9 +138,9 @@
   <script src="themes/rimobi/js/app.js"></script>
   <script src="themes/rimobi/js/app.plugin.js"></script>
   <script src="themes/rimobi/js/app.data.js"></script>
-  
+
   <script  type="text/javascript">
-  {if $performance.site.analytics_token}
+  {if $performance.site.analytics_token && !$build}
   {literal}
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
