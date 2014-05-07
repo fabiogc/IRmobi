@@ -21,11 +21,11 @@ meumobiSettings.factory('utils', ['$location', 'API_URL', 'DOMAIN',
 
 meumobiSettings.factory('errorHttpInterceptor', function($q) {
 	return {
-		'requestError': function(rejection) {
-			// do something on error
-			console.log(rejection);
-			return $q.reject(rejection);
-		},
+	'requestError': function(rejection) {
+		// do something on error
+		console.log(rejection);
+		return $q.reject(rejection);
+	},
 	'responseError': function(rejection) {
 		// do something on error
 		console.log(rejection);

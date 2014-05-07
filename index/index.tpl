@@ -42,16 +42,15 @@
   <!-- / header -->
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs">
-    <ul class="nav" data-spy="affix" data-offset-top="50">
-      <li id="home" ng-class="getClass('/')">
+    <ul class="nav" data-spy="affix" data-offset-top="50" nav-menu="active">
+      <li id="home">
         <a href="#/">
           <i class="icon-home icon-xlarge"></i><span translate>Home</span>
         </a>
       </li>
       <li ng-repeat="category in performance.categories"
         id="nav-category-{{category.id}}"
-        class="dropdown-submenu"
-        ng-class="getClass('/{{category.type}}/' + category.id)">
+        class="dropdown-submenu">
         <a ng-if="!category.children.length" ng-href="#/{{category.type}}/{{category.id}}">
           <i class="icon-chevron-sign-right icon-xlarge"></i><span ng-bind="category.title"></span>
         </a>
@@ -64,7 +63,7 @@
           </li>
         </ul>
       </li>
-      <li id="contact" ng-class="getClass('/contact')">
+      <li id="contact">
         <a href="#/contact">
           <i class="icon-envelope-alt icon-xlarge"></i><span translate>Contact RI</span>
         </a>

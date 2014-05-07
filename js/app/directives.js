@@ -95,3 +95,48 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 		}
 	};
 }]);
+
+meumobiDirectives.directive('navMenu', ['$location', '$timeout', function($location, $timeout) {
+	return function(scope, element, attrs) {
+		var navMenu = function() {
+			var links = element.find('a'),
+			onClass = String(attrs.navMenu) || 'on',
+			routePattern,
+			link,
+			url,
+			currentLink,
+			urlMap = {},
+			i;
+			if (!$location.$$html5) {
+				routePattern = /^#[^/]*/;
+			}
+			for (i = 0; i < links.length; i++) {
+				link = angular.element(links[i]);
+				url = link.attr('href');
+				if (!url) continue;
+				if ($location.$$html5) {
+					urlMap[url] = link;
+				} else {
+					urlMap[url.replace(routePattern, '')] = link;
+				}
+			}
+			var updateLink = function() {
+				var pathLink = urlMap[$location.path()];
+				if (pathLink) {
+					if (currentLink) {
+						currentLink.removeClass(onClass);
+					}
+					if (pathLink.parents('.dropdown-menu').length) {
+						currentLink = pathLink.parents('.dropdown-submenu:first');
+					} else {
+						currentLink = pathLink.parent();
+					}
+					currentLink.addClass(onClass);
+				}
+			}
+			scope.$on('$routeChangeStart', updateLink);
+			updateLink();
+		}
+		$timeout(navMenu, 0);
+	};
+}]);
