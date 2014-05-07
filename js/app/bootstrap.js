@@ -78,7 +78,7 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
     }
   }]);
 
-meumobiApp.run(function($rootScope, $location, API_URL, IS_APP) {
+meumobiApp.run(function($rootScope, $location, API_URL, IS_APP, ANALYTICS) {
   $rootScope.isOnline = navigator.onLine;
 
   $rootScope.thumbify = function(imagePath, prefix, defaultImg) {
@@ -146,13 +146,16 @@ meumobiApp.run(function($rootScope, $location, API_URL, IS_APP) {
     return date > now;
   }
 
-  if (IS_APP && gaPlugin){
-	function nativePluginResultHandler (result) {
+  //phonegap analitycs
+  if (IS_APP && ANALYTICS) {
+	  gaPlugin = window.plugins.gaPlugin;
+	  gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, ANALYTICS, 10);
+	  function nativePluginResultHandler (result) {
 			console.log('nativePluginResultHandler: '+result);
 		}
 		function nativePluginErrorHandler (error) {
 			console.log('nativePluginErrorHandler: '+error);
-	}
+    }
     $rootScope.$on('$routeChangeSuccess', function(){
       gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, ''+$location.url());
     });
