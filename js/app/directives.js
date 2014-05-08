@@ -127,16 +127,16 @@ meumobiDirectives.directive('navMenu', ['$location', '$timeout', function($locat
 						currentLink.removeClass(onClass);
 					}
 					if (pathLink.parents('.dropdown-menu').length) {
-						currentLink = pathLink.parents('.dropdown-submenu:first');
+						currentLink = jQuery('#'+pathLink.parents('.dropdown-submenu:first').attr('id'));//its because a strange bug
 					} else {
-						currentLink = pathLink.parent();
+						currentLink = jQuery('#'+pathLink.parent().attr('id'));
 					}
 					currentLink.addClass(onClass);
 				}
 			}
-			scope.$on('$routeChangeStart', updateLink);
 			updateLink();
+			scope.$on('$routeChangeStart', updateLink);
 		}
-		$timeout(navMenu, 0);
+		$timeout(navMenu, 500);
 	};
 }]);
