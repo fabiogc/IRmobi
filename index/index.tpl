@@ -101,7 +101,7 @@
   config_data.API_URL = "{$smarty.const.SITE_BUILDER_URL}";
   config_data.LOCALE = "{$performance.site.language}";
   config_data.IS_APP = {if $build}true{else}false{/if};
-  config_data.ANALYTICS = '{$performance.site.analytics_token}';
+  config_data.ANALYTICS = '{if is_array($performance.site.analytics_token)}{$performance.site.analytics_token[1]}{else}{$performance.site.analytics_token}{/if}';
   var translations = {if $performance.site.language != 'auto'}{translations lang=$performance.site.language}{else}{translations}{/if};
   {literal}
   </script>
@@ -146,7 +146,7 @@
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    {/literal}ga('create', '{$performance.site.analytics_token}',{literal}
+    {/literal}ga('create', '{if is_array($performance.site.analytics_token)}{$performance.site.analytics_token[0]}{else}{$performance.site.analytics_token}{/if}',{literal}
     { 'cookieDomain': 'none' });
   {/literal}
   {/if}
