@@ -3,7 +3,7 @@
 	<div class="col-lg-12">
 		<section class="panel">
 			<header class="panel-heading" ng-bind-html="item.title"></header>
-			<div id="links">
+			<div id="links" class="padder m-t">
 				<a ng-repeat="image in item.images" href="{{thumbify(image.path)}}" title="{{image.title}}" data-gallery>
 					<img ng-src="{{thumbify(image.path, '80x80_')}}" alt="{{image.title}}">
 				</a>
