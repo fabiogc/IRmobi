@@ -9,7 +9,8 @@ meumobiServices.factory('Site', ['$resource', 'utils','TIMEOUT', function($resou
 meumobiServices.factory('Items', ['$resource', 'utils','TIMEOUT', function($resource, utils, TIMEOUT) {
 	return $resource(utils.getApiUrl() + '/items/:id', {}, {
 		get: {cache: true, method: 'GET', timeout: TIMEOUT},
-		query: {method: 'GET', cache: true, url: utils.getApiUrl() + '/items/search', timeout: TIMEOUT}
+		query: {method: 'GET', cache: true, url: utils.getApiUrl() + '/items/search', timeout: TIMEOUT},
+		latest: {method: 'GET', cache: true, url: utils.getApiUrl() + '/items/latest', timeout: TIMEOUT}
 	});
 }]);
 meumobiServices.factory('Categories', ['$resource', 'utils', 'TIMEOUT', function($resource, utils, TIMEOUT) {

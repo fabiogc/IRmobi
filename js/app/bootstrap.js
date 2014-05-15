@@ -6,6 +6,7 @@ var meumobiApp = angular.module('meumobiApp', [
   'meumobiDirectives',
   'meumobiControllers',
   'slugifier',
+  'truncate',
   'pascalprecht.translate',
   'angulartics',
   'angulartics.google.analytics'
@@ -46,6 +47,10 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
       when('/events/:id/page/:page', {
         templateUrl: 'themes/rimobi/partials/events/list.html',
         controller: 'EventListCtrl'
+      }).
+      when('/latest', {
+        templateUrl: 'themes/rimobi/partials/items/latest.html',
+        controller: 'LatestItemsCtrl'
       }).
       when('/items/:id', {
         templateUrl: 'themes/rimobi/partials/items/show.html',

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="themes/rimobi/css/rimobi-min.css">
   <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css">
   <link rel="stylesheet" href="themes/rimobi/css/bootstrap-image-gallery.min.css">
-<!--link rel="stylesheet" href="/themes/rimobi/css/bootstrap.css">
+  <!--link rel="stylesheet" href="/themes/rimobi/css/bootstrap.css">
   <link rel="stylesheet" href="/themes/rimobi/css/font-awesome.min.css">
   <link rel="stylesheet" href="/themes/rimobi/css/font.css" cache="false">
   <link rel="stylesheet" href="/themes/rimobi/css/style.css">
@@ -160,6 +160,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics-ga.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/app/services.js"></script><!-- define rest service -->
@@ -170,6 +171,7 @@
   <!-- Bootstrap -->
   <script src="themes/rimobi/js/bootstrap.js"></script>
   <script src="themes/rimobi/js/parsley/parsley.min.js"></script>
+  <script src="themes/rimobi/js/grid/jquery.grid-a-licious.min.js"></script>
   <script src="themes/rimobi/js/jquery.blueimp-gallery.min.js"></script>
   <script src="themes/rimobi/js/bootstrap-image-gallery.min.js"></script>
 <!-- app -->
