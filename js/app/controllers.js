@@ -5,14 +5,14 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site','Categori
 			storage.bind($scope,'performance');
 			$scope.headlinesRows = 2;
 			Site.get({}, function(data) {
-				$scope.performance = data;
+				data.categories = Categories.getTree(data.categories);
 				var categories = data.categories.slice(0);
+				$scope.performance = data;
 				if (data.site.stock_symbols) {
 					$scope.firstCategory = categories.shift();
 					$scope.headlinesRows = 1;
 				}
 				$scope.splitedCategories = $scope.splitArray(categories, 2);
-				$scope.performance.categories = Categories.getTree($scope.performance.categories);
 			});
 		}]);
 
