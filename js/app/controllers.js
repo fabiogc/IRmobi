@@ -63,8 +63,8 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', 'Items', 'Categories', 
 			});
 		}]);
 
-meumobiControllers.controller('ContactCtrl', ['$scope', '$http', 'DOMAIN',
-		function($scope, $http, DOMAIN) {
+meumobiControllers.controller('ContactCtrl', ['$scope', '$http', '$translate', 'DOMAIN',
+		function($scope, $http, $translate, DOMAIN) {
 			$scope.formData = {};
 			var url = 'http://' + DOMAIN + '/index/contact';
 			$scope.submit = function() {
@@ -77,9 +77,13 @@ meumobiControllers.controller('ContactCtrl', ['$scope', '$http', 'DOMAIN',
 					})
 					.success(function(data) {
 						if (data.success) {
-							alert('Sua mensagem foi enviada com sucesso!');//data.message;
+							$translate('Your message has been sent successfully!').then(function (string) {
+								alert(string);
+							});
 						} else {
-							alert('Desculpe, mas sua mensagem não foi enviada!');//data.message; 
+							$translate('Sorry, but your message was not sent!').then(function (string) {
+								alert(string);
+							});
 						}
 					});
 				}
