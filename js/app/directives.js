@@ -73,6 +73,7 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 		scope: {code: '='},
 		template: '<ng-include src="templatePath"></ng-include>',
 		link: function(scope) {
+			scope.parseFloat = parseFloat;
 			if (!scope.code) return;
 			Stock.getQuotes(scope.code).then(function(data) {
 				var quotes = data.query.results.quote;
