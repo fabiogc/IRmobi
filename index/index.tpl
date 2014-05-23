@@ -67,7 +67,7 @@
       </li>
       <li id="contact">
         <a href="#/contact">
-          <i class="icon-envelope-alt icon-xlarge"></i><span translate>Contact RI</span>
+          <i class="icon-envelope-alt icon-xlarge"></i><span translate>Contact IR</span>
         </a>
       </li>
     </ul>
