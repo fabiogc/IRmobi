@@ -19,7 +19,8 @@ meumobiServices.factory('Categories', ['$resource', 'utils', 'TIMEOUT', function
 		items: {method: 'GET', cache: true, url: utils.getApiUrl() + '/categories/:id/items', timeout: TIMEOUT}
 	});
 	categories.getTree = function getTree(categories) {//TODO remove parameter
-		children = [];
+		var children = [];
+		children[0] = [];
 		for(var key in categories) {
 			var parent_id = categories[key].parent_id != null ? categories[key].parent_id : 0;
 			if (!children[parent_id])
