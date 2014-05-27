@@ -58,6 +58,10 @@ meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items','$timeout',
 
 meumobiControllers.controller('ItemShowCtrl', ['$scope', 'Items', 'Categories', '$routeParams',
 		function($scope, Items, Categories, $routeParams) {
+			$scope.mediaFilter = function(media) {
+				var allowed = ['application/pdf','text/html'];
+				return (allowed.indexOf(media.type) != -1);
+			};
 			$scope.item = Items.get({id: $routeParams.id}, function(data) {
 				$scope.category = Categories.get({id: data.parent_id});
 			});

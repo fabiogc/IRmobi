@@ -11,8 +11,9 @@
 			<div class="panel-body text-small"> 
 				<div ng-bind-html="item.description"></div>
 				<div>
-					<p ng-repeat="media in item.medias|filter:{type:'application/pdf'}">
-					<a ng-href="{{media.url}}" target="_blank"><span class="btn btn-white btn-xs">Download</span> {{media.title}}</a>
+					<p ng-repeat="media in item.medias|filter:mediaFilter">
+					<a ng-if="media.type == 'application/pdf'" ng-href="{{media.url}}" target="_blank"><span class="btn btn-white btn-xs">download</span> {{media.title}}</a>
+					<a ng-if="media.type == 'text/html'" ng-href="{{media.url}}" target="_blank" rel="external"><span class="btn btn-white btn-xs" translate>open</span> {{media.title}}</a>
 					</p>
 				</div>
 			</div>
