@@ -132,9 +132,7 @@
   var config_data = {};
   {/literal}
   config_data.DOMAIN = "{$domain}";
-  config_data.ENV = "{$smarty.const.BKF_ENV}";
-  config_data.SERVICES_URL = "{$smarty.const.SERVICES_URL}";
-  config_data.API_URL = "{$smarty.const.SITE_BUILDER_URL}";
+  config_data.SITE_BUILDER_URL_ENCRYPTED = "{$smarty.const.SITE_BUILDER_URL|encrypt}";
   config_data.LOCALE = "{$performance.site.language}";
   config_data.IS_APP = {if $build}true{else}false{/if};
   config_data.ANALYTICS = '{if is_array($performance.site.analytics_token)}{$performance.site.analytics_token[1]}{else}{$performance.site.analytics_token}{/if}';
@@ -163,6 +161,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics-ga.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/helpers.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/app/services.js"></script><!-- define rest service -->
   <script type="text/javascript" src="themes/rimobi/js/app/controllers.js"></script><!-- the app controllers -->
   <script type="text/javascript" src="themes/rimobi/js/app/directives.js"></script><!-- define directives -->
