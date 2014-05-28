@@ -1,6 +1,6 @@
 var meumobiSettings = angular.module('meumobiSettings',[]);
 config_data.SITE_BUILDER_URL = uncrypt(config_data.SITE_BUILDER_URL_ENCRYPTED);
-config_data.SERVICES_URL = 'http://stocks.'+ config_data.SITE_BUILDER_URL.replace(/.*?:\/\//g, "");
+config_data.STOCKS_URL = 'http://stocks.'+ config_data.SITE_BUILDER_URL.replace(/.*?:\/\//g, "");
 
 angular.forEach(config_data,function(value, key) {
 	meumobiSettings.constant(key, value);

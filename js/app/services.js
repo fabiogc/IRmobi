@@ -37,7 +37,7 @@ meumobiServices.factory('Categories', ['$resource', 'utils', 'TIMEOUT', function
 	}
 	return categories;
 }]);
-meumobiServices.factory('Stock', ['$http', '$q', 'TIMEOUT', 'SERVICES_URL', function($http, $q, TIMEOUT, SERVICES_URL) {
+meumobiServices.factory('Stock', ['$http', '$q', 'TIMEOUT', 'STOCKS_URL', function($http, $q, TIMEOUT, STOCKS_URL) {
 	return {
 		getQuotes: function(code) {
 			var deferred = $q.defer();
@@ -49,7 +49,7 @@ meumobiServices.factory('Stock', ['$http', '$q', 'TIMEOUT', 'SERVICES_URL', func
 				params.action = 'yahoofy';
 				params.codes = code;
 			}
-			$http.get(SERVICES_URL,{timeout: TIMEOUT, params: params})
+			$http.get(STOCKS_URL,{timeout: TIMEOUT, params: params})
 			.success(function(data) {
 				deferred.resolve(data);
 			})
