@@ -83,7 +83,7 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
     }
   }]);
 
-meumobiApp.run(function($rootScope, $location, API_URL, IS_APP, ANALYTICS) {
+meumobiApp.run(function($rootScope, $location, SITE_BUILDER_URL, IS_APP, ANALYTICS) {
   $rootScope.isOnline = navigator.onLine;
 
   $rootScope.thumbify = function(imagePath, prefix, defaultImg) {
@@ -93,10 +93,10 @@ meumobiApp.run(function($rootScope, $location, API_URL, IS_APP, ANALYTICS) {
       var file = uriParts.pop();
       path = uriParts.join('/');
       path += '/' + prefix + file;
-      return API_URL + path;
+      return SITE_BUILDER_URL + path;
     }
     //TODO remove host string
-    return defaultImg ? defaultImg : API_URL + path;
+    return defaultImg ? defaultImg : SITE_BUILDER_URL + path;
   };
 
   $rootScope.parseUrl = function(url) {
