@@ -17,7 +17,7 @@
 					<a class="h5 text-muted"
 						ng-class="isFutureDate(item.start_date) ? 'add-event' : ''"
 						ng-bind-html="item.title"
-						data-confirm="Adicionar {{item.title}} ao calendário"
+						data-confirm="{{'Add event to calendar?'|translate}}"
 						data-title="{{item.title}}"
 						data-address="{{item.address}}"
 						data-description="{{item.description}}"
