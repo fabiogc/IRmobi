@@ -8,6 +8,7 @@ var meumobiApp = angular.module('meumobiApp', [
   'slugifier',
   'truncate',
   'pascalprecht.translate',
+  'mediaPlayer',
   'angulartics',
   'angulartics.google.analytics'
 ]);

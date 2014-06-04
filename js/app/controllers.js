@@ -59,11 +59,24 @@ meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items','$timeout',
 meumobiControllers.controller('ItemShowCtrl', ['$scope', 'Items', 'Categories', '$routeParams',
 		function($scope, Items, Categories, $routeParams) {
 			$scope.mediaFilter = function(media) {
-				var allowed = ['application/pdf','text/html'];
+				var allowed = ['application/pdf','text/html', 'audio/mpeg'];
 				return (allowed.indexOf(media.type) != -1);
 			};
+			$scope.audioPlaylist = [];
 			$scope.item = Items.get({id: $routeParams.id}, function(data) {
 				$scope.category = Categories.get({id: data.parent_id});
+				if (data.medias instanceof Array) {
+					for(var k in data.medias) {
+						var media = data.medias[k];
+						if (media.type != 'audio/mpeg')
+							continue;
+						$scope.audioPlaylist.push({
+							src: media.url,
+							type: media.type,
+							title: media.title
+						});
+					}
+				}
 			});
 		}]);
 
