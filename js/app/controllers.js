@@ -62,21 +62,9 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', 'Items', 'Categories', 
 				var allowed = ['application/pdf','text/html', 'audio/mpeg'];
 				return (allowed.indexOf(media.type) != -1);
 			};
-			$scope.audioPlaylist = [];
 			$scope.item = Items.get({id: $routeParams.id}, function(data) {
 				$scope.category = Categories.get({id: data.parent_id});
-				if (data.medias instanceof Array) {
-					for(var k in data.medias) {
-						var media = data.medias[k];
-						if (media.type != 'audio/mpeg')
-							continue;
-						$scope.audioPlaylist.push({
-							src: media.url,
-							type: media.type,
-							title: media.title
-						});
-					}
-				}
+				$scope.audioPlaylist = Items.getMedias(data, 'audio');
 			});
 		}]);
 
