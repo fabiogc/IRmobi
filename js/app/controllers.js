@@ -62,9 +62,12 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', 'Items', 'Categories', 
 				var allowed = ['application/pdf','text/html', 'audio/mpeg'];
 				return (allowed.indexOf(media.type) != -1);
 			};
+	$scope.videoPlaylist = [];
 			$scope.item = Items.get({id: $routeParams.id}, function(data) {
 				$scope.category = Categories.get({id: data.parent_id});
 				$scope.audioPlaylist = Items.getMedias(data, 'audio');
+				$scope.videoPlaylist = Items.getMedias(data, 'video');
+console.log($scope.videoPlaylist);
 			});
 		}]);
 

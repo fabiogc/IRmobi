@@ -13,12 +13,23 @@
 				<div ng-bind-html="item.description"></div>
 				<div>
 					<p ng-repeat="media in item.medias|filter:mediaFilter">
-						<a ng-if="media.type == 'application/pdf'" ng-href="{{media.url}}" target="_blank">
-							<span class="btn btn-white btn-xs"><i class="icon-file-alt"></i> download</span> {{media.title}}
-						</a>
-						<a ng-if="media.type == 'text/html'" ng-href="{{media.url}}" target="_blank" rel="external">
-							<span class="btn btn-white btn-xs"><i class="icon-external-link"></i> {{'open'|translate}}</span> {{media.title}}
-						</a>
+					<a ng-if="media.type == 'application/pdf'" ng-href="{{media.url}}" target="_blank">
+						<span class="btn btn-white btn-xs"><i class="icon-file-alt"></i> download</span> {{media.title}}
+					</a>
+					<a ng-if="media.type == 'text/html'" ng-href="{{media.url}}" target="_blank" rel="external">
+						<span class="btn btn-white btn-xs"><i class="icon-external-link"></i> {{'open'|translate}}</span> {{media.title}}
+					</a>
+					</p>
+					<p ng-repeat="video in videoPlaylist">
+					<a ng-click="videoMediaPlayer.playPause($index)" data-toggle="modal" data-target="#video-modal">
+						<span ng-show="videoMediaPlayer.playing && videoMediaPlayer.currentTrack-1 === $index" class="btn btn-white btn-xs">
+							<i class="icon-pause"></i> pause
+						</span>
+						<span ng-show="!videoMediaPlayer.playing || videoMediaPlayer.currentTrack-1 !== $index" class="btn btn-white btn-xs">
+							<i class="icon-play"></i> play
+						</span>
+						{{video.title}}
+					</a>
 					</p>
 					<p ng-repeat="audio in audioPlaylist">
 					<a ng-click="mediaPlayer.playPause($index)">
@@ -28,7 +39,7 @@
 						<span ng-show="!mediaPlayer.playing || mediaPlayer.currentTrack-1 !== $index" class="btn btn-white btn-xs">
 							<i class="icon-play"></i> play
 						</span>
-								{{audio.title}}
+						{{audio.title}}
 					</a>
 					</p>
 				</div>
@@ -36,3 +47,17 @@
 		</section> 
 	</div> <!-- col -->
 </div>
+<!-- .modal -->
+<div id="video-modal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body"> 
+				<video media-player="videoMediaPlayer" playlist="videoPlaylist" width="540"></video>
+			</div>
+			<div class="modal-footer">
+				<button ng-click="videoMediaPlayer.pause()" type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div>
+</div>
+<!-- / .modal -->
