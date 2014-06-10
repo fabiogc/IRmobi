@@ -56,17 +56,27 @@ meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items','$timeout',
 			});
 		}]);
 
-meumobiControllers.controller('ItemShowCtrl', ['$scope', 'Items', 'Categories', '$routeParams',
-		function($scope, Items, Categories, $routeParams) {
+meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categories', '$routeParams',
+		function($scope, $sce, Items, Categories, $routeParams) {
 			$scope.mediaFilter = function(media) {
 				var allowed = ['application/pdf','text/html', 'audio/mpeg'];
-				return (allowed.indexOf(media.type) != -1);
+				var allow = (allowed.indexOf(media.type) != -1);
+				if (media.type == 'text/html' && isYoutubeUrl(media.url) || isVimeoUrl(media.url))
+					allow = false;
+				return allow;
 			};
 			$scope.videoPlaylist = [];
 			$scope.item = Items.get({id: $routeParams.id}, function(data) {
 				$scope.category = Categories.get({id: data.parent_id});
 				$scope.audioPlaylist = Items.getMedias(data, 'audio');
 				$scope.videoPlaylist = Items.getMedias(data, 'video');
+				var socialVideoPlaylist = Items.getMedias(data, function(media) {
+					return isYoutubeUrl(media.url) || isVimeoUrl(media.url)
+				});
+				$scope.socialVideoPlaylist = socialVideoPlaylist.map(function(media) {
+					media.embedUrl = $sce.trustAsResourceUrl(parseVideoUrl(media.src));
+					return media;
+				});
 			});
 		}]);
 

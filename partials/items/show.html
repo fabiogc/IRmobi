@@ -10,6 +10,11 @@
 			</div>
 			<div class="panel-body text-small"> 
 				<audio media-player="mediaPlayer" playlist="audioPlaylist"></audio>
+				<div ng-repeat="video in socialVideoPlaylist" class="video-wrapper">
+					<div class="video-container">
+					<iframe width="800" height="450" ng-src="{{video.embedUrl}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+				</div>
 				<div ng-bind-html="item.description"></div>
 				<div>
 					<p ng-repeat="media in item.medias|filter:mediaFilter">

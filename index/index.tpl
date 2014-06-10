@@ -6,16 +6,16 @@
   <title ng-bind-template="{{performance.site.title}}"></title>
   <meta name="description" content="RI Santander">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
-  <link rel="stylesheet" href="themes/rimobi/css/rimobi-min.css">
+  <!--link rel="stylesheet" href="themes/rimobi/css/rimobi-min.css"-->
+ <link rel="stylesheet" href="themes/rimobi/css/bootstrap.css">
+  <link rel="stylesheet" href="themes/rimobi/css/font-awesome.min.css">
+  <link rel="stylesheet" href="themes/rimobi/css/font.css" cache="false">
+  <link rel="stylesheet" href="themes/rimobi/css/style.css">
+  <link rel="stylesheet" href="themes/rimobi/css/plugin.css">
+  <link rel="stylesheet" href="themes/rimobi/css/landing.css">
+  <link rel="stylesheet" href="themes/rimobi/css/custom.css">
   <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css">
   <link rel="stylesheet" href="themes/rimobi/css/bootstrap-image-gallery.min.css">
-  <!--link rel="stylesheet" href="/themes/rimobi/css/bootstrap.css">
-  <link rel="stylesheet" href="/themes/rimobi/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/themes/rimobi/css/font.css" cache="false">
-  <link rel="stylesheet" href="/themes/rimobi/css/style.css">
-  <link rel="stylesheet" href="/themes/rimobi/css/plugin.css">
-  <link rel="stylesheet" href="/themes/rimobi/css/landing.css">
-  <link rel="stylesheet" href="/themes/rimobi/css/custom.css"-->
   {/literal}
   {$site.css_token|cssOnline}
   {if !$build}

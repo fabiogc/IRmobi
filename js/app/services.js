@@ -17,7 +17,8 @@ meumobiServices.factory('Items', ['$resource', 'utils','TIMEOUT', function($reso
 		if (item.medias instanceof Array) {
 			for(var k in item.medias) {
 				var media = item.medias[k];
-				if (media.type.indexOf(mediaType) != 0)
+				if (typeof mediaType == 'function' && !mediaType(media) 
+					|| typeof mediaType == 'string' && media.type.indexOf(mediaType) != 0)
 					continue;
 				medias.push({
 					src: media.url,

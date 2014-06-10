@@ -9,3 +9,28 @@ function uncrypt(coded) {
 	}
 	return uncoded.toLowerCase();   
 } 
+
+function isYoutubeUrl(url) {
+	return url.indexOf('youtube.com') > -1 || url.indexOf('youtu.be') > -1;
+}
+
+function isVimeoUrl(url) {
+	return url.indexOf('vimeo.com') > -1;
+}
+
+function parseVideoUrl(url) {
+	var embedUrl = '';
+	if (isYoutubeUrl(url)) {
+		var re = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/; 
+			var matches = url.match(re);
+		if (matches instanceof Array)
+			embedUrl = 'https://www.youtube.com/embed/' + matches.pop();
+	} else if(isVimeoUrl(url)) {
+		var re = /(videos|video|channels|\.com)\/([\d]+)/; 
+		var matches = url.match(re);
+		if (matches instanceof Array)
+			embedUrl = 'https://player.vimeo.com/video/' + matches.pop();;
+	}
+	return embedUrl;
+};
+

@@ -32,13 +32,37 @@
 }
 
 .list-group-item.media .icon-chevron-right {
-  float: none;
-  margin-top: auto;
-  margin-right: auto;
+	float: none;
+	margin-top: auto;
+	margin-right: auto;
 }
 
 .list-group-item.media:hover, .list-group-item.media:active {
 	background-color: #f7f8f9;
+}
+
+.video-wrapper {
+	width: 560px;
+	max-width: 100%;
+	margin: 0 auto 10px;
+}
+
+.video-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+}
+
+.video-container iframe,  
+.video-container object,  
+.video-container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 
 @media (min-width: 768px) {
