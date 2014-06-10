@@ -26,7 +26,7 @@
 					</a>
 					</p>
 					<p ng-repeat="video in videoPlaylist">
-					<a ng-click="videoMediaPlayer.playPause($index)" data-toggle="modal" data-target="#video-modal">
+					<a ng-click="playVideo($index)">
 						<span ng-show="videoMediaPlayer.playing && videoMediaPlayer.currentTrack-1 === $index" class="btn btn-white btn-xs">
 							<i class="icon-pause"></i> pause
 						</span>

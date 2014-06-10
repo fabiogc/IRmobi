@@ -56,8 +56,8 @@ meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items','$timeout',
 			});
 		}]);
 
-meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categories', '$routeParams',
-		function($scope, $sce, Items, Categories, $routeParams) {
+meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categories', '$routeParams', 'IS_APP',
+		function($scope, $sce, Items, Categories, $routeParams, IS_APP) {
 			$scope.mediaFilter = function(media) {
 				var allowed = ['application/pdf','text/html', 'audio/mpeg'];
 				var allow = (allowed.indexOf(media.type) != -1);
@@ -65,6 +65,11 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categ
 					allow = false;
 				return allow;
 			};
+			$scope.playVideo = function($index) {
+				$scope.videoMediaPlayer.playPause($index);
+				if(!IS_APP)
+					$('#video-modal').modal('toggle');
+			}
 			$scope.videoPlaylist = [];
 			$scope.item = Items.get({id: $routeParams.id}, function(data) {
 				$scope.category = Categories.get({id: data.parent_id});
