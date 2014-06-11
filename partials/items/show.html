@@ -10,6 +10,11 @@
 			</div>
 			<div class="panel-body text-small"> 
 				<audio media-player="mediaPlayer" playlist="audioPlaylist"></audio>
+				<div class="video-wrapper">
+					<div class="video-container">
+						<video media-player="videoMediaPlayer" playlist="videoPlaylist" width="540"></video>
+					</div>
+				</div>
 				<div ng-repeat="video in socialVideoPlaylist" class="video-wrapper">
 					<div class="video-container">
 					<iframe width="800" height="450" ng-src="{{video.embedUrl}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -26,7 +31,7 @@
 					</a>
 					</p>
 					<p ng-repeat="video in videoPlaylist">
-					<a ng-click="playVideo($index)">
+					<a ng-click="videoMediaPlayer.playPause($index);">
 						<span ng-show="videoMediaPlayer.playing && videoMediaPlayer.currentTrack-1 === $index" class="btn btn-white btn-xs">
 							<i class="icon-pause"></i> pause
 						</span>
@@ -52,17 +57,3 @@
 		</section> 
 	</div> <!-- col -->
 </div>
-<!-- .modal -->
-<div id="video-modal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body"> 
-				<video media-player="videoMediaPlayer" playlist="videoPlaylist" width="540"></video>
-			</div>
-			<div class="modal-footer">
-				<button ng-click="videoMediaPlayer.pause()" type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div>
-</div>
-<!-- / .modal -->
