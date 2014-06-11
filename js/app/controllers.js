@@ -67,7 +67,7 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categ
 			};
 			$scope.playVideo = function($index) {
 				$scope.videoMediaPlayer.playPause($index);
-				if(!IS_APP)
+				if($(window).width() > 768)
 					$('#video-modal').modal('toggle');
 			}
 			$scope.videoPlaylist = [];
