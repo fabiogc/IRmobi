@@ -9,8 +9,8 @@
 				</a>
 			</div>
 			<div class="panel-body text-small"> 
-				<audio media-player="mediaPlayer" playlist="audioPlaylist"></audio>
-				<div class="video-wrapper">
+				<audio ng-if="audioPlaylist" media-player="mediaPlayer" playlist="audioPlaylist"></audio>
+				<div ng-if="videoPlaylist" class="video-wrapper">
 					<div class="video-container">
 						<video media-player="videoMediaPlayer" playlist="videoPlaylist" width="540"></video>
 					</div>
