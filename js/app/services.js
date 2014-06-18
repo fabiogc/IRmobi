@@ -1,16 +1,16 @@
 var meumobiServices = angular.module('meumobiServices', ['ngResource']);
 
-meumobiServices.factory('Site', ['$resource', 'utils','TIMEOUT', function($resource, utils, TIMEOUT) {
-	return $resource(utils.getApiUrl() + '/performance', {}, {
+meumobiServices.factory('Site', ['$resource', 'TIMEOUT', function($resource, utils, TIMEOUT) {
+	return $resource('SITEBUILDER_API/performance', {}, {
 		get: {cache: true, method: 'GET', timeout: TIMEOUT},
-				 feed: {method: 'GET', cache: true, url:  utils.getApiUrl() + '/news', timeout: TIMEOUT}
+				 feed: {method: 'GET', cache: true, url:  'SITEBUILDER_API/news', timeout: TIMEOUT}
 	});
 }]);
-meumobiServices.factory('Items', ['$resource', 'utils','TIMEOUT', function($resource, utils, TIMEOUT) {
-	var service = $resource(utils.getApiUrl() + '/items/:id', {}, {
+meumobiServices.factory('Items', ['$resource', 'TIMEOUT', function($resource, utils, TIMEOUT) {
+	var service = $resource('SITEBUILDER_API/items/:id', {}, {
 		get: {cache: true, method: 'GET', timeout: TIMEOUT},
-			query: {method: 'GET', cache: true, url: utils.getApiUrl() + '/items/search', timeout: TIMEOUT},
-			latest: {method: 'GET', cache: true, url: utils.getApiUrl() + '/items/latest', timeout: TIMEOUT}
+			query: {method: 'GET', cache: true, url: 'SITEBUILDER_API/items/search', timeout: TIMEOUT},
+			latest: {method: 'GET', cache: true, url: 'SITEBUILDER_API/items/latest', timeout: TIMEOUT}
 	});
 	service.getMedias = function(item, mediaType) {
 		var medias = [];
@@ -31,10 +31,10 @@ meumobiServices.factory('Items', ['$resource', 'utils','TIMEOUT', function($reso
 	};
 	return service;
 }]);
-meumobiServices.factory('Categories', ['$resource', 'utils', 'TIMEOUT', function($resource, utils, TIMEOUT) {
-	var categories = $resource(utils.getApiUrl() + '/categories/:id', {}, {
+meumobiServices.factory('Categories', ['$resource', 'TIMEOUT', function($resource, utils, TIMEOUT) {
+	var categories = $resource('SITEBUILDER_API/categories/:id', {}, {
 		get: {cache: true, method: 'GET', timeout: TIMEOUT},
-			items: {method: 'GET', cache: true, url: utils.getApiUrl() + '/categories/:id/items', timeout: TIMEOUT}
+			items: {method: 'GET', cache: true, url: 'SITEBUILDER_API/categories/:id/items', timeout: TIMEOUT}
 	});
 	categories.getTree = function getTree(categories) {//TODO remove parameter
 		var children = [];
@@ -55,7 +55,7 @@ children[parent_id].push(categories[key]);
 	}
 	return categories;
 }]);
-meumobiServices.factory('Stock', ['$http', '$q', 'TIMEOUT', 'STOCKS_URL', function($http, $q, TIMEOUT, STOCKS_URL) {
+meumobiServices.factory('Stock', ['$http', '$q', 'TIMEOUT', function($http, $q, TIMEOUT) {
 	return {
 		getQuotes: function(code) {
 			var deferred = $q.defer();
@@ -67,7 +67,7 @@ meumobiServices.factory('Stock', ['$http', '$q', 'TIMEOUT', 'STOCKS_URL', functi
 				params.action = 'yahoofy';
 				params.codes = code;
 			}
-			$http.get(STOCKS_URL,{timeout: TIMEOUT, params: params})
+			$http.get('STOCKS_URL',{timeout: TIMEOUT, params: params})
 	.success(function(data) {
 		deferred.resolve(data);
 	})

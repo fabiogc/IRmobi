@@ -19,7 +19,7 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
       $analyticsProvider.virtualPageviews(false);
     }
     //handle http errors
-    $httpProvider.interceptors.push('errorHttpInterceptor');
+    $httpProvider.interceptors.push('interceptor');
     //configure routes
     $routeProvider.
       when('/', {
@@ -84,7 +84,7 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
     }
   }]);
 
-meumobiApp.run(function($rootScope, $location, SITE_BUILDER_URL, IS_APP, ANALYTICS) {
+meumobiApp.run(function($rootScope, $location, BUILDER, IS_APP, ANALYTICS) {
   $rootScope.isOnline = navigator.onLine;
 
   $rootScope.thumbify = function(imagePath, prefix, defaultImg) {
@@ -94,10 +94,10 @@ meumobiApp.run(function($rootScope, $location, SITE_BUILDER_URL, IS_APP, ANALYTI
       var file = uriParts.pop();
       path = uriParts.join('/');
       path += '/' + prefix + file;
-      return SITE_BUILDER_URL + path;
+      return BUILDER + path;
     }
     //TODO remove host string
-    return defaultImg ? defaultImg : SITE_BUILDER_URL + path;
+    return defaultImg ? defaultImg : BUILDER + path;
   };
 
   $rootScope.parseUrl = function(url) {
