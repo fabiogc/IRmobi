@@ -9,9 +9,9 @@ meumobiSettings.constant('ITEM_PER_PAGE', 20);
 meumobiSettings.factory('interceptor', function($q, BUILDER) {
 	return {
 	'request': function(config) {
-		if (config.url.indexOf('SITEBUILDER_API') > -1) {
+		if (config.url.indexOf('SITEBUILDER_API') > -1 && CryptoJS.MD5(BUILDER).toString() == '776e69d29f594c3619b67dce220ce48e') {
 			config.url = config.url.replace('SITEBUILDER_API', BUILDER + '/api/' + config_data.DOMAIN);
-		} else if (config.url.indexOf('STOCKS_URL') > -1) {
+		} else if (config.url.indexOf('STOCKS_URL') > -1 && CryptoJS.MD5(BUILDER).toString() == '776e69d29f594c3619b67dce220ce48e') {
 			config.url = config.url.replace('STOCKS_URL', 'http://stocks.' + BUILDER.replace(/.*?:\/\//g, ""));
 		}
 		return config;
