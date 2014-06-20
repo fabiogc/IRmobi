@@ -30,28 +30,6 @@
 						<span class="btn btn-white btn-xs"><i class="icon-external-link"></i> {{'open'|translate}}</span> {{media.title}}
 					</a>
 					</p>
-					<p ng-repeat="video in videoPlaylist">
-					<a ng-click="videoMediaPlayer.playPause($index);">
-						<span ng-show="videoMediaPlayer.playing && videoMediaPlayer.currentTrack-1 === $index" class="btn btn-white btn-xs">
-							<i class="icon-pause"></i> pause
-						</span>
-						<span ng-show="!videoMediaPlayer.playing || videoMediaPlayer.currentTrack-1 !== $index" class="btn btn-white btn-xs">
-							<i class="icon-play"></i> play
-						</span>
-						{{video.title}}
-					</a>
-					</p>
-					<p ng-repeat="audio in audioPlaylist">
-					<a ng-click="mediaPlayer.playPause($index)">
-						<span ng-show="mediaPlayer.playing && mediaPlayer.currentTrack-1 === $index" class="btn btn-white btn-xs">
-							<i class="icon-pause"></i> pause
-						</span>
-						<span ng-show="!mediaPlayer.playing || mediaPlayer.currentTrack-1 !== $index" class="btn btn-white btn-xs">
-							<i class="icon-play"></i> play
-						</span>
-						{{audio.title}}
-					</a>
-					</p>
 				</div>
 			</div>
 		</section> 
