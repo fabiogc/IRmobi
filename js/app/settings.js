@@ -1,21 +1,16 @@
 var meumobiSettings = angular.module('meumobiSettings',[]);
+
 angular.forEach(config_data,function(value, key) {
 	meumobiSettings.constant(key, value);
 });
-meumobiSettings.constant('BUILDER',CryptoJS.AES.decrypt('U2FsdGVkX1+NCYaZJylfPETkCIrNg7X6OpzaSTuAFjHO8UvY3FOqZ3bF56ZCjjsF', '9456bbf53af6fdf30a5d625ebf155b4018c8b0aephp').toString(CryptoJS.enc.Utf8));
+
+meumobiSettings.constant('SITEBUILDER_API', config_data.SITEBUILDER + '/api/' + config_data.DOMAIN);
+meumobiSettings.constant('STOCKS_API', 'http://stocks.' + config_data.SITEBUILDER.replace(/.*?:\/\//g, ""));
 meumobiSettings.constant('TIMEOUT', 10000);
 meumobiSettings.constant('ITEM_PER_PAGE', 20);
 
-meumobiSettings.factory('interceptor', function($q, BUILDER) {
+meumobiSettings.factory('interceptor', function($q) {
 	return {
-	'request': function(config) {
-		if (config.url.indexOf('SITEBUILDER_API') > -1 && CryptoJS.MD5(BUILDER).toString() == '776e69d29f594c3619b67dce220ce48e') {
-			config.url = config.url.replace('SITEBUILDER_API', BUILDER + '/api/' + config_data.DOMAIN);
-		} else if (config.url.indexOf('STOCKS_URL') > -1 && CryptoJS.MD5(BUILDER).toString() == '776e69d29f594c3619b67dce220ce48e') {
-			config.url = config.url.replace('STOCKS_URL', 'http://stocks.' + BUILDER.replace(/.*?:\/\//g, ""));
-		}
-		return config;
-	},
 	'requestError': function(rejection) {
 		// do something on error
 		console.log(rejection);

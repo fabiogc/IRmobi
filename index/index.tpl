@@ -132,6 +132,7 @@
   var config_data = {};
   {/literal}
   config_data.DOMAIN = "{$domain}";
+  config_data.SITEBUILDER = "{$smarty.const.SITE_BUILDER_URL}"; //REMOVE IF SANTANDER
   config_data.LOCALE = "{$performance.site.language}";
   config_data.IS_APP = {if $build}true{else}false{/if};
   config_data.ANALYTICS = '{if is_array($performance.site.analytics_token)}{$performance.site.analytics_token[1]}{else}{$performance.site.analytics_token}{/if}';
@@ -153,7 +154,35 @@
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   {/if}
   <script src="themes/rimobi/js/grid/jquery.grid-a-licious.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/rimobi-min.js"></script>
+  <!--script type="text/javascript" src="themes/rimobi/js/rimobi-min.js"></script-->
+
+<!--
+  ADD IF SANTANDER PROJECT
+  <script type="text/javascript" src="themes/rimobi/js/lib/aes.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/md5.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/santander_config.js"></script>
+-->
+	<script type="text/javascript" src="themes/rimobi/js/lib/angular.all.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angulartics-ga.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-media-player.min.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/helpers.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/services.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/controllers.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/directives.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/settings.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/bootstrap.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/bootstrap.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/parsley/parsley.min.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/jquery.blueimp-gallery.min.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/bootstrap-image-gallery.min.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app.plugin.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/app.data.js"></script>
 
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_{$current_locale}.js"></script>
   <script type="text/javascript">
