@@ -134,6 +134,7 @@
   {/literal}
   config_data.DOMAIN = "{$domain}";
   config_data.SITEBUILDER = "{$smarty.const.SITE_BUILDER_URL}"; //REMOVE IF SANTANDER
+  config_data.HOME = "{$performance.site.theme.layout_alternatives.home}";
   config_data.LOCALE = "{$performance.site.language}";
   config_data.IS_APP = {if $build}true{else}false{/if};
   config_data.ANALYTICS = '{if is_array($performance.site.analytics_token)}{$performance.site.analytics_token[1]}{else}{$performance.site.analytics_token}{/if}';

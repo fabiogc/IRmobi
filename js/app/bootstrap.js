@@ -13,19 +13,28 @@ var meumobiApp = angular.module('meumobiApp', [
   'angulartics.google.analytics'
 ]);
 
-meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$translateProvider', '$analyticsProvider', 'LOCALE',
-  function($routeProvider, $locationProvider, $httpProvider, $translateProvider,$analyticsProvider, LOCALE) {
+meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$translateProvider', '$analyticsProvider', 'LOCALE', 'HOME',
+  function($routeProvider, $locationProvider, $httpProvider, $translateProvider,$analyticsProvider, LOCALE, HOME) {
     if (!navigator.onLine) {
       $analyticsProvider.virtualPageviews(false);
     }
+    console.log(HOME);
     //handle http errors
     $httpProvider.interceptors.push('interceptor');
     //configure routes
+    if (HOME == 'latest') {
+    $routeProvider.
+      when('/', {
+        controller: 'LatestItemsCtrl',
+        templateUrl: 'themes/rimobi/partials/items/latest.html'
+      });
+    } else {
     $routeProvider.
       when('/', {
         templateUrl: 'themes/rimobi/partials/index.html'
-      }).
-      when('/articles/:id', {
+      });
+    }
+     $routeProvider.when('/articles/:id', {
         templateUrl: 'themes/rimobi/partials/articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
