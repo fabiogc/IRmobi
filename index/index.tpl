@@ -7,7 +7,7 @@
   <meta name="description" content="RI Santander">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
   <!--link rel="stylesheet" href="themes/rimobi/css/rimobi-min.css"-->
- <link rel="stylesheet" href="themes/rimobi/css/bootstrap.css">
+  <link rel="stylesheet" href="themes/rimobi/css/bootstrap.css">
   <link rel="stylesheet" href="themes/rimobi/css/font-awesome.min.css">
   <link rel="stylesheet" href="themes/rimobi/css/font.css" cache="false">
   <link rel="stylesheet" href="themes/rimobi/css/style.css">
@@ -29,7 +29,7 @@
   {/if}
   {literal}
 </head>
-<body class="navbar-fixed">
+<body ng-class="performance.site.theme.layout_alternatives.navbar">
   <!-- header -->
     <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
     <a class="navbar-brand" href="#/">
@@ -43,10 +43,11 @@
 	</header>
   <!-- / header -->
   <!-- nav -->
-  <nav id="nav" class="nav-primary hidden-xs">
+  <nav id="nav" class="nav-primary hidden-xs {{performance.site.theme.layout_alternatives.nav}}">
     <ul class="nav" data-spy="affix" data-offset-top="50" nav-menu="active">
       <li id="home">
         <a href="#/">
+        {{}}
           <i class="icon-home icon-xlarge"></i><span translate>Home</span>
         </a>
       </li>
