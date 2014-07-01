@@ -68,7 +68,7 @@
       </li>
       <li id="contact">
         <a href="#/contact">
-          <i class="icon-envelope-alt icon-xlarge"></i><span translate>Contact IR</span>
+          <i class="icon-envelope-alt icon-xlarge"></i><span ng-bind="performance.site.theme.tokens.contact"></span>
         </a>
       </li>
     </ul>
