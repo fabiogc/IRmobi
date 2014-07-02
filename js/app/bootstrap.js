@@ -18,7 +18,6 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
     if (!navigator.onLine) {
       $analyticsProvider.virtualPageviews(false);
     }
-    console.log(HOME);
     //handle http errors
     $httpProvider.interceptors.push('interceptor');
     //configure routes

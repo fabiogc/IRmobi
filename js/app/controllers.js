@@ -1,10 +1,14 @@
 var meumobiControllers = angular.module('meumobiControllers', ['angularLocalStorage']);
 
-meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site','Categories',
-		function($scope, storage, Site, Categories) {
+meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site','Categories', '$location', '$window',
+		function($scope, storage, Site, Categories, $location, $window) {
 			storage.bind($scope,'performance');
 			$scope.headlinesRows = 2;
-			Site.get({}, function(data) {
+      var params = {};
+      var search = parseLocationSearch($window.location.search);
+      if (search.skin)
+        params.skin = search.skin;
+			Site.get(params, function(data) {
 				data.categories = Categories.getTree(data.categories);
 				var categories = data.categories.slice(0);
 				$scope.performance = data;
