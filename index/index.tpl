@@ -68,7 +68,7 @@
       </li>
       <li id="contact">
         <a href="#/contact">
-          <i class="icon-envelope-alt icon-xlarge"></i><span translate="{{performance.site.theme.tokens.contact}}"></span>
+          <i class="icon-envelope-alt icon-xlarge"></i><span>{{performance.site.theme.tokens.contact|translate}}</span>
         </a>
       </li>
     </ul>
@@ -171,6 +171,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-resource.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate-handler-log.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js"></script>
