@@ -1,5 +1,5 @@
 <div class="row m-t">
-  <breadcrumb title="{{'Latest'|translate}}" link="#/latest"></breadcrumb>
+  <breadcrumb ng-if="has_breadcrumb" title="{{'Latest'|translate}}" link="#/latest"></breadcrumb>
   <div id="gallery" class="gallery hide">
     <div class="item" ng-repeat="item in items">
       <a ng-if="item.images" ng-href="#/items/{{item._id}}" rel="prettyPhoto[gallery]" class="item-media">

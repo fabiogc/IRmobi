@@ -42,8 +42,9 @@ meumobiControllers.controller('EventListCtrl', ['$scope', 'Categories', '$routeP
 			});
 		}]);
 
-meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items','$timeout', 
-		function($scope, Items, $timeout) {
+meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$timeout', 
+		function($scope, Items, HOME,$timeout) {
+      $scope.has_breadcrumb = (HOME != 'latest');
 			Items.latest(function(data){
 				$scope.items = data.items;
 				$timeout(function() {
