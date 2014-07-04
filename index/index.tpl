@@ -32,7 +32,7 @@
 <body ng-class="performance.site.theme.layout_alternatives.navbar">
   <!-- header -->
     <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
-    <a class="navbar-brand" href="#/">
+    <a class="navbar-brand" ng-click="goTo('/')">
     <img ng-src="{{thumbify(performance.site.logo, '200x200_')}}" alt="{{performance.site.title}}" width="123">
     </a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
@@ -46,7 +46,7 @@
   <nav id="nav" class="nav-primary hidden-xs {{performance.site.theme.layout_alternatives.nav}}">
     <ul class="nav" data-spy="affix" data-offset-top="50" nav-menu="active">
       <li id="home">
-        <a href="#/">
+        <a ng-click="goTo('/')">
         {{}}
           <i class="icon-home icon-xlarge"></i><span translate>Home</span>
         </a>
@@ -54,7 +54,7 @@
       <li ng-repeat="category in performance.categories"
         id="nav-category-{{category.id}}"
         class="dropdown-submenu">
-        <a ng-if="!category.children.length" ng-href="#/{{category.type}}/{{category.id}}">
+        <a ng-if="!category.children.length" ng-click="goTo('/'+category.type+'/'+category.id)">
           <i class="icon-chevron-sign-right icon-xlarge"></i><span ng-bind="category.title"></span>
         </a>
         <a ng-if="category.children.length">
@@ -62,12 +62,12 @@
         </a>
         <ul class="dropdown-menu" ng-if="category.children.length">
           <li ng-repeat="subCategory in category.children">
-            <a ng-href="#/{{subCategory.type}}/{{subCategory.id}}" ng-bind="subCategory.title"></a>
+            <a ng-click="goTo('/'+subCategory.type+'/'+subCategory.id)" ng-bind="subCategory.title"></a>
           </li>
         </ul>
       </li>
       <li id="contact">
-        <a href="#/contact">
+        <a ng-click="goTo('/contact')">
           <i class="icon-envelope-alt icon-xlarge"></i><span>{{performance.site.theme.tokens.contact|translate}}</span>
         </a>
       </li>
@@ -142,12 +142,6 @@
   {literal}
   </script>
 
-  <script type="text/javascript" src="themes/rimobi/js/lib/fastclick.js"></script>
-  <script type="text/javascript">
-    window.addEventListener('load', function() {
-    FastClick.attach(document.body);
-  }, false);
-  </script>
   {/literal}
   {if $build}
   <script type="text/javascript" src="cordova.js"></script>
@@ -168,6 +162,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-route.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-sanitize.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-cookies.min.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-touch.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-resource.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js"></script>

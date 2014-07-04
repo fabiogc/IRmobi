@@ -96,6 +96,10 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
 meumobiApp.run(function($rootScope, $location, SITEBUILDER, IS_APP, ANALYTICS) {
   $rootScope.isOnline = navigator.onLine;
 
+  $rootScope.goTo = function(path) {
+    $location.path(path);
+  };
+
   $rootScope.thumbify = function(imagePath, prefix, defaultImg) {
     var path = imagePath;
     if (path && prefix) {
