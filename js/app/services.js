@@ -18,7 +18,7 @@ meumobiServices.factory('Items', ['$resource', 'SITEBUILDER_API', 'TIMEOUT', fun
 			for(var k in item.medias) {
 				var media = item.medias[k];
 				if (typeof mediaType == 'function' && !mediaType(media) 
-					|| typeof mediaType == 'string' && media.type.indexOf(mediaType) != 0)
+					|| typeof mediaType == 'string' && media.type && media.type.indexOf(mediaType) != 0)
 					continue;
 				medias.push({
 					src: media.url,

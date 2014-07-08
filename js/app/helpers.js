@@ -11,11 +11,11 @@ function uncrypt(coded) {
 } 
 
 function isYoutubeUrl(url) {
-  return url.indexOf('youtube.com') > -1 || url.indexOf('youtu.be') > -1;
+  return url && (url.indexOf('youtube.com') > -1 || url.indexOf('youtu.be') > -1);
 }
 
 function isVimeoUrl(url) {
-  return url.indexOf('vimeo.com') > -1;
+  return url && url.indexOf('vimeo.com') > -1;
 }
 
 function parseVideoUrl(url) {
