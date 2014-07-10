@@ -17,7 +17,7 @@ $(document).ready(function() {
 	$(document).on('change', 'table thead [type="checkbox"]', function(e){
 		e && e.preventDefault();
 		var $table = $(e.target).closest('table'), $checked = $(e.target).is(':checked');
-		$('tbody [type="checkbox"]',$table).attr('checked', $checked);
+		$('tbody [type="checkbox"]', $table).prop('checked', $checked);
 	});
 
 	$(document).on('click', '[data-toggle^="progress"]', function(e){
@@ -44,17 +44,17 @@ $(document).ready(function() {
 		$item.hide().prependTo($el.find('.list-group')).slideDown().css('display','block');
 	}
 	var $noteMail = {
-		icon: '<i class="icon-envelope-alt icon-2x text-default"></i>',
+		icon: '<i class="fa fa-envelope-o fa-2x text-default"></i>',
 		title: 'Added the mail app, Check it out.<br><small class="text-muted">2 July 13</small>',
 		link: 'mail.html'
 	}
 	var $noteCalendar = {
-		icon: '<i class="icon-calendar icon-2x text-default"></i>',
+		icon: '<i class="fa fa-calendar fa-2x text-default"></i>',
 		title: 'Added the calendar, Get it.<br><small class="text-muted">10 July 13</small>',
 		link: 'calendar.html'
 	}
 	var $noteTimeline = {
-		icon: '<i class="icon-time icon-2x text-default"></i>',
+		icon: '<i class="fa fa-clock-o fa-2x text-default"></i>',
 		title: 'Added the timeline, view it here.<br><small class="text-muted">1 minute ago</small>',
 		link: 'timeline.html'
 	}
@@ -298,7 +298,7 @@ $(document).ready(function() {
 			    // Create IMG tag for each returned image
 			    formatter: function (items) {
 			      $.each(items, function (index, item) {
-			        item.geonameId = '<a href="#edit?geonameid='+item.geonameId+'"><i class="icon-pencil"></i></a>';
+			        item.geonameId = '<a href="#edit?geonameid='+item.geonameId+'"><i class="fa fa-pencil"></i></a>';
 			      });
 			    }
 		  })

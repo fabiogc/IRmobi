@@ -27,6 +27,10 @@
 	margin: 20px 0;
 }
 
+.navbar-brand{
+    float: left;
+  }
+
 
 /*phone*/
 @media (max-width: 767px) {
