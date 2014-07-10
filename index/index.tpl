@@ -36,7 +36,7 @@
     <img ng-src="{{thumbify(performance.site.logo, '200x200_')}}" alt="{{performance.site.title}}" width="123">
     </a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
-      <i class="icon-reorder icon-xlarge text-white"></i>
+      <i class="fa fa-bars fa-lg text-white"></i>
     </button>
     <ul class="nav navbar-nav hidden-xs">
     </ul>
@@ -48,17 +48,17 @@
       <li id="home">
         <a ng-click="goTo('/')">
         {{}}
-          <i class="icon-home icon-xlarge"></i><span translate>Home</span>
+          <i class="fa fa-home fa-lg"></i><span translate>Home</span>
         </a>
       </li>
       <li ng-repeat="category in performance.categories"
         id="nav-category-{{category.id}}"
         class="dropdown-submenu">
         <a ng-if="!category.children.length" ng-click="goTo('/'+category.type+'/'+category.id)">
-          <i class="icon-chevron-sign-right icon-xlarge"></i><span ng-bind="category.title"></span>
+          <i class="fa fa-chevron-circle-right fa-lg"></i><span ng-bind="category.title"></span>
         </a>
         <a ng-if="category.children.length">
-          <i class="icon-chevron-sign-right icon-xlarge"></i><span ng-bind="category.title"></span>
+          <i class="fa fa-chevron-circle-right fa-lg"></i><span ng-bind="category.title"></span>
         </a>
         <ul class="dropdown-menu" ng-if="category.children.length">
           <li ng-repeat="subCategory in category.children">
@@ -68,7 +68,7 @@
       </li>
       <li id="contact">
         <a ng-click="goTo('/contact')">
-          <i class="icon-envelope-alt icon-xlarge"></i><span>{{performance.site.theme.tokens.contact|translate}}</span>
+          <i class="fa fa-envelope-o fa-lg"></i><span>{{performance.site.theme.tokens.contact|translate}}</span>
         </a>
       </li>
     </ul>
