@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="themes/rimobi/css/font.css" cache="false">
   <link rel="stylesheet" href="themes/rimobi/css/style.css">
   <link rel="stylesheet" href="themes/rimobi/css/plugin.css">
-  <link rel="stylesheet" href="themes/rimobi/css/landing.css">
   <link rel="stylesheet" href="themes/rimobi/css/custom.css">
   <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css">
   <link rel="stylesheet" href="themes/rimobi/css/bootstrap-image-gallery.min.css">
