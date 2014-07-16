@@ -184,6 +184,7 @@
   <script type="text/javascript" src="themes/rimobi/js/app.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/app.plugin.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/app.data.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/custom.js"></script>
 
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_{$current_locale}.js"></script>
   <script type="text/javascript">
