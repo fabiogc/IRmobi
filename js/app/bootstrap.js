@@ -1,6 +1,7 @@
 var meumobiApp = angular.module('meumobiApp', [
   'ngRoute',
   'ngSanitize',
+  'ngTouch',
   'meumobiSettings',
   'meumobiServices',
   'meumobiDirectives',

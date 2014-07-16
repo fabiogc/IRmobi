@@ -57,7 +57,7 @@ meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$ti
 						});
 					}
 					buildGallery();
-				},0);
+				},100);
 			});
 		}]);
 
