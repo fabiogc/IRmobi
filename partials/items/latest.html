@@ -2,11 +2,11 @@
   <breadcrumb ng-if="has_breadcrumb" title="{{'Latest'|translate}}" link="#/latest"></breadcrumb>
   <div id="gallery" class="gallery hide">
     <div class="item" ng-repeat="item in items">
-      <a ng-if="item.images" ng-click="goTo('/items/'+item._id)" rel="prettyPhoto[gallery]" class="item-media">
+      <a ng-if="item.images" ng-href="#/items/{{item._id}}" rel="prettyPhoto[gallery]" class="item-media">
         <img ng-src="{{thumbify(item.images[0].path, '314x220_')}}">
       </a>
       <div class="desc">
-          <h4><a ng-click="goTo('/items/'+item._id)" ng-bind-html="item.title"></a></h4>
+          <h4><a ng-href="#/items/{{item._id}}" ng-bind-html="item.title"></a></h4>
           <p class="text-muted" ng-bind-html="item.description|words:20"></p>
       </div>
     </div>
