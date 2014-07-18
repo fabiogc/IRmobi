@@ -76,7 +76,9 @@
   <section id="content">
     <section class="main padder">
     <div ng-view></div><!-- view -->
-     {include file=`$performance.site.layout_alternatives.footer`_footer.tpl}
+    {/literal}
+     {include file="index/_`$performance.site.theme.layout_alternatives.footer`_footer.tpl"}
+    {literal}
     </section>
   </section>
   <!-- footer -->
