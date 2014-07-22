@@ -66,6 +66,10 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
         templateUrl: 'themes/rimobi/partials/items/show.html',
         controller: 'ItemShowCtrl'
       }).
+      when('/items/add/:category_id', {
+        templateUrl: 'themes/rimobi/partials/items/add.html',
+        controller: 'ItemAddCtrl'
+      }).
       when('/contact', {
         templateUrl: 'themes/rimobi/partials/contact.html',
         controller: 'ContactCtrl'

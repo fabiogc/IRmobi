@@ -9,8 +9,9 @@ return $resource(SITEBUILDER_API + '/performance', {}, {
 meumobiServices.factory('Items', ['$resource', 'SITEBUILDER_API', 'TIMEOUT', function($resource, SITEBUILDER_API, TIMEOUT) {
 	var service = $resource(SITEBUILDER_API + '/items/:id', {}, {
 		get: {cache: true, method: 'GET', timeout: TIMEOUT},
-			query: {method: 'GET', cache: true, url: SITEBUILDER_API + '/items/search', timeout: TIMEOUT},
-			latest: {method: 'GET', cache: true, url: SITEBUILDER_API + '/items/latest', timeout: TIMEOUT}
+    save: {method: 'POST', headers : {'Content-Type':'application/x-www-form-urlencoded'}},
+		query: {method: 'GET', cache: true, url: SITEBUILDER_API + '/items/search', timeout: TIMEOUT},
+		latest: {method: 'GET', cache: true, url: SITEBUILDER_API + '/items/latest', timeout: TIMEOUT}
 	});
 	service.getMedias = function(item, mediaType) {
 		var medias = [];

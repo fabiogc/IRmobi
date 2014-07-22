@@ -85,6 +85,26 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categ
 			});
 		}]);
 
+meumobiControllers.controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '$routeParams', '$location',
+		function($scope, Items, Categories, $routeParams, $location) {
+    $scope.files = [];
+    $scope.item = {};
+    $scope.category = Categories.get({id: $routeParams.category_id});
+    $scope.addFile = function($files) {
+      $scope.files = $files;
+    };
+    $scope.addItem = function() {
+      $scope.item.parent_id = $routeParams.category_id;
+      console.log($scope.item);
+      Items.save($.param($scope.item), function(data) {
+         //Items.upload(data.id, files).success(function(data, status, headers, config) {
+         alert('Yes, success:)');
+          $location.path("/"); 
+        //});
+      });
+    };
+	  }]);
+
 meumobiControllers.controller('ContactCtrl', ['$scope', '$http', '$translate', 'DOMAIN',
 		function($scope, $http, $translate, DOMAIN) {
 			$scope.formData = {};
