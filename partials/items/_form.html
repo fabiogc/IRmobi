@@ -24,11 +24,21 @@
 <div class="form-group">
   <label class="col-lg-3 control-label">{{'Image'|translate}}</label>
   <div class="col-lg-8">
-    <input type="file" accept="image/*;capture=camera" ng-file-select="addFile($files)" class="form-control">
+    <span class="btn-file btn btn-white {{uploaded ? 'btn-success active' : ''}}">
+      <i class="fa fa-cloud-upload text"></i>
+      <span class="text" ng-show="uploaded === null">Upload</span>
+      <span class="text" ng-show="uploaded === false">Uploading...</span>
+      <i class="fa fa-check text-active"></i>
+      <span class="text-active">Success</span>
+      <input type="file" accept="image/*;capture=camera" ng-file-select="addFile($files)" class="form-control">
+    </span>
+    <div class="progress progress-small progress-striped active m-t-mini m-b-none" style="max-width: 95px;  margin-top: 10px; {{percent > 0 ? '': 'visibility: hidden;'}}">
+      <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-original-title="80%" style="width: {{percent}}%"></div>
+    </div>
   </div>
 </div>
 <div class="form-group">
   <div class="col-lg-9 col-lg-offset-3">
-    <button type="submit" class="btn btn-primary">{{'Save'|translate}}</button>
+    <button type="submit" class="btn btn-primary" nd-disabled="submitting">{{'Save'|translate}}</button>
   </div>
 </div>

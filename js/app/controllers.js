@@ -7,17 +7,17 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site','Categori
       var params = {};
       var search = parseLocationSearch($window.location.search);
       if (search.skin)
-  params.skin = search.skin;
-Site.get(params, function(data) {
-  data.categories = Categories.getTree(data.categories);
-  var categories = data.categories.slice(0);
-  $scope.performance = data;
-  if (data.site.stock_symbols) {
-    $scope.firstCategory = categories.shift();
-    $scope.headlinesRows = 1;
-  }
-  $scope.splitedCategories = $scope.splitArray(categories, 2);
-});
+        params.skin = search.skin;
+      Site.get(params, function(data) {
+        data.categories = Categories.getTree(data.categories);
+        var categories = data.categories.slice(0);
+        $scope.performance = data;
+        if (data.site.stock_symbols) {
+          $scope.firstCategory = categories.shift();
+          $scope.headlinesRows = 1;
+        }
+        $scope.splitedCategories = $scope.splitArray(categories, 2);
+      });
 }]);
 
 meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', '$routeParams',
@@ -87,23 +87,41 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categ
 
 meumobiControllers.controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '$routeParams', '$location','$upload',
     function($scope, Items, Categories, $routeParams, $location, $upload) {
-      $scope.files = [];
+      $scope.images = {};
       $scope.item = {};
+      $scope.uploaded = null;
+      $scope.percent = 0;
+      $scope.submitting = false;
       $scope.category = Categories.get({id: $routeParams.category_id});
       $scope.addFile = function(files) {
-        $scope.files = files[0];
+        $scope.uploaded = false;
+        $scope.submitting = true;
+        Items.upload(files[0], {visible:1})
+        .progress(function(evt) {
+          $scope.percent = parseInt(100.0 * evt.loaded / evt.total);
+        })
+        .success(function(data, status, headers, config) {
+            console.log(data);
+            $scope.uploaded = true;
+            $scope.submitting = false;
+            $scope.images[data.id+''] = {title:""};
+        });
       };
       $scope.addItem = function() {
+        if ($scope.submitting) {
+          console.log('already sent');
+          return;
+        }
+        $scope.submitting = true;
         $scope.item.parent_id = $routeParams.category_id;
+        $scope.item.images = $scope.images;
         console.log($scope.item);
         Items.save($.param($scope.item), function(data) {
+          $scope.submitting = false;
           console.log('item saved');
           console.log(data);
-          Items.upload(data._id, $scope.files, {visible:1}).success(function(data, status, headers, config) {
-            console.log(data);
             alert('Yes, success:)');
             $location.path('/'+$scope.category.type+'/'+$routeParams.category_id); 
-          });
         });
       };
     }]);

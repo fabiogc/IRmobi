@@ -30,9 +30,9 @@ meumobiServices.factory('Items', ['$resource', '$upload', 'SITEBUILDER_API', 'TI
 		}
 		return medias
 	};
-  service.upload = function(id, file, data) {
+  service.upload = function(file, data) {
     return $upload.upload({
-      url: SITEBUILDER_API + '/items/' + id + '/images',
+      url: SITEBUILDER_API + '/images',
       method: 'POST',
       headers: {},
       data: data ? data : {},
