@@ -1,4 +1,4 @@
-var meumobiServices = angular.module('meumobiServices', ['ngResource']);
+var meumobiServices = angular.module('meumobiServices', ['ngResource', 'angularFileUpload']);
 
 meumobiServices.factory('Site', ['$resource', 'SITEBUILDER_API', 'TIMEOUT', function($resource, SITEBUILDER_API, TIMEOUT) {
 return $resource(SITEBUILDER_API + '/performance', {}, {
@@ -6,7 +6,7 @@ return $resource(SITEBUILDER_API + '/performance', {}, {
 				 feed: {method: 'GET', cache: true, url:  SITEBUILDER_API + '/news', timeout: TIMEOUT}
 	});
 }]);
-meumobiServices.factory('Items', ['$resource', 'SITEBUILDER_API', 'TIMEOUT', function($resource, SITEBUILDER_API, TIMEOUT) {
+meumobiServices.factory('Items', ['$resource', '$upload', 'SITEBUILDER_API', 'TIMEOUT', function($resource, $upload, SITEBUILDER_API, TIMEOUT) {
 	var service = $resource(SITEBUILDER_API + '/items/:id', {}, {
 		get: {cache: true, method: 'GET', timeout: TIMEOUT},
     save: {method: 'POST', headers : {'Content-Type':'application/x-www-form-urlencoded'}},
@@ -30,6 +30,16 @@ meumobiServices.factory('Items', ['$resource', 'SITEBUILDER_API', 'TIMEOUT', fun
 		}
 		return medias
 	};
+  service.upload = function(id, file, data) {
+    return $upload.upload({
+      url: SITEBUILDER_API + '/items/' + id + '/images',
+      method: 'POST',
+      headers: {},
+      data: data ? data : {},
+      fileFormDataName: 'image',
+      file: file
+     }); 
+   };
 	return service;
 }]);
 meumobiServices.factory('Categories', ['$resource', 'SITEBUILDER_API', 'TIMEOUT', function($resource, SITEBUILDER_API, TIMEOUT) {

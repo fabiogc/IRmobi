@@ -149,12 +149,14 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/md5.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/santander_config.js"></script>
 -->
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-file-upload-shim.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-route.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-sanitize.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-cookies.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-touch.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-resource.min.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-file-upload.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js"></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate-handler-log.min.js"></script>
