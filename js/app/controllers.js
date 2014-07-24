@@ -101,7 +101,7 @@ meumobiControllers.controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '
           $scope.percent = parseInt(100.0 * evt.loaded / evt.total);
         })
         .success(function(data, status, headers, config) {
-            console.log(data);
+            $scope.percent = 0;
             $scope.uploaded = true;
             $scope.submitting = false;
             $scope.images[data.id+''] = {title:""};
@@ -118,8 +118,6 @@ meumobiControllers.controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '
         console.log($scope.item);
         Items.save($.param($scope.item), function(data) {
           $scope.submitting = false;
-          console.log('item saved');
-          console.log(data);
             alert('Yes, success:)');
             $location.path('/'+$scope.category.type+'/'+$routeParams.category_id); 
         });
