@@ -41,6 +41,18 @@
 	background-color: #f7f8f9;
 }
 
+.item-images {
+
+}
+
+.item-images a {
+  display: inline-block;
+}
+
+.item-images img {
+
+}
+
 .video-wrapper {
 	width: 560px;
 	max-width: 100%;
