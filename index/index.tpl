@@ -9,7 +9,7 @@
   <!--link rel="stylesheet" href="themes/rimobi/css/rimobi-min.css"-->
   <link rel="stylesheet" href="themes/rimobi/css/bootstrap.css">
   <link rel="stylesheet" href="themes/rimobi/css/font-awesome.min.css">
-  <link rel="stylesheet" href="themes/rimobi/css/font.css" cache="false">
+  <link rel="stylesheet" href="themes/rimobi/css/font.css">
   <link rel="stylesheet" href="themes/rimobi/css/style.css">
   <link rel="stylesheet" href="themes/rimobi/css/plugin.css">
   <link rel="stylesheet" href="themes/rimobi/css/custom.css">
@@ -136,51 +136,51 @@
   {/literal}
   {if $build}
   <script type="text/javascript" src="cordova.js"></script>
-  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js" defer></script>
   {else}
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
   {/if}
-  <script src="themes/rimobi/js/grid/jquery.grid-a-licious.min.js"></script>
-  <!--script type="text/javascript" src="themes/rimobi/js/rimobi-min.js"></script-->
+  <script src="themes/rimobi/js/grid/jquery.grid-a-licious.min.js" defer></script>
+  <!--script type="text/javascript" src="themes/rimobi/js/rimobi-min.js" defer></script-->
 
 <!--
   ADD IF SANTANDER PROJECT
-  <script type="text/javascript" src="themes/rimobi/js/lib/aes.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/md5.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/santander_config.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/aes.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/md5.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/santander_config.js" defer></script>
 -->
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular-file-upload-shim.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-route.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-sanitize.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-cookies.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-touch.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-resource.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular-file-upload.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate-handler-log.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angulartics-ga.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular-media-player.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/app/helpers.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/app/services.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/app/controllers.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/app/directives.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/app/settings.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/app/bootstrap.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/bootstrap.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/parsley/parsley.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/jquery.blueimp-gallery.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/bootstrap-image-gallery.min.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/app.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/app.plugin.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/app.data.js"></script>
-  <script type="text/javascript" src="themes/rimobi/js/custom.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-file-upload-shim.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-route.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-sanitize.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-cookies.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-touch.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-resource.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-file-upload.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate-handler-log.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angulartics-ga.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-media-player.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/helpers.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/services.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/controllers.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/directives.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/settings.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/bootstrap.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/bootstrap.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/parsley/parsley.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/jquery.blueimp-gallery.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/bootstrap-image-gallery.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/app.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/app.plugin.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/app.data.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/custom.js" defer></script>
 
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_{$current_locale}.js"></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_{$current_locale}.js" defer></script>
   <script type="text/javascript">
   {if $performance.site.analytics_token && !$build}
   {literal}
@@ -195,9 +195,9 @@
 	</script>
   
 {if $build}
-  <script type="text/javascript" src="themes/rimobi/js/phonegap/utils/Calendar.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
-  <script type="text/javascript">
+  <script type="text/javascript" src="themes/rimobi/js/phonegap/utils/Calendar.js" defer></script>
+  <script type="text/javascript" src="js/index.js" defer></script>
+  <script type="text/javascript" defer>
     app.initialize();
   </script>
 {/if}
