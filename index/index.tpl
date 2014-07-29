@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" {if !$build}ng-app="meumobiApp"{/if} ng-controller="SiteCtrl">
+<html lang="en" manifest="rimobi.appcache" {if !$build}ng-app="meumobiApp"{/if} ng-controller="SiteCtrl">
 {literal}
 <head>
   <meta charset="utf-8">
