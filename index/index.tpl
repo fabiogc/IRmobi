@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" manifest="/rimobi.appcache" {if !$build}ng-app="meumobiApp"{/if} ng-controller="SiteCtrl">
+<html lang="en" {if !$build}ng-app="meumobiApp"{/if} ng-controller="SiteCtrl">
 {literal}
 <head>
   <meta charset="utf-8">
@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="themes/rimobi/css/plugin.css">
   <link rel="stylesheet" href="themes/rimobi/css/custom.css">
   <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css">
-  <link rel="stylesheet" href="themes/rimobi/css/bootstrap-image-gallery.min.css">
   {/literal}
   {$site.css_token|cssOnline}
   {if !$build}
@@ -96,28 +95,6 @@
     <a class="close">×</a>
     <a class="play-pause"></a>
     <ol class="indicator"></ol>
-    <!-- The modal dialog, which will be used to wrap the lightbox content -->
-    <div class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"></h4>
-                </div>
-                <div class="modal-body next"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left prev">
-                        <i class="glyphicon glyphicon-chevron-left"></i>
-                        Previous
-                    </button>
-                    <button type="button" class="btn btn-primary next">
-                        Next
-                        <i class="glyphicon glyphicon-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
   </div>
   <!-- / footer -->
   <script type="text/javascript">
@@ -174,7 +151,6 @@
   <script type="text/javascript" src="themes/rimobi/js/bootstrap.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/parsley/parsley.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/jquery.blueimp-gallery.min.js" defer></script>
-  <script type="text/javascript" src="themes/rimobi/js/bootstrap-image-gallery.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.plugin.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.data.js" defer></script>

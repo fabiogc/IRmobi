@@ -11,12 +11,20 @@
 					<img ng-src="{{thumbify(image.path, '80x80_')}}" alt="{{image.title}}">
 				</a>
 			</div>
+  <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+  <div class=" video-wrapper">
+  <div videos="socialVideoPlaylist" class="blueimp-gallery blueimp-gallery-controls  blueimp-gallery-carousel"  video-gallery>
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+  </div>
+</div>
 			<div class="panel-body text-small"> 
-				<!--div ng-repeat="video in socialVideoPlaylist" class="video-wrapper">
-					<div class="video-container">
-					<iframe width="800" height="450" ng-src="{{video.embedUrl}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-					</div>
-				</div-->
 				<div ng-bind-html="item.description"></div>
 				<div>
 					<p ng-repeat="media in item.medias|filter:mediaFilter">

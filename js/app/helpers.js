@@ -18,20 +18,20 @@ function isVimeoUrl(url) {
   return url && url.indexOf('vimeo.com') > -1;
 }
 
-function parseVideoUrl(url) {
-  var embedUrl = '';
+function parseVideoUrl(url, returnId) {
+  var video = '';
   if (isYoutubeUrl(url)) {
     var re = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/; 
       var matches = url.match(re);
     if (matches instanceof Array)
-      embedUrl = 'https://www.youtube.com/embed/' + matches.pop();
+      video = returnId ?  matches.pop() : 'https://www.youtube.com/embed/' + matches.pop();
   } else if(isVimeoUrl(url)) {
     var re = /(videos|video|channels|\.com)\/([\d]+)/; 
     var matches = url.match(re);
     if (matches instanceof Array)
-      embedUrl = 'https://player.vimeo.com/video/' + matches.pop();;
+      video = returnId ? matches.pop() : 'https://player.vimeo.com/video/' + matches.pop();;
   }
-  return embedUrl;
+  return video;
 };
 
 function parseLocationSearch(location) {

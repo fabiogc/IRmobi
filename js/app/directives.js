@@ -141,3 +141,41 @@ meumobiDirectives.directive('navMenu', ['$location', '$timeout', function($locat
 		$timeout(navMenu, 500);
 	};
 }]);
+
+meumobiDirectives.directive('videoGallery', ['$timeout', function($timeout) {
+return {
+    restrict: 'EA',
+    scope: {
+      videos: '='
+    },  
+    link: function(scope, element, attrs) {
+      var prepare = function (container, videos) {
+        var data = [];
+        angular.forEach(videos, function(video) {
+          var item  = {
+//            title: "test",
+            type: 'text/html',
+            href: video.src
+          };
+          item[video.source] = video.videoId;
+          data.push(item);
+        });
+         console.log(data);
+        blueimp.Gallery(data, {
+          container: container,
+          startSlideshow: false,
+          //slideshowInterval: 50000,
+          carousel: true
+        }); 
+      };
+      scope.$watch('videos', function(data) {// needed because the geolocation promise
+        if (data instanceof Array && data.length > 0)
+          $timeout(function() {
+            prepare(element[0], data);
+          }, 0);
+          
+      }); 
+    }   
+  };  
+}]);
+
