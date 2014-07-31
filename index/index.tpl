@@ -6,14 +6,14 @@
   <title ng-bind-template="{{performance.site.title}}"></title>
   <meta name="description" content="RI Santander">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
-  <!--link rel="stylesheet" href="themes/rimobi/css/rimobi-min.css"-->
-  <link rel="stylesheet" href="themes/rimobi/css/bootstrap.css">
+  <link rel="stylesheet" href="themes/rimobi/css/rimobi.min.css">
+  <!--link rel="stylesheet" href="themes/rimobi/css/bootstrap.css">
   <link rel="stylesheet" href="themes/rimobi/css/font-awesome.min.css">
   <link rel="stylesheet" href="themes/rimobi/css/font.css">
   <link rel="stylesheet" href="themes/rimobi/css/style.css">
   <link rel="stylesheet" href="themes/rimobi/css/plugin.css">
   <link rel="stylesheet" href="themes/rimobi/css/custom.css">
-  <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css" defer>
+  <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css" defer-->
   {/literal}
   {$site.css_token|cssOnline}
   {if !$build}
@@ -118,7 +118,7 @@
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
   {/if}
   <script src="themes/rimobi/js/grid/jquery.grid-a-licious.min.js" defer></script>
-  <!--script type="text/javascript" src="themes/rimobi/js/rimobi-min.js" defer></script-->
+  <script type="text/javascript" src="themes/rimobi/js/rimobi.min.js" defer></script>
 
 <!--
   ADD IF SANTANDER PROJECT
@@ -126,7 +126,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/md5.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/santander_config.js" defer></script>
 -->
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular-file-upload-shim.min.js" defer></script>
+  <!--script type="text/javascript" src="themes/rimobi/js/lib/angular-file-upload-shim.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-route.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-sanitize.min.js" defer></script>
@@ -154,7 +154,7 @@
   <script type="text/javascript" src="themes/rimobi/js/app.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.plugin.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.data.js" defer></script>
-  <script type="text/javascript" src="themes/rimobi/js/custom.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/custom.js" defer></scripti-->
 
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_{$current_locale}.js" defer></script>
   <script type="text/javascript">
