@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="themes/rimobi/css/style.css">
   <link rel="stylesheet" href="themes/rimobi/css/plugin.css">
   <link rel="stylesheet" href="themes/rimobi/css/custom.css">
-  <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css">
+  <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css" defer>
   {/literal}
   {$site.css_token|cssOnline}
   {if !$build}
