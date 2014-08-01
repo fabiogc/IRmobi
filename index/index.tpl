@@ -66,7 +66,7 @@
       </li>
       <li id="contact">
         <a ng-click="goTo('/contact')">
-          <i class="fa fa-envelope-o fa-lg"></i><span>{{performance.site.theme.tokens.contact|translate}}</span>
+          <i class="fa fa-envelope-o fa-lg"></i><span ng-bind="performance.site.theme.tokens.contact|translate"></span>
         </a>
       </li>
     </ul>

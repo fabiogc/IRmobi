@@ -1,28 +1,24 @@
 <div class="form-group">
-  <label class="col-lg-3 control-label">{{'Title'|translate}}</label>
+  <label class="col-lg-3 control-label" ng-bind="'Title'|translate"></label>
   <div class="col-lg-8">
     <input type="text" ng-model="item.title" placeholder="{{'Title'|translate}}" class="form-control" required>
   </div>
 </div>
 <div class="form-group">
-  <label class="col-lg-3 control-label">
-    {{'Description'|translate}}
-  </label>
+  <label class="col-lg-3 control-label" ng-bind="'Description'|translate"></label>
   <div class="col-lg-8">
     <textarea ng-model="item.description" placeholder="{{'Description'|translate}}" rows="5" class="form-control" required>
     </textarea>
   </div>
 </div>
 <div class="form-group">
-  <label class="col-lg-3 control-label">
-    {{'Author'|translate}}
-  </label>
+  <label class="col-lg-3 control-label" ng-bind='Author'|translate></label>
   <div class="col-lg-8">
     <input type="text" ng-model="item.author" placeholder="{{'Author'|translate}}" class="bg-focus form-control">
   </div>
 </div>
 <div class="form-group">
-  <label class="col-lg-3 control-label">{{'Image'|translate}}</label>
+  <label class="col-lg-3 control-label" ng-bind="'Image'|translate"></label>
   <div class="col-lg-8">
     <span class="btn-file btn btn-white {{uploaded ? 'btn-success active' : ''}}">
       <i class="fa fa-cloud-upload text"></i>
@@ -39,6 +35,6 @@
 </div>
 <div class="form-group">
   <div class="col-lg-9 col-lg-offset-3">
-    <button type="submit" class="btn btn-primary" nd-disabled="submitting">{{'Save'|translate}}</button>
+    <button type="submit" class="btn btn-primary" nd-disabled="submitting" ng-bind="'Save'|translate"></button>
   </div>
 </div>
