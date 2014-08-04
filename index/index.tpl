@@ -19,6 +19,9 @@
   {if !$build}
   <link rel="shortcut icon" href="/ri/{$performance.site.title|parseSlug}.ico">
   {$performance.site.apple_touch_icon|appleTouchIcons}
+  {if $performance.site.splash_screen}
+  <link rel="apple-touch-startup-image" href="{$performance.site.splash_screen|thumbify}">
+  {/if}
   <!--[if lt IE 9]>
     <script src="themes/rimobi/js/ie/respond.min.js" cache="false"></script>
     <script src="themes/rimobi/js/ie/html5.js" cache="false"></script>
