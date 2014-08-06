@@ -1,10 +1,21 @@
 var meumobiServices = angular.module('meumobiServices', ['ngResource', 'angularFileUpload']);
 
-meumobiServices.factory('Site', ['$resource', 'SITEBUILDER_API', 'TIMEOUT', function($resource, SITEBUILDER_API, TIMEOUT) {
-return $resource(SITEBUILDER_API + '/performance', {}, {
+meumobiServices.factory('Site', ['$resource', '$q', 'SITEBUILDER_API', 'TIMEOUT', function($resource, $q, SITEBUILDER_API, TIMEOUT) {
+  var resource = $resource(SITEBUILDER_API + '/performance', {}, {
 		get: {cache: true, method: 'GET', timeout: TIMEOUT},
 				 feed: {method: 'GET', cache: true, url:  SITEBUILDER_API + '/news', timeout: TIMEOUT}
 	});
+  resource.news = function() {
+    var deferred = $q.defer();
+    this.get(function(data) {
+      console.log(data.news);
+      deferred.resolve(data.news);
+    }, function(reason) {
+      deferred.reject(reason);
+    });
+    return deferred.promise;
+  };
+  return resource;
 }]);
 meumobiServices.factory('Items', ['$resource', '$upload', 'SITEBUILDER_API', 'TIMEOUT', function($resource, $upload, SITEBUILDER_API, TIMEOUT) {
 	var service = $resource(SITEBUILDER_API + '/items/:id', {}, {

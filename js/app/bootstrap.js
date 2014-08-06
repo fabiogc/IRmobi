@@ -46,6 +46,10 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
         templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
+      when('/news', {
+         templateUrl: 'themes/rimobi/partials/items/news.html',
+         controller: 'NewsCtrl'
+      }).
       when('/extended_articles/:id/page/:page', {
         templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
         controller: 'CategoryShowCtrl'

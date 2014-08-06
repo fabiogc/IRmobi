@@ -61,6 +61,14 @@ meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$ti
       });
     }]);
 
+meumobiControllers.controller('NewsCtrl', ['$scope', 'Site', 
+    function($scope, Site) {
+        Site.news().then(function(data) {
+          $scope.items = data;
+        });
+    }
+]);
+
 meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categories', '$routeParams', 'IS_APP',
     function($scope, $sce, Items, Categories, $routeParams, IS_APP) {
       $scope.mediaFilter = function(media) {

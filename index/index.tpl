@@ -34,7 +34,7 @@
   <!-- header -->
     <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
     <a class="navbar-brand" ng-click="goTo('/')">
-    <img ng-src="{{thumbify(performance.site.logo, '200x200_')}}" alt="{{performance.site.title}}" width="123">
+    <img ng-src="{{thumbify(performance.site.logo, '200x200_')}}" data-ng-alt="{{performance.site.title}}" width="123">
     </a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
       <i class="fa fa-bars fa-lg text-white"></i>
@@ -67,7 +67,12 @@
           </li>
         </ul>
       </li>
-      <li id="contact">
+     <li id="news" ng-if="performance.news">
+        <a ng-click="goTo('/news')">
+          <i class="fa fa-envelope-o fa-lg"></i><span ng-bind="performance.newsCategory.title"></span>
+        </a>
+      </li>
+     <li id="contact">
         <a ng-click="goTo('/contact')">
           <i class="fa fa-envelope-o fa-lg"></i><span ng-bind="performance.site.theme.tokens.contact|translate"></span>
         </a>
