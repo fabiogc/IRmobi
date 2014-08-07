@@ -63,9 +63,9 @@ meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$ti
 
 meumobiControllers.controller('NewsCtrl', ['$scope', 'Site', 
     function($scope, Site) {
-        Site.news().then(function(data) {
-          $scope.items = data;
-        });
+      Site.news().then(function(data) {
+        $scope.items = data;
+      });
     }
 ]);
 

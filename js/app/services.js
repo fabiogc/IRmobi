@@ -8,7 +8,6 @@ meumobiServices.factory('Site', ['$resource', '$q', 'SITEBUILDER_API', 'TIMEOUT'
   resource.news = function() {
     var deferred = $q.defer();
     this.get(function(data) {
-      console.log(data.news);
       deferred.resolve(data.news);
     }, function(reason) {
       deferred.reject(reason);
