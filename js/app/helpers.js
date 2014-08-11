@@ -18,20 +18,20 @@ function isVimeoUrl(url) {
   return url && url.indexOf('vimeo.com') > -1;
 }
 
-function parseVideoUrl(url, returnId) {
-  var video = '';
+function getVideoId(url) {
+  var videoId = '';
   if (isYoutubeUrl(url)) {
     var re = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/; 
       var matches = url.match(re);
     if (matches instanceof Array)
-      video = returnId ?  matches.pop() : 'https://www.youtube.com/embed/' + matches.pop();
+      videoId = matches.pop();
   } else if(isVimeoUrl(url)) {
     var re = /(videos|video|channels|\.com)\/([\d]+)/; 
     var matches = url.match(re);
     if (matches instanceof Array)
-      video = returnId ? matches.pop() : 'https://player.vimeo.com/video/' + matches.pop();;
+      videoId = matches.pop();;
   }
-  return video;
+  return videoId;
 };
 
 function parseLocationSearch(location) {

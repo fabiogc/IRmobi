@@ -87,7 +87,7 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categ
           return isYoutubeUrl(media.url) || isVimeoUrl(media.url)
         });
         $scope.socialVideoPlaylist = socialVideoPlaylist.map(function(media) {
-          media.videoId = parseVideoUrl(media.src, true);
+          media.videoId = getVideoId(media.src);
           media.source = isYoutubeUrl(media.src) ? 'youtube' : 'vimeo';
           return media;
         });
