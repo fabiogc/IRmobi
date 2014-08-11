@@ -34,7 +34,8 @@
   <!-- header -->
     <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
     <a class="navbar-brand" ng-click="goTo('/')">
-    <img ng-src="{{thumbify(performance.site.logo, '200x200_')}}" data-ng-alt="{{performance.site.title}}" width="123">
+    <img ng-if="performance.site.logo" ng-src="{{thumbify(performance.site.logo, '200x200_')}}" data-ng-alt="{{performance.site.title}}" width="123">
+    <span class="text-white" ng-if="!performance.site.logo" ng-bind="performance.site.title"></span>
     </a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
       <i class="fa fa-bars fa-lg text-white"></i>
