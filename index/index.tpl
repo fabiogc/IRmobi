@@ -167,15 +167,21 @@
 
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/i18n/angular-locale_{$current_locale}.js" defer></script>
   <script type="text/javascript">
-  {if $performance.site.analytics_token && !$build}
-  {literal}
+    {literal}
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    {/literal}ga('create', '{if is_array($performance.site.analytics_token)}{$performance.site.analytics_token[0]}{else}{$performance.site.analytics_token}{/if}',{literal}
-    { 'cookieDomain': 'none' });
-  {/literal}
+    {/literal}
+    ga('create', '{$smarty.const.GA_ACCOUNT}','auto',
+    {literal}
+    {'name': 'meumobi'});
+    {/literal}
+  {if $performance.site.analytics_token && !$build}
+      ga('create', '{if is_array($performance.site.analytics_token)}{$performance.site.analytics_token[0]}{else}{$performance.site.analytics_token}{/if}',
+      {literal}
+      { 'cookieDomain': 'none' });
+      {/literal}
   {/if}
 	</script>
   
