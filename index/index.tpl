@@ -13,8 +13,18 @@
   <link rel="stylesheet" href="themes/rimobi/css/style.css">
   <link rel="stylesheet" href="themes/rimobi/css/plugin.css">
   <link rel="stylesheet" href="themes/rimobi/css/custom.css">
+  <link rel="stylesheet" href="themes/rimobi/css/jquery.smartbanner.css">
   <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css" defer>
   {/literal}
+
+  {if $performance.site.ios_app_id}
+  <meta name="apple-itunes-app" content="app-id={{$performance.site.ios_app_id}}">
+  {/if}
+
+  {if $performance.site.android_app_id}
+  <meta name="google-play-app" content="app-id={{$performance.site.android_app_id}}">
+  {/if}
+
   {$site.css_token|cssOnline}
   {if !$build}
   <link rel="shortcut icon" href="/ri/{$performance.site.title|parseSlug}.ico">
@@ -160,6 +170,7 @@
   <script type="text/javascript" src="themes/rimobi/js/bootstrap.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/parsley/parsley.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/jquery.blueimp-gallery.min.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/jquery.smartbanner.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.plugin.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.data.js" defer></script>
@@ -192,5 +203,15 @@
     app.initialize();
   </script>
 {/if}
+
+{literal}
+  <script type="text/javascript" defer>
+    $(document).ready(function() {
+      if ( !(/(iPad|iPhone|iPod).*OS [6-7].*AppleWebKit.*Mobile.*Safari/.test(navigator.userAgent)) ) {
+        $.smartbanner();
+      }
+    });
+  </script>
+{/literal}
 </body>
 </html>
