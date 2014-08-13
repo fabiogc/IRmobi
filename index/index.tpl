@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" {if !$build}ng-app="meumobiApp"{/if} ng-controller="SiteCtrl">
-{literal}
 <head>
   <meta charset="utf-8">
-  <title ng-bind-template="{{performance.site.title}}"></title>
+  <title>{$performance.site.title}</title>
   <meta name="description" content="RI Santander">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
   <!--link rel="stylesheet" href="themes/rimobi/css/rimobi.min.css" -->
@@ -15,14 +14,13 @@
   <link rel="stylesheet" href="themes/rimobi/css/custom.css">
   <link rel="stylesheet" href="themes/rimobi/css/jquery.smartbanner.css">
   <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css" defer>
-  {/literal}
 
   {if $performance.site.ios_app_id}
-  <meta name="apple-itunes-app" content="app-id={{$performance.site.ios_app_id}}">
+  <meta name="apple-itunes-app" content="app-id={$performance.site.ios_app_id}">
   {/if}
 
   {if $performance.site.android_app_id}
-  <meta name="google-play-app" content="app-id={{$performance.site.android_app_id}}">
+  <meta name="google-play-app" content="app-id={$performance.site.android_app_id}">
   {/if}
 
   {$site.css_token|cssOnline}
@@ -38,8 +36,8 @@
     <script src="themes/rimobi/js/ie/excanvas.js" cache="false"></script>
   <![endif]-->
   {/if}
-  {literal}
 </head>
+{literal}
 <body ng-class="performance.site.theme.layout_alternatives.navbar">
   <!-- header -->
     <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
@@ -203,15 +201,5 @@
     app.initialize();
   </script>
 {/if}
-
-{literal}
-  <script type="text/javascript" defer>
-    $(document).ready(function() {
-      if ( !(/(iPad|iPhone|iPod).*OS [6-7].*AppleWebKit.*Mobile.*Safari/.test(navigator.userAgent)) ) {
-        $.smartbanner();
-      }
-    });
-  </script>
-{/literal}
 </body>
 </html>
