@@ -1077,48 +1077,49 @@ table.fc-border-separate {
 .gallery .desc{padding: 20px;}
 .gallery .desc h4{margin-top: 0}
 .gallery .item-media{position: relative;display: block;overflow: hidden;}
-.gallery .item-media:before{
-  content: "";
-  background-color: rgba(19,196,125,0.8);
-  position: absolute;
-  left: -100%;
-  width: 100%;
-  bottom: 0;
-  top: 0;
-  vertical-align: middle;
-  text-align: center;
-  border-radius: 3px 3px 0 0;
-  z-index: 2;
-}
-.gallery .item-media:after{
-  content: "\f067";
-  font-family: FontAwesome;
-  font-size: 28px;
-  color: #fff;
-  position: absolute;
-  right: -50%;
-  top: 50%;
-  margin-right: -14px;
-  margin-top: -14px;
-  z-index: 3;
-}
+@media (min-width: 768px) {
+  .gallery .item-media:before{
+    content: "";
+    background-color: rgba(19,196,125,0.8);
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    bottom: 0;
+    top: 0;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 3px 3px 0 0;
+    z-index: 2;
+  }
+  .gallery .item-media:after{
+    content: "\f067";
+    font-family: FontAwesome;
+    font-size: 28px;
+    color: #fff;
+    position: absolute;
+    right: -50%;
+    top: 50%;
+    margin-right: -14px;
+    margin-top: -14px;
+    z-index: 3;
+  }
 
-.gallery .item-media:hover:before{
-  left: 0
-}
+  .gallery .item-media:hover:before{
+    left: 0
+  }
 
-.gallery .item-media:hover:after{
-  right: 50%;
-}
+  .gallery .item-media:hover:after{
+    right: 50%;
+  }
 
-.gallery .item-media:before, .gallery .item-media:after{
-  -webkit-transition: all .2s ease-in-out;
-  -moz-transition: all .2s ease-in-out;
-  -ms-transition: all .2s ease-in-out;
-  -o-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
+  .gallery .item-media:before, .gallery .item-media:after{
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+  }
 }
-
 #flotTip {
   padding: 3px 5px;
   background-color: #000;
