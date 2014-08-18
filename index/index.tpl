@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="themes/rimobi/css/style.css">
   <link rel="stylesheet" href="themes/rimobi/css/plugin.css">
   <link rel="stylesheet" href="themes/rimobi/css/custom.css">
-  <link rel="stylesheet" href="themes/rimobi/css/jquery.smartbanner.css">
   <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css" defer>
 
   {if $performance.site.ios_app_id}
@@ -168,7 +167,6 @@
   <script type="text/javascript" src="themes/rimobi/js/bootstrap.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/parsley/parsley.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/jquery.blueimp-gallery.min.js" defer></script>
-  <script type="text/javascript" src="themes/rimobi/js/jquery.smartbanner.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.plugin.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.data.js" defer></script>
