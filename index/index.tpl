@@ -56,7 +56,6 @@
     <ul class="nav" data-spy="affix" data-offset-top="50" nav-menu="active">
       <li id="home">
         <a ng-click="goTo('/')">
-        {{}}
           <i class="fa fa-home fa-lg"></i><span translate>Home</span>
         </a>
       </li>
