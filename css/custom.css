@@ -1,9 +1,12 @@
 .nav-primary > ul > li.active > a {
 	border-left: 2px solid #e52e2a;
 }
-
+.quotes i {
+  margin-left: 2px;
+}
 .quotes i spam {
 	vertical-align: 3px;
+  margin-left: 5px;
 }
 
 .quotes .main i spam {
