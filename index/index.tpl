@@ -76,7 +76,7 @@
       </li>
      <li id="news" ng-if="performance.news">
         <a ng-click="goTo('/news')">
-          <i class="fa fa-envelope-o fa-lg"></i><span ng-bind="performance.newsCategory.title"></span>
+          <i class="fa fa-rss fa-lg"></i><span ng-bind="performance.newsCategory.title"></span>
         </a>
       </li>
      <li id="contact">
