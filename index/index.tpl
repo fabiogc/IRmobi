@@ -151,8 +151,8 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-file-upload.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js" defer></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate-handler-log.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-pushwoosh.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics-ga.js" defer></script>

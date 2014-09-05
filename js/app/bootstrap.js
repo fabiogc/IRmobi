@@ -82,7 +82,6 @@ meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$tra
         redirectTo: '/'
       });
     //configure translations
-    $translateProvider.useMissingTranslationHandlerLog();
     for (var lang in translations) {
       $translateProvider.translations(lang, translations[lang]);
     }
