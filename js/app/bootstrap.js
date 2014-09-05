@@ -10,96 +10,116 @@ var meumobiApp = angular.module('meumobiApp', [
   'truncate',
   'pascalprecht.translate',
   'mediaPlayer',
+  'pushwooshNotification',
   'angulartics',
   'angulartics.google.analytics'
 ]);
 
-meumobiApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$translateProvider', '$analyticsProvider', 'LOCALE', 'HOME',
-  function($routeProvider, $locationProvider, $httpProvider, $translateProvider,$analyticsProvider, LOCALE, HOME) {
-    if (!navigator.onLine) {
-      $analyticsProvider.virtualPageviews(false);
+meumobiApp.config([
+    '$routeProvider',
+    '$locationProvider', 
+    '$httpProvider', 
+    '$translateProvider', 
+    '$analyticsProvider', 
+    '$pushNotificationProvider',
+    'LOCALE', 
+    'HOME',
+    function($routeProvider, $locationProvider, $httpProvider, $translateProvider, $analyticsProvider, $pushNotificationProvider, LOCALE, HOME) {
+      if (!navigator.onLine) {
+        $analyticsProvider.virtualPageviews(false);
+      }
+      //handle http errors
+      $httpProvider.interceptors.push('interceptor');
+      //configure routes
+      if (HOME == 'latest') {
+      $routeProvider.
+        when('/', {
+          controller: 'LatestItemsCtrl',
+          templateUrl: 'themes/rimobi/partials/items/latest.html'
+        });
+      } else {
+      $routeProvider.
+        when('/', {
+          templateUrl: 'themes/rimobi/partials/index.html'
+        });
+      }
+       $routeProvider.when('/articles/:id', {
+          templateUrl: 'themes/rimobi/partials/articles/list.html',
+          controller: 'CategoryShowCtrl'
+        }).
+        when('/articles/:id/page/:page', {
+          templateUrl: 'themes/rimobi/partials/articles/list.html',
+          controller: 'CategoryShowCtrl'
+        }).
+        when('/extended_articles/:id', {
+          templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
+          controller: 'CategoryShowCtrl'
+        }).
+        when('/news', {
+           templateUrl: 'themes/rimobi/partials/items/news.html',
+           controller: 'NewsCtrl'
+        }).
+        when('/extended_articles/:id/page/:page', {
+          templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
+          controller: 'CategoryShowCtrl'
+        }).
+        when('/events/:id', {
+          templateUrl: 'themes/rimobi/partials/events/list.html',
+          controller: 'EventListCtrl'
+        }).
+        when('/events/:id/page/:page', {
+          templateUrl: 'themes/rimobi/partials/events/list.html',
+          controller: 'EventListCtrl'
+        }).
+        when('/latest', {
+          templateUrl: 'themes/rimobi/partials/items/latest.html',
+          controller: 'LatestItemsCtrl'
+        }).
+        when('/items/:id', {
+          templateUrl: 'themes/rimobi/partials/items/show.html',
+          controller: 'ItemShowCtrl'
+        }).
+        when('/items/add/:category_id', {
+          templateUrl: 'themes/rimobi/partials/items/add.html',
+          controller: 'ItemAddCtrl'
+        }).
+        when('/contact', {
+          templateUrl: 'themes/rimobi/partials/contact.html',
+          controller: 'ContactCtrl'
+        }).
+        otherwise({
+          redirectTo: '/'
+        });
+      //configure translations
+      for (var lang in translations) {
+        $translateProvider.translations(lang, translations[lang]);
+      }
+      $translateProvider
+      .registerAvailableLanguageKeys(['en', 'pt'], {
+          'en_US': 'en',
+          'en_UK': 'en',
+          'en-US': 'en',
+          'pt-BR': 'pt',
+          'pt_BR': 'pt'
+      })
+      .fallbackLanguage('en')
+      if (LOCALE == 'auto') {
+        $translateProvider.determinePreferredLanguage();
+      } else {
+        $translateProvider.preferredLanguage(LOCALE);
+      }
+
+      $pushNotificationProvider.register({
+        appId: '0EF2C-CCCFD',
+        appName: null,
+        gcmProjectNumber: '509541969118',
+        onPushNotification: null,
+        onRegisterSuccess: null,
+        onRegisterError: null
+      }); 
+      
     }
-    //handle http errors
-    $httpProvider.interceptors.push('interceptor');
-    //configure routes
-    if (HOME == 'latest') {
-    $routeProvider.
-      when('/', {
-        controller: 'LatestItemsCtrl',
-        templateUrl: 'themes/rimobi/partials/items/latest.html'
-      });
-    } else {
-    $routeProvider.
-      when('/', {
-        templateUrl: 'themes/rimobi/partials/index.html'
-      });
-    }
-     $routeProvider.when('/articles/:id', {
-        templateUrl: 'themes/rimobi/partials/articles/list.html',
-        controller: 'CategoryShowCtrl'
-      }).
-      when('/articles/:id/page/:page', {
-        templateUrl: 'themes/rimobi/partials/articles/list.html',
-        controller: 'CategoryShowCtrl'
-      }).
-      when('/extended_articles/:id', {
-        templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
-        controller: 'CategoryShowCtrl'
-      }).
-      when('/news', {
-         templateUrl: 'themes/rimobi/partials/items/news.html',
-         controller: 'NewsCtrl'
-      }).
-      when('/extended_articles/:id/page/:page', {
-        templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
-        controller: 'CategoryShowCtrl'
-      }).
-      when('/events/:id', {
-        templateUrl: 'themes/rimobi/partials/events/list.html',
-        controller: 'EventListCtrl'
-      }).
-      when('/events/:id/page/:page', {
-        templateUrl: 'themes/rimobi/partials/events/list.html',
-        controller: 'EventListCtrl'
-      }).
-      when('/latest', {
-        templateUrl: 'themes/rimobi/partials/items/latest.html',
-        controller: 'LatestItemsCtrl'
-      }).
-      when('/items/:id', {
-        templateUrl: 'themes/rimobi/partials/items/show.html',
-        controller: 'ItemShowCtrl'
-      }).
-      when('/items/add/:category_id', {
-        templateUrl: 'themes/rimobi/partials/items/add.html',
-        controller: 'ItemAddCtrl'
-      }).
-      when('/contact', {
-        templateUrl: 'themes/rimobi/partials/contact.html',
-        controller: 'ContactCtrl'
-      }).
-      otherwise({
-        redirectTo: '/'
-      });
-    //configure translations
-    for (var lang in translations) {
-      $translateProvider.translations(lang, translations[lang]);
-    }
-    $translateProvider
-    .registerAvailableLanguageKeys(['en', 'pt'], {
-        'en_US': 'en',
-        'en_UK': 'en',
-        'en-US': 'en',
-        'pt-BR': 'pt',
-        'pt_BR': 'pt'
-    })
-    .fallbackLanguage('en')
-    if (LOCALE == 'auto') {
-      $translateProvider.determinePreferredLanguage();
-    } else {
-      $translateProvider.preferredLanguage(LOCALE);
-    }
-  }]);
+]);
 
 meumobiApp.run(function($rootScope, $location, SITEBUILDER, IS_APP, ANALYTICS) {
   $rootScope.isOnline = navigator.onLine;
