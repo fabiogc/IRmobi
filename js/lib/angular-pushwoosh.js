@@ -2,7 +2,7 @@
   'use strict';
   angular.module('pushwooshNotification', [])
   .provider('$pushNotification', function() {
-    this.settings = {
+    var settings = {
       appId: null,
       appName: null,
       gcmProjectNumber: null,
@@ -33,25 +33,32 @@
     var registerPushwooshAndroid = function() {
       console.log('register push android');
       api.pushNotification.onDeviceReady();
+      
       //set push notifications handler
-      document.addEventListener('push-notification', this.settings.onPushNotification);
+      document.addEventListener('push-notification', function(e) {
+        console.log(JSON.stringify(e.notification));
+        alert(e.notification.message);
+        if (settings.onPushNotification)          
+         settings.onPushNotification(e)
+      });
       //!!! Please note this is an API for PGB plugin. This code is different in CLI plugin!!!
       api.pushNotification.registerDevice({
-        projectid: this.settings.gcmProjectNumber,
-        appid : this.setting.appId
+        projectid: settings.gcmProjectNumber,
+        appid : settings.appId
       }, function(token) {
-        console.warn('push token: ' + pushToken);
-        onPushwooshInitialized(token);
+        console.warn('push token: ' + token);
+        if (settings.onRegisterSuccess)
+          onRegisterSuccess(token);
       }, function(status) {
         console.warn(JSON.stringify(['failed to register ', status]));
-        if (this.settings.onRegisterError)
-          this.settings.onRegisterError(status);
+        if (settings.onRegisterError)
+          settings.onRegisterError(status);
       });
     };
 
-    this.register = function(settings) {
-      angular.extend(this.settings, settings);
-      console.log(this.settings);
+    this.register = function(params) {
+      angular.extend(settings, params);
+      console.log(JSON.stringify(settings));
       console.log('is available', api.isAvailable());
       if (api.isAvailable()) {
         initPushwoosh();

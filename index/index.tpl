@@ -128,6 +128,7 @@
   {/literal}
   {if $build}
   <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="PushNotification.js"></script>
   <script type="text/javascript" src="js/jquery.min.js" defer></script>
   {else}
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
