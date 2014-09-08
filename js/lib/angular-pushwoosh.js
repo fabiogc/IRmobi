@@ -10,7 +10,14 @@
       onRegisterSuccess: null,
       onRegisterError: null
     };
-
+    var registerSettings = {
+      android: {},
+      ios: {
+        alert: true,
+        badge: true,
+        sound: true
+      }
+    };
     var api = {
       isAvailable: function() {
         return (typeof window.plugins !== 'undefined')
@@ -21,16 +28,7 @@
 
     api.pushNotification = api.isAvailable() ? window.plugins.pushNotification : null;
 
-    var initPushwoosh = function() {
-      if(device.platform == "Android") {
-        registerPushwooshAndroid();
-      }
-      if(device.platform == "iPhone" || device.platform == "iOS") {
-        registerPushwooshIOS();
-      }
-    };
-
-    var registerPushwooshAndroid = function() {
+    var registerPushwoosh = function(params, callback) {
       console.log('register push android');
       api.pushNotification.onDeviceReady();
       
@@ -42,10 +40,7 @@
          settings.onPushNotification(e)
       });
       //!!! Please note this is an API for PGB plugin. This code is different in CLI plugin!!!
-      api.pushNotification.registerDevice({
-        projectid: settings.gcmProjectNumber,
-        appid : settings.appId
-      }, function(token) {
+      api.pushNotification.registerDevice(params, function(token) {
         console.warn('push token: ' + token);
         if (settings.onRegisterSuccess)
           onRegisterSuccess(token);
@@ -54,14 +49,29 @@
         if (settings.onRegisterError)
           settings.onRegisterError(status);
       });
+      if (callback)
+        callback();
     };
 
     this.register = function(params) {
       angular.extend(settings, params);
+      registerSettings.android.projectid = settings.gcmProjectNumber,
+      registerSettings.android.appid = settings.appId;
+      registerSettings.ios.pw_appid = settings.appId;
+      registerSettings.ios.appname = settings.appName;
+
       console.log(JSON.stringify(settings));
       console.log('is available', api.isAvailable());
       if (api.isAvailable()) {
-        initPushwoosh();
+        if(device.platform == "Android") {
+          registerPushwoosh(registerSettings.android);
+        }
+        if(device.platform == "iPhone" || device.platform == "iOS") {
+          registerPushwoosh(registerSettings.ios, function() {
+            //reset badges on start
+            pushNotification.setApplicationIconBadgeNumber(0);
+          });
+        }
       }
     };
 
