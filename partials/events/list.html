@@ -18,9 +18,9 @@
 						ng-class="isFutureDate(item.start_date) ? 'add-event' : ''"
 						ng-bind-html="item.title"
 						data-confirm="{{'Add event to calendar?'|translate}}"
-						data-title="{{item.title}}"
-						data-address="{{item.address}}"
-						data-description="{{item.description}}"
+						data-title="{{item.title|striptags}}"
+						data-address="{{item.address|striptags}}"
+						data-description="{{item.description|br2nl|striptags}}"
 						data-date="{{item.start_date}}"
 						data-end_date="{{item.end_date}}"></a>
 				</div>

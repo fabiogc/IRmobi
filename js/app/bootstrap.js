@@ -4,6 +4,7 @@ var meumobiApp = angular.module('meumobiApp', [
   'ngTouch',
   'meumobiSettings',
   'meumobiServices',
+  'meumobiFilters',
   'meumobiDirectives',
   'meumobiControllers',
   'slugifier',
