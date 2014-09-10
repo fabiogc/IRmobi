@@ -14,15 +14,8 @@
 						<strong class="h5" ng-bind="item.start_date * 1000 |date:'dd'"></strong><br>
 						<small class="label bg-light" ng-bind="item.start_date * 1000 |date:'MMM, yyyy'"></small>
 					</div>
-					<a class="h5 text-muted"
-						ng-class="isFutureDate(item.start_date) ? 'add-event' : ''"
-						ng-bind-html="item.title"
-						data-confirm="{{'Add event to calendar?'|translate}}"
-						data-title="{{item.title|striptags}}"
-						data-address="{{item.address|striptags}}"
-						data-description="{{item.description|br2nl|striptags}}"
-						data-date="{{item.start_date}}"
-						data-end_date="{{item.end_date}}"></a>
+					<a ng-if="isFutureDate(item.start_date)" class="h5 text-muted" class="add-event" ng-click="addEvent(item)" ng-bind-html="item.title"></a>
+          <a ng-if="!isFutureDate(item.start_date)" class="h5 text-muted" ng-bind-html="item.title"></a>
 				</div>
 				</li>
 			</ul>

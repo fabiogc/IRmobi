@@ -154,6 +154,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-pushwoosh.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-calendar.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics-ga.js" defer></script>
@@ -195,7 +196,6 @@
 	</script>
   {/if}
 {if $build}
-  <script type="text/javascript" src="themes/rimobi/js/phonegap/utils/Calendar.js" defer></script>
   <script type="text/javascript" src="js/index.js" defer></script>
   <script type="text/javascript" defer>
     app.initialize();

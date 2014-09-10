@@ -31,8 +31,34 @@ meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', '$rou
       });
     }]);
 
-meumobiControllers.controller('EventListCtrl', ['$scope', 'Categories', '$routeParams',
-    function($scope, Categories, $routeParams) {
+meumobiControllers.controller('EventListCtrl', ['$scope',
+    'Categories',
+    '$routeParams',
+    'Calendar',
+    'striptagsFilter',
+    'br2nlFilter',
+    'translateFilter',
+    function($scope, Categories, $routeParams, Calendar, striptags, br2nl, translate) {
+      $scope.addEvent = function(item) {
+        console.log('add event');
+        Calendar.addEvent(
+          striptags(item.title),
+          striptags(item.address),
+          striptags(br2nl(item.description)),
+          item.start_date,
+          item.end_date,
+          translate('Add event to calendar?')
+        ).then(function(data) {
+          console.log(data);
+          if (data)
+            alert('The event was successfully added!')
+        }, function(reason) {
+          console.log(reason);
+          if (reason !== false)
+            alert('Could not add the event!');
+        }); 
+      };
+
       $scope.category = Categories.get({id: $routeParams.id});
 
       $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page

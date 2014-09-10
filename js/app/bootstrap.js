@@ -12,6 +12,7 @@ var meumobiApp = angular.module('meumobiApp', [
   'pascalprecht.translate',
   'mediaPlayer',
   'pushwooshNotification',
+  'phonegapCalendar',
   'angulartics',
   'angulartics.google.analytics'
 ]);
