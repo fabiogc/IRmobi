@@ -29,6 +29,7 @@
     api.pushNotification = api.isAvailable() ? window.plugins.pushNotification : null;
 
     var registerPushwoosh = function(params, callback) {
+      try {
       console.log('register push android');
       api.pushNotification.onDeviceReady();
       
@@ -37,10 +38,18 @@
         console.log(JSON.stringify(e.notification));
         alert(e.notification.message);
         if (settings.onPushNotification)          
-         settings.onPushNotification(e)
+         settings.onPushNotification(e);
       });
       //!!! Please note this is an API for PGB plugin. This code is different in CLI plugin!!!
-      api.pushNotification.registerDevice(params, function(token) {
+      api.pushNotification.registerDevice(params, function(status) {
+        var token = null;
+        console.log(typeof status);
+        if (typeof status == 'string') {
+          token = status;
+        } else {
+          token = status['deviceToken'];
+        }
+        alert('token:' + token);
         console.warn('push token: ' + token);
         if (settings.onRegisterSuccess)
           onRegisterSuccess(token);
@@ -49,12 +58,15 @@
         if (settings.onRegisterError)
           settings.onRegisterError(status);
       });
-      if (callback)
-        callback();
+      //if (callback) callback();
+      } catch(err) {
+        alert(err.message);
+      }
     };
 
     this.register = function(params) {
       angular.extend(settings, params);
+      try {
       registerSettings.android.projectid = settings.gcmProjectNumber,
       registerSettings.android.appid = settings.appId;
       registerSettings.ios.pw_appid = settings.appId;
@@ -72,6 +84,9 @@
             pushNotification.setApplicationIconBadgeNumber(0);
           });
         }
+      }
+      } catch(err) {
+        alert(err.message);
       }
     };
 

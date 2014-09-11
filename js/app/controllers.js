@@ -42,7 +42,7 @@ meumobiControllers.controller('EventListCtrl', ['$scope',
       $scope.addEvent = function(item) {
         console.log('add event');
         Calendar.addEvent(
-          striptags(item.title),
+          $scope.performance.site.title + ': ' + striptags(item.title),
           striptags(item.address),
           striptags(br2nl(item.description)),
           item.start_date,
