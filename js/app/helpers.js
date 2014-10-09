@@ -10,29 +10,10 @@ function uncrypt(coded) {
   return uncoded.toLowerCase();   
 } 
 
-function isYoutubeUrl(url) {
-  return url && (url.indexOf('youtube.com') > -1 || url.indexOf('youtu.be') > -1);
+function isSocialVideoUrl(url) {
+  var sources = /youtube\.com|vimeo\.com|dailymotion\.com|canalplus\.fr|/g;
+  return url && sources.test(url);
 }
-
-function isVimeoUrl(url) {
-  return url && url.indexOf('vimeo.com') > -1;
-}
-
-function getVideoId(url) {
-  var videoId = '';
-  if (isYoutubeUrl(url)) {
-    var re = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/; 
-      var matches = url.match(re);
-    if (matches instanceof Array)
-      videoId = matches.pop();
-  } else if(isVimeoUrl(url)) {
-    var re = /(videos|video|channels|\.com)\/([\d]+)/; 
-    var matches = url.match(re);
-    if (matches instanceof Array)
-      videoId = matches.pop();;
-  }
-  return videoId;
-};
 
 function parseLocationSearch(location) {
   var pairs = location.substring(1).split("&");

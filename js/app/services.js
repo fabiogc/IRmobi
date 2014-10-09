@@ -31,11 +31,7 @@ meumobiServices.factory('Items', ['$resource', '$upload', 'SITEBUILDER_API', 'TI
 				if (typeof mediaType == 'function' && !mediaType(media) 
 					|| typeof mediaType == 'string' && media.type && media.type.indexOf(mediaType) != 0)
 					continue;
-				medias.push({
-					src: media.url,
-					type: media.type,
-					title: media.title
-				});
+				medias.push(media);
 			}
 		}
 		return medias

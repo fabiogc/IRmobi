@@ -5,6 +5,13 @@
 
     return {
       addEvent: function(title, address, description, start_date, end_date, confirm_message) {
+        console.log({
+          title: title,
+          address: address,
+          description: description,
+          start_date: start_date,
+          end_date: end_date
+          });
         if (typeof window.plugins === 'undefined' || typeof window.plugins.calendar === 'undefined')
           return $q.reject(false);
         var deferred = $q.defer();

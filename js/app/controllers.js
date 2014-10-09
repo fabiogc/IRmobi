@@ -41,6 +41,7 @@ meumobiControllers.controller('EventListCtrl', ['$scope',
     function($scope, Categories, $routeParams, Calendar, striptags, br2nl, translate) {
       $scope.addEvent = function(item) {
         console.log('add event');
+        console.log(item);
         Calendar.addEvent(
           $scope.performance.site.title + ': ' + striptags(item.title),
           striptags(item.address),
@@ -100,21 +101,18 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categ
       $scope.mediaFilter = function(media) {
         var allowed = ['application/pdf','text/html', 'audio/mpeg'];
         var allow = (allowed.indexOf(media.type) != -1);
-        if (media.type == 'text/html' && isYoutubeUrl(media.url) || isVimeoUrl(media.url))
-        allow = false;
+        if (media.type == 'text/html' && isSocialVideoUrl(media.url))
+          allow = false;
         return allow;
         };
-        $scope.videoPlaylist = [];
         $scope.item = Items.get({id: $routeParams.id}, function(data) {
         $scope.category = Categories.get({id: data.parent_id});
         $scope.audioPlaylist = Items.getMedias(data, 'audio');
         $scope.videoPlaylist = Items.getMedias(data, 'video');
-        var socialVideoPlaylist = Items.getMedias(data, function(media) {
-          return isYoutubeUrl(media.url) || isVimeoUrl(media.url)
-        });
-        $scope.socialVideoPlaylist = socialVideoPlaylist.map(function(media) {
-          media.videoId = getVideoId(media.src);
-          media.source = isYoutubeUrl(media.src) ? 'youtube' : 'vimeo';
+        $scope.socialVideoPlaylist = Items.getMedias(data, function(media) {
+          return isSocialVideoUrl(media.url);
+        }).map(function(media) {
+          media.url = $sce.trustAsResourceUrl(media.url); //fix error:insecurl 
           return media;
         });
       });
