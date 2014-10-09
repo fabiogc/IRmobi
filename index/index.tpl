@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="themes/rimobi/css/style.css">
   <link rel="stylesheet" href="themes/rimobi/css/plugin.css">
   <link rel="stylesheet" href="themes/rimobi/css/custom.css">
-  <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css" defer>
 
   {if $performance.site.ios_app_id}
   <meta name="apple-itunes-app" content="app-id={$performance.site.ios_app_id}">
@@ -98,19 +97,6 @@
   <!-- footer -->
   <footer id="footer">
   </footer>
-  <a class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
-  <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-  <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-use-bootstrap-modal="false">
-    <!-- The container for the modal slides -->
-    <div class="slides"></div>
-    <!-- Controls for the borderless lightbox -->
-    <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
-  </div>
   <!-- / footer -->
   <script type="text/javascript">
   var config_data = {};
@@ -168,7 +154,6 @@
   <script type="text/javascript" src="themes/rimobi/js/app/bootstrap.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/bootstrap.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/parsley/parsley.min.js" defer></script>
-  <script type="text/javascript" src="themes/rimobi/js/jquery.blueimp-gallery.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.plugin.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/app.data.js" defer></script>
