@@ -14,7 +14,8 @@ var meumobiApp = angular.module('meumobiApp', [
   'pushwooshNotification',
   'phonegapCalendar',
   'angulartics',
-  'angulartics.google.analytics'
+  'angulartics.google.analytics',
+  'angular-adtech'
 ]);
 
 meumobiApp.config([

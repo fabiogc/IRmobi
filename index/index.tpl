@@ -89,6 +89,7 @@
   <!-- / nav -->
   <section id="content">
     <section class="main padder">
+    <adthech-ad network="1502.1" site-id="704333" placement-id="5229219" alias="rglnr_mobile-5"></adthech-ad>
     <div ng-view></div><!-- view -->
     {/literal}
      {include file="index/_`$performance.site.theme.layout_alternatives.footer`_footer.tpl"}
@@ -134,6 +135,7 @@
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
   {/if}
   <script src="themes/rimobi/js/grid/jquery.grid-a-licious.min.js" defer></script>
+  <script src="http://aka-cdn-ns.adtech.de/dt/common/DAC.js" defer></script>
   <!--script type="text/javascript" src="themes/rimobi/js/rimobi.min.js" defer></script-->
 
 <!--
@@ -156,6 +158,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-pushwoosh.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-calendar.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js" defer></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/angular-adtech.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics-ga.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-media-player.min.js" defer></script>
