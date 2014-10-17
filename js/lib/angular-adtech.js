@@ -48,8 +48,8 @@
             api.configPlacement(scope.placementId, scope.alias);
             //on page change
             scope.$on("$routeChangeSuccess", function (event, current, previous) {
-              console.log('MUDOU DE PAGINA');
-              api.loadAd(scope.placementId);
+              if (current.$$route.originalPath)//prevent load if invalid page or a redirect
+                api.loadAd(scope.placementId);
             });
           } 
         });
