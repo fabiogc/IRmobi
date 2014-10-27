@@ -1,3 +1,10 @@
+#nav {
+  overflow-y: auto;
+}
+.slide-nav #nav {
+  position: fixed;
+  overflow-y: auto;
+}
 .nav-primary > ul > li.active > a {
 	border-left: 2px solid #e52e2a;
 }

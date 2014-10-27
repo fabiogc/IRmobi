@@ -568,7 +568,6 @@ input[type="text"], select, textarea{min-width: 40px;height: auto;}
   .nav-primary .dropdown-menu a{color: #8e9eae;border-bottom: 1px solid #2a3b4c;}
   .nav-primary.bg-light .dropdown-menu a{color: #3e4e5e;border-bottom-color:#d1d4d7;}
   .nav-primary.bg-light .dropdown-menu a:hover{color: #fff}  
-  .nav-primary .nav{position: fixed;}
   /* /.slide-nav */
   .main.padder{padding: 0 10px}
   .row, .row .row{margin-left: -10px;margin-right: -10px;}
