@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
   angular.module('angular-adtech', [])
-  .directive('adthechAd', function() {
+  .directive('adtechAd', function() {
     return {
       restrict: 'E',
       replace: true,
