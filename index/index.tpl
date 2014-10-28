@@ -92,7 +92,7 @@
     {/literal}
     {foreach from=$performance.plugins item=plugin}
       {if $plugin.plugin == 'adtech'}
-      <adthech-ad network="{$plugin.options.network}" site-id="{$plugin.options['site-id']}" placement-id="{$plugin.options['placement-id']}" alias="{$plugin.options.alias}"></adthech-ad>
+      <adthech-ad network="{$plugin.options.network}" site-id="{$plugin.options.site_id}" placement-id="{$plugin.options.placement_id}" alias="{$plugin.options.alias}"></adthech-ad>
       {/if}
     {/foreach}
     <div ng-view></div><!-- view -->
