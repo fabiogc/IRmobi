@@ -89,9 +89,13 @@
   <!-- / nav -->
   <section id="content">
     <section class="main padder">
-    <adthech-ad network="1502.1" site-id="704333" placement-id="5229219" alias="rglnr_mobile-5"></adthech-ad>
-    <div ng-view></div><!-- view -->
     {/literal}
+    {foreach from=$performance.plugins item=plugin}
+      {if $plugin.plugin == 'adtech'}
+      <adthech-ad network="{$plugin.options.network}" site-id="{$plugin.options['site-id']}" placement-id="{$plugin.options['placement-id']}" alias="{$plugin.options.alias}"></adthech-ad>
+      {/if}
+    {/foreach}
+    <div ng-view></div><!-- view -->
      {include file="index/_`$performance.site.theme.layout_alternatives.footer`_footer.tpl"}
     {literal}
     </section>
