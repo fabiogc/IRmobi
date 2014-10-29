@@ -9,7 +9,7 @@
             <label class="col-lg-3 control-label capitalize"><span ng-bind="'name'|translate"></span> *</label>
 						<div class="col-lg-8">
 							<input type="text" ng-model="formData.name" name="name"
-								placeholder="{{'name'|translate}}" data-required="true"
+								placeholder="{{'type your name'|translate}}" data-required="true"
 								data-required-message="{{'This value is required.'|translate}}"
 								class="form-control parsley-validated">
 						</div>
@@ -18,7 +18,7 @@
 						<label class="col-lg-3 control-label">Email*</label>
 						<div class="col-lg-8">
 							<input type="email" ng-model="formData.mail" name="email"
-								placeholder="test@example.com"
+              placeholder="{{'type your email'|translate}}"
 								class="bg-focus form-control parsley-validated"
 								data-required="true" data-type="email"
 								data-required-message="{{'This value should be a valid email.'|translate}}">
@@ -27,7 +27,7 @@
 					<div class="form-group">
             <label class="col-lg-3 control-label capitalize" ng-bind="'message'|translate"></label>
 						<div class="col-lg-8">
-							<textarea ng-model="formData.message" placeholder="{{'message'|translate}}"
+							<textarea ng-model="formData.message" placeholder="{{'type your message'|translate}}"
 								rows="5" class="form-control parsley-validated"
 								data-required-message="{{'This value is required.'|translate}}"
 								data-required="true"></textarea>
