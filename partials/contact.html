@@ -42,8 +42,51 @@
 			</div>
 		</section>
 	</div>
-	<!-- col -->
-	<div class="col-sm-6">
+
+  <div ng-if="isSantander" class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-12">
+        <section class="panel">
+          <div class="panel-body">
+            <p>
+              <strong ng-bind-html="performance.site.title"></strong>
+            </p>
+            <p>
+              <strong translate>Investors service</strong>
+            </p>
+            <p class="m-b-none" ng-bind-html="performance.business.address"></p>
+            <p class="m-b-none" ng-if="performance.business.phone">
+              <span ng-bind="'Phone'|translate"></span>.: <a href="tel:{{performance.business.phone}}" ng-bind="performance.business.phone"></a>
+            </p>
+            <p class="m-b-none" ng-if="performance.business.email">
+              Email: <a href="mailto:{{performance.business.email}}" ng-bind="performance.business.email"></a>
+            </p>
+          </div>
+        </section>
+      </div>
+      <div class="col-sm-12">
+        <section class="panel">
+          <div class="panel-body">
+            <p>
+              <strong translate>Atendimento à Acionistas Pessoa Física e Empresas não Financeiras</strong>
+            </p>
+            <p class="m-b-none">
+            <span ng-bind="'Phone'|translate"></span>.: <a href="tel:08002868484">0800 286 8484</a>
+            <br>
+            <small><i>Em dias úteis, das 9h às 19h</i></small>
+            </p>
+            <p class="m-b-none">
+            Email: <a href="mailto:acionistas@santander.com.br">acionistas@santander.com.br</a>
+            </p>
+          </div>
+        </section>
+      </div>
+
+
+    </div>
+  </div>
+  <!-- col -->
+	<div ng-if="!isSantander" class="col-sm-6">
 		<section class="panel">
 			<div class="panel-body">
 				<p>

@@ -160,6 +160,7 @@ meumobiControllers.controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '
 meumobiControllers.controller('ContactCtrl', ['$scope', '$http', '$translate', 'DOMAIN',
     function($scope, $http, $translate, DOMAIN) {
       $scope.formData = {};
+      $scope.isSantander = $scope.performance.site.title.toLowerCase().indexOf("santander") !== -1;
       var url = 'http://' + DOMAIN + '/index/contact';
       $scope.submit = function() {
         if ($('#contact-form').parsley('validate')) {//this is a validation a from "first" theme
