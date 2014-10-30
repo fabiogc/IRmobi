@@ -133,7 +133,6 @@
   {/literal}
   {if $build}
   <script type="text/javascript" src="cordova.js"></script>
-  <script type="text/javascript" src="PushNotification.js"></script>
   <script type="text/javascript" src="js/jquery.min.js" defer></script>
   {else}
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
@@ -159,7 +158,6 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js" defer></script>
-  <script type="text/javascript" src="themes/rimobi/js/lib/angular-pushwoosh.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-calendar.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js" defer></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-adtech.js" defer></script>

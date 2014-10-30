@@ -11,7 +11,6 @@ var meumobiApp = angular.module('meumobiApp', [
   'truncate',
   'pascalprecht.translate',
   'mediaPlayer',
-  'pushwooshNotification',
   'phonegapCalendar',
   'angulartics',
   'angulartics.google.analytics',
@@ -24,10 +23,9 @@ meumobiApp.config([
     '$httpProvider', 
     '$translateProvider', 
     '$analyticsProvider', 
-    '$pushNotificationProvider',
     'LOCALE', 
     'HOME',
-    function($routeProvider, $locationProvider, $httpProvider, $translateProvider, $analyticsProvider, $pushNotificationProvider, LOCALE, HOME) {
+    function($routeProvider, $locationProvider, $httpProvider, $translateProvider, $analyticsProvider, LOCALE, HOME) {
       if (!navigator.onLine) {
         $analyticsProvider.virtualPageviews(false);
       }
@@ -111,16 +109,6 @@ meumobiApp.config([
       } else {
         $translateProvider.preferredLanguage(LOCALE);
       }
-
-      $pushNotificationProvider.register({
-        appId: '0EF2C-CCCFD',
-        appName: null,
-        gcmProjectNumber: '509541969118',
-        onPushNotification: null,
-        onRegisterSuccess: null,
-        onRegisterError: null
-      }); 
-      
     }
 ]);
 
