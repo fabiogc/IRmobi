@@ -3,7 +3,7 @@
       var link = $(this);
       var next = link.next('ul.dropdown-menu');
       if (next.length) {
-        next.toggle(300);
+        next.toggle(200);
       } else {
         $('body').removeClass('slide-nav slide-nav-left');
       }
