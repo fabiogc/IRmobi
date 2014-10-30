@@ -1,13 +1,10 @@
-#nav {
-  overflow-y: auto;
-}
 .slide-nav #nav {
   position: fixed;
-  overflow-y: auto;
 }
 .nav-primary > ul > li.active > a {
 	border-left: 2px solid #e52e2a;
 }
+
 .quotes i {
   margin-left: 2px;
 }
@@ -121,5 +118,11 @@
   .navbar-brand {
     padding-left: 0px;
   }
+
+  /*Sidebar*/
+  .dropdown-submenu > ul.dropdown-menu, .dropdown-submenu:hover > ul.dropdown-menu  {
+    display: none;
+  }
+
 }
 

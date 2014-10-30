@@ -1,6 +1,12 @@
 !function ($) {
-  $('#nav').on('click', 'a', function(){
-      $('body').removeClass('slide-nav slide-nav-left');
+  $('#nav').on('click', 'a', function() {
+      var link = $(this);
+      var next = link.next('ul.dropdown-menu');
+      if (next.length) {
+        next.toggle(300);
+      } else {
+        $('body').removeClass('slide-nav slide-nav-left');
+      }
   });
 }(window.jQuery);
 
