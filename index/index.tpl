@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>{$performance.site.title}</title>
-  <meta name="description" content="RI Santander">
+	{if $performance.site.description}
+	<meta name="description" content="{$performance.site.description|strip_tags:false}" />
+	{/if}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
   <!--link rel="stylesheet" href="themes/rimobi/css/rimobi.min.css" -->
   <link rel="stylesheet" href="themes/rimobi/css/bootstrap.css">
