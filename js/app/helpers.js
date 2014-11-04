@@ -11,8 +11,8 @@ function uncrypt(coded) {
 } 
 
 function isSocialVideoUrl(url) {
-  var sources = /youtube\.com|vimeo\.com|dailymotion\.com|canalplus\.fr|/g;
-  return url && sources.test(url);
+  var sources = /youtube\.com|vimeo\.com|dailymotion\.com|canalplus\.fr/g;
+  return sources.test(url);
 }
 
 function parseLocationSearch(location) {
