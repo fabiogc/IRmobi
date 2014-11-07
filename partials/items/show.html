@@ -17,7 +17,7 @@
             <iframe  width="800" height="450" src="{{video.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
           </div>
         </div>
-				<div ng-bind-html="item.description"></div>
+				<div ng-bind-html="item.description" data-in-app-browser></div>
 				<div>
 					<p ng-repeat="media in item.medias|filter:mediaFilter">
 					<a ng-if="media.type == 'application/pdf'" ng-href="{{media.url}}" target="_blank">
