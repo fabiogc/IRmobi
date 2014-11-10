@@ -50,13 +50,11 @@ meumobiControllers.controller('EventListCtrl', ['$scope',
           item.end_date,
           translate('Add event to calendar?')
         ).then(function(data) {
-          console.log(data);
-          if (data)
-            alert('The event was successfully added!')
+          alert(translate('The event was successfully added!'))
         }, function(reason) {
           console.log(reason);
           if (reason !== false)
-            alert('Could not add the event!');
+            alert(translate('Could not add the event!'));
         }); 
       };
 
