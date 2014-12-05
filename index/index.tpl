@@ -131,7 +131,7 @@
   config_data.HOME = "{$performance.site.theme.layout_alternatives.home}";
   config_data.LOCALE = "{$performance.site.language}";
   config_data.IS_APP = {if $build}true{else}false{/if};
-  config_data.PUSH = {appId: "482BE-4B9BA", gcmProjectNumber: "706933317564"};
+  config_data.PUSH = {literal}{appId: "482BE-4B9BA", gcmProjectNumber: "706933317564"};{/literal}
   config_data.ANALYTICS = '{if is_array($performance.site.analytics_token)}{$performance.site.analytics_token[1]}{else}{$performance.site.analytics_token}{/if}';
   var translations = {if $performance.site.language != 'auto'}{translations lang=$performance.site.language}{else}{translations}{/if};
   {literal}
