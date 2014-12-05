@@ -30,26 +30,26 @@
 
     var registerPushwoosh = function(params, callback) {
       try {
-      console.log('register push android');
-      api.pushNotification.onDeviceReady();
-      
       //set push notifications handler
       document.addEventListener('push-notification', function(e) {
         console.log(JSON.stringify(e.notification));
-        alert(e.notification.message);
         if (settings.onPushNotification)          
          settings.onPushNotification(e);
       });
+
+      //start register
+      console.log('try to register for push');
+      api.pushNotification.onDeviceReady(params);
+
       //!!! Please note this is an API for PGB plugin. This code is different in CLI plugin!!!
-      api.pushNotification.registerDevice(params, function(status) {
+      api.pushNotification.registerDevice(function(status) {
         var token = null;
         console.log(typeof status);
-        if (typeof status == 'string') {
+        if (typeof status == 'string') {//android
           token = status;
-        } else {
+        } else {//ios
           token = status['deviceToken'];
         }
-        alert('token:' + token);
         console.warn('push token: ' + token);
         if (settings.onRegisterSuccess)
           onRegisterSuccess(token);
@@ -60,33 +60,32 @@
       });
       //if (callback) callback();
       } catch(err) {
-        alert(err.message);
+        console.log(err.message);
       }
     };
 
     this.register = function(params) {
       angular.extend(settings, params);
       try {
-      registerSettings.android.projectid = settings.gcmProjectNumber,
-      registerSettings.android.appid = settings.appId;
-      registerSettings.ios.pw_appid = settings.appId;
-      registerSettings.ios.appname = settings.appName;
+        registerSettings.android.projectid = settings.gcmProjectNumber,
+        registerSettings.android.appid = settings.appId;
+        registerSettings.ios.pw_appid = settings.appId;
 
-      console.log(JSON.stringify(settings));
-      console.log('is available', api.isAvailable());
-      if (api.isAvailable()) {
-        if(device.platform == "Android") {
-          registerPushwoosh(registerSettings.android);
+        console.log(JSON.stringify(settings));
+        console.log('is available', api.isAvailable());
+        if (api.isAvailable()) {
+          if(device.platform == "Android") {
+            registerPushwoosh(registerSettings.android);
+          }
+          if(device.platform == "iPhone" || device.platform == "iOS") {
+            registerPushwoosh(registerSettings.ios, function() {
+              //reset badges on start
+              pushNotification.setApplicationIconBadgeNumber(0);
+            });
+          }
         }
-        if(device.platform == "iPhone" || device.platform == "iOS") {
-          registerPushwoosh(registerSettings.ios, function() {
-            //reset badges on start
-            pushNotification.setApplicationIconBadgeNumber(0);
-          });
-        }
-      }
       } catch(err) {
-        alert(err.message);
+        console.log(err.message);
       }
     };
 

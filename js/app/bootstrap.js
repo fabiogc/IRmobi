@@ -1,31 +1,33 @@
 var meumobiApp = angular.module('meumobiApp', [
-  'ngRoute',
-  'ngSanitize',
-  'ngTouch',
-  'meumobiSettings',
-  'meumobiServices',
-  'meumobiFilters',
-  'meumobiDirectives',
-  'meumobiControllers',
-  'slugifier',
-  'truncate',
-  'pascalprecht.translate',
-  'mediaPlayer',
-  'phonegapCalendar',
-  'angulartics',
-  'angulartics.google.analytics',
-  'angular-adtech'
-]);
+    'ngRoute',
+    'ngSanitize',
+    'ngTouch',
+    'meumobiSettings',
+    'meumobiServices',
+    'meumobiFilters',
+    'meumobiDirectives',
+    'meumobiControllers',
+    'slugifier',
+    'truncate',
+    'pascalprecht.translate',
+    'mediaPlayer',
+    'phonegapCalendar',
+    'angulartics',
+    'angulartics.google.analytics',
+    'angular-adtech',
+    'pushwooshNotification'
+    ]);
 
 meumobiApp.config([
     '$routeProvider',
     '$locationProvider', 
     '$httpProvider', 
     '$translateProvider', 
-    '$analyticsProvider', 
+    '$analyticsProvider',
+    '$pushNotificationProvider',
     'LOCALE', 
     'HOME',
-    function($routeProvider, $locationProvider, $httpProvider, $translateProvider, $analyticsProvider, LOCALE, HOME) {
+    function($routeProvider, $locationProvider, $httpProvider, $translateProvider, $analyticsProvider, $pushNotificationProvider, LOCALE, HOME) {
       if (!navigator.onLine) {
         $analyticsProvider.virtualPageviews(false);
       }
@@ -33,82 +35,88 @@ meumobiApp.config([
       $httpProvider.interceptors.push('interceptor');
       //configure routes
       if (HOME == 'latest') {
-      $routeProvider.
+        $routeProvider.
         when('/', {
           controller: 'LatestItemsCtrl',
           templateUrl: 'themes/rimobi/partials/items/latest.html'
         });
       } else {
-      $routeProvider.
-        when('/', {
-          templateUrl: 'themes/rimobi/partials/index.html'
-        });
+        $routeProvider.
+          when('/', {
+            templateUrl: 'themes/rimobi/partials/index.html'
+          });
       }
-       $routeProvider.when('/articles/:id', {
-          templateUrl: 'themes/rimobi/partials/articles/list.html',
-          controller: 'CategoryShowCtrl'
-        }).
-        when('/articles/:id/page/:page', {
-          templateUrl: 'themes/rimobi/partials/articles/list.html',
-          controller: 'CategoryShowCtrl'
-        }).
-        when('/extended_articles/:id', {
-          templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
-          controller: 'CategoryShowCtrl'
-        }).
-        when('/news', {
-           templateUrl: 'themes/rimobi/partials/items/news.html',
-           controller: 'NewsCtrl'
-        }).
-        when('/extended_articles/:id/page/:page', {
-          templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
-          controller: 'CategoryShowCtrl'
-        }).
-        when('/events/:id', {
-          templateUrl: 'themes/rimobi/partials/events/list.html',
-          controller: 'EventListCtrl'
-        }).
-        when('/events/:id/page/:page', {
-          templateUrl: 'themes/rimobi/partials/events/list.html',
-          controller: 'EventListCtrl'
-        }).
-        when('/latest', {
-          templateUrl: 'themes/rimobi/partials/items/latest.html',
-          controller: 'LatestItemsCtrl'
-        }).
-        when('/items/:id', {
-          templateUrl: 'themes/rimobi/partials/items/show.html',
-          controller: 'ItemShowCtrl'
-        }).
-        when('/items/add/:category_id', {
-          templateUrl: 'themes/rimobi/partials/items/add.html',
-          controller: 'ItemAddCtrl'
-        }).
-        when('/contact', {
-          templateUrl: 'themes/rimobi/partials/contact.html',
-          controller: 'ContactCtrl'
-        }).
-        otherwise({
-          redirectTo: '/'
-        });
+
+      $routeProvider.when('/articles/:id', {
+        templateUrl: 'themes/rimobi/partials/articles/list.html',
+        controller: 'CategoryShowCtrl'
+      }).
+      when('/articles/:id/page/:page', {
+        templateUrl: 'themes/rimobi/partials/articles/list.html',
+        controller: 'CategoryShowCtrl'
+      }).
+      when('/extended_articles/:id', {
+        templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
+        controller: 'CategoryShowCtrl'
+      }).
+      when('/news', {
+        templateUrl: 'themes/rimobi/partials/items/news.html',
+        controller: 'NewsCtrl'
+      }).
+      when('/extended_articles/:id/page/:page', {
+        templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
+      controller: 'CategoryShowCtrl'
+      }).
+      when('/events/:id', {
+        templateUrl: 'themes/rimobi/partials/events/list.html',
+      controller: 'EventListCtrl'
+      }).
+      when('/events/:id/page/:page', {
+        templateUrl: 'themes/rimobi/partials/events/list.html',
+      controller: 'EventListCtrl'
+      }).
+      when('/latest', {
+        templateUrl: 'themes/rimobi/partials/items/latest.html',
+      controller: 'LatestItemsCtrl'
+      }).
+      when('/items/:id', {
+        templateUrl: 'themes/rimobi/partials/items/show.html',
+      controller: 'ItemShowCtrl'
+      }).
+      when('/items/add/:category_id', {
+        templateUrl: 'themes/rimobi/partials/items/add.html',
+      controller: 'ItemAddCtrl'
+      }).
+      when('/contact', {
+        templateUrl: 'themes/rimobi/partials/contact.html',
+      controller: 'ContactCtrl'
+      }).
+      otherwise({
+        redirectTo: '/'
+      });
+
+      //configure notification
+      if (config_data.PUSH)
+      $pushNotificationProvider.register(config_data.PUSH);
+
       //configure translations
       for (var lang in translations) {
         $translateProvider.translations(lang, translations[lang]);
       }
       $translateProvider
-      .registerAvailableLanguageKeys(['en', 'pt'], {
+        .registerAvailableLanguageKeys(['en', 'pt'], {
           'en_US': 'en',
           'en_UK': 'en',
           'en-US': 'en',
           'pt-BR': 'pt',
           'pt_BR': 'pt'
-      })
+        })
       .fallbackLanguage('en')
-      if (LOCALE == 'auto') {
-        $translateProvider.determinePreferredLanguage();
-      } else {
-        $translateProvider.preferredLanguage(LOCALE);
-      }
+        if (LOCALE == 'auto') {
+          $translateProvider.determinePreferredLanguage();
+        } else {
+          $translateProvider.preferredLanguage(LOCALE);
+        }
     }
 ]);
 
@@ -155,24 +163,23 @@ meumobiApp.run(function($rootScope, $location, SITEBUILDER, IS_APP, ANALYTICS) {
 
   $rootScope.splitArray = function(arr, lengthofsublist){
     if (!angular.isUndefined(arr) && arr.length > 0) {
-            var arrayToReturn = [];
-            var subArray=[];
-            var pushed=true;
-            for (var i=0; i<arr.length; i++){
-                if ((i+1)%lengthofsublist==0){
-                    subArray.push(arr[i]);
-                    arrayToReturn.push(subArray);
-                    subArray=[];
-                    pushed=true;
-                }
-                else{
-                    subArray.push(arr[i]);
-                    pushed=false;
-                }
+      var arrayToReturn = [];
+      var subArray=[];
+      var pushed=true;
+      for (var i=0; i<arr.length; i++){
+        if ((i+1)%lengthofsublist==0){
+          subArray.push(arr[i]);
+          arrayToReturn.push(subArray);
+          subArray=[];
+          pushed=true;
+        } else {
+          subArray.push(arr[i]);
+          pushed=false;
         }
-        if (!pushed)
-            arrayToReturn.push(subArray);
-        return arrayToReturn;
+      }
+      if (!pushed)
+        arrayToReturn.push(subArray);
+      return arrayToReturn;
     }
   };
 
@@ -186,13 +193,13 @@ meumobiApp.run(function($rootScope, $location, SITEBUILDER, IS_APP, ANALYTICS) {
 
   //phonegap analitycs
   if (IS_APP && ANALYTICS) {
-	  gaPlugin = window.plugins.gaPlugin;
-	  gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, ANALYTICS, 10);
-	  function nativePluginResultHandler (result) {
-			console.log('nativePluginResultHandler: '+result);
-		}
-		function nativePluginErrorHandler (error) {
-			console.log('nativePluginErrorHandler: '+error);
+    gaPlugin = window.plugins.gaPlugin;
+    gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, ANALYTICS, 10);
+    function nativePluginResultHandler (result) {
+      console.log('nativePluginResultHandler: '+result);
+    }
+    function nativePluginErrorHandler (error) {
+      console.log('nativePluginErrorHandler: '+error);
     }
     $rootScope.$on('$routeChangeSuccess', function(){
       gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, ''+$location.url());
