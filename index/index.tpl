@@ -163,6 +163,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular/angular-resource.min.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-file-upload.min.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angularLocalStorage.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/http-with-fallback.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-translate.min.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-calendar.js" {$defer}></script>

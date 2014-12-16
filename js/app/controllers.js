@@ -69,10 +69,11 @@ meumobiControllers.controller('EventListCtrl', ['$scope',
     }]);
 
 meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$timeout', 
-    function($scope, Items, HOME,$timeout) {
+    function($scope, Items, HOME, $timeout) {
       $scope.has_breadcrumb = (HOME != 'latest');
-      Items.latest(function(data){
-        $scope.items = data.items;
+      Items.latest().then(function(response) {
+        console.log(response);
+        $scope.items = response.data.items;
         $timeout(function() {
           $("#gallery").removeClass('hide');
           var buildGallery = function(){

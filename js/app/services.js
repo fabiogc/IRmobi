@@ -16,13 +16,16 @@ meumobiServices.factory('Site', ['$resource', '$q', 'SITEBUILDER_API', 'TIMEOUT'
   };
   return resource;
 }]);
-meumobiServices.factory('Items', ['$resource', '$upload', 'SITEBUILDER_API', 'TIMEOUT', function($resource, $upload, SITEBUILDER_API, TIMEOUT) {
+meumobiServices.factory('Items', ['$resource', '$upload', 'httpWithFallback', 'SITEBUILDER_API', 'TIMEOUT', function($resource, $upload, httpWithFallback, SITEBUILDER_API, TIMEOUT) {
 	var service = $resource(SITEBUILDER_API + '/items/:id', {}, {
 		get: {cache: true, method: 'GET', timeout: TIMEOUT},
     save: {method: 'POST', headers : {'Content-Type':'application/x-www-form-urlencoded'}},
 		query: {method: 'GET', cache: true, url: SITEBUILDER_API + '/items/search', timeout: TIMEOUT},
-		latest: {method: 'GET', cache: true, url: SITEBUILDER_API + '/items/latest', timeout: TIMEOUT}
+		//latest: {method: 'GET', cache: true, url: SITEBUILDER_API + '/items/latest', timeout: TIMEOUT}
 	});
+  service.latest = function() {
+    return httpWithFallback.get(SITEBUILDER_API + '/items/latest', {timeout: TIMEOUT});
+  };
 	service.getMedias = function(item, mediaType) {
 		var medias = [];
 		if (item.medias instanceof Array) {

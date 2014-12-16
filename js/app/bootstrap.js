@@ -15,6 +15,7 @@ var meumobiApp = angular.module('meumobiApp', [
     'angulartics',
     'angulartics.google.analytics',
     'angular-adtech',
+    'http-with-fallback',
     'pushwooshNotification'
     ]);
 
