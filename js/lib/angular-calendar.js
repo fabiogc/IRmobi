@@ -20,10 +20,10 @@
           var endDate = new Date(end_date * 1000);
           var success = function(message) { 
             console.log("Success: " + JSON.stringify(message)); 
-            deferred.resolve(message);
+            deferred.resolve(true);
           };
           var error = function(message) {
-            console.log("Error: " + message);
+            console.log("Error: " + JSON.stringify(message));
             deferred.reject(message);
           };
 
