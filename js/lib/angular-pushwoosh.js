@@ -66,6 +66,9 @@
 
     this.register = function(params) {
       angular.extend(settings, params);
+      if (!settings.appId) {
+        return;
+      }
       try {
         registerSettings.android.projectid = settings.gcmProjectNumber,
         registerSettings.android.appid = settings.appId;
