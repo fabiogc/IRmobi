@@ -5,11 +5,11 @@
 			<header class="panel-heading" ng-bind="category.title"></header>
 			<ul class="list-group media-list" ng-if="items">
 				<li class="list-group-item media" ng-repeat="item in items">
-				<a ng-if="item.images" class="pull-left" ng-click="goTo('/items/'+item._id)">
+				<a ng-if="item.images" class="pull-left" ng-click="goToItem(item)">
 					<img class="media-object" ng-src="{{thumbify(item.images[0].path, '80x80_')}}" alt="{{item.images[0].title}}">
 				</a>
 				<div class="media-body">
-					<a ng-click="goTo('/items/'+item._id)">
+					<a ng-click="goToItem(item)">
 						<div class="pull-right media-mini text-center text-muted">
 							<strong class="h4" ng-bind="item.pubdate * 1000 |date:'dd'"></strong><br>
 							<small class="label bg-light" ng-bind="item.pubdate * 1000 |date:'MMM, yyyy'"></small>

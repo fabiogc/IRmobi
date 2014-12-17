@@ -7,8 +7,8 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site','Categori
       var params = {};
       var search = parseLocationSearch($window.location.search);
       if (search.skin)
-        params.skin = search.skin;
-      Site.get(params, function(data) {
+      params.skin = search.skin;
+      Site.get().then(function(data) {
         data.categories = Categories.getTree(data.categories);
         var categories = data.categories.slice(0);
         $scope.performance = data;
@@ -19,17 +19,6 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site','Categori
         $scope.splitedCategories = $scope.splitArray(categories, 2);
       });
 }]);
-
-meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', '$routeParams',
-    function($scope, Categories, $routeParams) {
-      $scope.category = Categories.get({id: $routeParams.id});
-
-      $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
-
-      $scope.items = Categories.items({id: $routeParams.id, page: $scope.currentPage}, function(data){
-        $scope.items = data.items;
-      });
-    }]);
 
 meumobiControllers.controller('EventListCtrl', ['$scope',
     'Categories',
@@ -68,11 +57,10 @@ meumobiControllers.controller('EventListCtrl', ['$scope',
       });
     }]);
 
-meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$timeout', 
-    function($scope, Items, HOME, $timeout) {
+meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$timeout', '$location',
+    function($scope, Items, HOME, $timeout, $location) {
       $scope.has_breadcrumb = (HOME != 'latest');
       Items.latest().then(function(response) {
-        console.log(response);
         $scope.items = response.data.items;
         $timeout(function() {
           $("#gallery").removeClass('hide');
@@ -86,6 +74,10 @@ meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$ti
           buildGallery();
         },100);
       });
+      $scope.goToItem = function(item) {
+        Items.setCurrent(item);
+        $location.path('/items/' + item._id);
+      };
     }]);
 
 meumobiControllers.controller('NewsCtrl', ['$scope', 'Site', 
@@ -96,6 +88,22 @@ meumobiControllers.controller('NewsCtrl', ['$scope', 'Site',
     }
 ]);
 
+meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', 'Items', '$routeParams', '$location',
+    function($scope, Categories, Items, $routeParams, $location) {
+      $scope.category = Categories.get({id: $routeParams.id});
+
+      $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
+
+      $scope.items = Categories.items({id: $routeParams.id, page: $scope.currentPage}, function(data){
+        $scope.items = data.items;
+      });
+
+      $scope.goToItem = function(item) {
+        Items.setCurrent(item);
+        $location.path('/items/'+ item._id);
+      };
+    }]);
+
 meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categories', '$routeParams', 'IS_APP',
     function($scope, $sce, Items, Categories, $routeParams, IS_APP) {
       $scope.mediaFilter = function(media) {
@@ -103,18 +111,20 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categ
         var allow = (allowed.indexOf(media.type) != -1);
         if (media.type == 'text/html' && isSocialVideoUrl(media.url))
           allow = false;
-        return allow;
+          return allow;
         };
-        $scope.item = Items.get({id: $routeParams.id}, function(data) {
-        $scope.category = Categories.get({id: data.parent_id});
-        $scope.audioPlaylist = Items.getMedias(data, 'audio');
-        $scope.videoPlaylist = Items.getMedias(data, 'video');
-        $scope.socialVideoPlaylist = Items.getMedias(data, function(media) {
-          return isSocialVideoUrl(media.url);
-        }).map(function(media) {
-          media.url = $sce.trustAsResourceUrl(media.url); //fix error:insecurl 
-          return media;
-        });
+
+        Items.load($routeParams.id).then(function(data) {
+          $scope.item = data;
+          $scope.category = Categories.get({id: data.parent_id});
+          $scope.audioPlaylist = Items.getMedias(data, 'audio');
+          $scope.videoPlaylist = Items.getMedias(data, 'video');
+          $scope.socialVideoPlaylist = Items.getMedias(data, function(media) {
+            return isSocialVideoUrl(media.url);
+          }).map(function(media) {
+            media.url = $sce.trustAsResourceUrl(media.url); //fix error:insecurl
+            return media;
+          });
       });
     }]);
 
