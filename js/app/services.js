@@ -24,8 +24,8 @@ meumobiServices.factory('Site', ['httpWithFallback', '$q', 'SITEBUILDER_API', 'T
 
   service.news = function() {
     var deferred = $q.defer();
-    this.get().then(function(response) {
-      deferred.resolve(response.data.news);
+    this.get().then(function(data) {
+      deferred.resolve(data.news);
     }, function(reason) {
       deferred.reject(reason);
     });
