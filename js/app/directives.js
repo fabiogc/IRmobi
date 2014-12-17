@@ -49,8 +49,8 @@ meumobiDirectives.directive('headlines', [ 'Categories', function(Categories) {
 		templateUrl: 'themes/rimobi/partials/categories/headlines.html',
 		link: function(scope) {
 			scope.template = 'themes/rimobi/partials/'+scope.category.type+'/headlines.html';
-			Categories.items({id: scope.category.id, page:1}, function(data){
-				scope.items = data.items;
+			Categories.items(scope.category.id,{page:1}).then(function(response){
+				scope.items = response.data.items;
 		});
 		}
 	};
