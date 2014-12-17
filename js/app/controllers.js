@@ -1,8 +1,7 @@
-var meumobiControllers = angular.module('meumobiControllers', ['angularLocalStorage', 'angularFileUpload']);
+var meumobiControllers = angular.module('meumobiControllers', ['angularFileUpload']);
 
-meumobiControllers.controller('SiteCtrl', ['$scope', 'storage', 'Site','Categories', '$location', '$window',
-    function($scope, storage, Site, Categories, $location, $window) {
-      storage.bind($scope,'performance');
+meumobiControllers.controller('SiteCtrl', ['$scope', 'Site', 'Categories', '$location', '$window',
+    function($scope, Site, Categories, $location, $window) {
       $scope.headlinesRows = 2;
       var params = {};
       var search = parseLocationSearch($window.location.search);
@@ -52,8 +51,8 @@ meumobiControllers.controller('EventListCtrl', ['$scope',
 
       $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
 
-      $scope.items = Categories.items({id: $routeParams.id, page: $scope.currentPage, order: 'start_date,DESC'}, function(data){
-        $scope.items = data.items;
+      $scope.items = Categories.items($routeParams.id, {page: $scope.currentPage, order: 'start_date,DESC'}).then(function(response){
+        $scope.items = response.data.items;
       });
     }]);
 
@@ -94,8 +93,8 @@ meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', 'Item
 
       $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
 
-      $scope.items = Categories.items({id: $routeParams.id, page: $scope.currentPage}, function(data){
-        $scope.items = data.items;
+      $scope.items = Categories.items($routeParams.id, {page: $scope.currentPage}).then(function(response){
+        $scope.items = response.data.items;
       });
 
       $scope.goToItem = function(item) {

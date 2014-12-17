@@ -91,8 +91,11 @@ meumobiServices.factory('Categories', ['$resource', 'httpWithFallback', 'SITEBUI
   function($resource, httpWithFallback, SITEBUILDER_API, TIMEOUT) {
     var service = $resource(SITEBUILDER_API +'/categories/:id', {}, {
       get: {cache: true, method: 'GET', timeout: TIMEOUT},
-      items: {method: 'GET', cache: true, url: SITEBUILDER_API + '/categories/:id/items', timeout: TIMEOUT}
+      //items: {method: 'GET', cache: true, url: SITEBUILDER_API + '/categories/:id/items', timeout: TIMEOUT}
     });
+    service.items = function(id, params) {
+     return httpWithFallback.get(SITEBUILDER_API + '/categories/'+ id +'/items', {timeout: TIMEOUT, params: params});
+    }
     service.getTree = function getTree(categories) {//TODO remove parameter
       var children = [];
       children[0] = [];
