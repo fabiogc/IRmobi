@@ -32,8 +32,10 @@ meumobiDirectives.directive('pagination', [ 'ITEM_PER_PAGE', function(ITEM_PER_P
 			scope.parseUri = function(page) {
 				return scope.uri.replace(':page',page).replace(':type',scope.category.type).replace(':id',scope.category.id);
 			};
-			scope.category.$promise.then(function(){
-				paginate(scope);
+      
+			scope.$watch('category',function(value) {
+        if (value)
+				  paginate(scope);
 			});
 		}
 	};

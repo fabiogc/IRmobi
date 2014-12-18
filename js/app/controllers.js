@@ -47,11 +47,13 @@ meumobiControllers.controller('EventListCtrl', ['$scope',
         }); 
       };
 
-      $scope.category = Categories.get({id: $routeParams.id});
+      Categories.load($routeParams.id).then(function(data) {
+        $scope.category = data;
+      });
 
       $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
 
-      $scope.items = Categories.items($routeParams.id, {page: $scope.currentPage, order: 'start_date,DESC'}).then(function(response){
+      Categories.items($routeParams.id, {page: $scope.currentPage, order: 'start_date,DESC'}).then(function(response){
         $scope.items = response.data.items;
       });
     }]);
@@ -89,11 +91,13 @@ meumobiControllers.controller('NewsCtrl', ['$scope', 'Site',
 
 meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', 'Items', '$routeParams', '$location',
     function($scope, Categories, Items, $routeParams, $location) {
-      $scope.category = Categories.get({id: $routeParams.id});
+      Categories.load($routeParams.id).then(function(data) {
+        $scope.category = data;
+      });
 
       $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
 
-      $scope.items = Categories.items($routeParams.id, {page: $scope.currentPage}).then(function(response){
+      Categories.items($routeParams.id, {page: $scope.currentPage}).then(function(response){
         $scope.items = response.data.items;
       });
 
@@ -115,7 +119,7 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categ
 
         Items.load($routeParams.id).then(function(data) {
           $scope.item = data;
-          $scope.category = Categories.get({id: data.parent_id});
+          $scope.category = Categories.load(data.parent_id);
           $scope.audioPlaylist = Items.getMedias(data, 'audio');
           $scope.videoPlaylist = Items.getMedias(data, 'video');
           $scope.socialVideoPlaylist = Items.getMedias(data, function(media) {
@@ -134,7 +138,7 @@ meumobiControllers.controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '
       $scope.uploaded = null;
       $scope.percent = 0;
       $scope.submitting = false;
-      $scope.category = Categories.get({id: $routeParams.category_id});
+      $scope.category = Categories.load($routeParams.category_id);
       $scope.addFile = function(files) {
         $scope.uploaded = false;
         $scope.submitting = true;

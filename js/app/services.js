@@ -87,12 +87,20 @@ meumobiServices.factory('Items', ['$resource', '$upload','$q', 'httpWithFallback
 	return service;
 }]);
 
-meumobiServices.factory('Categories', ['$resource', 'httpWithFallback', 'SITEBUILDER_API', 'TIMEOUT', 
-  function($resource, httpWithFallback, SITEBUILDER_API, TIMEOUT) {
-    var service = $resource(SITEBUILDER_API +'/categories/:id', {}, {
-      get: {cache: true, method: 'GET', timeout: TIMEOUT},
-      //items: {method: 'GET', cache: true, url: SITEBUILDER_API + '/categories/:id/items', timeout: TIMEOUT}
-    });
+meumobiServices.factory('Categories', ['$resource', '$q', 'httpWithFallback', 'SITEBUILDER_API', 'TIMEOUT', 
+  function($resource, $q, httpWithFallback, SITEBUILDER_API, TIMEOUT) {
+    var service = {}; 
+    service.load = function(id) {
+      var deferred = $q.defer();
+      httpWithFallback.get(SITEBUILDER_API + '/categories/'+ id, {timeout: TIMEOUT})
+      .then(function(response) {
+        deferred.resolve(response.data);
+      }, function(reason) {
+        deferred.reject(reason);
+      });
+      return deferred.promise;
+    };
+
     service.items = function(id, params) {
      return httpWithFallback.get(SITEBUILDER_API + '/categories/'+ id +'/items', {timeout: TIMEOUT, params: params});
     }
