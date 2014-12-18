@@ -1,7 +1,7 @@
 <header class="panel-heading" ng-bind="category.title"></header>
 <ul class="list-group" ng-if="items">
   <li class="list-group-item media" ng-repeat="item in items|limitTo:limit">
-    <a  ng-href="#/items/{{item._id}}">
+    <a  ng-href="#/items/{{item._id}}" ng-click="goToItem(item); $event.stopPropagation();">
     <div class="pull-left thumb-small">
       <span class="fa-stack">
         <i class="fa fa-circle fa-stack-2x text-success"></i>

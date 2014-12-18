@@ -39,7 +39,7 @@ meumobiDirectives.directive('pagination', [ 'ITEM_PER_PAGE', function(ITEM_PER_P
 	};
 }]);
 
-meumobiDirectives.directive('headlines', [ 'Categories', function(Categories) {
+meumobiDirectives.directive('headlines', ['$location', 'Categories', 'Items', function($location, Categories, Items) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -51,7 +51,11 @@ meumobiDirectives.directive('headlines', [ 'Categories', function(Categories) {
 			scope.template = 'themes/rimobi/partials/'+scope.category.type+'/headlines.html';
 			Categories.items(scope.category.id,{page:1}).then(function(response){
 				scope.items = response.data.items;
-		});
+		  });
+      scope.goToItem = function(item) {
+        Items.setCurrent(item);
+        $location.path('/items/'+ item._id);
+      };
 		}
 	};
 }]);
