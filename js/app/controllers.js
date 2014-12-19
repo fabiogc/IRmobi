@@ -119,7 +119,9 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categ
 
         Items.load($routeParams.id).then(function(data) {
           $scope.item = data;
-          $scope.category = Categories.load(data.parent_id);
+          Categories.load(data.parent_id).then(function(data) {
+            $scope.category = data;
+          });
           $scope.audioPlaylist = Items.getMedias(data, 'audio');
           $scope.videoPlaylist = Items.getMedias(data, 'video');
           $scope.socialVideoPlaylist = Items.getMedias(data, function(media) {
