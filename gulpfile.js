@@ -31,7 +31,7 @@ gulp.task('pull', function() {
 });
 
 gulp.task('update_submodules', function(){
-    git.updateSubmodule();
+    git.updateSubmodule({ args: '--remote --rebase'});
 });
 
 gulp.task('clean_app', function(cb) {
