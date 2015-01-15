@@ -11,20 +11,21 @@ var gulp           = require('gulp'),
     del            = require('del'),
     path           = require('path');
 
-if (fs.existsSync('config.json')) {
- extend(config, require('config.json'));
-};
-
+//TODO fix symlink bug
+/*if (fs.existsSync('./config.json')) {
+  var cf = require('./config.json');
+  extend(config, cf);
+};*/
 //get cli parameters
-config = minimist(process.argv.slice(2), config)
+extend(config, minimist(process.argv.slice(2)));
 
 gulp.task('html', function() {
-  return request('http://santander.int-meumobi.com')
-    .pipe(fs.createWriteStream("pt/main.html"));
+  return request(config.url)
+    .pipe(fs.createWriteStream(config.language + "/main.html"));
 });
 
 gulp.task('clean', function(cb) {
-    del(['pt/main.html'], cb)
+    del([config.language + '/main.html'], cb)
 });
 
 gulp.task('default', ['clean'], function() {
