@@ -1,14 +1,17 @@
 var config = {
-  language: 'pt'
-}
+  language: 'pt',
+  build: [
+    'js/' 
+  ]
+};
 
 var gulp           = require('gulp'),
     request        = require("request"),
     fs             = require('fs'), 
-    git            = require('gulp-git'),
     minimist       = require('minimist'),
     extend         = require('util')._extend,
     del            = require('del'),
+    zip            = require('gulp-zip'),
     path           = require('path');
 
 //TODO fix symlink bug
@@ -24,20 +27,17 @@ gulp.task('html', function() {
     .pipe(fs.createWriteStream(config.language + "/main.html"));
 });
 
-gulp.task('pull', function() {
- git.pull('origin', 'master', {}, function (err) {
-  if (err) throw err;
- });
-});
-
-gulp.task('update_submodules', function(){
-    git.updateSubmodule({ args: '--remote --rebase'});
-});
+/*gulp.task('compress', function() {
+  console.log(process.cwd());
+  //TODO remove unnecessary files
+  return gulp.src('pt/*', {cwd: process.cwd()})
+        .pipe(zip('pt.zip'));
+});*/
 
 gulp.task('clean_app', function(cb) {
-    del([config.language + '/main.html'], cb)
+  del([config.language + '/main.html'], cb)
 });
 
 gulp.task('build', ['clean_app'], function() {
-    gulp.start('html', 'pull', 'update_submodules');
+  gulp.start('html');
 });
