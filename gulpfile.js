@@ -24,10 +24,10 @@ gulp.task('html', function() {
     .pipe(fs.createWriteStream(config.language + "/main.html"));
 });
 
-gulp.task('clean', function(cb) {
+gulp.task('clean_app', function(cb) {
     del([config.language + '/main.html'], cb)
 });
 
-gulp.task('default', ['clean'], function() {
+gulp.task('build', ['clean_app'], function() {
     gulp.start('html');
 });
