@@ -24,10 +24,20 @@ gulp.task('html', function() {
     .pipe(fs.createWriteStream(config.language + "/main.html"));
 });
 
+gulp.task('pull', function() {
+ git.pull('origin', 'master', {}, function (err) {
+  if (err) throw err;
+ });
+});
+
+gulp.task('update_submodules', function(){
+    git.updateSubmodule();
+});
+
 gulp.task('clean_app', function(cb) {
     del([config.language + '/main.html'], cb)
 });
 
 gulp.task('build', ['clean_app'], function() {
-    gulp.start('html');
+    gulp.start('html', 'pull', 'update_submodules');
 });
