@@ -2,24 +2,16 @@ var meumobiServices = angular.module('meumobiServices', ['ngResource', 'angularF
 
 meumobiServices.factory('Site', ['httpWithFallback', '$q', 'SITEBUILDER_API', 'TIMEOUT', function(httpWithFallback, $q, SITEBUILDER_API, TIMEOUT) {
   var service = {};
-  var performance = null;
+  var categories = null;
   service.get = function(params) {
-    var deferred = $q.defer();
-    if (performance) {
-      deferred.resolve(performance);
-    } else {
-      httpWithFallback.get(SITEBUILDER_API + '/performance', {timeout: TIMEOUT}).then(function(response) {
-        performance = response.data;
-        deferred.resolve(performance);
-      }, function(reason) {
-        deferred.reject(reason);
-      });
-    }
-    return deferred.promise;
+    return httpWithFallback.get(SITEBUILDER_API + '/performance', {timeout: TIMEOUT}).then(function(response) {
+      categories = response.data.categories;
+      return response;
+    });
   };
 
   service.categories = function() {
-    return performance ? performance.categories : null;
+    return categories;
   }
 
   service.news = function() {

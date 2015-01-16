@@ -13,22 +13,15 @@
       var httpWithFallback = new HttpWithFallback(),
           localStorage = global.localStorage;
 
-      /**
-       * Override $http.get to catch the promise.error
-       */
-      httpWithFallback.get = function(url, config) {        
-        // Client doesn't support local storage
-        if (!global.localStorage) {
-          // If no fallback defined, just just $http.get
-          if (!config.fallback) {
-            return $http.get(url, config);
-          }
-          // Local storage won't be used
-          config.dontStoreFallback = true;
-        }
+      var prepareStoredResponse = function(storedResponse) {
+        // Data was successfully retrieved from local storage, resolve with status 200
+        storedResponse = JSON.parse(storedResponse);
+        var headers = storedResponse.headers;
+        storedResponse.headers = function() { return headers; };
+        return storedResponse;
+      }
 
-        // Delegate get to $http
-        var deferred = $q.defer();
+      var makeRequest = function(url, config, deferred) {
         $http.get(url, config)
         .then(
           function(response) {
@@ -49,11 +42,7 @@
             // Try to retrieve from local storage
             var storedResponse = localStorage.getItem(url);
             if (storedResponse) {
-              // Data was successfully retrieved from local storage, resolve with status 200
-              storedResponse = JSON.parse(storedResponse);
-              var headers = storedResponse.headers;
-              storedResponse.headers = function() { return headers; };
-              return deferred.resolve(storedResponse);
+              return deferred.resolve(prepareStoredResponse(storedResponse));
             }
 
             // Try config.fallback
@@ -90,6 +79,35 @@
         };
 
         return promise;
+      };
+      /**
+       * Override $http.get to catch the promise.error
+       */
+      httpWithFallback.get = function(url, config) {
+        // Client doesn't support local storage
+        if (!global.localStorage) {
+          // If no fallback defined, just just $http.get
+          if (!config.fallback) {
+            return $http.get(url, config);
+          }
+          // Local storage won't be used
+          config.dontStoreFallback = true;
+        }
+
+        // Delegate get to $http
+        var deferred = $q.defer();
+        var storedResponse = localStorage.getItem(url);
+
+        if (storedResponse) {
+          //second promise to update data after request
+          var deferredRequest = $q.defer();
+          storedResponse = prepareStoredResponse(storedResponse);
+          storedResponse.promise = makeRequest(url, config, deferredRequest);
+          deferred.resolve(storedResponse);
+          return deferred.promise;
+        }
+        //don't have local, continue to request
+        return makeRequest(url, config, deferred);
       };
 
       return httpWithFallback;

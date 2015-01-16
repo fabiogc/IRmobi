@@ -7,7 +7,8 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'Site', 'Categories', '$loc
       var search = parseLocationSearch($window.location.search);
       if (search.skin)
       params.skin = search.skin;
-      Site.get().then(function(data) {
+      fulfill = function(response) {
+        var data = response.data;
         data.categories = Categories.getTree(data.categories);
         var categories = data.categories.slice(0);
         $scope.performance = data;
@@ -16,7 +17,9 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'Site', 'Categories', '$loc
           $scope.headlinesRows = 1;
         }
         $scope.splitedCategories = $scope.splitArray(categories, 2);
-      });
+        if (response.promise) response.promise.then(fulfill);
+      };
+      Site.get().then(fulfill);
 }]);
 
 meumobiControllers.controller('EventListCtrl', ['$scope',
@@ -61,7 +64,7 @@ meumobiControllers.controller('EventListCtrl', ['$scope',
 meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$timeout', '$location',
     function($scope, Items, HOME, $timeout, $location) {
       $scope.has_breadcrumb = (HOME != 'latest');
-      Items.latest().then(function(response) {
+      var fulfill = function(response) {
         $scope.items = response.data.items;
         $timeout(function() {
           $("#gallery").removeClass('hide');
@@ -74,7 +77,9 @@ meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$ti
           }
           buildGallery();
         },100);
-      });
+        if (response.promise) response.promise.then(fulfill);
+      };
+      Items.latest().then(fulfill);
       $scope.goToItem = function(item) {
         Items.setCurrent(item);
         $location.path('/items/' + item._id);
@@ -96,10 +101,12 @@ meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', 'Item
       });
 
       $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
-
-      Categories.items($routeParams.id, {page: $scope.currentPage}).then(function(response){
+      var fulfillItems = function(response){
         $scope.items = response.data.items;
-      });
+        if (response.promise) response.promise.then(fulfillItems);
+      };
+
+      Categories.items($routeParams.id, {page: $scope.currentPage}).then(fulfillItems);
 
       $scope.goToItem = function(item) {
         Items.setCurrent(item);
