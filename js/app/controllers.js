@@ -7,7 +7,7 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'Site', 'Categories', '$loc
       var search = parseLocationSearch($window.location.search);
       if (search.skin)
       params.skin = search.skin;
-      fulfill = function(response) {
+      var fulfill = function(response) {
         var data = response.data;
         data.categories = Categories.getTree(data.categories);
         var categories = data.categories.slice(0);
@@ -101,7 +101,7 @@ meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', 'Item
       });
 
       $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
-      var fulfillItems = function(response){
+      var fulfillItems = function(response) {
         $scope.items = response.data.items;
         if (response.promise) response.promise.then(fulfillItems);
       };
@@ -124,20 +124,24 @@ meumobiControllers.controller('ItemShowCtrl', ['$scope', '$sce', 'Items', 'Categ
           return allow;
         };
 
-        Items.load($routeParams.id).then(function(data) {
-          $scope.item = data;
-          Categories.load(data.parent_id).then(function(data) {
+        var fulfill = function(response) {
+          var item = response.data;
+          Categories.load(item.parent_id).then(function(data) {
             $scope.category = data;
           });
-          $scope.audioPlaylist = Items.getMedias(data, 'audio');
-          $scope.videoPlaylist = Items.getMedias(data, 'video');
-          $scope.socialVideoPlaylist = Items.getMedias(data, function(media) {
+          $scope.audioPlaylist = Items.getMedias(item, 'audio');
+          $scope.videoPlaylist = Items.getMedias(item, 'video');
+          $scope.socialVideoPlaylist = Items.getMedias(item, function(media) {
             return isSocialVideoUrl(media.url);
           }).map(function(media) {
             media.url = $sce.trustAsResourceUrl(media.url); //fix error:insecurl
             return media;
           });
-      });
+          $scope.item = item;
+          if (response.promise) response.promise.then(fulfill);
+        };
+
+        Items.load($routeParams.id).then(fulfill);
     }]);
 
 meumobiControllers.controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '$routeParams', '$location','$upload',

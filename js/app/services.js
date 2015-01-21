@@ -36,14 +36,9 @@ meumobiServices.factory('Items', ['$resource', '$upload','$q', 'httpWithFallback
   service.load = function(id) {
     var deferred = $q.defer();
     if (current && current._id == id) {
-       deferred.resolve(current);
+       deferred.resolve({data: current});
     } else {
-      httpWithFallback.get(SITEBUILDER_API + '/items/'+id, {timeout: TIMEOUT})
-      .then(function(response) {
-        deferred.resolve(response.data);
-      }, function(reason) {
-        deferred.reject(reason);
-      });
+      return httpWithFallback.get(SITEBUILDER_API + '/items/'+id, {timeout: TIMEOUT});
     }
     return deferred.promise;
   };
