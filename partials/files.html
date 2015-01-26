@@ -1,0 +1,17 @@
+<div class="row m-t">
+  <breadcrumb title="{{'Files'|translate}}"></breadcrumb>
+  <div class="col-sm-6">
+    <section class="panel">
+      <div class="panel-body">
+        <a ng-repeat="file in downloadedFiles" 
+          ng-click="openFile(file)"
+          class="list-group-item file">
+          <h4 class="media-heading">{{file.name}}</h4>
+          <button ng-click="deleteFile(file)">
+            Delete
+          </button>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>

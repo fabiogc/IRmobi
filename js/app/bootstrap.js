@@ -60,6 +60,10 @@ meumobiApp.config([
         templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
         controller: 'CategoryShowCtrl'
       }).
+      when('/files', {
+        templateUrl: 'themes/rimobi/partials/files.html',
+        controller: 'FilesCtrl'
+      }).
       when('/news', {
         templateUrl: 'themes/rimobi/partials/items/news.html',
         controller: 'NewsCtrl'
