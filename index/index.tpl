@@ -177,6 +177,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-slugify.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-calendar.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/truncate.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/md5.min.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-pushwoosh.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-adtech.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js" {$defer}></script>
