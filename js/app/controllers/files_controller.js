@@ -1,4 +1,4 @@
-meumobiControllers.controller('FilesCtrl', function($rootScope, $scope, $window) {
+meumobiControllers.controller('FilesCtrl', function($rootScope, $scope, $window, translateFilter) {
   /**
    * Read all entries (files or dirs) of a given directory.
    */
@@ -41,7 +41,7 @@ meumobiControllers.controller('FilesCtrl', function($rootScope, $scope, $window)
   $scope.resolveFileSystem = function () {
     var localDir;
     if (device.platform.toLowerCase() == "android") {
-      localDir = cordova.file.externalRootDirectory + "/Downloads";
+      localDir = cordova.file.externalRootDirectory + "Downloads";
     } else {
       localDir = cordova.file.dataDirectory;
     }
@@ -65,16 +65,16 @@ meumobiControllers.controller('FilesCtrl', function($rootScope, $scope, $window)
    * Delete file.
    */
   $scope.deleteFile = function (file) {
-    var shouldDelete = $window.confirm("Deseja remover o arquivo?");
+    var shouldDelete = $window.confirm(translateFilter("You want to remove the file?"));
     if (!shouldDelete) { return; }
     file.fileEntry.remove(function (file) {
       console.log("File removed!");
       $scope.resolveFileSystem();
     },function () {
-      $window.alert("Erro ao deletar o arquivo.");
+      $window.alert(translateFilter("Error removing the file."));
       console.log("error deleting the file " + error.code);
     },function () {
-      $window.alert("Este arquivo não existe mais.");
+      $window.alert(translateFilter("This file does not exists."));
       $scope.resolveFileSystem();
       console.log("file does not exist");
     });
