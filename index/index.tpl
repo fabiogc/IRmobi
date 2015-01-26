@@ -80,6 +80,15 @@
           </li>
         </ul>
       </li>
+      {/literal}
+      {if $build}
+      <li id="files">
+        <a ng-click="goTo('/files')">
+          <i class="fa fa-files-o fa-lg"></i><span ng-bind="{literal}{{'Files'|trasnlate}}{/literal}"></span>
+        </a>
+      </li>
+      {/if}
+      {literal}
      <li id="news" ng-if="performance.news">
         <a ng-click="goTo('/news')">
           <i class="fa fa-rss fa-lg"></i><span ng-bind="performance.newsCategory.title"></span>
@@ -176,6 +185,8 @@
   <script type="text/javascript" src="themes/rimobi/js/app/helpers.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/services.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/controllers.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/controllers/items_controller.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/controllers/files_controller.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/filters.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/directives.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/settings.js" {$defer}></script>
