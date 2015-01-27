@@ -40,7 +40,7 @@ meumobiControllers.controller('ItemShowCtrl', function($scope, $sce, Items, Cate
     }
     $event.target.disabled = true;
     var html = $event.target.innerHTML;
-    $event.target.innerHTML = '...';
+    $event.target.innerHTML = translateFilter('Downloading') + '...';
     var extension = media.type.split('/')[1];
     var fileName = md5(media.title) + '.' + extension;
     var localPath = localDir + '/' + fileName;
