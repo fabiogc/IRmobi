@@ -17,7 +17,7 @@
             <iframe  width="800" height="450" src="{{video.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
           </div>
         </div>
-				<div ng-bind-html="item.description" data-in-app-browser></div>
+				<div ng-bind-html="item.description" data-in-app-browser="_system" data-location="yes" data-gdoc="yes"></div>
 				<div>
 					<p ng-repeat="media in item.medias|filter:mediaFilter">
 					<a ng-if="['application/pdf', 'audio/mpeg'].indexOf(media.type) != -1" ng-click="downloadFile(media, $event)">
