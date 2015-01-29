@@ -81,11 +81,13 @@
         </ul>
       </li>
       {/literal}
+      {if $build}
       <li id="files">
         <a ng-click="goTo('/files')">
           <i class="fa fa-files-o fa-lg"></i><span ng-bind="{literal}'Files'|translate{/literal}"></span>
         </a>
       </li>
+      {/if}
       {literal}
      <li id="news" ng-if="performance.news">
         <a ng-click="goTo('/news')">
