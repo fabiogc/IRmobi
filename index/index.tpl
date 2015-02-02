@@ -45,7 +45,18 @@
 {literal}
 <body ng-class="performance.site.theme.layout_alternatives.navbar">
   <!-- header -->
-    <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
+  <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
+   <ul ng-if="languages" class="nav navbar-nav pull-right">
+      <li class="dropdown">
+        <a href="" class="dropdown-toggle text-white" data-toggle="dropdown">
+          <i class="fa fa-globe fa-lg"></i> <span class="hidden-xs-only">Select Language</span>
+          <b class="caret hidden-xs-only"></b>
+        </a>
+        <ul class="dropdown-menu pull-right">
+          <li ng-repeat="language in languages" class="capitalize"><a href="" ng-click="setLanguage(language)">{{language}}</a></li>
+        </ul>
+      </li>
+    </ul>
     <a class="navbar-brand" ng-click="goTo('/')">
     <img ng-if="performance.site.logo" ng-src="{{thumbify(performance.site.logo, '200x200_')}}" data-ng-alt="{{performance.site.title}}" width="123">
     <span class="text-white" ng-if="!performance.site.logo" ng-bind="performance.site.title"></span>
@@ -55,11 +66,13 @@
     </button>
     <ul class="nav navbar-nav hidden-xs">
     </ul>
-	</header>
+  </header>
   <!-- / header -->
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs {{performance.site.theme.layout_alternatives.nav}}">
     <ul class="nav" data-spy="affix" data-offset-top="50" nav-menu="active">
+      <li>
+      </li>
       <li id="home">
         <a ng-click="goTo('/')">
           <i class="fa fa-home fa-lg"></i><span translate>Home</span>
@@ -133,16 +146,17 @@
   </div>
   <!-- / footer -->
   <script type="text/javascript">
-  var config_data = {};
+  var config_data = {DOMAINS: {}};
   {/literal}
-  config_data.DOMAIN = "{$domain}";
+  config_data.DOMAINS.{$current_locale} = "{$domain}";
+  config_data.DOMAINS.en = 'santanderen.int-meumobi.com';
   config_data.SITEBUILDER = "{$smarty.const.SITE_BUILDER_URL}"; //REMOVE IF SANTANDER
   config_data.HOME = "{$performance.site.theme.layout_alternatives.home}";
   config_data.LOCALE = "{$performance.site.language}";
   config_data.IS_APP = {if $build}true{else}false{/if};
   config_data.PUSH = {literal}{appId: "482BE-4B9BA", gcmProjectNumber: "706933317564"};{/literal}
   config_data.ANALYTICS = '{if is_array($performance.site.analytics_token)}{$performance.site.analytics_token[1]}{else}{$performance.site.analytics_token}{/if}';
-  var translations = {if $performance.site.language != 'auto'}{translations lang=$performance.site.language}{else}{translations}{/if};
+  var translations = {translations};
   {literal}
   </script>
 
@@ -185,6 +199,7 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-media-player.min.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/helpers.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/services.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/services/settings.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/controllers.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/controllers/items_controller.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/controllers/files_controller.js" {$defer}></script>

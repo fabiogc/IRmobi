@@ -1,10 +1,10 @@
 var meumobiServices = angular.module('meumobiServices', ['ngResource', 'angularFileUpload']);
 
-meumobiServices.factory('Site', ['httpWithFallback', '$q', 'SITEBUILDER_API', 'TIMEOUT', function(httpWithFallback, $q, SITEBUILDER_API, TIMEOUT) {
+meumobiServices.factory('Site', ['httpWithFallback', '$q', 'Settings', 'TIMEOUT', function(httpWithFallback, $q, Settings, TIMEOUT) {
   var service = {};
   var categories = null;
   service.get = function(params) {
-    return httpWithFallback.get(SITEBUILDER_API + '/performance', {timeout: TIMEOUT}).then(function(response) {
+    return httpWithFallback.get(Settings.getSiteBuilderApiUrl() + '/performance', {timeout: TIMEOUT}).then(function(response) {
       categories = response.data.categories;
       return response;
     });
@@ -26,24 +26,24 @@ meumobiServices.factory('Site', ['httpWithFallback', '$q', 'SITEBUILDER_API', 'T
   return service;
 }]);
 
-meumobiServices.factory('Items', ['$resource', '$upload','$q', 'httpWithFallback', 'SITEBUILDER_API', 'TIMEOUT', 
-  function($resource, $upload, $q, httpWithFallback, SITEBUILDER_API, TIMEOUT) {
-	var current = null;
-  var service = $resource(SITEBUILDER_API + '/items/:id', {}, {
+meumobiServices.factory('Items', ['$resource', '$upload','$q', 'httpWithFallback', 'Settings', 'TIMEOUT',
+  function($resource, $upload, $q, httpWithFallback, Settings, TIMEOUT) {
+  var current = null;
+  var service = $resource(Settings.getSiteBuilderApiUrl() + '/items/:id', {}, {
     save: {method: 'POST', headers : {'Content-Type':'application/x-www-form-urlencoded'}},
-		query: {method: 'GET', cache: true, url: SITEBUILDER_API + '/items/search', timeout: TIMEOUT}
-	});
+    query: {method: 'GET', cache: true, url: Settings.getSiteBuilderApiUrl() + '/items/search', timeout: TIMEOUT}
+  });
   service.load = function(id) {
     var deferred = $q.defer();
     if (current && current._id == id) {
        deferred.resolve({data: current});
     } else {
-      return httpWithFallback.get(SITEBUILDER_API + '/items/'+id, {timeout: TIMEOUT});
+      return httpWithFallback.get(Settings.getSiteBuilderApiUrl() + '/items/'+id, {timeout: TIMEOUT});
     }
     return deferred.promise;
   };
   service.latest = function() {
-    return httpWithFallback.get(SITEBUILDER_API + '/items/latest', {timeout: TIMEOUT});
+    return httpWithFallback.get(Settings.getSiteBuilderApiUrl() + '/items/latest', {timeout: TIMEOUT});
   };
 	service.getMedias = function(item, mediaType) {
 		var medias = [];
@@ -63,7 +63,7 @@ meumobiServices.factory('Items', ['$resource', '$upload','$q', 'httpWithFallback
   };
   service.upload = function(file, data) {
     return $upload.upload({
-      url: SITEBUILDER_API + '/images',
+      url: Settings.getSiteBuilderApiUrl() + '/images',
       method: 'POST',
       headers: {},
       data: data ? data : {},
@@ -71,15 +71,15 @@ meumobiServices.factory('Items', ['$resource', '$upload','$q', 'httpWithFallback
       file: file
      }); 
    };
-	return service;
+  return service;
 }]);
 
-meumobiServices.factory('Categories', ['$resource', '$q', 'httpWithFallback', 'SITEBUILDER_API', 'TIMEOUT', 
-  function($resource, $q, httpWithFallback, SITEBUILDER_API, TIMEOUT) {
+meumobiServices.factory('Categories', ['$resource', '$q', 'httpWithFallback', 'Settings', 'TIMEOUT',
+  function($resource, $q, httpWithFallback, Settings, TIMEOUT) {
     var service = {}; 
     service.load = function(id) {
       var deferred = $q.defer();
-      httpWithFallback.get(SITEBUILDER_API + '/categories/'+ id, {timeout: TIMEOUT})
+      httpWithFallback.get(Settings.getSiteBuilderApiUrl() + '/categories/'+ id, {timeout: TIMEOUT})
       .then(function(response) {
         deferred.resolve(response.data);
       }, function(reason) {
@@ -89,7 +89,7 @@ meumobiServices.factory('Categories', ['$resource', '$q', 'httpWithFallback', 'S
     };
 
     service.items = function(id, params) {
-     return httpWithFallback.get(SITEBUILDER_API + '/categories/'+ id +'/items', {timeout: TIMEOUT, params: params});
+     return httpWithFallback.get(Settings.getSiteBuilderApiUrl() + '/categories/'+ id +'/items', {timeout: TIMEOUT, params: params});
     }
     service.getTree = function getTree(categories) {//TODO remove parameter
       var children = [];

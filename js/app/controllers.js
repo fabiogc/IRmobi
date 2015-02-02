@@ -1,8 +1,14 @@
 var meumobiControllers = angular.module('meumobiControllers', ['angularFileUpload']);
 
-meumobiControllers.controller('SiteCtrl', ['$scope', 'Site', 'Categories', '$location', '$window',
-  function($scope, Site, Categories, $location, $window) {
+meumobiControllers.controller('SiteCtrl', ['$scope', 'Site', 'Categories', '$location', '$window', 'Settings',
+  function($scope, Site, Categories, $location, $window, Settings) {
     $scope.headlinesRows = 2;
+    $scope.languages = Settings.getAvailableLanguages();
+    //change language and reload the site
+    $scope.setLanguage = function(language) {
+      Settings.setLanguage(language);
+      $window.location.reload();
+    };
     var params = {};
     var search = parseLocationSearch($window.location.search);
     if (search.skin)
