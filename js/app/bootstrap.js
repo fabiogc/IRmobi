@@ -26,9 +26,8 @@ meumobiApp.config([
     '$translateProvider', 
     '$analyticsProvider',
     '$pushNotificationProvider',
-    'LOCALE', 
     'HOME',
-    function($routeProvider, $locationProvider, $httpProvider, $translateProvider, $analyticsProvider, $pushNotificationProvider, LOCALE, HOME) {
+    function($routeProvider, $locationProvider, $httpProvider, $translateProvider, $analyticsProvider, $pushNotificationProvider, HOME) {
       if (!navigator.onLine) {
         $analyticsProvider.virtualPageviews(false);
       }
@@ -116,16 +115,14 @@ meumobiApp.config([
           'pt-BR': 'pt',
           'pt_BR': 'pt'
         })
-      .fallbackLanguage('en')
-        if (LOCALE == 'auto') {
-          $translateProvider.determinePreferredLanguage();
-        } else {
-          $translateProvider.preferredLanguage(LOCALE);
-        }
+      .fallbackLanguage('en');
     }
 ]);
 
-meumobiApp.run(function($rootScope, $location, SITEBUILDER, IS_APP, ANALYTICS) {
+meumobiApp.run(function($rootScope, $location, $translate, Settings, SITEBUILDER, IS_APP, ANALYTICS) {
+  //Set site language
+  $translate.use(Settings.getLanguage());
+
   $rootScope.isOnline = navigator.onLine;
 
   $rootScope.goTo = function(path) {
