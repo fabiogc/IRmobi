@@ -46,7 +46,7 @@
 <body ng-class="performance.site.theme.layout_alternatives.navbar">
   <!-- header -->
   <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
-   <ul ng-if="languages" class="nav navbar-nav pull-right">
+   <ul ng-if="languages" class="nav navbar-nav navbar-language pull-right">
       <li class="dropdown">
         <a href="" class="dropdown-toggle text-white" data-toggle="dropdown">
           <i class="fa fa-globe fa-lg"></i> <span class="hidden-xs-only" ng-bind="'Select Language'|translate"></span>
