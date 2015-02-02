@@ -49,7 +49,7 @@
    <ul ng-if="languages" class="nav navbar-nav pull-right">
       <li class="dropdown">
         <a href="" class="dropdown-toggle text-white" data-toggle="dropdown">
-          <i class="fa fa-globe fa-lg"></i> <span class="hidden-xs-only">Select Language</span>
+          <i class="fa fa-globe fa-lg"></i> <span class="hidden-xs-only" ng-bind="'Select Language'|translate"></span>
           <b class="caret hidden-xs-only"></b>
         </a>
         <ul class="dropdown-menu pull-right">
