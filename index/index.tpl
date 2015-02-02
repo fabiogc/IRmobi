@@ -46,7 +46,7 @@
 <body ng-class="performance.site.theme.layout_alternatives.navbar">
   <!-- header -->
   <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
-   <ul ng-if="languages" class="nav navbar-nav navbar-language pull-right">
+   <ul ng-if="languages.length > 1" class="nav navbar-nav navbar-language pull-right">
       <li class="dropdown">
         <a href="" class="dropdown-toggle text-white" data-toggle="dropdown">
           <i class="fa fa-globe fa-lg"></i> <span class="hidden-xs-only" ng-bind="'Select Language'|translate"></span>
@@ -149,7 +149,6 @@
   var config_data = {DOMAINS: {}};
   {/literal}
   config_data.DOMAINS.{$current_locale} = "{$domain}";
-  config_data.DOMAINS.en = 'santanderen.int-meumobi.com';
   config_data.SITEBUILDER = "{$smarty.const.SITE_BUILDER_URL}"; //REMOVE IF SANTANDER
   config_data.HOME = "{$performance.site.theme.layout_alternatives.home}";
   config_data.LOCALE = "{$performance.site.language}";
