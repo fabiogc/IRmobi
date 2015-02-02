@@ -1,13 +1,19 @@
 var meumobiControllers = angular.module('meumobiControllers', ['angularFileUpload']);
 
-meumobiControllers.controller('SiteCtrl', ['$scope', 'Site', 'Categories', '$location', '$window', 'Settings',
-  function($scope, Site, Categories, $location, $window, Settings) {
+meumobiControllers.controller('SiteCtrl', function($scope, Site, Categories, $location, $window, $timeout, Settings) {
     $scope.headlinesRows = 2;
     $scope.languages = Settings.getAvailableLanguages();
+    console.log($scope.languages);
     //change language and reload the site
     $scope.setLanguage = function(language) {
-      Settings.setLanguage(language);
-      $window.location.reload();
+      console.log('set language to ' + language);
+      if (Settings.getLanguage() != language ) {
+        Settings.setLanguage(language);
+        $location.url('/');// got to home
+        $timeout(function() {
+          $window.location.reload(); // reload page
+        },0);
+      }
     };
     var params = {};
     var search = parseLocationSearch($window.location.search);
@@ -26,7 +32,7 @@ meumobiControllers.controller('SiteCtrl', ['$scope', 'Site', 'Categories', '$loc
       if (response.promise) response.promise.then(fulfill);
     };
     Site.get().then(fulfill);
-}]);
+});
 
 meumobiControllers.controller('EventListCtrl', ['$scope',
   'Categories',

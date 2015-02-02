@@ -11,6 +11,7 @@ meumobiServices.factory('Settings', function(SITEBUILDER, DOMAINS) {
       if (!DOMAINS[localStorage['Settings.language']]) {
         this.setLanguage(this.getAvailableLanguages()[0]);
       }
+      console.log(localStorage['Settings.language']);
       return localStorage['Settings.language'];
     },
     getSiteBuilderApiUrl : function() {
