@@ -27,7 +27,8 @@ meumobiApp.config(function($routeProvider,
       $analyticsProvider,
       $pushNotificationProvider,
       analyticsProvider,
-      HOME) {
+      HOME,
+      ANALYTICS) {
       if (!navigator.onLine) {
         $analyticsProvider.virtualPageviews(false);
       }
@@ -133,7 +134,7 @@ meumobiApp.config(function($routeProvider,
 
 });
 
-meumobiApp.run(function($rootScope, $location, $translate, Settings, SITEBUILDER, IS_APP, ANALYTICS) {
+meumobiApp.run(function($rootScope, $location, $translate, Settings, analytics, SITEBUILDER, IS_APP) {
   //Set site language
   $translate.use(Settings.getLanguage());
 
@@ -212,5 +213,4 @@ meumobiApp.run(function($rootScope, $location, $translate, Settings, SITEBUILDER
     console.log(current.$$route.title);
     analytics.trackPage(current.$$route.title);
   });
-  }
 });

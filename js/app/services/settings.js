@@ -14,8 +14,9 @@ meumobiServices.factory('Settings', function(SITEBUILDER, DOMAINS) {
       console.log(localStorage['Settings.language']);
       return localStorage['Settings.language'];
     },
-    getSiteBuilderApiUrl : function() {
-      return SITEBUILDER + '/api/' + DOMAINS[this.getLanguage()];
+    getSiteBuilderApiUrl : function(uri) {
+      uri = uri ? uri : '';
+      return SITEBUILDER + '/api/' + DOMAINS[this.getLanguage()] + uri;
     }
 	};
 });

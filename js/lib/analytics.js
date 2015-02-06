@@ -1,4 +1,4 @@
-angular.module('meumobi.analytics')
+angular.module('meumobi.analytics', [])
 .provider('analytics', function() {
   var analyticsId = null;
   var gaPlugin = null;
