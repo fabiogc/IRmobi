@@ -32,6 +32,14 @@ meumobiApp.config(function($routeProvider,
       if (!navigator.onLine) {
         $analyticsProvider.virtualPageviews(false);
       }
+    
+      var resolveCategory = function($route,Categories) {
+        return Categories.load($route.current.params.id).then(function(data) {
+          $route.current.$$route.title =  data.title;
+          return data;
+        });
+      };
+
       //handle http errors
       $httpProvider.interceptors.push('interceptor');
       //configure routes
@@ -52,15 +60,22 @@ meumobiApp.config(function($routeProvider,
 
       $routeProvider.when('/articles/:id', {
         templateUrl: 'themes/rimobi/partials/articles/list.html',
-        controller: 'CategoryShowCtrl'
+        controller: 'CategoryShowCtrl',
+        resolve: {
+          viewName: resolveCategory
+        }
       }).
       when('/articles/:id/page/:page', {
         templateUrl: 'themes/rimobi/partials/articles/list.html',
-        controller: 'CategoryShowCtrl'
+        controller: 'CategoryShowCtrl',
+        resolve: {
+          viewName: resolveCategory
+        }
       }).
       when('/extended_articles/:id', {
         templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
-        controller: 'CategoryShowCtrl'
+        controller: 'CategoryShowCtrl',
+        title: 'Article'
       }).
       when('/files', {
         templateUrl: 'themes/rimobi/partials/files.html',
@@ -93,7 +108,15 @@ meumobiApp.config(function($routeProvider,
       }).
       when('/items/:id', {
         templateUrl: 'themes/rimobi/partials/items/show.html',
-        controller: 'ItemShowCtrl'
+        controller: 'ItemShowCtrl',
+        resolve: {
+          viewName: function($route, Items) {
+            return Items.load($route.current.params.id).then(function(response) {;
+              $route.current.$$route.title =  response.data.title;
+              return response;
+            });
+          }
+        }
       }).
       when('/items/add/:category_id', {
         templateUrl: 'themes/rimobi/partials/items/add.html',
@@ -210,7 +233,6 @@ meumobiApp.run(function($rootScope, $location, $translate, Settings, analytics, 
 
   $rootScope.$on('$routeChangeSuccess', function(e, current){
     //get name from route and send to analytics
-    console.log(current.$$route.title);
     analytics.trackPage(current.$$route.title);
   });
 });
