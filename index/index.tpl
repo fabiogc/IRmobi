@@ -195,11 +195,13 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angulartics-ga.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-media-player.min.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/lib/analytics.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/helpers.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/services.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/services/settings.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/controllers.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/controllers/items_controller.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/controllers/contact_controller.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/controllers/files_controller.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/filters.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/directives.js" {$defer}></script>

@@ -164,31 +164,3 @@ meumobiControllers.controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '
       });
     };
   }]);
-
-meumobiControllers.controller('ContactCtrl', ['$scope', '$http', '$translate', 'DOMAIN',
-  function($scope, $http, $translate, DOMAIN) {
-    $scope.formData = {};
-    $scope.isSantander = $scope.performance.site.title.toLowerCase().indexOf("santander") !== -1;
-    var url = 'http://' + DOMAIN + '/index/contact';
-    $scope.submit = function() {
-      if ($('#contact-form').parsley('validate')) {//this is a validation a from "first" theme
-        $http({
-          method: 'POST',
-          url: url,
-          data: $.param($scope.formData),
-          headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json'}
-        })
-        .success(function(data) {
-          if (data.success) {
-            $translate('Your message has been sent successfully!').then(function (string) {
-              alert(string);
-            });
-          } else {
-            $translate('Sorry, but your message was not sent!').then(function (string) {
-              alert(string);
-            });
-          }
-        });
-      }
-    };
-  }]);

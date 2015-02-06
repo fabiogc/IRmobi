@@ -14,20 +14,20 @@ var meumobiApp = angular.module('meumobiApp', [
     'phonegapCalendar',
     'angulartics',
     'angulartics.google.analytics',
+    'meumobi.analytics',
     'angular-adtech',
     'http-with-fallback',
     'pushwooshNotification'
     ]);
 
-meumobiApp.config([
-    '$routeProvider',
-    '$locationProvider', 
-    '$httpProvider', 
-    '$translateProvider', 
-    '$analyticsProvider',
-    '$pushNotificationProvider',
-    'HOME',
-    function($routeProvider, $locationProvider, $httpProvider, $translateProvider, $analyticsProvider, $pushNotificationProvider, HOME) {
+meumobiApp.config(function($routeProvider,
+      $locationProvider,
+      $httpProvider,
+      $translateProvider,
+      $analyticsProvider,
+      $pushNotificationProvider,
+      analyticsProvider,
+      HOME) {
       if (!navigator.onLine) {
         $analyticsProvider.virtualPageviews(false);
       }
@@ -38,12 +38,14 @@ meumobiApp.config([
         $routeProvider.
         when('/', {
           controller: 'LatestItemsCtrl',
-          templateUrl: 'themes/rimobi/partials/items/latest.html'
+          templateUrl: 'themes/rimobi/partials/items/latest.html',
+          title: 'Latest'
         });
       } else {
         $routeProvider.
           when('/', {
-            templateUrl: 'themes/rimobi/partials/index.html'
+            templateUrl: 'themes/rimobi/partials/index.html',
+            title: 'Home'
           });
       }
 
@@ -61,39 +63,46 @@ meumobiApp.config([
       }).
       when('/files', {
         templateUrl: 'themes/rimobi/partials/files.html',
-        controller: 'FilesCtrl'
+        controller: 'FilesCtrl',
+        title: 'Files'
       }).
       when('/news', {
         templateUrl: 'themes/rimobi/partials/items/news.html',
-        controller: 'NewsCtrl'
+        controller: 'NewsCtrl',
+        title: 'News'
       }).
       when('/extended_articles/:id/page/:page', {
         templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
-      controller: 'CategoryShowCtrl'
+        controller: 'CategoryShowCtrl'
       }).
       when('/events/:id', {
         templateUrl: 'themes/rimobi/partials/events/list.html',
-      controller: 'EventListCtrl'
+        controller: 'EventListCtrl',
+        title: 'Events'
       }).
       when('/events/:id/page/:page', {
         templateUrl: 'themes/rimobi/partials/events/list.html',
-      controller: 'EventListCtrl'
+        controller: 'EventListCtrl',
+        title: 'Events'
       }).
       when('/latest', {
         templateUrl: 'themes/rimobi/partials/items/latest.html',
-      controller: 'LatestItemsCtrl'
+        controller: 'LatestItemsCtrl',
+        title: 'Latest'
       }).
       when('/items/:id', {
         templateUrl: 'themes/rimobi/partials/items/show.html',
-      controller: 'ItemShowCtrl'
+        controller: 'ItemShowCtrl'
       }).
       when('/items/add/:category_id', {
         templateUrl: 'themes/rimobi/partials/items/add.html',
-      controller: 'ItemAddCtrl'
+        controller: 'ItemAddCtrl',
+        title: 'Add Item'
       }).
       when('/contact', {
         templateUrl: 'themes/rimobi/partials/contact.html',
-      controller: 'ContactCtrl'
+        controller: 'ContactCtrl',
+        title: 'Contact'
       }).
       otherwise({
         redirectTo: '/'
@@ -116,8 +125,13 @@ meumobiApp.config([
           'pt_BR': 'pt'
         })
       .fallbackLanguage('en');
-    }
-]);
+
+  //configure GAplugin for analitycs
+  if (ANALYTICS) {
+    analyticsProvider.setup(ANALYTICS); 
+  }
+
+});
 
 meumobiApp.run(function($rootScope, $location, $translate, Settings, SITEBUILDER, IS_APP, ANALYTICS) {
   //Set site language
@@ -193,18 +207,10 @@ meumobiApp.run(function($rootScope, $location, $translate, Settings, SITEBUILDER
     return date > now;
   }
 
-  //phonegap analitycs
-  if (IS_APP && ANALYTICS) {
-    gaPlugin = window.plugins.gaPlugin;
-    gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, ANALYTICS, 10);
-    function nativePluginResultHandler (result) {
-      console.log('nativePluginResultHandler: '+result);
-    }
-    function nativePluginErrorHandler (error) {
-      console.log('nativePluginErrorHandler: '+error);
-    }
-    $rootScope.$on('$routeChangeSuccess', function(){
-      gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, ''+$location.url());
-    });
+  $rootScope.$on('$routeChangeSuccess', function(e, current){
+    //get name from route and send to analytics
+    console.log(current.$$route.title);
+    analytics.trackPage(current.$$route.title);
+  });
   }
 });
