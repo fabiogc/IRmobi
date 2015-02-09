@@ -40,13 +40,17 @@ meumobiDirectives.directive('downloadMedia', function(Categories, $window,transl
             localDir = cordova.file.dataDirectory;
         }
         scope.disabled = true;
-        scope.status = translateFilter('Downloading') + '...';
+        var downloading = translateFilter('Downloading');
         var localPath = localDir + '/' + fileName;
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(media.url);
+        scope.status = downloading + '...';
         localStorage[fileName] = media.title;
         localStorage[fileName+"type"] = media.type;
-
+        fileTransfer.onprogress = function(e) {
+          if (e.lengthComputable)
+            scope.status = downloading + ' ' +Math.floor(e.loaded / e.total * 100) + "%";
+        }; 
         fileTransfer.download(uri, localPath, function(entry) {
           console.log(entry);
           window.plugins.toast.showShortBottom(translateFilter('Download finished'));
