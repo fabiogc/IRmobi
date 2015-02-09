@@ -41,7 +41,7 @@ meumobiControllers.controller('FilesCtrl', function($rootScope, $scope, $window,
   $scope.resolveFileSystem = function () {
     var localDir;
     if (device.platform.toLowerCase() == "android") {
-      localDir = cordova.file.externalRootDirectory + "Downloads";
+      localDir = cordova.file.externalRootDirectory + "/Downloads/rimobi";
     } else {
       localDir = cordova.file.dataDirectory;
     }
