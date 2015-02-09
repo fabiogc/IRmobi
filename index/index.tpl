@@ -123,7 +123,7 @@
       <adtech-ad network="{$plugin.options.network}" site-id="{$plugin.options.site_id}" placement-id="{$plugin.options.placement_id}" alias="{$plugin.options.alias}"></adtech-ad>
       {/if}
     {/foreach}
-    <div ng-view></div><!-- view -->
+    <div ng-view autoscroll="true"></div><!-- view -->
      {include file="index/_`$performance.site.theme.layout_alternatives.footer`_footer.tpl"}
     {literal}
     </section>
@@ -205,6 +205,7 @@
   <script type="text/javascript" src="themes/rimobi/js/app/controllers/files_controller.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/filters.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/directives.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/directives/download_media.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/settings.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/bootstrap.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/bootstrap.js" {$defer}></script>
