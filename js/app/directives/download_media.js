@@ -4,7 +4,7 @@ meumobiDirectives.directive('downloadMedia', function(Categories, $window,transl
 		scope: {
 			media: '='
 		},
-		template: '<a ng-disabled="disabled" ng-click="downloadFile(media)"> <span class="btn btn-white btn-xs"><i class="fa {{icon}}"></i> {{status}}</span> {{media.title}}</a>',
+		template: '<a ng-disabled="disabled" ng-click="downloadFile(media)"> <span class="btn btn-white btn-xs"><i class="fa fa-2x {{icon}}"></i> {{status}}</span> {{media.title}}</a>',
     link: function(scope) {
       var extension = scope.media.type.split('/')[1];
       var fileName = md5(scope.media.title) + '.' + extension;
@@ -17,7 +17,7 @@ meumobiDirectives.directive('downloadMedia', function(Categories, $window,transl
       scope.filesize = 0;
       //if (scope.media.length)
         //scope.filesize = (scope.media.length / (1024 * 1024)).toFixed(2);//byte to mb
-      scope.icon = icons[media.type] ? icons[media.type] : "fa-file-o";
+      scope.icon = icons[scope.media.type] ? icons[scope.media.type] : "fa-file-o";
       if (IS_APP && localStorage[fileName]) {
         scope.status = translateFilter('Downloaded');
         scope.disabled = true;
