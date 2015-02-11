@@ -36,6 +36,7 @@ meumobiApp.config(function($routeProvider,
       var resolveCategory = function($route,Categories) {
         return Categories.load($route.current.params.id).then(function(data) {
           $route.current.$$route.title =  data.title;
+          $route.current.$$route.view = '/category/'+data.id;
           return data;
         });
       };
@@ -48,13 +49,15 @@ meumobiApp.config(function($routeProvider,
         when('/', {
           controller: 'LatestItemsCtrl',
           templateUrl: 'themes/rimobi/partials/items/latest.html',
-          title: 'Latest'
+          title: 'Latest',
+          view: '/'
         });
       } else {
         $routeProvider.
           when('/', {
             templateUrl: 'themes/rimobi/partials/index.html',
-            title: 'Home'
+            title: 'Home',
+            view: '/'
           });
       }
 
@@ -80,11 +83,13 @@ meumobiApp.config(function($routeProvider,
       when('/files', {
         templateUrl: 'themes/rimobi/partials/files.html',
         controller: 'FilesCtrl',
+        view: '/files',
         title: 'Files'
       }).
       when('/news', {
         templateUrl: 'themes/rimobi/partials/items/news.html',
         controller: 'NewsCtrl',
+        view: '/news',
         title: 'News'
       }).
       when('/extended_articles/:id/page/:page', {
@@ -94,16 +99,21 @@ meumobiApp.config(function($routeProvider,
       when('/events/:id', {
         templateUrl: 'themes/rimobi/partials/events/list.html',
         controller: 'EventListCtrl',
-        title: 'Events'
+        resolve: {
+          viewName: resolveCategory
+        }
       }).
       when('/events/:id/page/:page', {
         templateUrl: 'themes/rimobi/partials/events/list.html',
         controller: 'EventListCtrl',
-        title: 'Events'
+        resolve: {
+          viewName: resolveCategory
+        }
       }).
       when('/latest', {
         templateUrl: 'themes/rimobi/partials/items/latest.html',
         controller: 'LatestItemsCtrl',
+        view: '/latest',
         title: 'Latest'
       }).
       when('/items/:id', {
@@ -113,6 +123,7 @@ meumobiApp.config(function($routeProvider,
           viewName: function($route, Items) {
             return Items.load($route.current.params.id).then(function(response) {;
               $route.current.$$route.title =  response.data.title;
+              $route.current.$$route.view = '/category/'+response.data.parent_id;
               return response;
             });
           }
@@ -126,6 +137,7 @@ meumobiApp.config(function($routeProvider,
       when('/contact', {
         templateUrl: 'themes/rimobi/partials/contact.html',
         controller: 'ContactCtrl',
+        view: '/contact',
         title: 'Contact'
       }).
       otherwise({
@@ -188,19 +200,6 @@ meumobiApp.run(function($rootScope, $location, $translate, Settings, analytics, 
     return url;
   };
 
-  $rootScope.getClass = function(path) {
-    if ($location.path().substr(0, path.length) == path) {
-      if (path == "/" && $location.path() == "/") {
-        return "active";
-      } else if (path == "/") {
-        return "";
-      }
-      return "active"
-    } else {
-      return ""
-    }
-  };
-
   $rootScope.splitArray = function(arr, lengthofsublist){
     if (!angular.isUndefined(arr) && arr.length > 0) {
       var arrayToReturn = [];
@@ -225,6 +224,10 @@ meumobiApp.run(function($rootScope, $location, $translate, Settings, analytics, 
 
   $rootScope.parseFloat = parseFloat;
 
+  $rootScope.isActive = function (view) { 
+    return view === $rootScope.activeView;
+  };
+
   $rootScope.isFutureDate = function (timestamp) {
     var date = new Date(timestamp * 1000);
     var now  = new Date();
@@ -234,5 +237,7 @@ meumobiApp.run(function($rootScope, $location, $translate, Settings, analytics, 
   $rootScope.$on('$routeChangeSuccess', function(e, current){
     //get name from route and send to analytics
     analytics.trackPage(current.$$route.title);
+    console.log(current.$$route.view);
+    $rootScope.activeView = current.$$route.view;
   });
 });

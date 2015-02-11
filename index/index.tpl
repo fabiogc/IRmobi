@@ -73,14 +73,14 @@
     <ul class="nav" data-spy="affix" data-offset-top="50" nav-menu="active">
       <li>
       </li>
-      <li id="home">
+      <li id="home" ng-class="{ active: isActive('/')}">
         <a ng-click="goTo('/')">
           <i class="fa fa-home fa-lg"></i><span translate>Home</span>
         </a>
       </li>
       <li ng-repeat="category in performance.categories"
         id="nav-category-{{category.id}}"
-        class="dropdown-submenu">
+        class="dropdown-submenu" ng-class="{ active: isActive('/category/'+category.id)}">
         <a ng-if="!category.children.length" ng-click="goTo('/'+category.type+'/'+category.id)">
           <i class="fa fa-chevron-circle-right fa-lg"></i><span ng-bind="category.title"></span>
         </a>
@@ -95,19 +95,19 @@
       </li>
       {/literal}
       {if $build}
-      <li id="files">
+      <li id="files" {literal}ng-class="{ active: isActive('/files')}"{/literal}>
         <a ng-click="goTo('/files')">
           <i class="fa fa-files-o fa-lg"></i><span ng-bind="{literal}'Files'|translate{/literal}"></span>
         </a>
       </li>
       {/if}
       {literal}
-     <li id="news" ng-if="performance.news">
+     <li id="news" ng-if="performance.news" ng-class="{ active: isActive('/news')}">
         <a ng-click="goTo('/news')">
           <i class="fa fa-rss fa-lg"></i><span ng-bind="performance.newsCategory.title"></span>
         </a>
       </li>
-     <li id="contact">
+     <li id="contact" ng-class="{ active: isActive('/contact')}">
         <a ng-click="goTo('/contact')">
           <i class="fa fa-envelope-o fa-lg"></i><span ng-bind="performance.site.theme.tokens.contact|translate"></span>
         </a>
