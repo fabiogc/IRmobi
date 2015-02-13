@@ -1,10 +1,10 @@
-meumobiDirectives.directive('downloadMedia', function(Categories, $window, translateFilter, Files, $timeout, IS_APP) {
+meumobiDirectives.directive('file', function(Categories, translateFilter, files, $timeout, IS_APP) {
 	return {
 		restrict: 'E',
 		scope: {
-			media: '='
+      file: '='
 		},
-		template: '<a ng-disabled="disabled" ng-click="downloadFile(media)"> <span class="btn btn-white btn-xs"><i class="fa fa-2x {{icon}}"></i> {{status}}</span> {{media.title}}</a>',
+		templateUrl: 'themes/rimobi/partials/utils/file.html',
     link: function(scope) {
       var icons = {
         "application/pdf": "fa-file-pdf-o",
@@ -12,29 +12,31 @@ meumobiDirectives.directive('downloadMedia', function(Categories, $window, trans
         "audio/mpeg": "fa-file-audio-o",
         "application/vnd.ms-powerpoint": "fa-file-powerpoint-o"
       };
-      scope.icon = icons[scope.media.type] ? icons[scope.media.type] : "fa-file-o";
-      if (IS_APP && localStorage[fileName]) {
-        scope.status = translateFilter('Downloaded');
+      scope.icon = icons[scope.file.type] ? icons[scope.file.type] : "fa-file-o";
+      scope.isApp = IS_APP;
+      //if not a app stop here
+      if (!IS_APP) {
+        return;
+      }
+      scope.isDownloaded = files.isDownloaded(scope.file);
+      if (scope.isDownloaded) {
+        scope.file = files.get(scope.file);
+      } else if (files.isDownloading(scope.file)) {
+        scope.status = translateFilter('Downloading');
         scope.disabled = true;
       } else {
         scope.status = translateFilter('Download');
       }
 
-      scope.downloadFile = function (media) {
-        if (!IS_APP) {
-          $window.open(media.url,'_blank');
-          return false;
-        }
 
-        if (scope.disabled)
-          return false;
-
+      scope.downloadFile = function (file) {
+        if (scope.disabled) return false;
         scope.disabled = true;
         var downloading = translateFilter('Downloading'); 
         scope.status = downloading + '...';
-
-        Files.download(media).then(function() {
+        files.download(file).then(function(entry) {
           $timeout(function() {
+            scope.file.entry = entry;
             scope.status = translateFilter('Download finished');
           }, 0);
         }, function(error) {

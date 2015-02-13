@@ -6,15 +6,7 @@
 			<ul class="list-group media-list" ng-if="downloadedFiles">
 				<li class="list-group-item media" ng-repeat="file in downloadedFiles">
 				<div class="media-body">
-						<p class="h5 text-muted" ng-bind-html="file.name"></p>
-            <p>
-              <a ng-click="openFile(file)" class="btn btn-white btn-xs">
-                <i class="fa fa-eye"></i> <span translate>View</span>
-              </a>
-              <a ng-click="deleteFile(file)" class="btn btn-white btn-xs">
-                <i class="fa fa-trash-o"></i> <span translate>Remove</span>
-              </a>
-            </p>
+            <file file="file"></file> 
 				</div>
 				</li>
 			</ul>

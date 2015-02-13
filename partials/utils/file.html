@@ -1,0 +1,20 @@
+  <div>
+  <p ng-bind-html="file.title"></p>
+  <p ng-if="isApp">
+    <a ng-if="!downloaded" ng-disabled="disabled" ng-click="downloadFile(media)" class="btn btn-white btn-xs">
+      <i class="fa {{icon}}"></i> {{status}}
+    </a>
+    <a ng-if="downloaded" ng-click="openFile(file)" class="btn btn-white btn-xs">
+      <i class="fa {{icon}}"></i> <span translate>View</span>
+    </a>
+    <a ng-if="downloaded" ng-click="deleteFile(file)" class="btn btn-white btn-xs">
+      <i class="fa fa-trash-o"></i> <span translate>Remove</span>
+    </a>
+  </p>
+
+  <p ng-if="!isApp">
+    <a ng-disabled="disabled" ng-href="{{file.url}}" target="_blank" class="btn btn-white btn-xs">
+      <i class="fa {{icon}}"></i> Download
+    </a>
+  </p>
+</div>
