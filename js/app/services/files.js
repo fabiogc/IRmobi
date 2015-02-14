@@ -28,7 +28,6 @@ meumobiServices.provider('files', function(IS_APP) {
       return localDir;
     }
     api.getLocalPath = function(fileName) {
-      console.log(api.getLocalDir());
       return api.getLocalDir() + '/' + fileName;
     }
     //get localstorage list
@@ -51,7 +50,6 @@ meumobiServices.provider('files', function(IS_APP) {
     //get files handler
     api.loadFile = function (path) {
       var deferred = $q.defer();
-      console.log(path);
       window.resolveLocalFileSystemURL(path, function(entry) {
         deferred.resolve(entry);
       },
@@ -66,15 +64,9 @@ meumobiServices.provider('files', function(IS_APP) {
      */
     return {
       download: function(media) {
-        console.log('Donwload');
-        console.log(media)
         var deferred = $q.defer();
         var fileName = this.fileName(media);
         var uri = encodeURI(media.url);
-        console.log(uri);
-        //DEBUG
-        //deferred.resolve();
-        //return deferred.promise;
 
         var fileTransfer = new FileTransfer();
         fileTransfers[fileName] = fileTransfer;
@@ -85,9 +77,7 @@ meumobiServices.provider('files', function(IS_APP) {
         /**
          * Download file to local folder.
          */
-        console.log(api.getLocalPath(fileName));
         fileTransfer.download(uri, api.getLocalPath(fileName), function(entry) {
-          console.log(JSON.stringify(entry));
           var file = {
             title: media.title,
             type: media.type,
@@ -95,7 +85,6 @@ meumobiServices.provider('files', function(IS_APP) {
           };
           api.addFile(fileName, file);
           delete fileTransfers[fileName];
-          console.log('after finish');
           $rootScope.$emit(fileName + '.finish', file);
           deferred.resolve(file);
         }, function(error) {
@@ -127,8 +116,6 @@ meumobiServices.provider('files', function(IS_APP) {
         return api.files()[fileName];
       },
       open: function(file) {
-        console.log("Path: " + file.path);
-        console.log("Type: " + file.type);
         cordova.plugins.fileOpener2.open(file.path, file.type);
       },
       remove: function(file) {
@@ -148,7 +135,6 @@ meumobiServices.provider('files', function(IS_APP) {
           });
         }, function() {
           //file not exists, 
-          console.log("File not exist");
           api.removeFile(fileName);
           deferred.resolve();
         });

@@ -21,7 +21,6 @@ meumobiDirectives.directive('file', function($rootScope, translateFilter, files,
       }
       scope.isDownloaded = files.isDownloaded(scope.file);
       if (scope.isDownloaded && !scope.file.path) {
-        console.log('loading file');
         scope.file = files.get(scope.file);
       } else if (files.isDownloading(scope.file)) {
         scope.status = translateFilter('Downloading');
@@ -29,8 +28,6 @@ meumobiDirectives.directive('file', function($rootScope, translateFilter, files,
       } else {
         scope.status = translateFilter('Download');
       }
-      console.log(scope.isDownloaded);
-      console.log(scope.file);
 
       var fileName = files.fileName(scope.file);
       $rootScope.$on(fileName + '.progress', function(e, progress) {
@@ -44,8 +41,6 @@ meumobiDirectives.directive('file', function($rootScope, translateFilter, files,
         $timeout(function() {
           scope.isDownloaded = true;
           angular.extend(scope.file, file);
-          console.log(scope.isDownloaded);
-          console.log(JSON.stringify(scope.file));
           window.plugins.toast.showShortBottom(translateFilter('Download finished'));
         }, 0);
       });
