@@ -15,13 +15,9 @@ meumobiServices.provider('files', function(IS_APP) {
   /**
    * service
    */
-  this.$get = function($q, translateFilter) {
+  this.$get = function($q, $rootScope,translateFilter) {
     var api = {};
     var localDir;
-    api.getFileName = function(media) {
-        var extension = media.type.split('/')[1];
-        return md5(media.title) + '.' + extension;
-    };
     api.getLocalDir = function() {
       if (localDir) return localDir;
       if (device.platform.toLowerCase() == "android") {
@@ -73,7 +69,7 @@ meumobiServices.provider('files', function(IS_APP) {
         console.log('Donwload');
         console.log(media)
         var deferred = $q.defer();
-        var fileName = api.getFileName(media);
+        var fileName = this.fileName(media);
         var uri = encodeURI(media.url);
         console.log(uri);
         //DEBUG
@@ -83,8 +79,7 @@ meumobiServices.provider('files', function(IS_APP) {
         var fileTransfer = new FileTransfer();
         fileTransfers[fileName] = fileTransfer;
         fileTransfer.onprogress = function(e) {
-          console.log(JSON.stringify(e));
-          deferred.notify(e);
+          $rootScope.$emit(fileName+'.progress', e);
         }; 
 
         /**
@@ -101,28 +96,34 @@ meumobiServices.provider('files', function(IS_APP) {
           api.addFile(fileName, file);
           delete fileTransfers[fileName];
           console.log('after finish');
+          $rootScope.$emit(fileName + '.finish', file);
           deferred.resolve(file);
         }, function(error) {
           console.log(JSON.stringify(error));
           delete fileTransfers[fileName];
+          $rootScope.$emit(fileName + 'error', error);
           deferred.reject(error);
         }, false);
 
         return deferred.promise;
       },
+      fileName: function(file) {
+        var extension = file.type.split('/')[1];
+        return md5(file.title) + '.' + extension;
+      },
       isDownloaded: function(file) {
-        var fileName = api.getFileName(file);
+        var fileName = this.fileName(file);
         return !!api.files()[fileName];
       },
       isDownloading: function(file) {
-        var fileName = api.getFileName(file);
+        var fileName = this.fileName(file);
         return !!fileTransfers[fileName];     
       },
       list: function() {
         return api.files();
       },
       get: function(file) {
-        var fileName = api.getFileName(file);
+        var fileName = this.fileName(file);
         return api.files()[fileName];
       },
       open: function(file) {
@@ -132,7 +133,7 @@ meumobiServices.provider('files', function(IS_APP) {
       },
       remove: function(file) {
         var deferred = $q.defer();
-        var fileName = api.getFileName(file);
+        var fileName = this.fileName(file);
         api.loadFile(file.path).then(function(entry) {
           entry.remove(function (file) {
             console.log("File removed!");

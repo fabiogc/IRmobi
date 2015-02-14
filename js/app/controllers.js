@@ -3,7 +3,6 @@ var meumobiControllers = angular.module('meumobiControllers', ['angularFileUploa
 meumobiControllers.controller('SiteCtrl', function($scope, Site, Categories, $location, $window, $timeout, Settings) {
     $scope.headlinesRows = 2;
     $scope.languages = Settings.getAvailableLanguages();
-    console.log($scope.languages);
     //change language and reload the site
     $scope.setLanguage = function(language) {
       console.log('set language to ' + language);

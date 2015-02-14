@@ -1,4 +1,4 @@
-meumobiDirectives.directive('file', function(Categories, translateFilter, files, $timeout, $window, IS_APP) {
+meumobiDirectives.directive('file', function($rootScope, translateFilter, files, $timeout, $window, IS_APP) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -6,6 +6,7 @@ meumobiDirectives.directive('file', function(Categories, translateFilter, files,
 		},
 		templateUrl: 'themes/rimobi/partials/utils/file.html',
     link: function(scope) {
+      var downloading = translateFilter('Downloading'); 
       var icons = {
         "application/pdf": "fa-file-pdf-o",
         "application/vnd.ms-excel": "fa-file-excel-o",
@@ -22,7 +23,6 @@ meumobiDirectives.directive('file', function(Categories, translateFilter, files,
       if (scope.isDownloaded && !scope.file.path) {
         console.log('loading file');
         scope.file = files.get(scope.file);
-        console.log(scope.file);
       } else if (files.isDownloading(scope.file)) {
         scope.status = translateFilter('Downloading');
         scope.disabled = true;
@@ -32,33 +32,36 @@ meumobiDirectives.directive('file', function(Categories, translateFilter, files,
       console.log(scope.isDownloaded);
       console.log(scope.file);
 
+      var fileName = files.fileName(scope.file);
+      $rootScope.$on(fileName + '.progress', function(e, progress) {
+        if (progress.lengthComputable) {
+          $timeout(function() {
+            scope.status = downloading + ' ' + Math.floor(progress.loaded / progress.total * 100) + "%";
+          }, 0);
+        }
+      });
+      $rootScope.$on(fileName + '.finish', function(e,file) {
+        $timeout(function() {
+          scope.isDownloaded = true;
+          angular.extend(scope.file, file);
+          console.log(scope.isDownloaded);
+          console.log(JSON.stringify(scope.file));
+          window.plugins.toast.showShortBottom(translateFilter('Download finished'));
+        }, 0);
+      });
+      $rootScope.$on(fileName + '.error', function(e,error) {
+        $timeout(function() {
+          scope.status = translateFilter('Download');
+          scope.disabled = false;
+          window.plugins.toast.showShortBottom(translateFilter('Download failed'));
+        }, 0);
+      });
+
       scope.downloadFile = function (file) {
         if (scope.disabled) return false;
         scope.disabled = true;
-        var downloading = translateFilter('Downloading'); 
         scope.status = downloading + '...';
-        files.download(file).then(function(file) {
-          console.log('Download finish');
-          $timeout(function() {
-            scope.isDownloaded = true;
-            angular.extend(scope.file, file);
-            console.log(scope.isDownloaded);
-            console.log(JSON.stringify(scope.file));
-            window.plugins.toast.showShortBottom(translateFilter('Download finished'));
-          }, 0);
-        }, function(error) {
-          $timeout(function() {
-            scope.status = translateFilter('Download');
-            scope.disabled = false;
-            window.plugins.toast.showShortBottom(translateFilter('Download failed'));
-          }, 0);
-        },function(e) {//progress event
-          if (e.lengthComputable) {
-            $timeout(function() {
-              scope.status = downloading + ' ' + Math.floor(e.loaded / e.total * 100) + "%";
-            }, 0);
-          }
-        });
+        files.download(file);
       }
 
       scope.openFile = function (file) {
