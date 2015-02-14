@@ -1,3 +1,4 @@
+//TODO replace "media" for "file"
 meumobiServices.provider('files', function(IS_APP) {
   var fileTransfers = {};
   var files = {};
