@@ -1,20 +1,40 @@
-meumobiServices.provider('files', function() {
+meumobiServices.provider('files', function(IS_APP) {
   var fileTransfers = {};
   var files = {};
-  var entries = {};
   var config = {
-    path: "/Downloads/rimobi",
+    path: "/Downloads/rimobi"
   }
+
+  /**
+   * setup service
+   */
   this.setup = function(params) {
     angular.extend(config, params);
   };
 
+  /**
+   * service
+   */
   this.$get = function($q, translateFilter) {
     var api = {};
+    var localDir;
     api.getFileName = function(media) {
         var extension = media.type.split('/')[1];
         return md5(media.title) + '.' + extension;
     };
+    api.getLocalDir = function() {
+      if (localDir) return localDir;
+      if (device.platform.toLowerCase() == "android") {
+        localDir = cordova.file.externalRootDirectory + config.path;
+      } else {
+        localDir = cordova.file.dataDirectory;
+      }
+      return localDir;
+    }
+    api.getLocalPath = function(fileName) {
+      console.log(api.getLocalDir());
+      return api.getLocalDir() + '/' + fileName;
+    }
     //get localstorage list
     api.files = function() {
       if (!Object.keys(files).length && localStorage["files"])
@@ -33,16 +53,11 @@ meumobiServices.provider('files', function() {
     };
 
     //get files handler
-    api.loadDir = function () {
-      var localDir;
+    api.loadFile = function (path) {
       var deferred = $q.defer();
-      if (device.platform.toLowerCase() == "android") {
-        localDir = cordova.file.externalRootDirectory + "/Downloads/rimobi";
-      } else {
-        localDir = cordova.file.dataDirectory;
-      }
-      $window.resolveLocalFileSystemURL(localDir, function(dir) {
-        deferred.resolve(dir);
+      console.log(path);
+      window.resolveLocalFileSystemURL(path, function(entry) {
+        deferred.resolve(entry);
       },
       function(error) {
         deferred.reject(error);
@@ -50,54 +65,23 @@ meumobiServices.provider('files', function() {
       return deferred.promise;
     };
 
-    //read files from device directory
-    api.loadFile = function(name) {
-      var deferred = $q.defer();
-      if (entries[name]) {
-        deferred.resolve(entries[name]);
-        return deferred.promise;
-      }
-      api.loadDir().then(function(dir) {
-        var directoryReader = dir.createReader();
-        directoryReader.readEntries(function(items) {
-          var i;
-          for (i=0; i<items.length; i++) {
-            var e = items[i];
-            if (e.isFile) {
-              entries[e.name] = {
-                path: e.nativeURL,
-                fileEntry: e
-              };
-            }
-          }
-          if (entries[name]) {
-            deferred.resolve(entries);
-          } else {
-            deferred.reject('file not exists');
-          }
-        }, function(error) {
-          deferred.reject(error);
-        }); 
-      }, function(error) {
-        deferred.reject(error);
-      });
-      return deferred.promise;
-    };
-
-    //service methods
+    /**
+     * Service public methods
+     */
     return {
       download: function(media) {
+        console.log('Donwload');
+        console.log(media)
         var deferred = $q.defer();
         var fileName = api.getFileName(media);
-        var localPath = localDir + '/' + fileName;
-        var localDir;
         var uri = encodeURI(media.url);
+        console.log(uri);
         //DEBUG
-        deferred.resolve();
-        return deferred.promise;
+        //deferred.resolve();
+        //return deferred.promise;
 
         var fileTransfer = new FileTransfer();
-        fileTransfers[fileName] = fileTransger;
+        fileTransfers[fileName] = fileTransfer;
         fileTransfer.onprogress = function(e) {
           console.log(JSON.stringify(e));
           deferred.notify(e);
@@ -106,26 +90,21 @@ meumobiServices.provider('files', function() {
         /**
          * Download file to local folder.
          */
-        if (device.platform.toLowerCase() == "android") {
-          localDir = cordova.file.externalRootDirectory + config.path;
-        } else {
-          localDir = cordova.file.dataDirectory;
-        }
-
-        fileTransfer.download(uri, localPath, function(entry) {
+        console.log(api.getLocalPath(fileName));
+        fileTransfer.download(uri, api.getLocalPath(fileName), function(entry) {
           console.log(JSON.stringify(entry));
-          api.addFile(fileName,{
+          var file = {
             title: media.title,
             type: media.type,
             path: entry.nativeURL
-          });
+          };
+          api.addFile(fileName, file);
           delete fileTransfers[fileName];
-          window.plugins.toast.showShortBottom(translateFilter('Download finished'));
-          deferred.resolve(entry);
+          console.log('after finish');
+          deferred.resolve(file);
         }, function(error) {
           console.log(JSON.stringify(error));
           delete fileTransfers[fileName];
-          window.plugins.toast.showShortBottom(translateFilter('Download failed'));
           deferred.reject(error);
         }, false);
 
@@ -144,7 +123,7 @@ meumobiServices.provider('files', function() {
       },
       get: function(file) {
         var fileName = api.getFileName(file);
-        api.files()[fileName];
+        return api.files()[fileName];
       },
       open: function(file) {
         console.log("Path: " + file.path);
@@ -154,25 +133,21 @@ meumobiServices.provider('files', function() {
       remove: function(file) {
         var deferred = $q.defer();
         var fileName = api.getFileName(file);
-        var shouldDelete = $window.confirm(translateFilter("You want to remove the file?"));
-        if (!shouldDelete) { return; }
-        api.loadFile(fileName).then(function(entry) {
+        api.loadFile(file.path).then(function(entry) {
           entry.remove(function (file) {
             console.log("File removed!");
             api.removeFile(fileName);
             deferred.resolve();
           },function (error) {
-            $window.alert(translateFilter("Error removing the file."));
             console.log("error deleting the file " + error.code);
             deferred.reject(error);
           },function (error) {
-            $window.alert(translateFilter("This file does not exists."));
             console.log("file does not exist");
             deferred.reject(error);
           });
         }, function() {
           //file not exists, 
-          console.log("File removed!");
+          console.log("File not exist");
           api.removeFile(fileName);
           deferred.resolve();
         });

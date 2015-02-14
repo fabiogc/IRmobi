@@ -1,4 +1,4 @@
-meumobiDirectives.directive('file', function(Categories, translateFilter, files, $timeout, IS_APP) {
+meumobiDirectives.directive('file', function(Categories, translateFilter, files, $timeout, $window, IS_APP) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -19,30 +19,38 @@ meumobiDirectives.directive('file', function(Categories, translateFilter, files,
         return;
       }
       scope.isDownloaded = files.isDownloaded(scope.file);
-      if (scope.isDownloaded) {
+      if (scope.isDownloaded && !scope.file.path) {
+        console.log('loading file');
         scope.file = files.get(scope.file);
+        console.log(scope.file);
       } else if (files.isDownloading(scope.file)) {
         scope.status = translateFilter('Downloading');
         scope.disabled = true;
       } else {
         scope.status = translateFilter('Download');
       }
-
+      console.log(scope.isDownloaded);
+      console.log(scope.file);
 
       scope.downloadFile = function (file) {
         if (scope.disabled) return false;
         scope.disabled = true;
         var downloading = translateFilter('Downloading'); 
         scope.status = downloading + '...';
-        files.download(file).then(function(entry) {
+        files.download(file).then(function(file) {
+          console.log('Download finish');
           $timeout(function() {
-            scope.file.entry = entry;
-            scope.status = translateFilter('Download finished');
+            scope.isDownloaded = true;
+            angular.extend(scope.file, file);
+            console.log(scope.isDownloaded);
+            console.log(JSON.stringify(scope.file));
+            window.plugins.toast.showShortBottom(translateFilter('Download finished'));
           }, 0);
         }, function(error) {
           $timeout(function() {
             scope.status = translateFilter('Download');
             scope.disabled = false;
+            window.plugins.toast.showShortBottom(translateFilter('Download failed'));
           }, 0);
         },function(e) {//progress event
           if (e.lengthComputable) {
@@ -52,6 +60,25 @@ meumobiDirectives.directive('file', function(Categories, translateFilter, files,
           }
         });
       }
+
+      scope.openFile = function (file) {
+        files.open(file);
+      };
+
+      scope.deleteFile = function (file) {
+        var shouldDelete = $window.confirm(translateFilter("You want to remove the file?"));
+        if (!shouldDelete) { return; }
+        files.remove(file).then(function() {
+          $timeout(function() {
+            scope.isDownloaded = false;
+            scope.status = translateFilter('Download');
+            scope.disabled = false;
+            delete file.path;
+          },0);
+        }, function() {
+          window.plugins.toast.showShortBottom(translateFilter("Error removing the file."));
+        });
+      };
 
     }
 	};
