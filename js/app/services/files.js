@@ -72,6 +72,7 @@ meumobiServices.provider('files', function(IS_APP) {
         var fileTransfer = new FileTransfer();
         fileTransfers[fileName] = fileTransfer;
         fileTransfer.onprogress = function(e) {
+          console.log(JSON.stringify(e));
           $rootScope.$emit(fileName+'.progress', e);
         }; 
 
@@ -84,6 +85,7 @@ meumobiServices.provider('files', function(IS_APP) {
             type: media.type,
             path: entry.nativeURL
           };
+          console.log(JSON.stringify(entry));
           api.addFile(fileName, file);
           delete fileTransfers[fileName];
           $rootScope.$emit(fileName + '.finish', file);
@@ -117,7 +119,11 @@ meumobiServices.provider('files', function(IS_APP) {
         return api.files()[fileName];
       },
       open: function(file) {
-        cordova.plugins.fileOpener2.open(file.path, file.type);
+        var target = '_blank';
+        if (device.platform.toLowerCase() != "ios") {
+          target = '_system';
+        }
+        window.open(file.path, target, 'location=no');
       },
       remove: function(file) {
         var deferred = $q.defer();
