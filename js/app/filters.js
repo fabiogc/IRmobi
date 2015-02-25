@@ -9,3 +9,13 @@ meumobiFilters.filter('striptags', function() {
     return angular.element('<div/>').html(text).text();
   };
 });
+meumobiFilters.filter('mediaIconClass', function(MEDIAS_ICONS_AND_LABELS) {
+  return function(type) {
+    return MEDIAS_ICONS_AND_LABELS[type] ? MEDIAS_ICONS_AND_LABELS[type].class : 'fa-external-link';
+  };
+});
+meumobiFilters.filter('mediaClickLabel', function(MEDIAS_ICONS_AND_LABELS) {
+  return function(type) {
+    return MEDIAS_ICONS_AND_LABELS[type] ? MEDIAS_ICONS_AND_LABELS[type].label : 'open';
+  };
+});
