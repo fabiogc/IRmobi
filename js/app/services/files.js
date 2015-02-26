@@ -2,7 +2,7 @@ meumobiServices.provider('files', function(IS_APP) {
   var fileTransfers = {};
   var files = {};
   var config = {
-    path: "/Downloads/rimobi"
+    path: '/Downloads/rimobi'
   }
 
   /**
@@ -21,10 +21,10 @@ meumobiServices.provider('files', function(IS_APP) {
      */
     api.getLocalDir = function() {
       if (localDir) return localDir;
-      if (device.platform.toLowerCase() == "android") {
+      if (device.platform.toLowerCase() == 'android') {
         localDir = cordova.file.externalRootDirectory + config.path;
       } else {
-        localDir = cordova.file.dataDirectory;
+        localDir = cordova.file.documentsDirectory;
       }
       return localDir;
     }
@@ -33,19 +33,19 @@ meumobiServices.provider('files', function(IS_APP) {
     }
     //get localstorage list
     api.files = function() {
-      if (!Object.keys(files).length && localStorage["files"])
-        files = JSON.parse(localStorage["files"]);
+      if (!Object.keys(files).length && localStorage['files'])
+        files = JSON.parse(localStorage['files']);
       return files;
     }
     //add file to localstorage
     api.addFile = function(id, file) {
       files[id] = file;
-      localStorage["files"] = JSON.stringify(files);
+      localStorage['files'] = JSON.stringify(files);
     };
     //remove file from localstorage
     api.removeFile = function(id) {
       delete files[id];
-      localStorage["files"] = JSON.stringify(files);
+      localStorage['files'] = JSON.stringify(files);
     };
     //get files handler
     api.loadFile = function (path) {
@@ -87,7 +87,6 @@ meumobiServices.provider('files', function(IS_APP) {
 
         fileTransfers[fileName] = fileTransfer;
         fileTransfer.onprogress = function(e) {
-          console.log(JSON.stringify(e));
           $rootScope.$emit(fileName+'.progress', e);
         }; 
         /**
@@ -134,14 +133,14 @@ meumobiServices.provider('files', function(IS_APP) {
         var status = this.getStatus(fileName);
         //load file from localstorage if needed
         if (status == this.statuses.downloaded && !file.path) {
-          file = api.files()[fileName];
+          file.path = api.files()[fileName].path;
         }
         file.status = status;
         return file;
       },
       open: function(file) {
         var target = '_blank';
-        if (device.platform.toLowerCase() != "ios") {
+        if (device.platform.toLowerCase() != 'ios') {
           target = '_system';
         }
         window.open(file.path, target, 'location=no');
@@ -149,18 +148,19 @@ meumobiServices.provider('files', function(IS_APP) {
       remove: function(file) {
         var deferred = $q.defer();
         var fileName = this.fileName(file);
+        var statuses = this.statuses;
         api.loadFile(file.path).then(function(entry) {
-          entry.remove(function (file) {
-            console.log("File removed!");
+          entry.remove(function (status) {
+            console.log('File removed!');
             api.removeFile(fileName);
             delete file.path;
-            file.status = this.statuses.download;
+            file.status = statuses.download;
             deferred.resolve(file);
           },function (error) {
-            console.log("error deleting the file " + error.code);
+            console.log('error deleting the file ' + error.code);
             deferred.reject(error);
           },function (error) {
-            console.log("file does not exist");
+            console.log('file does not exist');
             deferred.reject(error);
           });
         }, function() {

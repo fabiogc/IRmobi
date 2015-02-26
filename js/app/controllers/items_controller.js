@@ -16,6 +16,8 @@ meumobiControllers.controller('ItemShowCtrl', function($scope, $sce, Items, Cate
       }
     }
     $scope.socialVideoPlaylist = socialVideoPlaylist;
+    console.log('social videols');
+    console.log(JSON.stringify(socialVideoPlaylist));
     $scope.item = item;
     if (response.promise) response.promise.then(fulfill);
   };
