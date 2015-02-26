@@ -4,7 +4,7 @@ meumobiDirectives.directive('downloadFile', function($rootScope, translateFilter
 		scope: {
       file: '='
 		},
-		templateUrl: 'themes/rimobi/partials/utils/download_file.html',
+		template: "<ng-include src=\"'themes/rimobi/partials/utils/' + file.status + '_file.html'\" />",
     link: function(scope) {
       //use a simple link if not on app or file not allowed for download
       if (!IS_APP || ALLOWED_DOWNLOAD_MEDIAS.indexOf(scope.file.type) == -1) {

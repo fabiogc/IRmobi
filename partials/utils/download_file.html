@@ -1,4 +1,5 @@
-<p>{{file.title}} ({{file.length}})</p>
 <p>
-  <ng-include ng-if="file.status" src="'themes/rimobi/partials/utils/file/' + file.status + '.html'"/>
+  <a ng-if="file.url" ng-click="downloadFile(file)">
+    <span class="btn btn-white btn-xs"><i class="fa {{file.type|mediaIconClass}}"></i> {{'download'|translate}}</span> {{file.title}}
+  </a>
 </p>
