@@ -206,7 +206,7 @@
   <script type="text/javascript" src="themes/rimobi/js/app/controllers/files_controller.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/filters.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/directives.js" {$defer}></script>
-  <script type="text/javascript" src="themes/rimobi/js/app/directives/file.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/directives/download_file.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/settings.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/bootstrap.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/bootstrap.js" {$defer}></script>
