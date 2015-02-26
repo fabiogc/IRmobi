@@ -1,4 +1,4 @@
-meumobiDirectives.directive('downloadFile', function($rootScope, translateFilter, files, $timeout, $window, IS_APP) {
+meumobiDirectives.directive('downloadFile', function($rootScope, translateFilter, files, $timeout, $window, IS_APP, ALLOWED_DOWNLOAD_MEDIAS ) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -6,9 +6,15 @@ meumobiDirectives.directive('downloadFile', function($rootScope, translateFilter
 		},
 		templateUrl: 'themes/rimobi/partials/utils/download_file.html',
     link: function(scope) {
+      //use a simple link if not on app or file not allowed for download
+      if (!IS_APP || !ALLOWED_DOWNLOAD_MEDIAS.indexOf(scope.file.type) > -1) {
+        scope.file.status = files.statuses.open_by_link;
+        return;
+      }
+
       //load file status and localstorage data
       scope.file = files.get(scope.file);
-      
+      console.log(scope.file);      
       /*
        * register for download progress events
        */

@@ -58,10 +58,10 @@ meumobiServices.provider('files', function(IS_APP) {
       });
       return deferred.promise;
     };
-    api.isDownloaded: function(fileName) {
+    api.isDownloaded = function(fileName) {
       return !!api.files()[fileName];
     };
-    api.isDownloading: function(fileName) {
+    api.isDownloading = function(fileName) {
       return !!fileTransfers[fileName];     
     };
 
@@ -69,103 +69,107 @@ meumobiServices.provider('files', function(IS_APP) {
      * Service methods, that are public and available for any resource
      */
     // File available statuses, best for debug and maitain than just string.
-    service.statuses = {
-      download: 'download',
-      downloading: 'downloading',
-      downloaded: 'downloaded',
-    };
-    service.download = function(file) {
-      var deferred = $q.defer();
-      var fileName = this.fileName(file);
-      var uri = encodeURI(file.url);
-      var fileTransfer = new FileTransfer();
-      //update file status
-      file.status = service.statuses.downloading;
+    return {
+      statuses: {
+        download: 'download',
+        downloading: 'downloading',
+        downloaded: 'downloaded',
+        open_by_link: 'open_by_link'
+      },
+      download: function(file) {
+        var deferred = $q.defer();
+        var fileName = this.fileName(file);
+        var uri = encodeURI(file.url);
+        var statuses = this.statuses;
+        var fileTransfer = new FileTransfer();
+        //update file status
+        file.status = statuses.downloading;
 
-      fileTransfers[fileName] = fileTransfer;
-      fileTransfer.onprogress = function(e) {
-        console.log(JSON.stringify(e));
-        $rootScope.$emit(fileName+'.progress', e);
-      }; 
-      /**
-       * Download file to local folder.
-       */
-      fileTransfer.download(uri, api.getLocalPath(fileName), function(entry) {
-        console.log(JSON.stringify(entry));
-        file.path = entry.nativeURL;
-        api.addFile(fileName, {
-          title: file.title,
-          type: file.type,
-          path: entry.nativeURL
-        });
-        delete fileTransfers[fileName];
-        file.status = service.statuses.downloaded; 
-        $rootScope.$emit(fileName + '.finish', file);
-        deferred.resolve(file);
-      }, function(error) {
-        console.log(JSON.stringify(error));
-        delete fileTransfers[fileName];
-        $rootScope.$emit(fileName + 'error', error);
-        deferred.reject(error);
-      }, false);
-      return deferred.promise;
-    };
-    service.fileName = function(file) {
-      var extension = file.type.split('/')[1];
-      return md5(file.title) + '.' + extension;
-    };
-    service.list = function() {
-      return api.files();
-    };
-    service.getStatus = function(fileName) {
-      //get the correct file status
-      if (this.isDownloaded(fileName)) {
-        return this.statuses.downloaded;
-      } else if (this.isDownloading(fileName)) {
-        return this.statuses.downloading;
-      }
-      return this.statuses.download;
-    };
-    service.get = function(file) {
-      var fileName = this.fileName(file);
-      var status = this.getStatus(fileName);
-      //load file from localstorage if needed
-      if (status == this.statuses.downloaded && !file.path) {
-        file = api.files()[fileName];
-      }
-      file.status = status;
-      return file;
-    }
-    service.open = function(file) {
-      var target = '_blank';
-      if (device.platform.toLowerCase() != "ios") {
-        target = '_system';
-      }
-      window.open(file.path, target, 'location=no');
-    };
-    service.remove = function(file) {
-      var deferred = $q.defer();
-      var fileName = this.fileName(file);
-      api.loadFile(file.path).then(function(entry) {
-        entry.remove(function (file) {
-          console.log("File removed!");
-          api.removeFile(fileName);
-          delete file.path;
-          file.status = this.statuses.download;
+        fileTransfers[fileName] = fileTransfer;
+        fileTransfer.onprogress = function(e) {
+          console.log(JSON.stringify(e));
+          $rootScope.$emit(fileName+'.progress', e);
+        }; 
+        /**
+         * Download file to local folder.
+         */
+        fileTransfer.download(uri, api.getLocalPath(fileName), function(entry) {
+          console.log(JSON.stringify(entry));
+          file.path = entry.nativeURL;
+          api.addFile(fileName, {
+            title: file.title,
+            type: file.type,
+            path: entry.nativeURL
+          });
+          delete fileTransfers[fileName];
+          file.status = statuses.downloaded; 
+          $rootScope.$emit(fileName + '.finish', file);
           deferred.resolve(file);
-        },function (error) {
-          console.log("error deleting the file " + error.code);
+        }, function(error) {
+          console.log(JSON.stringify(error));
+          delete fileTransfers[fileName];
+          $rootScope.$emit(fileName + 'error', error);
           deferred.reject(error);
-        },function (error) {
-          console.log("file does not exist");
-          deferred.reject(error);
+        }, false);
+        return deferred.promise;
+      },
+      fileName: function(file) {
+        var extension = file.type.split('/')[1];
+        return md5(file.title) + '.' + extension;
+      },
+      list: function() {
+        return api.files();
+      },
+      getStatus: function(fileName) {
+        //get the correct file status
+        if (api.isDownloaded(fileName)) {
+          return this.statuses.downloaded;
+        } else if (api.isDownloading(fileName)) {
+          return this.statuses.downloading;
+        }
+        return this.statuses.download;
+      },
+      get: function(file) {
+        var fileName = this.fileName(file);
+        var status = this.getStatus(fileName);
+        //load file from localstorage if needed
+        if (status == this.statuses.downloaded && !file.path) {
+          file = api.files()[fileName];
+        }
+        file.status = status;
+        return file;
+      },
+      open: function(file) {
+        var target = '_blank';
+        if (device.platform.toLowerCase() != "ios") {
+          target = '_system';
+        }
+        window.open(file.path, target, 'location=no');
+      },
+      remove: function(file) {
+        var deferred = $q.defer();
+        var fileName = this.fileName(file);
+        api.loadFile(file.path).then(function(entry) {
+          entry.remove(function (file) {
+            console.log("File removed!");
+            api.removeFile(fileName);
+            delete file.path;
+            file.status = this.statuses.download;
+            deferred.resolve(file);
+          },function (error) {
+            console.log("error deleting the file " + error.code);
+            deferred.reject(error);
+          },function (error) {
+            console.log("file does not exist");
+            deferred.reject(error);
+          });
+        }, function() {
+          //file not exists, 
+          api.removeFile(fileName);
+          deferred.resolve();
         });
-      }, function() {
-        //file not exists, 
-        api.removeFile(fileName);
-        deferred.resolve();
-      });
-      return deferred.promise;
-    };
+        return deferred.promise;
+      }
+    };//end return
   };
 });
