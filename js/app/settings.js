@@ -8,11 +8,11 @@ meumobiSettings.constant('STOCKS_API', 'http://stocks.' + config_data.SITEBUILDE
 meumobiSettings.constant('TIMEOUT', 10000);
 meumobiSettings.constant('ITEM_PER_PAGE', 20);
 meumobiSettings.constant('MEDIAS_ICONS_AND_LABELS', {
-  'application/pdf': {class: 'fa-file-pdf-o', label: 'read'},
-  'application/vnd.ms-excel': {class: 'fa-file-excel-o', label: 'read'},
-  'audio/mpeg': {class: 'fa-file-audio-o', label: 'play'},
-  'application/vnd.ms-powerpoint': {class: 'fa-file-powerpoint-o', label: 'read'},
-  'text/html': {class: 'fa-external-link', label: 'open'}
+  'application/pdf': {class: 'fa-file-pdf-o', label: 'View'},
+  'application/vnd.ms-excel': {class: 'fa-file-excel-o', label: 'View'},
+  'audio/mpeg': {class: 'fa-file-audio-o', label: 'Play'},
+  'application/vnd.ms-powerpoint': {class: 'fa-file-powerpoint-o', label: 'View'},
+  'text/html': {class: 'fa-external-link', label: 'Open'}
 });
 meumobiSettings.constant('ALLOWED_DOWNLOAD_MEDIAS', [
   'application/pdf',

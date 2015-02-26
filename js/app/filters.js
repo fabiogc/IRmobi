@@ -16,7 +16,7 @@ meumobiFilters.filter('mediaIconClass', function(MEDIAS_ICONS_AND_LABELS) {
 });
 meumobiFilters.filter('mediaClickLabel', function(MEDIAS_ICONS_AND_LABELS) {
   return function(type) {
-    return MEDIAS_ICONS_AND_LABELS[type] ? MEDIAS_ICONS_AND_LABELS[type].label : 'open';
+    return MEDIAS_ICONS_AND_LABELS[type] ? MEDIAS_ICONS_AND_LABELS[type].label : 'Open';
   };
 });
 meumobiFilters.filter('bytesToSize', function() {
