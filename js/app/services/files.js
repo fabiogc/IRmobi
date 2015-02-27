@@ -12,7 +12,7 @@ meumobiServices.provider('files', function(IS_APP) {
     angular.extend(config, params);
   };
 
-  this.$get = function($q, $rootScope,translateFilter) {
+  this.$get = function($q, $rootScope,translateFilter,MEDIAS) {
     var api = {};
     var service = {};
     var localDir;
@@ -113,8 +113,7 @@ meumobiServices.provider('files', function(IS_APP) {
         return deferred.promise;
       },
       fileName: function(file) {
-        var extension = file.type.split('/')[1];
-        return md5(file.title) + '.' + extension;
+        return md5(file.title) + '.' + MEDIAS[file.type].extension;
       },
       list: function() {
         return api.files();

@@ -9,14 +9,14 @@ meumobiFilters.filter('striptags', function() {
     return angular.element('<div/>').html(text).text();
   };
 });
-meumobiFilters.filter('mediaIconClass', function(MEDIAS_ICONS_AND_LABELS) {
+meumobiFilters.filter('mediaIconClass', function(MEDIAS) {
   return function(type) {
-    return MEDIAS_ICONS_AND_LABELS[type] ? MEDIAS_ICONS_AND_LABELS[type].class : 'fa-external-link';
+    return MEDIAS[type] ? MEDIAS[type].class : 'fa-external-link';
   };
 });
-meumobiFilters.filter('mediaClickLabel', function(MEDIAS_ICONS_AND_LABELS) {
+meumobiFilters.filter('mediaClickLabel', function(MEDIAS) {
   return function(type) {
-    return MEDIAS_ICONS_AND_LABELS[type] ? MEDIAS_ICONS_AND_LABELS[type].label : 'Open';
+    return MEDIAS[type] ? MEDIAS[type].label : 'Open';
   };
 });
 meumobiFilters.filter('bytesToSize', function() {
