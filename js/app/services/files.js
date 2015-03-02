@@ -142,7 +142,7 @@ meumobiServices.provider('files', function(IS_APP) {
         if (device.platform.toLowerCase() != 'ios') {
           target = '_system';
         }
-        window.open(file.path, target, 'location=no');
+        window.open(file.path, target, 'location=no,enableViewportScale=yes');
       },
       remove: function(file) {
         var deferred = $q.defer();
