@@ -7,9 +7,6 @@ meumobiDirectives.directive('downloadFile', function($rootScope, translateFilter
 		template: "<ng-include src=\"'themes/rimobi/partials/utils/' + file.status + '_file.html'\" />",
     link: function(scope) {
       //use a simple link if not on app or file not allowed for download
-      console.log('SSSSSSSSSSSS');
-      console.log(MEDIAS[scope.file.type]);
-      console.log(MEDIAS[scope.file.type].download);
       if (!IS_APP 
         || !MEDIAS[scope.file.type]//prevent undefined error
         || !MEDIAS[scope.file.type].download) {
