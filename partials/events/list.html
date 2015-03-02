@@ -4,8 +4,8 @@
 		<section class="panel">
 			<header class="panel-heading" ng-bind="category.title">
 			</header>
-			<ul class="list-group media-list">
-				<li class="list-group-item media" ng-repeat="item in items" ng-class="isFutureDate(item.start_date) ? '' : 'bg'">
+			<ul class="list-group media-list events">
+				<li class="list-group-item media" ng-repeat="item in items" ng-class="isFutureDate(item.start_date) ? 'future-event' : 'past-event'">
 				<span ng-if="item.images" class="pull-left">
 					<img class="media-object" ng-src="{{thumbify(item.images[0].path, '80x80_')}}" alt="{{item.images[0].title}}">
 				</span>

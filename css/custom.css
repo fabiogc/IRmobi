@@ -111,6 +111,11 @@
 .capitalize {
   text-transform: capitalize;
 }
+
+li.past-event {
+  background-color: #f7f8f9;
+}
+
 @media (min-width: 768px) {
 	.navbar-brand {
 		border: none;
@@ -129,4 +134,3 @@
   }
 
 }
-
