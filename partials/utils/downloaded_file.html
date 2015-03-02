@@ -1,4 +1,4 @@
-<p>{{file.title}}</p>
+<p>{{file.title}} ({{file.length|bytesToSize}})</p>
 <p>
   <a ng-click="openFile(file)" class="btn btn-white btn-xs">
     <i class="fa {{file.type|mediaIconClass}}"></i> {{file.type|mediaClickLabel|translate}}

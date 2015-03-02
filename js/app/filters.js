@@ -21,6 +21,7 @@ meumobiFilters.filter('mediaClickLabel', function(MEDIAS) {
 });
 meumobiFilters.filter('bytesToSize', function() {
   return function(bytes) {
+    bytes = bytes * 1000;
     if(bytes == 0) return '0 Byte';
     var k = 1000;
     var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
