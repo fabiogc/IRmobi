@@ -98,6 +98,7 @@ meumobiServices.provider('files', function(IS_APP) {
           api.addFile(fileName, {
             title: file.title,
             type: file.type,
+            length: file.length,
             path: entry.nativeURL
           });
           delete fileTransfers[fileName];
