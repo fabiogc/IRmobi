@@ -46,7 +46,7 @@
 <body ng-class="performance.site.theme.layout_alternatives.navbar">
   <!-- header -->
   <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
-   <ul ng-if="languages.length > 1" class="nav navbar-nav navbar-language pull-right">
+   <ul ng-class="{'hide' : languages.length < 2}" class="nav navbar-nav navbar-language pull-right">
       <li class="dropdown">
         <a href="" class="dropdown-toggle text-white" data-toggle="dropdown">
           <i class="fa fa-globe fa-lg"></i> <span class="hidden-xs-only" ng-bind="'Select Language'|translate"></span>
@@ -152,7 +152,9 @@
   config_data.SITEBUILDER = "{$smarty.const.SITE_BUILDER_URL}"; //REMOVE IF SANTANDER
   config_data.HOME = "{$performance.site.theme.layout_alternatives.home}";
   config_data.IS_APP = {if $build}true{else}false{/if};
+  {if $build}
   config_data.PUSH = {literal}{appId: "482BE-4B9BA", gcmProjectNumber: "706933317564"};{/literal}
+  {/if}
   config_data.ANALYTICS = '{if is_array($performance.site.analytics_token)}{$performance.site.analytics_token[1]}{else}{$performance.site.analytics_token}{/if}';
   var translations = {translations};
   {literal}
