@@ -48,7 +48,7 @@
   <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
    <ul ng-class="{'hide' : languages.length < 2}" class="nav navbar-nav navbar-language pull-right">
       <li class="dropdown">
-        <a href="" class="dropdown-toggle text-white" data-toggle="dropdown">
+        <a href="" class="dropdown-toggle" data-toggle="dropdown">
           <i class="fa fa-globe fa-lg"></i> <span class="hidden-xs-only" ng-bind="'Select Language'|translate"></span>
           <b class="caret hidden-xs-only"></b>
         </a>
@@ -59,10 +59,10 @@
     </ul>
     <a class="navbar-brand" ng-click="goTo('/')">
     <img ng-if="performance.site.logo" ng-src="{{thumbify(performance.site.logo, '200x200_')}}" data-ng-alt="{{performance.site.title}}" width="123">
-    <span class="text-white" ng-if="!performance.site.logo" ng-bind="performance.site.title"></span>
+    <span ng-if="!performance.site.logo" ng-bind="performance.site.title"></span>
     </a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
-      <i class="fa fa-bars fa-lg text-white"></i>
+      <i class="fa fa-bars fa-lg"></i>
     </button>
     <ul class="nav navbar-nav hidden-xs">
     </ul>
