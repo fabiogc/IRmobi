@@ -28,13 +28,21 @@
 
     api.pushNotification = api.isAvailable() ? window.plugins.pushNotification : null;
 
+    var clearBadge = function() {
+      if(device.platform == "iPhone" || device.platform == "iOS") {
+        api.pushNotification.setApplicationIconBadgeNumber(0);
+      }
+    };
+
     var registerPushwoosh = function(params, callback) {
       try {
       //set push notifications handler
       document.addEventListener('push-notification', function(e) {
         console.log(JSON.stringify(e.notification));
-        if (settings.onPushNotification)          
-         settings.onPushNotification(e);
+        if (settings.onPushNotification) {
+          settings.onPushNotification(e);
+        }
+        clearBadge();
       });
 
       //start register
@@ -74,22 +82,21 @@
         registerSettings.android.appid = settings.appId;
         registerSettings.ios.pw_appid = settings.appId;
 
-        console.log(JSON.stringify(settings));
-        console.log('is available', api.isAvailable());
         if (api.isAvailable()) {
           if(device.platform == "Android") {
             registerPushwoosh(registerSettings.android);
           }
           if(device.platform == "iPhone" || device.platform == "iOS") {
             registerPushwoosh(registerSettings.ios, function() {
-              //reset badges on start
-              pushNotification.setApplicationIconBadgeNumber(0);
+              //after register
             });
           }
         }
       } catch(err) {
         console.log(err.message);
       }
+      //clear badge on start
+      clearBadge();
     };
 
     this.$get = function() {
