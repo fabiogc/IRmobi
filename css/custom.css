@@ -131,11 +131,17 @@ li.past-event {
 	}
 }
 
+/* Mobile devices */
 @media (max-width: 767px) {
   .navbar-brand {
     padding-left: 0px;
   }
 
+  .navbar-language {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
   /*Sidebar*/
   .dropdown-submenu > ul.dropdown-menu, .dropdown-submenu:hover > ul.dropdown-menu  {
     display: none;
