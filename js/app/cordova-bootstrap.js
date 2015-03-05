@@ -61,31 +61,36 @@ var app = {
 		angular.element(document).ready(function() {
 			angular.bootstrap(document, ['meumobiApp']);
 
-			jQuery(document).on('click', "a[target='_blank']", function(event) {
-				event.preventDefault();
-				var url = this.href;
-				if (device.platform != 'iOS') {
-					url = "https://docs.google.com/viewer?embedded=true&url=" + this.href;
+      var openAppBrowser = function (url, target, location, gdoc) {
+        target = target ? target : '_blank';
+        location = location ? location : 'no';
+        //open on Gdoc if not IOS to prevent errors
+				if (gdoc && target == '_blank' && device.platform.toLowerCase() != 'ios') {
+					url = "https://docs.google.com/viewer?embedded=true&url=" + url;
 				}
-				iabRef = window.open(url, '_blank', 'location=no,enableViewportScale=yes');
+				iabRef = window.open(url, target, 'location='+ location +',enableViewportScale=yes');
 				iabRef.addEventListener('loadstart', iabLoadStart);
 				iabRef.addEventListener('loadstop', iabLoadStop);
 				iabRef.addEventListener('exit', iabClose);
-			});
+      };
 
-			jQuery(document).on('click', "a[rel='external']", function(event) {
-				event.preventDefault();
-				// Open in default browser App (on desktop: open in new window/tab)
-				window.open(this.href, '_system');
-			});
-
-     $(document).on('click', '[data-in-app-browser] a[href^=http], a[href^=https]', function(e){
+     $(document).on('click', '[data-in-app-browser] a[href^=http],[data-in-app-browser] a[href^=https]', function(e){
         e.preventDefault();
-        console.log('In app');
-        var $this = $(this); 
-        var target = $this.data('inAppBrowser') || '_blank';
-        window.open($this.attr('href'), target);
+        e.stopPropagation();
+        console.log('In app browser');
+        var $this = $(this);
+        var parent = $this.parents('[data-in-app-browser]:first');
+        console.log('location ' + parent.data('location'));
+        console.log('target ' + parent.data('inAppBrowser'));
+        openAppBrowser(this.href, parent.data('inAppBrowser'), parent.data('location'), parent.data('gdoc'));
       });
+
+			$(document).on('click', "a[rel='external']", function(e) {
+				e.preventDefault();
+        e.stopPropagation();
+				// Open in default browser App (on desktop: open in new window/tab)
+        openAppBrowser(this.href, '_system');
+			});
 
       //remove splash
       navigator.splashscreen.hide();
