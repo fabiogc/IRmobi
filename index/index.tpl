@@ -241,8 +241,8 @@
 	</script>
   {/if}
 {if $build}
-  <script type="text/javascript" src="js/index.js" {$defer}></script>
-  <script type="text/javascript" {$defer}>
+  <script type="text/javascript" src="themes/rimobi/js/app/cordova-bootstrap.js"></script>
+  <script type="text/javascript">
     app.initialize();
   </script>
 {/if}

@@ -56,17 +56,21 @@ meumobiDirectives.directive('downloadFile', function($rootScope, translateFilter
       };
 
       scope.deleteFile = function (file) {
-        var shouldDelete = $window.confirm(translateFilter('You want to remove the file?'));
-        if (!shouldDelete) { return; }
-        files.remove(file).then(function(data) {
-          $timeout(function() {
-            console.log('removed file');
-            scope.file = data;
-          },0);
-        }, function() {
-          //error was already logged by the service
-          window.plugins.toast.showShortBottom(translateFilter('Error removing the file.'));
-        });
+        navigator.notification.confirm(
+          translateFilter('You want to remove the file?'),
+          function(index) {
+            if (index != 1) returm;//stop if not accepted
+            files.remove(file).then(function(data) {
+              $timeout(function() {
+                console.log('removed file');
+                scope.file = data;
+              },0);
+            }, function() {
+              //error was already logged by the service
+              window.plugins.toast.showShortBottom(translateFilter('Error removing the file.'));
+            });
+          }
+        );
       };
     }
 	};
