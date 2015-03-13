@@ -171,7 +171,9 @@ meumobiApp.config(function($routeProvider,
 
 meumobiApp.run(function($rootScope, $location, $translate, Settings, analytics, SITEBUILDER, IS_APP) {
   //Set site language
-  $translate.use(Settings.getLanguage());
+  $rootScope.language = Settings.getLanguage();
+  $translate.use($rootScope.language);
+
 
   $rootScope.isOnline = navigator.onLine;
 
