@@ -82,6 +82,7 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 			scope.parseFloat = parseFloat;
 			if (!scope.code) return;
 			Stock.getQuotes(scope.code).then(function(data) {
+        if (!data.query) return;
 				var quotes = data.query.results.quote;
 				scope.source = (scope.code.indexOf(':') === 0) ? 'Enfoque' : 'Yahoo';
 				if (quotes.length >=4) {

@@ -26,15 +26,28 @@
             console.log("Error: " + JSON.stringify(message));
             deferred.reject(message);
           };
+          if (device.platform.toLowerCase() == 'android') {//TODO use meumobi device service
+            window.plugins.calendar.createEventInteractively(
+              title,
+              address,
+              description,
+              startDate,
+              endDate,
+              success,
+              error
+            );
+          } else {
+            window.plugins.calendar.createEvent(
+              title,
+              address,
+              description,
+              startDate,
+              endDate,
+              success,
+              error
+            );
 
-          window.plugins.calendar.createEvent(
-            title,
-            address,
-            description,
-            startDate,
-            endDate,
-            success,
-            error);
+          }
         };
 
         //show confirm alert
