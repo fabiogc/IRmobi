@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
   angular.module('phonegapCalendar', [])
-  .factory('Calendar', function($q) {
+  .factory('Calendar', function($q, device) {
 
     return {
       addEvent: function(title, address, description, start_date, end_date, confirm_message) {
@@ -26,7 +26,7 @@
             console.log("Error: " + JSON.stringify(message));
             deferred.reject(message);
           };
-          if (device.platform.toLowerCase() == 'android') {//TODO use meumobi device service
+          if (device.isAndroid()) {
             window.plugins.calendar.createEventInteractively(
               title,
               address,
