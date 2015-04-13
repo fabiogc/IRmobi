@@ -17,18 +17,18 @@
     ////////////////////////
     
     function isAndroid() {
-      return this.platform() == 'android';
+      return this.platform() == 'Android';
     }
 
     function isIos() {
-      return this.platform() == 'ios';
+      return this.platform() == 'iOS';
     }
 
     function platform() {
-      return device ? device.platform.toLowerCase() : null; 
+      return device ? device.platform : null;
     }
 
-    function isOnline {
+    function isOnline() {
       //TODO
     }
   }

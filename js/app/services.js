@@ -1,4 +1,4 @@
-var meumobiServices = angular.module('meumobiServices', ['ngResource', 'angularFileUpload']);
+var meumobiServices = angular.module('meumobiServices', ['ngResource', 'angularFileUpload','meumobi']);
 
 meumobiServices.factory('Site', ['httpWithFallback', '$q', 'Settings', 'TIMEOUT', function(httpWithFallback, $q, Settings, TIMEOUT) {
   var service = {};

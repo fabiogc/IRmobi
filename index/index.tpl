@@ -199,11 +199,11 @@
   <script type="text/javascript" src="themes/rimobi/js/lib/angular-media-player.min.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/lib/analytics.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/meumobi.module.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/app/services/device.service.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/helpers.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/services.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/services/files.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/services/settings.js" {$defer}></script>
-  <script type="text/javascript" src="themes/rimobi/js/app/services/device.service.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/controllers.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/controllers/items_controller.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/controllers/contact_controller.js" {$defer}></script>
