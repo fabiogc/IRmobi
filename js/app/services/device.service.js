@@ -25,7 +25,7 @@
     }
 
     function platform() {
-      return device ? device.platform : null;
+      return window.device ? window.device.platform : null;
     }
 
     function isOnline() {
