@@ -1,5 +1,7 @@
 <p>
   <a ng-if="file.url" ng-click="downloadFile(file)">
-    <span class="btn btn-white btn-xs"><i class="fa {{file.type|mediaIconClass}}"></i> {{'Download'|translate}}</span> {{file.title}} ({{file.length|bytesToSize}})
+    <span class="btn btn-white btn-xs">
+      <i class="fa {{file.type|mediaIconClass}}"></i> {{'Download'|translate}}
+    </span> {{file.title}} <span ng-if="file.length">({{file.length|bytesToSize}})</span>
   </a>
 </p>
