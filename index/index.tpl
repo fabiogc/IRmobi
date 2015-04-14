@@ -58,7 +58,7 @@
       </li>
     </ul>
     <a class="navbar-brand" ng-click="goTo('/')">
-    <img ng-if="performance.site.logo" ng-src="{{thumbify(performance.site.logo, '200x200_')}}" data-ng-alt="{{performance.site.title}}" width="123">
+    <img ng-if="performance.site.logo" ng-src="{{thumbify(performance.site.logo)}}" data-ng-alt="{{performance.site.title}}" width="123">
     <span ng-if="!performance.site.logo" ng-bind="performance.site.title"></span>
     </a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
