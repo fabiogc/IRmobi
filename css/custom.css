@@ -124,6 +124,21 @@ li.past-event {
   background-color: #f7f8f9;
 }
 
+/* error messages */
+.form-group .help-block {
+  font-size: 12px;
+  margin-top: 3px;
+  display: none;
+}
+
+.form-group.has-error .form-control {
+  /*border-color: #ff5f5f !important;*/
+}
+
+.form-group.has-error .help-block {
+  display: block;
+}
+
 @media (min-width: 768px) {
 	.navbar-brand {
 		border: none;

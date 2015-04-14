@@ -1,8 +1,9 @@
 meumobiControllers.controller('ContactCtrl', function($scope, $http, $translate, Settings) {
     $scope.formData = {};
     $scope.isSantander = $scope.performance.site.title.toLowerCase().indexOf("santander") !== -1;
-    $scope.submit = function() {
-      if ($('#contact-form').parsley('validate')) {//this is a validation from "first" theme
+    $scope.submit = function(isValid) {
+      $scope.submitted = true;
+      if (isValid) {
         $http({
           method: 'POST',
           url: Settings.getSiteBuilderApiUrl('/mail'),

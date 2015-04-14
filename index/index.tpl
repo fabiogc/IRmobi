@@ -214,7 +214,6 @@
   <script type="text/javascript" src="themes/rimobi/js/app/settings.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app/bootstrap.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/bootstrap.js" {$defer}></script>
-  <script type="text/javascript" src="themes/rimobi/js/parsley/parsley.min.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/jquery.blueimp-gallery.min.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app.js" {$defer}></script>
   <script type="text/javascript" src="themes/rimobi/js/app.plugin.js" {$defer}></script>
