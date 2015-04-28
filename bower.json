@@ -1,0 +1,22 @@
+{
+  "name": "irmobi",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.x",
+    "angular-route": "~1.x", 
+    "angular-sanitize": "~1.x",
+    "angular-cookies": "~1.x",
+    "angular-touch": "~1.x",
+    "angular-resource": "~1.x",
+    
+    "angular-translate": "2.1.0",
+    "angulartics": "0.14.15",
+    
+    "font-awesome": "4.3",
+    "bootstrap": "3.2"
+  },
+  "devDependencies": {
+    "angular-resource": "~1.3.1"
+  }
+}
