@@ -11,7 +11,14 @@
 	<meta name="description" content="{$performance.site.description|strip_tags:false}" />
 	{/if}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
-  <link rel="stylesheet" href="themes/rimobi/css/app.min.css">
+  <!--link rel="stylesheet" href="themes/rimobi/css/rimobi.min.css" -->
+  <link rel="stylesheet" href="themes/rimobi/css/bootstrap.css">
+  <link rel="stylesheet" href="themes/rimobi/css/font-awesome.min.css">
+  <link rel="stylesheet" href="themes/rimobi/css/font.css">
+  <link rel="stylesheet" href="themes/rimobi/css/style.css">
+  <link rel="stylesheet" href="themes/rimobi/css/plugin.css">
+  <link rel="stylesheet" href="themes/rimobi/css/custom.css">
+  <link rel="stylesheet" href="themes/rimobi/css/blueimp-gallery.min.css" {$defer}>
 
   {if $performance.site.ios_app_id}
   <meta name="apple-itunes-app" content="app-id={$performance.site.ios_app_id}">
@@ -157,7 +164,7 @@
   {if $build}
   <script type="text/javascript" src="cordova.js"></script>
   {/if}
-  <script type="text/javascript" src="themes/rimobi/js/app.min.js" {$defer}></script>
+  <script type="text/javascript" src="themes/rimobi/js/app.js" {$defer}></script>
 
   <!-- script type="text/javascript" src="/node_modules/angular-i18n/i18n/angular-locale_{$current_locale}.js" {$defer}></script-->
   {if !$build}
