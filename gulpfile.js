@@ -90,6 +90,24 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest(path.join(config.dest, 'fonts')));
 });
 
+/*==================================
+=            Copy images           =
+==================================*/
+
+gulp.task('images', function() {
+  return gulp.src('src/images/**/*')
+    .pipe(gulp.dest(path.join(config.dest, 'images')));
+});
+
+/*==================================
+=            Copy Smarty tpl files           =
+==================================*/
+
+gulp.task('tpl', function() {
+  return gulp.src('src/tpl/**/*')
+    .pipe(gulp.dest(config.dest));
+});
+
 
 /*=================================================
 =            Copy html files to dest              =
@@ -153,7 +171,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('build', function(done) {
-  var tasks = ['html', 'fonts', 'css', 'js'];
+  var tasks = ['html', 'tpl', 'images', 'fonts', 'css', 'js'];
   seq('clean', tasks, done);
 });
 
