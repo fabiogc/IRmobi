@@ -1,0 +1,7 @@
+<div class="text-center">
+  <ul ng-if="category && totalPages > 1" class="pagination pagination-sm">
+    <li ng-if="hasPreviusPage"><a ng-href="{{parseUri(previusPage)}}"><i class="fa fa-chevron-left"></i></a></li>
+    <li ng-repeat="page in pages(totalPages)" ng-class="{'active': page == current}"><a ng-href="{{parseUri(page)}}" ng-bind="page"></a></li>
+    <li ng-if="hasNextPage"><a ng-href="{{parseUri(nextPage)}}"><i class="fa fa-chevron-right"></i></a></li>
+  </ul>
+</div>

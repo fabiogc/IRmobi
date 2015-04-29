@@ -1,4 +1,4 @@
-var meumobiApp = angular.module('meumobiApp', [
+angular.module('meumobiApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
@@ -21,7 +21,7 @@ var meumobiApp = angular.module('meumobiApp', [
     'pushwooshNotification'
     ]);
 
-meumobiApp.config(function($routeProvider,
+angular.module('meumobiApp').config(function($routeProvider,
       $locationProvider,
       $httpProvider,
       $translateProvider,
@@ -170,7 +170,7 @@ meumobiApp.config(function($routeProvider,
 
 });
 
-meumobiApp.run(function($rootScope, $location, $translate, Settings, analytics, SITEBUILDER, IS_APP) {
+angular.module('meumobiApp').run(function($rootScope, $location, $translate, Settings, analytics, SITEBUILDER, IS_APP) {
   //Set site language
   $rootScope.language = Settings.getLanguage();
   $translate.use($rootScope.language);

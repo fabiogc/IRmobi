@@ -1,0 +1,23 @@
+<header class="panel-heading" ng-bind="category.title"></header>
+<ul class="list-group" ng-if="items">
+  <li class="list-group-item media" ng-repeat="item in items|limitTo:limit">
+    <a  ng-href="#/items/{{item._id}}" ng-click="goToItem(item); $event.stopPropagation();">
+    <div class="pull-left thumb-small">
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x text-success"></i>
+        <i class="fa fa-chevron-right fa-stack-1x text-white"></i>
+      </span>
+    </div>
+    <div class="media-body">
+      <div class="pull-right media-mini text-center text-muted">
+        <strong class="h4" ng-bind="item.pubdate * 1000 |date:'dd'"></strong><br>
+        <small class="label bg-light" ng-bind="item.pubdate * 1000 |date:'MMM, yyyy'"></small>
+      </div>
+      <span class="h5 text-muted" ng-bind-html="item.title"></span>
+    </div>
+    </a>
+  </li>
+</ul>
+<div class="panel-footer bg-white">
+<a class="text-small text-center block m-b-none" ng-href="#/{{category.type}}/{{category.id}}" translate>More</a></div>
+</div>

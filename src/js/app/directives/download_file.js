@@ -1,4 +1,4 @@
-meumobiDirectives.directive('downloadFile', function($rootScope, translateFilter, files, $timeout, $window, IS_APP, MEDIAS) {
+angular.module('meumobiDirectives').directive('downloadFile', function($rootScope, translateFilter, files, $timeout, $window, IS_APP, MEDIAS) {
 	return {
 		restrict: 'E',
 		scope: {

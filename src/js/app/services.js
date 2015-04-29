@@ -1,6 +1,6 @@
-var meumobiServices = angular.module('meumobiServices', ['ngResource', 'angularFileUpload','meumobi']);
+angular.module('meumobiServices', ['ngResource', 'angularFileUpload','meumobi']);
 
-meumobiServices.factory('Site', ['httpWithFallback', '$q', 'Settings', 'TIMEOUT', function(httpWithFallback, $q, Settings, TIMEOUT) {
+angular.module('meumobiServices').factory('Site', ['httpWithFallback', '$q', 'Settings', 'TIMEOUT', function(httpWithFallback, $q, Settings, TIMEOUT) {
   var service = {};
   var categories = null;
   service.get = function(params) {
@@ -26,7 +26,7 @@ meumobiServices.factory('Site', ['httpWithFallback', '$q', 'Settings', 'TIMEOUT'
   return service;
 }]);
 
-meumobiServices.factory('Items', ['$resource', '$upload','$q', 'httpWithFallback', 'Settings', 'TIMEOUT',
+angular.module('meumobiServices').factory('Items', ['$resource', '$upload','$q', 'httpWithFallback', 'Settings', 'TIMEOUT',
   function($resource, $upload, $q, httpWithFallback, Settings, TIMEOUT) {
   var current = null;
   var service = $resource(Settings.getSiteBuilderApiUrl() + '/items/:id', {}, {
@@ -74,7 +74,7 @@ meumobiServices.factory('Items', ['$resource', '$upload','$q', 'httpWithFallback
   return service;
 }]);
 
-meumobiServices.factory('Categories', ['$resource', '$q', 'httpWithFallback', 'Settings', 'TIMEOUT',
+angular.module('meumobiServices').factory('Categories', ['$resource', '$q', 'httpWithFallback', 'Settings', 'TIMEOUT',
   function($resource, $q, httpWithFallback, Settings, TIMEOUT) {
     var service = {}; 
     service.load = function(id) {
@@ -111,7 +111,7 @@ meumobiServices.factory('Categories', ['$resource', '$q', 'httpWithFallback', 'S
     return service;
   }]);
 
-meumobiServices.factory('Stock', ['$http', '$q', 'STOCKS_API', 'TIMEOUT', function($http, $q, STOCKS_API, TIMEOUT) {
+angular.module('meumobiServices').factory('Stock', ['$http', '$q', 'STOCKS_API', 'TIMEOUT', function($http, $q, STOCKS_API, TIMEOUT) {
 	return {
 		getQuotes: function(code) {
 			var deferred = $q.defer();

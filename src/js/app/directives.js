@@ -1,6 +1,6 @@
-var meumobiDirectives = angular.module('meumobiDirectives', ['meumobiSettings']);
+angular.module('meumobiDirectives', ['meumobiSettings']);
 
-meumobiDirectives.directive('pagination', [ 'ITEM_PER_PAGE', function(ITEM_PER_PAGE) {
+angular.module('meumobiDirectives').directive('pagination', [ 'ITEM_PER_PAGE', function(ITEM_PER_PAGE) {
 	var paginate = function(scope) {
 		var total  = scope.category.items_count;
 		if (!total) return;//do nothig if has no item
@@ -41,7 +41,7 @@ meumobiDirectives.directive('pagination', [ 'ITEM_PER_PAGE', function(ITEM_PER_P
 	};
 }]);
 
-meumobiDirectives.directive('headlines', ['$location', 'Categories', 'Items', function($location, Categories, Items) {
+angular.module('meumobiDirectives').directive('headlines', ['$location', 'Categories', 'Items', function($location, Categories, Items) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -62,7 +62,7 @@ meumobiDirectives.directive('headlines', ['$location', 'Categories', 'Items', fu
 	};
 }]);
 
-meumobiDirectives.directive('breadcrumb', function(Categories) {
+angular.module('meumobiDirectives').directive('breadcrumb', function(Categories) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -73,7 +73,7 @@ meumobiDirectives.directive('breadcrumb', function(Categories) {
 	};
 });
 
-meumobiDirectives.directive('stock', ['Stock', function(Stock) {
+angular.module('meumobiDirectives').directive('stock', ['Stock', function(Stock) {
 	return {
 		restrict: 'E',
 		scope: {code: '='},
@@ -104,7 +104,7 @@ meumobiDirectives.directive('stock', ['Stock', function(Stock) {
 	};
 }]);
 
-meumobiDirectives.directive('navMenu', ['$location', '$timeout', function($location, $timeout) {
+angular.module('meumobiDirectives').directive('navMenu', ['$location', '$timeout', function($location, $timeout) {
 	return function(scope, element, attrs) {
 		var navMenu = function() {
 			var links = element.find('a'),
@@ -149,7 +149,7 @@ meumobiDirectives.directive('navMenu', ['$location', '$timeout', function($locat
 	};
 }]);
 
-meumobiDirectives.directive('videoGallery', ['$timeout', function($timeout) {
+angular.module('meumobiDirectives').directive('videoGallery', ['$timeout', function($timeout) {
 return {
     restrict: 'EA',
     scope: {

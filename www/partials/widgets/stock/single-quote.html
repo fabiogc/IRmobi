@@ -1,0 +1,33 @@
+<div class="row quotes">
+  <div class="col-xs-12">
+    <section class="panel text-center m-b-mini main">
+      <div class="panel-body">
+        <p class="h4">{{title}}</p>
+        <div class="line m-l m-r"></div>
+        <p class="h1">
+          {{tradePrice}}
+          <i class="fa {{(parseFloat(change) < 0) ? 'fa-caret-down text-danger' : 'fa-caret-up text-success'}}"><spam class="text-small">{{change}}</spam></i>
+        </p>
+      </div>
+    </section>
+  </div>
+  <div class="col-xs-12">
+    <section class="panel m-b-mini text-center">
+      <div class="panel-body">
+        <p class="h4">
+          {{'High'|translate}}  {{high}}
+        </p>
+        <div class="line m-l m-r"></div>
+        <p class="h4">
+          {{'Low'|translate}}  {{low}}
+        </p>
+        <div class="line m-l m-r"></div>
+        <p class="h4">
+          Volume {{volume}}
+        </p>
+      </div>
+    </section>
+  </div>
+  <p class="clearfix col-lg-12 text-small m-b-large"
+	style="text-align: right;">{{'delay 15´  Source:'|translate}} {{source}}</p>
+</div>

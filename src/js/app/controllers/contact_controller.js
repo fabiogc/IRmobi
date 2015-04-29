@@ -1,4 +1,4 @@
-meumobiControllers.controller('ContactCtrl', function($scope, $http, $translate, Settings) {
+angular.module('meumobiControllers').controller('ContactCtrl', function($scope, $http, $translate, Settings) {
     $scope.formData = {};
     $scope.isSantander = $scope.performance.site.title.toLowerCase().indexOf("santander") !== -1;
     $scope.submit = function(isValid) {

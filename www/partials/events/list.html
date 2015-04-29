@@ -1,0 +1,25 @@
+<div class="row m-t">
+	<breadcrumb title="{{category.title}}" link="#/{{category.type}}/{{category.id}}"></breadcrumb>
+	<div class="col-lg-12">
+		<section class="panel">
+			<header class="panel-heading" ng-bind="category.title">
+			</header>
+			<ul class="list-group media-list events">
+				<li class="list-group-item media" ng-repeat="item in items" ng-class="isFutureDate(item.start_date) ? 'future-event' : 'past-event'">
+				<span ng-if="item.images" class="pull-left">
+					<img class="media-object" ng-src="{{thumbify(item.images[0].path, '80x80_')}}" alt="{{item.images[0].title}}">
+				</span>
+				<div class="media-body">
+					<div class="pull-right media-mini text-center text-muted">
+						<strong class="h5" ng-bind="item.start_date * 1000 |date:'dd'"></strong><br>
+						<small class="label bg-light" ng-bind="item.start_date * 1000 |date:'MMM, yyyy'"></small>
+					</div>
+					<a ng-if="isFutureDate(item.start_date)" class="h5 text-muted" class="add-event" ng-click="addEvent(item)" ng-bind-html="item.title"></a>
+          <a ng-if="!isFutureDate(item.start_date)" class="h5 text-muted" ng-bind-html="item.title"></a>
+				</div>
+				</li>
+			</ul>
+		</section> 
+	</div> <!-- col -->
+	<pagination category="category" current="currentPage" uri="'#/:type/:id/page/:page'"></pagination>
+</div>

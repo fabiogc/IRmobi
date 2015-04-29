@@ -1,4 +1,4 @@
-meumobiControllers.controller('ItemShowCtrl', function($scope, $sce, Items, Categories, $routeParams, translateFilter,IS_APP) {
+angular.module('meumobiControllers').controller('ItemShowCtrl', function($scope, $sce, Items, Categories, $routeParams, translateFilter,IS_APP) {
   var fulfill = function(response) {
     var item = response.data;
     Categories.load(item.parent_id).then(function(data) {

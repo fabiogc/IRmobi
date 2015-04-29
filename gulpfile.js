@@ -25,7 +25,8 @@ var config = {
       './src/js/lib/md5.min.js',
       './src/js/lib/angular-pushwoosh.js',
       './src/js/lib/angular-adtech.js',
-      './src/js/lib/angular-media-player.min.js'
+      './src/js/lib/angular-media-player.min.js',
+      './src/js/lib/analytics.js'
     ],
     css: [
       './bower_components/bootstrap/dist/css/bootstrap.css',
@@ -71,6 +72,7 @@ gulp.task('clean', function(cb) {
   return gulp.src([
       path.join(config.dest, 'index.html'),
       path.join(config.dest, 'images'),
+      path.join(config.dest, 'partials'),
       path.join(config.dest, 'css'),
       path.join(config.dest, 'js'),
       path.join(config.dest, 'fonts')
@@ -99,9 +101,9 @@ gulp.task('images', function() {
     .pipe(gulp.dest(path.join(config.dest, 'images')));
 });
 
-/*==================================
+/*===========================================
 =            Copy Smarty tpl files           =
-==================================*/
+=============================================*/
 
 gulp.task('tpl', function() {
   return gulp.src('src/tpl/**/*')
@@ -109,21 +111,13 @@ gulp.task('tpl', function() {
 });
 
 
-/*=================================================
-=            Copy html files to dest              =
-=================================================*/
+/*============================================
+=            Copy Partials                   =
+==============================================*/
 
-gulp.task('html', function() {
-  var inject = [];
-  if (typeof config.weinre === 'object') {
-    inject.push('<script src="http://' + config.weinre.boundHost + ':' + config.weinre.httpPort + '/target/target-script-min.js"></script>');
-  }
-  if (config.cordova) {
-    inject.push('<script src="cordova.js"></script>');
-  }
-  gulp.src(['src/html/**/*.html'])
-    .pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
-    .pipe(gulp.dest(config.dest));
+gulp.task('partials', function() {
+  gulp.src(['src/partials/**/*.html'])
+    .pipe(gulp.dest(path.join(config.dest, 'partials')));
 });
 
 
@@ -139,7 +133,7 @@ gulp.task('css', function() {
       gulp.src('./src/css/**/*.css')
     )
     .pipe(concat('app.css'))
-    .pipe(cssmin())
+    //.pipe(cssmin())
     .pipe(rename({
       suffix: '.min'
     }))
@@ -171,7 +165,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('build', function(done) {
-  var tasks = ['html', 'tpl', 'images', 'fonts', 'css', 'js'];
+  var tasks = ['partials', 'tpl', 'images', 'fonts', 'css', 'js'];
   seq('clean', tasks, done);
 });
 

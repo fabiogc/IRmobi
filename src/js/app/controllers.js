@@ -1,6 +1,6 @@
-var meumobiControllers = angular.module('meumobiControllers', ['angularFileUpload']);
+angular.module('meumobiControllers', ['angularFileUpload']);
 
-meumobiControllers.controller('SiteCtrl', function($scope, Site, Categories, $location, $window, $timeout, Settings) {
+angular.module('meumobiControllers').controller('SiteCtrl', function($scope, Site, Categories, $location, $window, $timeout, Settings) {
     $scope.headlinesRows = 2;
     $scope.languages = Settings.getAvailableLanguages();
     //change language and reload the site
@@ -33,7 +33,7 @@ meumobiControllers.controller('SiteCtrl', function($scope, Site, Categories, $lo
     Site.get().then(fulfill);
 });
 
-meumobiControllers.controller('EventListCtrl', ['$scope',
+angular.module('meumobiControllers').controller('EventListCtrl', ['$scope',
   'Categories',
   '$routeParams',
   'Calendar',
@@ -72,7 +72,7 @@ meumobiControllers.controller('EventListCtrl', ['$scope',
     });
   }]);
 
-meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$timeout', '$location',
+angular.module('meumobiControllers').controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$timeout', '$location',
   function($scope, Items, HOME, $timeout, $location) {
     $scope.has_breadcrumb = (HOME != 'latest');
     var fulfill = function(response) {
@@ -97,7 +97,7 @@ meumobiControllers.controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$ti
     };
   }]);
 
-meumobiControllers.controller('NewsCtrl', ['$scope', 'Site', 
+angular.module('meumobiControllers').controller('NewsCtrl', ['$scope', 'Site', 
   function($scope, Site) {
     Site.news().then(function(data) {
       $scope.items = data;
@@ -105,7 +105,7 @@ meumobiControllers.controller('NewsCtrl', ['$scope', 'Site',
   }
 ]);
 
-meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', 'Items', '$routeParams', '$location',
+angular.module('meumobiControllers').controller('CategoryShowCtrl', ['$scope', 'Categories', 'Items', '$routeParams', '$location',
   function($scope, Categories, Items, $routeParams, $location) {
     Categories.load($routeParams.id).then(function(data) {
       $scope.category = data;
@@ -125,7 +125,7 @@ meumobiControllers.controller('CategoryShowCtrl', ['$scope', 'Categories', 'Item
     };
   }]);
 
-meumobiControllers.controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '$routeParams', '$location','$upload',
+angular.module('meumobiControllers').controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '$routeParams', '$location','$upload',
   function($scope, Items, Categories, $routeParams, $location, $upload) {
     $scope.images = {};
     $scope.item = {};

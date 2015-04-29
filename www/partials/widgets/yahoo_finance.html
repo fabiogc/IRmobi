@@ -1,0 +1,28 @@
+<div class="row quotes">
+	<div class="col-xs-12">
+		<section class="panel text-center m-b-mini main">
+			<div class="panel-body">
+				<p class="h4">{{mainQuote.symbol}}</p>
+				<div class="line m-l m-r"></div>
+				<p class="h1">
+					{{mainQuote.LastTradePriceOnly}}
+          <i class="fa {{(parseFloat(mainQuote.ChangeinPercent) < 0) ? 'fa-caret-down text-danger' : 'fa-caret-up text-success'}}"><spam class="text-small">{{mainQuote.ChangeinPercent}}</spam></i>
+				</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-xs-12">
+		<section class="panel m-b-mini text-center">
+			<div class="panel-body">
+				<p ng-repeat-start="quote in quotes" class="h4">
+					{{quote.symbol}} {{quote.LastTradePriceOnly}}
+					<spam class="h3">
+          <i class="fa {{(parseFloat(quote.ChangeinPercent) < 0) ? 'fa-caret-down text-danger' : 'fa-caret-up text-success'}}"><spam class="text-small">{{quote.ChangeinPercent}}</spam></i></spam>
+				</p>
+				<div class="line m-l m-r" ng-repeat-end ng-if="!$last"></div>
+			</div>
+		</section>
+	</div>
+	<p class="clearfix col-lg-12 text-small m-b-large"
+		style="text-align: right;">{{created_at|date:'medium'}} Fonte: Yahoo</P>
+</div>

@@ -1,4 +1,4 @@
-meumobiServices.factory('Settings', function(SITEBUILDER, DOMAINS) {
+angular.module('meumobiServices').factory('Settings', function(SITEBUILDER, DOMAINS) {
 	return {
     getAvailableLanguages : function() {
       return Object.keys(DOMAINS);
