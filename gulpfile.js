@@ -3,7 +3,7 @@ var config = {
   vendor: {
     js: [
       './bower_components/jquery/dist/jquery.js',
-      './bower_components/bootstrap/js/bootstrap.js',
+      './bower_components/bootstrap/dist/js/bootstrap.js',
       './src/js/lib/angular-file-upload-shim.min.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',
@@ -70,16 +70,16 @@ gulp.on('err', function(e) {
 
 gulp.task('clean', function(cb) {
   return gulp.src([
-      path.join(config.dest, 'index.html'),
-      path.join(config.dest, 'images'),
-      path.join(config.dest, 'partials'),
-      path.join(config.dest, 'css'),
-      path.join(config.dest, 'js'),
-      path.join(config.dest, 'fonts')
-    ], {
-      read: false
-    })
-    .pipe(rimraf());
+    path.join(config.dest, 'index.html'),
+    path.join(config.dest, 'images'),
+    path.join(config.dest, 'partials'),
+    path.join(config.dest, 'css'),
+    path.join(config.dest, 'js'),
+    path.join(config.dest, 'fonts')
+  ], {
+    read: false
+  })
+  .pipe(rimraf());
 });
 
 
@@ -88,8 +88,13 @@ gulp.task('clean', function(cb) {
 ==================================*/
 
 gulp.task('fonts', function() {
-  return gulp.src(config.vendor.fonts)
-    .pipe(gulp.dest(path.join(config.dest, 'fonts')));
+  return streamqueue({
+      objectMode: true
+    },
+    gulp.src(config.vendor.fonts),
+    gulp.src('./src/fonts/**/*')
+  )
+  .pipe(gulp.dest(path.join(config.dest, 'fonts')));
 });
 
 /*==================================
@@ -116,7 +121,7 @@ gulp.task('tpl', function() {
 ==============================================*/
 
 gulp.task('partials', function() {
-  gulp.src(['src/partials/**/*.html'])
+  return gulp.src(['src/partials/**/*.html'])
     .pipe(gulp.dest(path.join(config.dest, 'partials')));
 });
 
@@ -126,18 +131,18 @@ gulp.task('partials', function() {
 ======================================================================*/
 
 gulp.task('css', function() {
-    streamqueue({
-        objectMode: true
-      },
-      gulp.src(config.vendor.css),
-      gulp.src('./src/css/**/*.css')
-    )
-    .pipe(concat('app.css'))
-    //.pipe(cssmin())
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest(path.join(config.dest, 'css')));
+  return streamqueue({
+      objectMode: true
+    },
+    gulp.src(config.vendor.css),
+    gulp.src('./src/css/**/*.css')
+  )
+  .pipe(concat('app.css'))
+  .pipe(cssmin())
+  .pipe(rename({
+    suffix: '.min'
+  }))
+  .pipe(gulp.dest(path.join(config.dest, 'css')));
 });
 
 /*====================================================================
@@ -147,21 +152,21 @@ gulp.task('css', function() {
 // - Precompile templates to ng templateCache
 
 gulp.task('js', function() {
-  streamqueue({
-        objectMode: true
-      },
-      gulp.src(config.vendor.js),
-      gulp.src('./src/js/app/**/*.js').pipe(ngFilesort()),
-      gulp.src('./src/js/theme/**/*.js').pipe(ngFilesort())
-    )
-    .pipe(sourcemaps.init())
-    .pipe(concat('app.js'))
-    //.pipe(uglify())
-    .pipe(sourcemaps.write('.'))
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest(path.join(config.dest, 'js')));
+  return streamqueue({
+      objectMode: true
+    },
+    gulp.src(config.vendor.js),
+    gulp.src('./src/js/app/**/*.js').pipe(ngFilesort()),
+    gulp.src('./src/js/theme/**/*.js').pipe(ngFilesort())
+  )
+  .pipe(sourcemaps.init())
+  .pipe(concat('app.js'))
+  .pipe(uglify({mangle: false}))
+  .pipe(sourcemaps.write('.'))
+  .pipe(rename({
+    suffix: '.min'
+  }))
+  .pipe(gulp.dest(path.join(config.dest, 'js')));
 });
 
 gulp.task('build', function(done) {
