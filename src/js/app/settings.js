@@ -34,17 +34,4 @@ meumobiSettings.constant('MEDIAS', {
   }
 });
 
-meumobiSettings.factory('interceptor', function($q) {
-  return {
-    'requestError': function(rejection) {
-      // do something on error
-      console.log(rejection);
-      return $q.reject(rejection);
-    },
-  'responseError': function(rejection) {
-    // do something on error
-    return $q.reject(rejection);
-  }
-  };
-});
 var gaPlugin = null;

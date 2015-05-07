@@ -109,8 +109,11 @@
   </nav>
   <!-- / nav -->
   <section id="content">
+    <div class="alert alert-success" role="alert">
+      <strong>Carregando!</strong> por favor espere
+    </div>
     <section class="main padder">
-    {/literal}
+   {/literal}
     {foreach from=$performance.plugins item=plugin}
       {if $plugin.plugin == 'adtech'}
       <adtech-ad network="{$plugin.options.network}" site-id="{$plugin.options.site_id}" placement-id="{$plugin.options.placement_id}" alias="{$plugin.options.alias}"></adtech-ad>
