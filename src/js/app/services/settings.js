@@ -22,20 +22,20 @@ angular.module('meumobi').factory('Settings', function(SITEBUILDER, DOMAINS) {
 .factory('interceptor', function($q, $rootScope) {
   return {
     request: function(config) {
-      $rootScope.$broadcast('loading:start');
+      $rootScope.$emit('loading:start');
       return config;
     },
     response: function(response) {
-      $rootScope.$broadcast('loading:start');
+      $rootScope.$emit('loading:end');
       return response;
-    }
+    },
     requestError: function(rejection) {
-      $rootScope.$broadcast('loading:end');
+      $rootScope.$emit('loading:end');
       console.log(rejection);
       return $q.reject(rejection);
     },
     responseError: function(rejection) {
-      $rootScope.$broadcast('loading:end');
+      $rootScope.$emit('loading:end');
       return $q.reject(rejection);
     }
   };
