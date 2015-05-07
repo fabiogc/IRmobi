@@ -14,11 +14,9 @@
     function link(scope, element, attrs) {
       $rootScope.$on('loading:start', function() {
         scope.isLoading = true;
-        console.log('STARTT');
       });
       $rootScope.$on('loading:end', function() {
         scope.isLoading = false;
-        console.log('ENDDD');
       });
     }
   }

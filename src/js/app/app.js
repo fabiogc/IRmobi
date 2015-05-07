@@ -51,6 +51,7 @@ angular.module('meumobiApp').config(function($routeProvider,
           controller: 'LatestItemsCtrl',
           templateUrl: 'themes/rimobi/partials/items/latest.html',
           title: 'Latest',
+          canReload: true,
           view: '/'
         });
       } else {
@@ -58,6 +59,7 @@ angular.module('meumobiApp').config(function($routeProvider,
           when('/', {
             templateUrl: 'themes/rimobi/partials/index.html',
             title: 'Home',
+            canReload: true,
             view: '/'
           });
       }
@@ -65,6 +67,7 @@ angular.module('meumobiApp').config(function($routeProvider,
       $routeProvider.when('/articles/:id', {
         templateUrl: 'themes/rimobi/partials/articles/list.html',
         controller: 'CategoryShowCtrl',
+        canReload: true,
         resolve: {
           viewName: resolveCategory
         }
@@ -72,14 +75,10 @@ angular.module('meumobiApp').config(function($routeProvider,
       when('/articles/:id/page/:page', {
         templateUrl: 'themes/rimobi/partials/articles/list.html',
         controller: 'CategoryShowCtrl',
+        canReload: true,
         resolve: {
           viewName: resolveCategory
         }
-      }).
-      when('/extended_articles/:id', {
-        templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
-        controller: 'CategoryShowCtrl',
-        title: 'Article'
       }).
       when('/files', {
         templateUrl: 'themes/rimobi/partials/files.html',
@@ -93,13 +92,10 @@ angular.module('meumobiApp').config(function($routeProvider,
         view: '/news',
         title: 'News'
       }).
-      when('/extended_articles/:id/page/:page', {
-        templateUrl: 'themes/rimobi/partials/extended_articles/list.html',
-        controller: 'CategoryShowCtrl'
-      }).
       when('/events/:id', {
         templateUrl: 'themes/rimobi/partials/events/list.html',
         controller: 'EventListCtrl',
+        canReload: true,
         resolve: {
           viewName: resolveCategory
         }
@@ -107,6 +103,7 @@ angular.module('meumobiApp').config(function($routeProvider,
       when('/events/:id/page/:page', {
         templateUrl: 'themes/rimobi/partials/events/list.html',
         controller: 'EventListCtrl',
+        canReload: true,
         resolve: {
           viewName: resolveCategory
         }
@@ -115,7 +112,8 @@ angular.module('meumobiApp').config(function($routeProvider,
         templateUrl: 'themes/rimobi/partials/items/latest.html',
         controller: 'LatestItemsCtrl',
         view: '/latest',
-        title: 'Latest'
+        title: 'Latest',
+        canRelaod: true
       }).
       when('/items/:id', {
         templateUrl: 'themes/rimobi/partials/items/show.html',
@@ -170,11 +168,10 @@ angular.module('meumobiApp').config(function($routeProvider,
 
 });
 
-angular.module('meumobiApp').run(function($rootScope, $location, $translate, Settings, analytics, SITEBUILDER, IS_APP) {
+angular.module('meumobiApp').run(function($rootScope, $route, $location, $translate, Settings, analytics, SITEBUILDER, IS_APP) {
   //Set site language
   $rootScope.language = Settings.getLanguage();
   $translate.use($rootScope.language);
-
 
   $rootScope.isOnline = navigator.onLine;
 
@@ -226,6 +223,16 @@ angular.module('meumobiApp').run(function($rootScope, $location, $translate, Set
   };
 
   $rootScope.parseFloat = parseFloat;
+  
+  //sync data from API 
+  $rootScope.reload = function() {
+    $rootScope.$broadcast('reloadData');
+  };
+
+  $rootScope.canReload = function() {
+    if($route.current)
+      return $route.current.canReload;
+  };
 
   $rootScope.isActive = function (view) { 
     return view === $rootScope.activeView;
@@ -240,7 +247,6 @@ angular.module('meumobiApp').run(function($rootScope, $location, $translate, Set
   $rootScope.$on('$routeChangeSuccess', function(e, current){
     //get name from route and send to analytics
     analytics.trackPage(current.$$route.title);
-    console.log(current.$$route.view);
     $rootScope.activeView = current.$$route.view;
   });
 });

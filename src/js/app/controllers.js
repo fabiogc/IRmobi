@@ -2,7 +2,6 @@ angular.module('meumobiControllers', ['angularFileUpload']);
 
 angular.module('meumobiControllers').controller('SiteCtrl', function($scope, Site, Categories, $location, $window, $timeout, Settings) {
     $scope.headlinesRows = 2;
-    $scope.languages = Settings.getAvailableLanguages();
     //change language and reload the site
     $scope.setLanguage = function(language) {
       console.log('set language to ' + language);
@@ -14,10 +13,6 @@ angular.module('meumobiControllers').controller('SiteCtrl', function($scope, Sit
         },0);
       }
     };
-    var params = {};
-    var search = parseLocationSearch($window.location.search);
-    if (search.skin)
-    params.skin = search.skin;
     var fulfill = function(response) {
       var data = response.data;
       data.categories = Categories.getTree(data.categories);
@@ -30,7 +25,12 @@ angular.module('meumobiControllers').controller('SiteCtrl', function($scope, Sit
       $scope.splitedCategories = $scope.splitArray(categories, 2);
       if (response.promise) response.promise.then(fulfill);
     };
-    Site.get().then(fulfill);
+    var loadData = function() {
+      $scope.languages = Settings.getAvailableLanguages();
+      Site.get().then(fulfill);
+    };
+    $scope.$on('reloadData', loadData);//handle reload
+    loadData();//first load
 });
 
 angular.module('meumobiControllers').controller('EventListCtrl', ['$scope',
@@ -61,20 +61,27 @@ angular.module('meumobiControllers').controller('EventListCtrl', ['$scope',
       }); 
     };
 
-    Categories.load($routeParams.id).then(function(data) {
-      $scope.category = data;
-    });
-
     $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
+    var loadData = function() {
+      Categories.load($routeParams.id).then(function(data) {
+        $scope.category = data;
+      });
 
-    Categories.items($routeParams.id, {page: $scope.currentPage, order: 'start_date,DESC'}).then(function(response){
-      $scope.items = response.data.items;
-    });
+      Categories.items($routeParams.id, {page: $scope.currentPage, order: 'start_date,DESC'}).then(function(response){
+        $scope.items = response.data.items;
+      });
+    };
+    $scope.$on('reloadData', loadData);//handle reload
+    loadData();//first load
   }]);
 
 angular.module('meumobiControllers').controller('LatestItemsCtrl', ['$scope', 'Items', 'HOME','$timeout', '$location',
   function($scope, Items, HOME, $timeout, $location) {
     $scope.has_breadcrumb = (HOME != 'latest');
+    $scope.goToItem = function(item) {
+      Items.setCurrent(item);
+      $location.path('/items/' + item._id);
+    };
     var fulfill = function(response) {
       $scope.items = response.data.items;
       $timeout(function() {
@@ -90,11 +97,11 @@ angular.module('meumobiControllers').controller('LatestItemsCtrl', ['$scope', 'I
       },100);
       if (response.promise) response.promise.then(fulfill);
     };
-    Items.latest().then(fulfill);
-    $scope.goToItem = function(item) {
-      Items.setCurrent(item);
-      $location.path('/items/' + item._id);
-    };
+    var loadData = function() {
+      Items.latest().then(fulfill);
+    }
+    $scope.$on('reloadData', loadData);//handle reload
+    loadData();//first load
   }]);
 
 angular.module('meumobiControllers').controller('NewsCtrl', ['$scope', 'Site', 
@@ -107,22 +114,23 @@ angular.module('meumobiControllers').controller('NewsCtrl', ['$scope', 'Site',
 
 angular.module('meumobiControllers').controller('CategoryShowCtrl', ['$scope', 'Categories', 'Items', '$routeParams', '$location',
   function($scope, Categories, Items, $routeParams, $location) {
-    Categories.load($routeParams.id).then(function(data) {
-      $scope.category = data;
-    });
-
     $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
     var fulfillItems = function(response) {
       $scope.items = response.data.items;
       if (response.promise) response.promise.then(fulfillItems);
     };
-
-    Categories.items($routeParams.id, {page: $scope.currentPage}).then(fulfillItems);
-
     $scope.goToItem = function(item) {
       Items.setCurrent(item);
       $location.path('/items/'+ item._id);
     };
+    var loadData = function() {
+      Categories.load($routeParams.id).then(function(data) {
+        $scope.category = data;
+      });
+      Categories.items($routeParams.id, {page: $scope.currentPage}).then(fulfillItems);
+    };
+    $scope.$on('reloadData', loadData);//handle reload
+    loadData();//first load
   }]);
 
 angular.module('meumobiControllers').controller('ItemAddCtrl', ['$scope', 'Items', 'Categories', '$routeParams', '$location','$upload',

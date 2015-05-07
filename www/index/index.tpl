@@ -39,8 +39,13 @@
 <body ng-class="performance.site.theme.layout_alternatives.navbar">
   <!-- header -->
   <header id="header" class="navbar" ng-style="{'background-color': performance.site.theme.colors.defaultBg}">
-   <ul ng-class="{'hide' : languages.length < 2}" class="nav navbar-nav navbar-language pull-right">
-      <li class="dropdown">
+    <ul class="nav navbar-nav navbar-language pull-right">
+      <li>
+        <a ng-if="canReload()" ng-click="reload()">
+          <i class="fa fa-lg fa-refresh"></i>
+        </a>
+      </li>
+      <li ng-class="{'hide' : languages.length < 2}" class="dropdown">
         <a href="" class="dropdown-toggle" data-toggle="dropdown">
           <i class="fa fa-globe fa-lg"></i> <span class="hidden-xs-only" ng-bind="'Select Language'|translate"></span>
           <b class="caret hidden-xs-only"></b>

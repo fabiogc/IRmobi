@@ -139,6 +139,10 @@ li.past-event {
   display: block;
 }
 
+.loading-message {
+  transition: all 300ms ease;
+}
+
 @media (min-width: 768px) {
 	.navbar-brand {
 		border: none;

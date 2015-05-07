@@ -161,7 +161,7 @@ gulp.task('js', function() {
   )
   .pipe(sourcemaps.init())
   .pipe(concat('app.js'))
-  .pipe(uglify({mangle: false}))
+  //.pipe(uglify({mangle: false}))
   .pipe(sourcemaps.write('.'))
   .pipe(rename({
     suffix: '.min'
