@@ -1,10 +1,10 @@
 angular.module('meumobiDirectives', ['meumobiSettings']);
 
-angular.module('meumobiDirectives').directive('pagination', [ 'ITEM_PER_PAGE', function(ITEM_PER_PAGE) {
+angular.module('meumobiDirectives').directive('pagination', [ 'CONFIG', function(CONFIG) {
 	var paginate = function(scope) {
 		var total  = scope.category.items_count;
 		if (!total) return;//do nothig if has no item
-		var perPage = scope.perPage ? scope.perPage : ITEM_PER_PAGE;//use default limit if none is passed
+		var perPage = scope.perPage ? scope.perPage : CONFIG.HTTP.items_per_page;//use default limit if none is passed
 		scope.totalPages = Math.ceil(total / perPage);
 		scope.hasNextPage = scope.current != scope.totalPages;
 		scope.hasPreviusPage = scope.current > 1;
@@ -20,7 +20,7 @@ angular.module('meumobiDirectives').directive('pagination', [ 'ITEM_PER_PAGE', f
 			current: '=',
 			uri: '='
 		},
-		templateUrl: 'themes/rimobi/partials/utils/pagination.html',
+		templateUrl: 'utils/pagination.html',
 		link: function(scope) {
 			scope.pages = function(n){
 				var data = []
@@ -48,9 +48,9 @@ angular.module('meumobiDirectives').directive('headlines', ['$location', 'Catego
 			category: '=',
 			limit: '='
 		},
-		templateUrl: 'themes/rimobi/partials/categories/headlines.html',
+		templateUrl: 'categories/headlines.html',
 		link: function(scope) {
-			scope.template = 'themes/rimobi/partials/'+scope.category.type+'/headlines.html';
+			scope.template = scope.category.type+'/headlines.html';
 			Categories.items(scope.category.id,{page:1}).then(function(response){
 				scope.items = response.data.items;
 		  });
@@ -69,11 +69,11 @@ angular.module('meumobiDirectives').directive('breadcrumb', function(Categories)
 			title: '@',
 			link: '@'
 		},
-		templateUrl: 'themes/rimobi/partials/utils/breadcrumb.html'
+		templateUrl: 'utils/breadcrumb.html'
 	};
 });
 
-angular.module('meumobiDirectives').directive('stock', ['Stock', function(Stock) {
+angular.module('meumobiDirectives').directive('oldStock', ['Stock', function(Stock) {
 	return {
 		restrict: 'E',
 		scope: {code: '='},

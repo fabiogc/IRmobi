@@ -6,7 +6,7 @@
   function loadingMessage($rootScope) {
     var directive = {
       link: link,
-      templateUrl: 'themes/rimobi/partials/utils/loading_message.html',
+      templateUrl: 'utils/loading_message.html',
       restrict: 'E'
     };
     return directive;

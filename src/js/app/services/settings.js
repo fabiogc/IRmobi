@@ -1,24 +1,30 @@
-angular.module('meumobi').factory('Settings', function(SITEBUILDER, DOMAINS) {
+'use strict';
+
+angular
+.module('meumobi', ['meumobiSettings'])
+.factory('Settings', ['APP', 
+function(APP) {
 	return {
     getAvailableLanguages : function() {
-      return Object.keys(DOMAINS);
+      return Object.keys(APP.DOMAINS);
     },
     setLanguage : function(language) {
       localStorage['Settings.language'] = language;
     },
 	  getLanguage : function() {
       //invalid language setted, change for the first language available
-      if (!DOMAINS[localStorage['Settings.language']]) {
+      if (!APP.DOMAINS[localStorage['Settings.language']]) {
         this.setLanguage(this.getAvailableLanguages()[0]);
       }
       return localStorage['Settings.language'];
     },
     getSiteBuilderApiUrl : function(uri) {
       uri = uri ? uri : '';
-      return SITEBUILDER + '/api/' + DOMAINS[this.getLanguage()] + uri;
+      return APP.apiUrl + APP.DOMAINS[this.getLanguage()] + uri;
     }
 	};
-})
+}
+])
 .factory('interceptor', function($q, $rootScope) {
   return {
     request: function(config) {

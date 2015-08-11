@@ -78,9 +78,9 @@
         return;
       }
       try {
-        registerSettings.android.projectid = settings.gcmProjectNumber,
-        registerSettings.android.appid = settings.appId;
-        registerSettings.ios.pw_appid = settings.appId;
+        registerSettings.android.projectid = settings.googleProjectNumber,
+        registerSettings.android.appid = settings.applicationCode;
+        registerSettings.ios.pw_appid = settings.applicationCode;
 
         if (api.isAvailable()) {
           if(device.platform == "Android") {

@@ -1,0 +1,28 @@
+<div class="row m-t">
+	<div class="banner hidden-xs m-b" style="overflow: hidden; height:220px; margin-top: -15px;">
+		<img class="" ng-if="performance.site.photos" ng-src="{{thumbify(performance.site.photos[0].path)}}" />
+	</div>
+</div>
+
+<div class="row m-t">
+	<div class="col-sm-6">
+		<article-headlines items="vm.headlines[0].items" category="vm.categories[0]" limit="4"></article-headlines>
+	</div> <!-- col -->
+	<div class="col-sm-6" ng-controller="StockController as vm">
+		<div ng-switch on="vm.quotes">
+			<div ng-switch-when="null">
+				Loading Stocks ...
+			</div>
+			<div ng-switch-default>
+				<single-quote quotes="vm.quotes" source="Yahoo"></single-quote>
+				<!-- <multi-quotes data="quotes"></multi-quotes> -->
+			</div>
+		</div>
+	</div> <!-- col -->
+</div> <!-- row -->
+
+<div class="row m-t" ng-repeat="row in splitedCategories|limitTo:headlinesRows">
+	<div class="col-sm-6" ng-repeat="category in row">
+		<headlines category="category" limit="4"></headlines>
+	</div> <!-- col -->
+</div> <!-- row -->

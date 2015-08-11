@@ -4,7 +4,7 @@ angular.module('meumobiDirectives').directive('downloadFile', function($rootScop
 		scope: {
       file: '='
 		},
-		template: "<ng-include src=\"'themes/rimobi/partials/utils/' + file.status + '_file.html'\" />",
+		template: "<ng-include src=\"'utils/' + file.status + '_file.html'\" />",
     link: function(scope) {
       //use a simple link if not on app or file not allowed for download
       if (!IS_APP 
