@@ -10,6 +10,7 @@
 		var vm = this;
 		vm.headlines = [];
 		vm.categories = [];
+		vm.site = {};
 
 		activate();
 
@@ -38,6 +39,7 @@
 			return Site.get()
 			.then(function(response) {
 				vm.categories = Categories.getTree(response.data.categories);
+				vm.site = response.data.site;
 				return vm.categories;
 			});
 		}
