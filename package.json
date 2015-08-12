@@ -27,5 +27,7 @@
     "weinre": "^2.0.0-pre-I0Z7U9OV",
     "yargs": "^3.8.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "request": "^2.60.0"
+  }
 }

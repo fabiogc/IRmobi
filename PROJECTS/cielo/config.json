@@ -19,7 +19,8 @@
 		},
 		"STYLE": {
 			"brandPrimary": "#eb780a",
-			"homeTemplate": "headlines"
+			"homeTemplate": "headlines",
+			"webputty": "http://meu-css-manager.appspot.com/css/ahFzfm1ldS1jc3MtbWFuYWdlcnIMCxIEUGFnZRjRqSEM"
 		},
 		"WELCOME": {
 			"title": "Welcome to InfoBox",

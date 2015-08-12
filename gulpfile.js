@@ -93,6 +93,7 @@ args = require('yargs').argv;
 fs = require('fs');
 gulpif = require('gulp-if');
 zip = require('gulp-zip');
+request = require('request');
 
 if (fs.existsSync('./config.js')) {
 	var configFn = require('./config');
@@ -295,11 +296,12 @@ gulp.task('tpl', function() {
 =            Compile, minify css                                       =
 ======================================================================*/
 
-gulp.task('css', function() {
+gulp.task('css', ['webputty'], function() {
   return streamqueue({
       objectMode: true
     },
     gulp.src(config.vendor.css),
+		gulp.src('./css/**/*', {cwd: cwd})
     gulp.src('./src/css/**/*.css')
   )
   .pipe(concat('app.css'))
@@ -310,6 +312,11 @@ gulp.task('css', function() {
   .pipe(gulp.dest(path.join(config.dest, 'css')));
 });
 
+
+gulp.task('webputty', function() {
+  return request(configProject.CONFIG.STYLE.webputty)
+    .pipe(fs.createWriteStream(cwd + "/css/webputty.css"));
+});
 
 /*====================================================================
 =                     Update and Copy config.xml                     =
