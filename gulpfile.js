@@ -301,8 +301,8 @@ gulp.task('css', ['webputty'], function() {
       objectMode: true
     },
     gulp.src(config.vendor.css),
+    gulp.src('./src/css/**/*.css'),
 		gulp.src('./css/**/*', {cwd: cwd})
-    gulp.src('./src/css/**/*.css')
   )
   .pipe(concat('app.css'))
   .pipe(cssmin())
