@@ -5,14 +5,17 @@
 	.module('meumobiApp')
 	.controller('HeadlinesController', HeadlinesController);
 
-	function HeadlinesController(Site, Categories) {
+	function HeadlinesController(Site, Categories, $rootScope) {
 
 		var vm = this;
 		vm.headlines = [];
 		vm.categories = [];
 
 		activate();
-		
+
+		// Handle Reload
+		$rootScope.$on('reloadData', activate);
+
 		function activate() {
 			return getCategories().then(function() {
 				angular.forEach(vm.categories, function(category, index) {
@@ -39,6 +42,8 @@
 			});
 		}
 	}
+	
+
 	/*
 	localStorage.hasOwnProperty("device")
 	localStorage.device = JSON.stringify(device);

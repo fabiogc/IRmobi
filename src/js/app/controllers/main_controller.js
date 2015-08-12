@@ -5,19 +5,26 @@
 	.module('meumobiApp')
 	.controller('MainController', MainController);
 
-	function MainController($scope, Settings, Site, Categories, APP) {
+	function MainController($scope, $rootScope, Settings, Site, Categories, APP) {
 
 		var vm = this;
 		vm.categories = [];
 		vm.site = null;
-
-		activate();
 		
-		$scope.getImage = function(path){
-			return APP.cdnUrl + path;
+		activate();
+
+		//Select language and reload the site
+		$scope.setLanguage = function(language) {
+			console.log('set language to ' + language);
+			if (Settings.getLanguage() != language ) {
+				Settings.setLanguage(language);
+				activate();
+				$rootScope.reload();
+			}
 		}
 		
 		function activate() {
+			$scope.languages = Settings.getAvailableLanguages();
 			return getSite().then(function() {
 				
 			});
@@ -34,31 +41,8 @@
 		}
 
 		function getCategories(response) {
-				vm.categories = Categories.getTree(response.data.categories);
-				return vm.categories;
+			vm.categories = Categories.getTree(response.data.categories);
+			return vm.categories;
 		}
-
-
-    var loadData = function() {
-      $scope.languages = Settings.getAvailableLanguages();
-			console.log("Reloads");
-      // Site.get().then(fulfill);
-    };
-    $scope.$on('reloadData', loadData);//handle reload
-    loadData();//first load
-/*
-		$scope.userAgent = navigator.userAgent;
-		$scope.headlinesRows = 2;
-		//change language and reload the site
-		$scope.setLanguage = function(language) {
-			console.log('set language to ' + language);
-			if (Settings.getLanguage() != language ) {
-				Settings.setLanguage(language);
-				$location.url('/');// got to home
-				$timeout(function() {
-					$window.location.reload(); // reload page
-				},0);
-			}
-		};*/
 	}
 })();

@@ -230,9 +230,14 @@ var app =  angular
 	};
 
 	$rootScope.parseFloat = parseFloat;
+	
+	$rootScope.getImage = function(path){
+		return APP.cdnUrl + path;
+	}
   
 	//sync data from API 
 	$rootScope.reload = function() {
+		console.log("Reload Data");
 		$rootScope.$broadcast('reloadData');
 	};
 
