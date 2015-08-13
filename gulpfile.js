@@ -26,13 +26,13 @@ var config = {
       //'./src/js/lib/angularLocalStorage.js',
 
 			//'./bower_components/angular-local-storage/dist/angular-local-storage.min.js',
-			'./src/js/lib/http-with-fallback.js',
-			'./src/js/lib/angular-slugify.js',
-			'./src/js/lib/angular-calendar.js',
 			'./src/js/lib/truncate.js',
 			'./src/js/lib/md5.min.js',
 			'./src/js/lib/angular-pushwoosh.js',
 			'./src/js/lib/angular-adtech.js',
+			'./src/js/lib/http-with-fallback.js',
+			'./src/js/lib/angular-slugify.js',
+			'./src/js/lib/angular-calendar.js',
 			'./src/js/phonegap/utils/Calendar.js',
 			'./src/js/ie/excanvas.js',
 			'./src/js/ie/html5.js',
@@ -373,8 +373,11 @@ gulp.task('js', function() {
 	.pipe(replace('@@CONFIG', JSON.stringify(configProject.CONFIG))),
 	gulp.src([
 		'./src/js/app/**/*.js',
-		'./src/js/theme/**/*.js',
-		'!./src/js/app/settings.js'
+		'!./src/js/app/settings.js',
+		'./src/js/theme/jquery.blueimp-gallery.min.js',
+		'./src/js/theme/app.js',
+		'./src/js/theme/app.plugin.js',
+		'./src/js/theme/app.data.js',
 	])
 	.pipe(ngFilesort()),
 	gulp.src(['src/templates/**/*.html'])

@@ -18,6 +18,10 @@
 		$rootScope.$on('reloadData', activate);
 
 		function activate() {
+			console.log("reload Headlines");
+			vm.headlines = [];
+			vm.categories = [];
+			vm.site = {};
 			return getCategories().then(function() {
 				angular.forEach(vm.categories, function(category, index) {
 					getHeadlines(category.id).then(function() {
@@ -45,6 +49,15 @@
 		}
 	}
 	
+	function chunk(arr, size) {
+	  var newArr = [];
+	  for (var i=0; i<arr.length; i+=size) {
+	    newArr.push(arr.slice(i, i+size));
+	  }
+	  return newArr;
+	}
+
+	// vm.chunkedData = chunk(vm.headlines.slice(1), 2);
 
 	/*
 	localStorage.hasOwnProperty("device")

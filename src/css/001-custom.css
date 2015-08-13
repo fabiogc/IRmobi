@@ -6,6 +6,10 @@
   color:#3a5a7a;  
 }
 
+.navbar-nav > li {
+	float: left;
+}
+
 .nav.navbar-language > li > a {
   padding-top: 15px;
   padding-bottom: 15px;

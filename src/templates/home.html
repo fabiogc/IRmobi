@@ -21,6 +21,15 @@
 	</div> <!-- col -->
 </div> <!-- row -->
 
+<div class="row m-t">
+	<div class="col-sm-6" >
+		<article-headlines items="vm.headlines[1].items" category="vm.categories[1]" limit="4"></article-headlines>
+	</div>
+	<div class="col-sm-6" >
+		<article-headlines items="vm.headlines[2].items" category="vm.categories[2]" limit="4"></article-headlines>
+	</div>
+</div>
+
 <div class="row m-t" ng-repeat="row in splitedCategories|limitTo:headlinesRows">
 	<div class="col-sm-6" ng-repeat="category in row">
 		<headlines category="category" limit="4"></headlines>

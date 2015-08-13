@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.riweb.cielo" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-	<name>Cielo IR</name>
-	<description>Cielo Relações com Investidores</description>
+<widget id="com.meumoib.embraer" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+	<name>Embraer RI</name>
+	<description>Embraer Relações com Investidores</description>
 	<author email="contact@meumobi.com" href="http://meumobi.com">MeuMobi Team</author>
 	
 	<preference name="permissions" value="none"/>

@@ -1,4 +1,4 @@
-<div ng-class="{'hide': !isLoading}" class="loading-message alert alert-success" role="alert">
-  <strong>Carregando!</strong> por favor espere
+<div ng-show="isLoading" class="loading-message">
+  <i class="fa fa-spinner fa-spin"></i> {{'Updating'|translate}}...
 </div>
 
