@@ -1,5 +1,5 @@
 <div class="row m-t">
-  <breadcrumb title="{{performance.site.theme.tokens.contact|translate}}"></breadcrumb>
+  <breadcrumb title="{{vm.site.theme.tokens.contact|translate}}"></breadcrumb>
   <div class="col-sm-6">
     <section class="panel">
       <div class="panel-body">
@@ -49,17 +49,17 @@
         <section class="panel">
           <div class="panel-body">
             <p>
-            <strong ng-bind-html="performance.site.title"></strong>
+            <strong ng-bind-html="vm.site.title"></strong>
             </p>
             <p>
             <strong translate>Investors service</strong>
             </p>
-            <p class="m-b-none" ng-bind-html="performance.business.address"></p>
-            <p class="m-b-none" ng-if="performance.business.phone">
-            <span ng-bind="'Phone'|translate"></span>.: <a href="tel:{{performance.business.phone}}" ng-bind="performance.business.phone"></a>
+            <p class="m-b-none" ng-bind-html="vm.business.address"></p>
+            <p class="m-b-none" ng-if="vm.business.phone">
+            <span ng-bind="'Phone'|translate"></span>.: <a href="tel:{{vm.business.phone}}" ng-bind="vm.business.phone"></a>
             </p>
-            <p class="m-b-none" ng-if="performance.business.email">
-            Email: <a href="mailto:{{performance.business.email}}" ng-bind="performance.business.email"></a>
+            <p class="m-b-none" ng-if="vm.business.email">
+            Email: <a href="mailto:{{vm.business.email}}" ng-bind="vm.business.email"></a>
             </p>
           </div>
         </section>
@@ -89,17 +89,17 @@
     <section class="panel">
       <div class="panel-body">
         <p>
-        <strong ng-bind-html="performance.site.title"></strong>
+        <strong ng-bind-html="vm.site.title"></strong>
         </p>
         <p>
         <strong translate>Investors service</strong>
         </p>
-        <p class="m-b-none" ng-bind-html="performance.business.address">
-        <p class="m-b-none" ng-if="performance.business.phone">
-        <span ng-bind="'Phone'|translate"></span>.: <a href="tel:{{performance.business.phone}}" ng-bind="performance.business.phone"></a>
+        <p class="m-b-none" ng-bind-html="vm.business.address">
+        <p class="m-b-none" ng-if="vm.business.phone">
+        <span ng-bind="'Phone'|translate"></span>.: <a href="tel:{{vm.business.phone}}" ng-bind="vm.business.phone"></a>
         </p>
-        <p class="m-b-none" ng-if="performance.business.email">
-        Email: <a href="mailto:{{performance.business.email}}" ng-bind="performance.business.email"></a>
+        <p class="m-b-none" ng-if="vm.business.email">
+        Email: <a href="mailto:{{vm.business.email}}" ng-bind="vm.business.email"></a>
         </p>
       </div>
     </section>

@@ -10,7 +10,7 @@
 			<script src="js/app.min.js"></script>
   </head>
 
-<body ng-class="performance.site.theme.layout_alternatives.navbar" ng-app="meumobiApp"  ng-controller="MainController as vm">
+<body ng-class="vm.site.theme.layout_alternatives.navbar" ng-app="meumobiApp"  ng-controller="MainController as vm">
   <!-- header -->
   <header id="header" class="navbar" ng-style="{'background-color': vm.site.theme.colors.defaultBg}">
     <ul class="nav navbar-nav navbar-language pull-right">
@@ -30,8 +30,8 @@
       </li>
     </ul>
     <a class="navbar-brand" ng-click="goTo('/')">
-    <img ng-src="{{getImage(vm.site.logo)}}" data-ng-alt="{{performance.site.title}}" width="123">
-    <span ng-if="!performance.site.logo" ng-bind="performance.site.title"></span>
+    <img ng-src="{{getImage(vm.site.logo)}}" data-ng-alt="{{vm.site.title}}" width="123">
+    <span ng-if="!vm.site.logo" ng-bind="vm.site.title"></span>
     </a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
       <i class="fa fa-bars fa-lg"></i>
@@ -41,7 +41,7 @@
   </header>
   <!-- / header -->
   <!-- nav -->
-  <nav id="nav" class="nav-primary hidden-xs {{performance.site.theme.layout_alternatives.nav}}">
+  <nav id="nav" class="nav-primary hidden-xs {{vm.theme.layout_alternatives.nav}}">
     <ul class="nav" data-spy="affix" data-offset-top="50" nav-menu="active">
       <li>
       </li>
@@ -72,9 +72,9 @@
         </a>
       </li>
 
-     <li id="news" ng-if="performance.news.length" ng-class="{ active: isActive('/news')}">
+     <li id="news" ng-if="vm.news.length" ng-class="{ active: isActive('/news')}">
         <a ng-click="goTo('/news')">
-          <i class="fa fa-rss fa-lg"></i><span ng-bind="performance.newsCategory.title"></span>
+          <i class="fa fa-rss fa-lg"></i><span ng-bind="vm.newsCategory.title"></span>
         </a>
       </li>
      <li id="contact" ng-class="{ active: isActive('/contact')}">

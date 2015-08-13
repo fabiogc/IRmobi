@@ -13,6 +13,7 @@ var app =  angular
 	'meumobiDirectives',
 	'meumobiControllers',
 	'meumobi.services.Stock',
+	'meumobi.services.Site',
 	'meumobi.directives.Stock',
 	'meumobi.directives.Headlines',
 	// 'slugifier',
@@ -133,7 +134,8 @@ var app =  angular
 	}).
 	when('/contact', {
 		templateUrl: 'contact.html',
-		controller: 'ContactCtrl',
+		controller: 'ContactController',
+		controllerAs: 'vm',
 		view: '/contact',
 		title: 'Contact'
 	}).
