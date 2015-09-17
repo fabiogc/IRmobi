@@ -1,0 +1,36 @@
+{
+	"name": "RaiaDrogasil",
+	"id": "com.meumobi.irmobi.raiadrogasil",
+	"description": "RaiaDrogasil Relações com Investidores",
+
+	"CONFIG": {
+		"ANALYTICS": {
+			"trackId": ""
+		},
+		"PUSHWOOSH": {
+			"applicationCode": "C508A-081E1",
+			"googleProjectNumber": "830063844142"
+		},
+		"HTTP": {
+			"limit": "10",
+			"items_per_page": "50",
+			"timeout": "10000",
+			"halSupport": false
+		},
+		"STYLE": {
+			"brandPrimary": "#008397",
+			"homeTemplate": "headlines",
+			"webputty": "http://meu-css-manager.appspot.com/css/ahFzfm1ldS1jc3MtbWFuYWdlcnIMCxIEUGFnZRih_F4M"
+		},
+		"WELCOME": {
+			"title": "Welcome to InfoBox",
+			"description": "InfoBox is the newest mobile App of Siemens Brazil Internal Communication. Sign in and keep in touch with all news about Siemens",
+			"images":[  
+				{  
+					"path":"images/welcome-1.png",
+					"title":"Fica conectado com sua empresa"
+				}
+			]
+		}	
+	}
+}
