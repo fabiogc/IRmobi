@@ -35,22 +35,6 @@ $(document).ready(function() {
 		);
 	});
 
-	$('#nav').on('click', 'a', function() {
-		var link = $(this);
-		var next = link.next('ul.dropdown-menu');
-		if (next.length) {
-			var hidden = next.is(':hidden');
-			console.log(hidden);
-			$('#nav ul.dropdown-menu:visible').hide(100, 'swing');
-			if (hidden)
-				next.show(200, 'swing');
-		} else {
-			$('body').removeClass('slide-nav slide-nav-left');
-		}
-	});
-
-	
-	
 	function addNotification($notes){
 		var $el = $('#panel-notifications'), $n = $('.count-n:first', $el), $item = $('.list-group-item:first', $el).clone(), $v = parseInt($n.text());
 		$('.count-n', $el).fadeOut().fadeIn().text($v+1);

@@ -6,7 +6,8 @@ var config = {
 	minify_images: true,
 	vendor: {
 		js: [
-			'./bower_components/jquery/dist/jquery.min.js',
+			//'./bower_components/jquery/dist/jquery.min.js',
+			'./bower_components/jquery-1.11.3/index.js',
 			'./bower_components/bootstrap/dist/js/bootstrap.min.js',
 			'./bower_components/angular/angular.js',
 			'./bower_components/ng-file-upload-shim/ng-file-upload.min.js',
@@ -21,6 +22,7 @@ var config = {
 			'./bower_components/angular-translate/angular-translate.min.js',
 			'./bower_components/angular-media-player/dist/angular-media-player.min.js',
 			'./bower_components/angular-locale-pt-br/angular-locale_pt-br.js',
+			'./bower_components/ng-fastclick/dist/index.min.js',
 
       //'./src/js/lib/angular-file-upload.min.js',
       //'./src/js/lib/angularLocalStorage.js',
@@ -161,7 +163,6 @@ gulp.task('copy-splash', function () {
 	.pipe(gulp.dest(config.dest))
 });
 
-
 /*================================================
 =            Report Errors to Console            =
 ================================================*/
@@ -169,7 +170,6 @@ gulp.task('copy-splash', function () {
 gulp.on('err', function(e) {
 	console.log(e.err.stack);
 });
-
 
 /*=========================================
 =            Clean dest folder            =
@@ -377,12 +377,15 @@ gulp.task('js', function() {
 	.pipe(replace('@@APP', JSON.stringify(app)))
 	.pipe(replace('@@CONFIG', JSON.stringify(configProject.CONFIG))),
 	gulp.src([
-		'./src/js/app/**/*.js',
-		'!./src/js/app/settings.js',
+		'./src/js/theme/grid/jquery.grid-a-licious.min.js',
 		'./src/js/theme/jquery.blueimp-gallery.min.js',
 		'./src/js/theme/app.js',
 		'./src/js/theme/app.plugin.js',
 		'./src/js/theme/app.data.js',
+		'./src/js/theme/custom.js',
+		'./src/js/app/**/*.js',
+		'!./src/js/app/settings.js',
+
 	])
 	.pipe(ngFilesort()),
 	gulp.src(['src/templates/**/*.html'])
