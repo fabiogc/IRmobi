@@ -1,9 +1,18 @@
 <p>{{file.title}}  <span ng-if="file.length">({{file.length|bytesToSize}})</span></p>
 <p>
-  <a ng-click="openFile(file)" class="btn btn-white btn-xs">
-    <i class="fa {{file.type|mediaIconClass}}"></i> {{file.type|mediaClickLabel|translate}}
-  </a>
-  <a ng-click="deleteFile(file)" class="btn btn-white btn-xs">
-    <i class="fa fa-trash-o"></i> <span translate>Remove</span>
-  </a>
+	<a ng-click="openFile(file)" class="btn btn-white btn-xs">
+		<i class="fa {{file.type|mediaIconClass}}"></i> {{file.type|mediaClickLabel|translate}}
+	</a>
+
+	<a ng-click="openMediaOnExternalApp(file)" class="btn btn-white btn-xs" ng-if="canSharefile.type">
+		<i class="fa fa-external-link"></i>
+	</a>
+	
+	<button ng-click="shareMedia(file)">openMedia</button>
+	<button onclick="window.plugins.socialsharing.share('message', 'subject', 'https://www.google.nl/images/srpr/logo4w.png', '/images/example.pdf')">socialShare ext pdf w/ img</button>
+	<button onclick="window.plugins.socialsharing.share('message', 'subject', null, '/images/example.pdf')">socialShare ext pdf wt/ img</button>
+	<button onclick="window.plugins.socialsharing.canShareVia('ibooks', 'msg', null, null, '/images/example.pdf', function(e){alert(e)}, function(e){alert(e)})">is WhatsApp available?</button>
+	<a ng-click="deleteFile(file)" class="btn btn-white btn-xs">
+		<i class="fa fa-trash-o"></i> <span translate>Remove</span>
+	</a>
 </p>

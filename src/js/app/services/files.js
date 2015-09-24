@@ -24,7 +24,7 @@ angular.module('meumobiServices').provider('files', function(IS_APP) {
       if (device.isAndroid()) {
         localDir = cordova.file.externalRootDirectory + config.path;
       } else {
-        localDir = cordova.file.documentsDirectory;
+        localDir = cordova.file.dataDirectory;
       }
       return localDir;
     }

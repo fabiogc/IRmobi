@@ -1,39 +1,4 @@
-angular.module('meumobiControllers', ['meumobiSettings']);
-
-angular.module('meumobiControllers').controller('SiteCtrl', function($scope, Site, Categories, $location, $window, $timeout, Settings, StockService) {
-    $scope.headlinesRows = 2;
-    //change language and reload the site
-    $scope.setLanguage = function(language) {
-      console.log('set language to ' + language);
-      if (Settings.getLanguage() != language ) {
-        Settings.setLanguage(language);
-        $location.url('/');// got to home
-        $timeout(function() {
-          $window.location.reload(); // reload page
-        },0);
-      }
-    };
-
-    var fulfill = function(response) {
-      var data = response.data;
-      data.categories = Categories.getTree(data.categories);
-      var categories = data.categories.slice(0);
-      $scope.performance = data;
-      if (data.site.stock_symbols) {
-        $scope.firstCategory = categories.shift();
-        $scope.headlinesRows = 1;
-      }
-      $scope.splitedCategories = $scope.splitArray(categories, 2);
-      if (response.promise) response.promise.then(fulfill);
-    };
-    var loadData = function() {
-      $scope.languages = Settings.getAvailableLanguages();
-			console.log("Reloads");
-      Site.get().then(fulfill);
-    };
-    $scope.$on('reloadData', loadData);//handle reload
-    loadData();//first load
-});
+angular.module('meumobiControllers', ['meumobi.services.Settings']);
 
 angular.module('meumobiControllers').controller('EventListCtrl', ['$scope',
   'Categories',
@@ -47,7 +12,8 @@ angular.module('meumobiControllers').controller('EventListCtrl', ['$scope',
       console.log('add event');
       console.log(item);
       Calendar.addEvent(
-        $scope.performance.site.title + ': ' + striptags(item.title),
+        //$scope.performance.site.title + ': ' + 
+				striptags(item.title),
         striptags(item.address),
         striptags(br2nl(item.description)),
         item.start_date,

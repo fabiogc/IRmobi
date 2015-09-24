@@ -1,4 +1,4 @@
-angular.module('meumobiDirectives').directive('downloadFile', function($rootScope, translateFilter, files, $timeout, $window, IS_APP, MEDIAS) {
+angular.module('meumobiDirectives').directive('downloadFile', function($rootScope, translateFilter, files, $timeout, $window, IS_APP, MEDIAS, UtilsService) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -54,6 +54,18 @@ angular.module('meumobiDirectives').directive('downloadFile', function($rootScop
       scope.openFile = function (file) {
         files.open(file);
       };
+
+			scope.shareMedia = function(file) {
+				console.log("Share Media");
+				console.log(file);
+				UtilsService.shareMedia(file);
+			};
+			
+			scope.openMedia = function(file) {
+				console.log("Open Media");
+				console.log(file);
+				UtilsService.openMedia(file);
+			};
 
       scope.deleteFile = function (file) {
         navigator.notification.confirm(

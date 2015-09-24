@@ -1,4 +1,4 @@
-angular.module('meumobiDirectives', ['meumobiSettings']);
+angular.module('meumobiDirectives', ['meumobi.services.Settings']);
 
 angular.module('meumobiDirectives').directive('pagination', [ 'CONFIG', function(CONFIG) {
 	var paginate = function(scope) {

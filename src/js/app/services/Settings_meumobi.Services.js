@@ -1,16 +1,15 @@
 (function() {
 	'use strict';
-	
-	angular
-	.module('meumobiSettings', [])
 
+	angular
+	.module('meumobi.services.Settings', [])
 	.constant("APP", @@APP)
 	.constant('LOCALES', {
 		'locales': {
 			'pt_BR': 'Português',
 			'en_US': 'English'
 		},
-		'preferredLocale': 'en_US'
+		'preferredLocale': 'pt_BR'
 	})
 	.constant("CONFIG", @@CONFIG)
 

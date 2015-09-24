@@ -9,7 +9,7 @@
 	function meumobiSiteService(Site) {
 		var site = this;
 		
-		site.stock = "CIEL3.SA";
+		site.stock = "RADL3.SA";
 	}
 
 	function StockController(StockService, meumobiSiteService) {

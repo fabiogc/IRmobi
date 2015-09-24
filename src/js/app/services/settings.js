@@ -1,21 +1,26 @@
 'use strict';
 
 angular
-.module('meumobi', ['meumobiSettings'])
+.module('meumobi', ['meumobi.services.Settings'])
 .factory('Settings', ['APP', 
-function(APP) {
+function(APP, $rootScope) {
 	return {
     getAvailableLanguages : function() {
       return Object.keys(APP.DOMAINS);
     },
     setLanguage : function(language) {
+			console.log("Set language: " + language);
       localStorage['Settings.language'] = language;
+			$rootScope = language;
     },
 	  getLanguage : function() {
       //invalid language setted, change for the first language available
       if (!APP.DOMAINS[localStorage['Settings.language']]) {
-        this.setLanguage(this.getAvailableLanguages()[0]);
+				console.log("No language defined on localstorage");
+				return this.getAvailableLanguages()[0];
+        //this.setLanguage(this.getAvailableLanguages()[0]);
       }
+			console.log("Return local Storage language: " + localStorage['Settings.language']);
       return localStorage['Settings.language'];
     },
     getSiteBuilderApiUrl : function(uri) {

@@ -5,7 +5,7 @@
 	.module('meumobiApp')
 	.controller('MainController', MainController);
 
-	function MainController($scope, $location, $rootScope, Settings, Site, Categories, APP) {
+	function MainController($scope, $location, $rootScope, $translate, Settings, Site, Categories, APP, SiteService) {
 
 		var vm = this;
 		vm.categories = [];
@@ -15,16 +15,20 @@
 
 		//Select language and reload the site
 		$scope.setLanguage = function(language) {
+			console.log("Click to select language: " + language);
 			if (Settings.getLanguage() != language ) {
 				Settings.setLanguage(language);
 				activate();
 				$rootScope.reload();
 				$location.path('/');
+				$translate.use(language);
+				console.log("Translate: " + $rootScope.language);
 			}
 		}
 		
 		function activate() {
 			$scope.languages = Settings.getAvailableLanguages();
+			SiteService.getPerformance();
 			return getSite().then(function() {
 				
 			});

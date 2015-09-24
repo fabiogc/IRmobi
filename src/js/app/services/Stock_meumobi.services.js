@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-	.module('meumobi.services.Stock', ['ngResource', 'meumobiSettings'])
+	.module('meumobi.services.Stock', [])
 	.factory('StockService', StockService);
 		
 	function StockService($http, CONFIG, APP) {

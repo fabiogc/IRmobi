@@ -373,7 +373,7 @@ gulp.task('js', function() {
 		objectMode: true
 	},
 	gulp.src(config.vendor.js),
-	gulp.src('src/js/app/settings.js')  
+	gulp.src('src/js/app/services/Settings_meumobi.Services.js')  
 	.pipe(replace('@@APP', JSON.stringify(app)))
 	.pipe(replace('@@CONFIG', JSON.stringify(configProject.CONFIG))),
 	gulp.src([
@@ -384,7 +384,7 @@ gulp.task('js', function() {
 		'./src/js/theme/app.data.js',
 		'./src/js/theme/custom.js',
 		'./src/js/app/**/*.js',
-		'!./src/js/app/settings.js',
+		'!./src/js/app/services/Settings_meumobi.Services.js',
 
 	])
 	.pipe(ngFilesort()),

@@ -1,9 +1,6 @@
 # remove minified files
-www/js
-www/css
-www/fonts
-www/images
-www/index.html
+dist
+www
 
 
 ### Bower ###

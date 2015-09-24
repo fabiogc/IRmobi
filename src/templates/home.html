@@ -3,10 +3,9 @@
 		<img class="" ng-if="vm.site.photos" ng-src="{{thumbify(vm.site.photos[0].path)}}" />
 	</div>
 </div>
-
 <div class="row m-t">
 	<div class="col-sm-6">
-		<article-headlines items="vm.headlines[0].items" category="vm.categories[0]" limit="4"></article-headlines>
+		<article-headlines items="vm.headlines.first.items" category="vm.categories[0]" limit="4" ng-if="vm.headlines.first"></article-headlines>
 	</div> <!-- col -->
 	<div class="col-sm-6" ng-controller="StockController as vm">
 		<div ng-switch on="vm.quotes">

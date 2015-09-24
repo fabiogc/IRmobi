@@ -1,4 +1,4 @@
-angular.module('meumobiServices', ['ngResource', 'ngFileUpload', 'meumobiSettings']);
+angular.module('meumobiServices', ['ngResource', 'ngFileUpload', 'meumobi.services.Settings']);
 
 angular.module('meumobiServices').factory('Site', ['httpWithFallback', '$q', 'Settings', 'CONFIG', function(httpWithFallback, $q, Settings, CONFIG) {
   var service = {};

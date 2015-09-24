@@ -5,15 +5,19 @@ var app =  angular
 .module('meumobiApp', [
 	'ngRoute',
 	'ngSanitize',
+	'ngLocale',
 	'ngTouch',
+	'ng-fastclick',
 	'meumobi',
-	'meumobiSettings',
+	'meumobi.services.Settings',
 	'meumobiServices',
 	'meumobiFilters',
 	'meumobiDirectives',
 	'meumobiControllers',
 	'meumobi.services.Stock',
 	'meumobi.services.Site',
+	'meumobi.services.Utils',
+	'meumobi.services.Bootstrap',
 	'meumobi.directives.Stock',
 	'meumobi.directives.Headlines',
 	// 'slugifier',
@@ -25,8 +29,8 @@ var app =  angular
 	//'angulartics.google.analytics.cordova',
 	//'meumobi.analytics',
 	'angular-adtech',
-	'http-with-fallback'
-	// 'pushwooshNotification'
+	'http-with-fallback',
+	'pushwooshNotification'
 ])
 
 .config(function($routeProvider, $locationProvider, $httpProvider, CONFIG) {
@@ -142,12 +146,12 @@ var app =  angular
 	otherwise({
 		redirectTo: '/'
 	});
-/*
-	//configure notification
-	if (CONFIG.PUSHWOOSH)
-		$pushNotificationProvider.register(CONFIG.PUSHWOOSH);
-*/
+})
 
+.config(function ($pushNotificationProvider, CONFIG) {
+	$pushNotificationProvider.register(CONFIG.PUSHWOOSH);
+	console.log("Register to Pushwoosh");
+	console.log(CONFIG.PUSHWOOSH);
 })
 
 	// See http://codecondo.com/learn-an-easy-way-to-create-a-multilingual-angularjs-app/
@@ -177,14 +181,20 @@ var app =  angular
 	googleAnalyticsCordovaProvider.debug = false; // default: false
 })
 */
-.run(function($rootScope, $route, $location, $translate, Settings, APP, IS_APP) {
+.run(function($rootScope, $route, $location, $translate, Settings, APP, IS_APP, BootstrapService) {
+	
+	BootstrapService.startApp();
+	
+	// localStorage.clear();
+	
 	//Set site language
-	$rootScope.language = Settings.getLanguage();
-	$translate.use($rootScope.language);
+	// $rootScope.language = Settings.getLanguage();
+	// $translate.use($rootScope.language);
 
 	$rootScope.isOnline = navigator.onLine;
 
 	$rootScope.goTo = function(path) {
+		$('body').removeClass('slide-nav slide-nav-left');
 		$location.path(path);
 	};
 
@@ -234,7 +244,11 @@ var app =  angular
 	$rootScope.parseFloat = parseFloat;
 	
 	$rootScope.getImage = function(path){
-		return APP.cdnUrl + path;
+		var src = APP.cdnUrl + path
+		if (localStorage.hasOwnProperty(path)) {
+			src = localStorage[path];
+		}
+		return src;
 	}
   
 	//sync data from API 
