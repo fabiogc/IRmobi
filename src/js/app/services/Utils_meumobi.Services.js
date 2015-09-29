@@ -16,8 +16,53 @@
 		service.shareFeed = shareFeed;
 		service.shareMedia = shareMedia;
 		service.openMedia = openMedia;
+		service.initPushwoosh = initPushwoosh;
  
 		return service;
+		
+		
+		function initPushwoosh() {
+			console.log("initPushwoosh, Platform: " + device.platform);
+			window.alert("Init Push");
+			if (window.plugins && window.plugins.pushNotification) {
+				if (device.platform == "Android") {
+					registerPushwooshAndroid();
+				}
+				if (device.platform == "iPhone" || device.platform == "iOS") {
+					registerPushwooshIOS();
+				}
+			}
+		}
+		
+		function saveImage(path, domain) {
+			console.log("Canvas: " + domain + path);
+			//console.log(UtilsService);
+			createBase64Image(domain+path, function(img64) {
+				localStorage[path] = img64;
+			});
+		}
+
+		function saveAllImages(imagesUrls, callback) {
+			var imagesToSave = imagesUrls.length,
+			totalImages = imagesToSave - 1;
+			while (imagesToSave--) {
+				//can't save all the images. the 5MB limit has been exceeded
+				//app.saveImage(imagesUrls[imagesToSave],function(imageId, img64){
+					//totalImages--;
+					//if(imagesToSave == totalImages){
+						callback();
+						//}
+						//});
+					}
+				}
+		
+				function deleteImages() {
+					for (prop in localStorage) {
+						if (prop.indexOf('image_') != -1) {
+							delete localStorage[prop];
+						}
+					}
+				}
 		
 		function createBase64Image(url, callback) {
 			var img = new Image;

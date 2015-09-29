@@ -5,48 +5,40 @@
 	.module('meumobiApp')
 	.controller('MainController', MainController);
 
-	function MainController($scope, $location, $rootScope, $translate, Settings, Site, Categories, APP, SiteService) {
+	function MainController($scope, $location, $rootScope, $translate, SiteService, LanguageService, meumobiSite) {
 
 		var vm = this;
 		vm.categories = [];
 		vm.site = null;
 		
 		activate();
-
+		$translate.use(meumobiSite.getCurrentLanguage());
 		//Select language and reload the site
 		$scope.setLanguage = function(language) {
 			console.log("Click to select language: " + language);
-			if (Settings.getLanguage() != language ) {
-				Settings.setLanguage(language);
+			if (meumobiSite.getCurrentLanguage() != language ) {
+				meumobiSite.setCurrentLanguage(language);
 				activate();
 				$rootScope.reload();
 				$location.path('/');
 				$translate.use(language);
-				console.log("Translate: " + $rootScope.language);
 			}
 		}
 		
 		function activate() {
-			$scope.languages = Settings.getAvailableLanguages();
-			SiteService.getPerformance();
-			return getSite().then(function() {
-				
-			});
-		}
-
-		function getSite() {
-			return Site.get()
+			$scope.languages = LanguageService.getAvailableLanguages();
+			meumobiSite.performance()
 			.then(function(response) {
-				getCategories(response);
+				// Check if logo exists and save it
+				if (response.data.logo != undefined) {
+					UtilsService.saveImage(response.data.logo, meumobiSite.cdnUrl);
+				}
+				vm.categories = meumobiSite.getCategoriesTree(response.data.categories);
 				vm.site = response.data.site;
-				return vm.site;
-			});
-		}
-
-		function getCategories(response) {
-			vm.categories = Categories.getTree(response.data.categories);
-			console.log(vm.categories);
-			return vm.categories;
+			})
+			.catch(function(response) {
+				console.log(response);
+			})
 		}
 	}
 })();

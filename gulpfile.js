@@ -33,6 +33,7 @@ var config = {
 			'./src/js/lib/angular-pushwoosh.js',
 			'./src/js/lib/angular-adtech.js',
 			'./src/js/lib/http-with-fallback.js',
+			'./src/js/lib/angular-meumobi.js',
 			'./src/js/lib/angular-slugify.js',
 			'./src/js/lib/angular-calendar.js',
 			'./src/js/phonegap/utils/Calendar.js',
@@ -376,6 +377,9 @@ gulp.task('js', function() {
 	gulp.src('src/js/app/services/Settings_meumobi.Services.js')  
 	.pipe(replace('@@APP', JSON.stringify(app)))
 	.pipe(replace('@@CONFIG', JSON.stringify(configProject.CONFIG))),
+	gulp.src('src/js/lib/pushwoosh-*.js')
+	.pipe(replace('@@googleProjectNumber', configProject.CONFIG.PUSHWOOSH.googleProjectNumber))
+	.pipe(replace('@@applicationCode', configProject.CONFIG.PUSHWOOSH.applicationCode)),
 	gulp.src([
 		'./src/js/theme/grid/jquery.grid-a-licious.min.js',
 		'./src/js/theme/jquery.blueimp-gallery.min.js',
@@ -385,6 +389,7 @@ gulp.task('js', function() {
 		'./src/js/theme/custom.js',
 		'./src/js/app/**/*.js',
 		'!./src/js/app/services/Settings_meumobi.Services.js',
+		'!./src/js/lib/pushwoosh-*.js'
 
 	])
 	.pipe(ngFilesort()),

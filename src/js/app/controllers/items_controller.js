@@ -1,4 +1,4 @@
-angular.module('meumobiControllers').controller('ItemShowCtrl', function($scope, $sce, Items, Categories, $routeParams, translateFilter,IS_APP, UtilsService) {
+angular.module('meumobiControllers').controller('ItemShowCtrl', function($scope, $sce, Items, Categories, $routeParams, translateFilter,IS_APP, UtilsService, meumobiSite) {
   var fulfill = function(response) {
     var item = response.data;
     Categories.load(item.parent_id).then(function(data) {
@@ -16,15 +16,18 @@ angular.module('meumobiControllers').controller('ItemShowCtrl', function($scope,
       }
     }
     $scope.socialVideoPlaylist = socialVideoPlaylist;
-    console.log('social videols');
-    console.log(JSON.stringify(socialVideoPlaylist));
     $scope.item = item;
 		hasAudio($scope.item);
 		hasVideo($scope.item);
     if (response.promise) response.promise.then(fulfill);
   };
 
-  Items.load($routeParams.id).then(fulfill);
+  // Items.load($routeParams.id).then(fulfill);
+	meumobiSite.apiRequest('/items/' + $routeParams.id)
+		.then(fulfill)
+		.catch(function(response) {
+			console.log(response);
+		})
 	
 	$scope.getTrustedResourceUrl = function(src) {
 		return $sce.trustAsResourceUrl(src);

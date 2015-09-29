@@ -5,7 +5,7 @@
 	.module('meumobiApp')
 	.controller('ContactController', ContactController)
 
-	function ContactController($http, $translate, Settings, SiteService) {
+	function ContactController($http, $translate, SiteService, meumobiSite) {
 
 		var vm = this;
 		vm.formData = {};
@@ -17,34 +17,22 @@
 		activate();
 
 		function activate() {
-			return getPerformance().then(function() {
-				
-			});
+			meumobiSite.performance()
+			.then(function(response) {
+				vm.business = response.data.business;
+				vm.site = response.data.site;
+			})
+			.catch(function(response) {
+				console.log(response);
+			})
 		}
-
-		function getPerformance() {
-			return SiteService.getPerformance()
-			.then(function(data) {
-				vm.business = getBusiness(data);
-				vm.site = getSite(data);
-				return data;
-			});
-		}
-
-		function getBusiness(data) {
-			return data.business;
-		}
-
-		function getSite(data) {
-			return data.site;
-		} 
 
 		function submitForm(isValid) {
 			$scope.submitted = true;
 			if (isValid) {
 				$http({
 					method: 'POST',
-					url: Settings.getSiteBuilderApiUrl('/mail'),
+					url: meumobiSite.getSiteBuilderApiUrl('/mail'),
 					data: $.param($scope.formData),
 					headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json'}
 				})

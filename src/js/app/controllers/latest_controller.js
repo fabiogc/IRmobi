@@ -7,7 +7,7 @@
 
 	function LatestController($scope, Items, CONFIG, $timeout, $location) {
 
-    $scope.has_breadcrumb = (CONFIG.STYLE.homeTemplate != 'latest');
+		$scope.has_breadcrumb = (CONFIG.STYLE.homeTemplate != 'latest');
     $scope.goToItem = function(item) {
       Items.setCurrent(item);
       $location.path('/items/' + item._id);
@@ -28,7 +28,7 @@
       if (response.promise) response.promise.then(fulfill);
     };
     var loadData = function() {
-      Items.latest().then(fulfill);
+      //Items.latest().then(fulfill);
     }
     $scope.$on('reloadData', loadData);//handle reload
     loadData();//first load

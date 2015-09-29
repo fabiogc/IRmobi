@@ -10,6 +10,7 @@ var app =  angular
 	'ng-fastclick',
 	'meumobi',
 	'meumobi.services.Settings',
+	'meumobi.services.Language',
 	'meumobiServices',
 	'meumobiFilters',
 	'meumobiDirectives',
@@ -30,7 +31,8 @@ var app =  angular
 	//'meumobi.analytics',
 	'angular-adtech',
 	'http-with-fallback',
-	'pushwooshNotification'
+	'pushwooshNotification',
+	'meumobi.services.meumobiSite'
 ])
 
 .config(function($routeProvider, $locationProvider, $httpProvider, CONFIG) {
@@ -147,13 +149,13 @@ var app =  angular
 		redirectTo: '/'
 	});
 })
-
+/*
 .config(function ($pushNotificationProvider, CONFIG) {
 	$pushNotificationProvider.register(CONFIG.PUSHWOOSH);
 	console.log("Register to Pushwoosh");
-	console.log(CONFIG.PUSHWOOSH);
+	// console.log(CONFIG.PUSHWOOSH);
 })
-
+*/
 	// See http://codecondo.com/learn-an-easy-way-to-create-a-multilingual-angularjs-app/
 
 .config(function ($translateProvider) {
@@ -169,7 +171,14 @@ var app =  angular
 		'pt-BR': 'pt',
 		'pt_BR': 'pt'
 	})
-	.fallbackLanguage('en');
+	.fallbackLanguage('pt');
+})
+
+.config(function (meumobiSiteProvider, APP) {
+	meumobiSiteProvider.cdnUrl = APP.cdnUrl;
+	meumobiSiteProvider.apiUrl = APP.apiUrl;
+	meumobiSiteProvider.domains = APP.DOMAINS;
+	meumobiSiteProvider.setCurrentLanguage = localStorage.language ? localStorage.language : "pt";
 })
 
 /*
@@ -181,7 +190,7 @@ var app =  angular
 	googleAnalyticsCordovaProvider.debug = false; // default: false
 })
 */
-.run(function($rootScope, $route, $location, $translate, Settings, APP, IS_APP, BootstrapService) {
+.run(function($rootScope, $route, $location, $translate, APP, IS_APP, BootstrapService) {
 	
 	BootstrapService.startApp();
 	

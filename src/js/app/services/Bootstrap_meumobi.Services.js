@@ -25,6 +25,7 @@
 			deviceReady(function() {
 				UtilsService.hideSplashScreen();
 				UtilsService.statusBar();
+				UtilsService.initPushwoosh();
 			});
 		}
 	}

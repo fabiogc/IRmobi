@@ -26,7 +26,7 @@ module.exports = function(config) {
 
 	// Comment to enable weinre, uncomment to disable weinre 
 	config.weinre = false;
-	config.debug = false;
+	config.debug = true;
     
 	// 3rd party components
 
