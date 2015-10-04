@@ -3,9 +3,9 @@
 
 	angular
 	.module('meumobi.services.Utils', ['meumobi.services.Cordova'])
-	.factory('UtilsService', UtilsService);
+	.factory('UtilsService', ['deviceReady', 'striptagsFilter', 'br2nlFilter', 'translateFilter', UtilsService]);
 
-	function UtilsService(deviceReady) {
+	function UtilsService(deviceReady, striptags, br2nl, translate) {
 		var service = {};
 		
 		service.createBase64Image = createBase64Image;
@@ -17,13 +17,48 @@
 		service.shareMedia = shareMedia;
 		service.openMedia = openMedia;
 		service.initPushwoosh = initPushwoosh;
+		service.addEvent2Calendar = addEvent2Calendar;
+		service.confirm = confirm;
+		service.toast = toast;
  
 		return service;
 		
+		function addEvent2Calendar(item) {
+			deviceReady(function() {
+				if (window.plugins && window.plugins.calendar) {
+					var description = striptags(br2nl(item.description));
+					var startDate = new Date(item.start_date * 1000); // must be Date obj
+					var endDate = new Date(item.end_date * 1000);
+					var title = striptags(item.title);
+					var address = striptags(item.address);
+					var success = function(message) {
+						toast(translate("Event Successfully Created!"));
+						AppRate.promptForRating();
+					};
+					var error = function(message) { toast("Error: " + JSON.stringify(message)); };
+
+					confirm(translate("Add Event to Device Calendar?"), 
+						function(confirmed) {
+							if (confirmed) {
+								console.log("Create Event Confirmed");
+								if (true) { //(device.platform == "Android") {
+									window.plugins.calendar.createEventInteractively(title,address,description,startDate,endDate,success,error);
+								} else {
+									window.plugins.calendar.createEvent(title,address,description,startDate,endDate,success,error);
+								}
+							}
+							else {
+								console.log("Create Event Canceled");
+							}
+						}
+					);
+				 } else {
+					console.log("Missing window.plugins.calendar");
+				}
+			});
+		}
 		
 		function initPushwoosh() {
-			console.log("initPushwoosh, Platform: " + device.platform);
-			window.alert("Init Push");
 			if (window.plugins && window.plugins.pushNotification) {
 				if (device.platform == "Android") {
 					registerPushwooshAndroid();
@@ -157,6 +192,7 @@
 
 					//Documentation: https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
 					window.plugins.socialsharing.share(message, subject, img, link);
+					AppRate.promptForRating();
 				}
 			});
 		}
