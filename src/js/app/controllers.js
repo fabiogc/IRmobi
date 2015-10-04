@@ -1,48 +1,5 @@
 angular.module('meumobiControllers', ['meumobi.services.Settings']);
 
-angular.module('meumobiControllers').controller('EventListCtrl', ['$scope',
-  'Categories',
-  '$routeParams',
-  'Calendar',
-  'striptagsFilter',
-  'br2nlFilter',
-  'translateFilter',
-  function($scope, Categories, $routeParams, Calendar, striptags, br2nl, translate) {
-    $scope.addEvent = function(item) {
-      console.log('add event');
-      console.log(item);
-      Calendar.addEvent(
-        //$scope.performance.site.title + ': ' + 
-				striptags(item.title),
-        striptags(item.address),
-        striptags(br2nl(item.description)),
-        item.start_date,
-        item.end_date,
-        translate('Add event to calendar?')
-      ).then(function(added) {
-        if (added)//only alert if event has added
-          alert(translate('The event was successfully added!'))
-      }, function(reason) {
-        console.log(reason);
-        if (reason !== false)
-          alert(translate('Could not add the event!'));
-      }); 
-    };
-
-    $scope.currentPage = $routeParams.page ? $routeParams.page : 1;//set current pagination page
-    var loadData = function() {
-      Categories.load($routeParams.id).then(function(data) {
-        $scope.category = data;
-      });
-
-      Categories.items($routeParams.id, {page: $scope.currentPage, order: 'start_date,DESC'}).then(function(response){
-        $scope.items = response.data.items;
-      });
-    };
-    $scope.$on('reloadData', loadData);//handle reload
-    loadData();//first load
-  }]);
-
 angular.module('meumobiControllers').controller('LatestItemsCtrl', ['$scope', 'Items', 'CONFIG','$timeout', '$location',
   function($scope, Items, CONFIG, $timeout, $location) {
     $scope.has_breadcrumb = (CONFIG.STYLE.homeTemplate != 'latest');
