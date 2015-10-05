@@ -320,7 +320,7 @@ gulp.task('css', ['webputty'], function() {
 
 gulp.task('webputty', function() {
 	return request
-		.get(configProject.CONFIG.STYLE.webputty)
+		.get(configProject.STYLE.webputty)
 		.on('error', function (err) {
 			throw new Error(err)
 		})
@@ -376,10 +376,10 @@ gulp.task('js', function() {
 	gulp.src(config.vendor.js),
 	gulp.src('src/js/app/services/Settings_meumobi.Services.js')  
 	.pipe(replace('@@APP', JSON.stringify(app)))
-	.pipe(replace('@@CONFIG', JSON.stringify(configProject.CONFIG))),
+	.pipe(replace('@@CONFIG', JSON.stringify(configProject))),
 	gulp.src('src/js/lib/pushwoosh-*.js')
-	.pipe(replace('@@googleProjectNumber', configProject.CONFIG.PUSHWOOSH.googleProjectNumber))
-	.pipe(replace('@@applicationCode', configProject.CONFIG.PUSHWOOSH.applicationCode)),
+	.pipe(replace('@@googleProjectNumber', configProject.PUSHWOOSH.googleProjectNumber))
+	.pipe(replace('@@applicationCode', configProject.PUSHWOOSH.applicationCode)),
 	gulp.src([
 		'./src/js/theme/grid/jquery.grid-a-licious.min.js',
 		'./src/js/theme/jquery.blueimp-gallery.min.js',

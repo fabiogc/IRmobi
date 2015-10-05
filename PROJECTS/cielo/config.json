@@ -2,35 +2,36 @@
 	"name": "Cielo IR",
 	"id": "com.riweb.cielo",
 	"description": "Cielo Relações com Investidores",
+	"ITUNES": {
+		"id": ""
+	},
+	"ANALYTICS": {
+		"trackId": "UA-62213315-1"
+	},
+	"PUSHWOOSH": {
+		"applicationCode": "E2137-A18C0",
+		"googleProjectNumber": "301191303545"
+	},
+	"HTTP": {
+		"limit": "10",
+		"items_per_page": "50",
+		"timeout": "10000",
+		"halSupport": false
+	},
+	"STYLE": {
+		"brandPrimary": "#eb780a",
+		"homeTemplate": "headlines",
+		"webputty": "http://meu-css-manager.appspot.com/css/ahFzfm1ldS1jc3MtbWFuYWdlcnIMCxIEUGFnZRjRqSEM"
+	},
+	"WELCOME": {
+		"title": "Welcome to InfoBox",
+		"description": "InfoBox is the newest mobile App of Siemens Brazil Internal Communication. Sign in and keep in touch with all news about Siemens",
+		"images":[  
+			{  
+				"path":"images/welcome-1.png",
+				"title":"Fica conectado com sua empresa"
+			}
+		]
+	}	
 
-	"CONFIG": {
-		"ANALYTICS": {
-			"trackId": "UA-62213315-1"
-		},
-		"PUSHWOOSH": {
-			"applicationCode": "E2137-A18C0",
-			"googleProjectNumber": "301191303545"
-		},
-		"HTTP": {
-			"limit": "10",
-			"items_per_page": "50",
-			"timeout": "10000",
-			"halSupport": false
-		},
-		"STYLE": {
-			"brandPrimary": "#eb780a",
-			"homeTemplate": "headlines",
-			"webputty": "http://meu-css-manager.appspot.com/css/ahFzfm1ldS1jc3MtbWFuYWdlcnIMCxIEUGFnZRjRqSEM"
-		},
-		"WELCOME": {
-			"title": "Welcome to InfoBox",
-			"description": "InfoBox is the newest mobile App of Siemens Brazil Internal Communication. Sign in and keep in touch with all news about Siemens",
-			"images":[  
-				{  
-					"path":"images/welcome-1.png",
-					"title":"Fica conectado com sua empresa"
-				}
-			]
-		}	
-	}
 }

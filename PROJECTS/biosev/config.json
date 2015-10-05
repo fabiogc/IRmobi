@@ -1,16 +1,16 @@
 {
-	"name": "Embraer RI",
-	"id": "com.meumobi.embraer",
-	"description": "Embraer Relações com Investidores",
+	"name": "Biosev",
+	"id": "com.meumobi.irmobi.biosev",
+	"description": "Biosev Relações com Investidores",
 	"ITUNES": {
 		"id": ""
 	},
 	"ANALYTICS": {
-		"trackId": "UA-62213315-3"
+		"trackId": "UA-62213315-5"
 	},
 	"PUSHWOOSH": {
-		"applicationCode": "1C738-F9398",
-		"googleProjectNumber": "914993120772"
+		"applicationCode": "",
+		"googleProjectNumber": "1072565624896"
 	},
 	"HTTP": {
 		"limit": "10",
@@ -19,9 +19,9 @@
 		"halSupport": false
 	},
 	"STYLE": {
-		"brandPrimary": "#eb780a",
+		"brandPrimary": "",
 		"homeTemplate": "headlines",
-		"webputty": "http://meu-css-manager.appspot.com/css/ahFzfm1ldS1jc3MtbWFuYWdlcnINCxIEUGFnZRiCvowDDA"
+		"webputty": ""
 	},
 	"WELCOME": {
 		"title": "Welcome to InfoBox",

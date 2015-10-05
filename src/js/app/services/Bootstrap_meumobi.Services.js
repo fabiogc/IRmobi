@@ -23,9 +23,13 @@
 		}
 
 		function appRate() {
-			AppRate.preferences.storeAppURL.ios = CONFIG.IDS.apple;
-			AppRate.preferences.storeAppURL.android = 'market://details?id=' + CONFIG.IDS.google;
-			AppRate.preferences.usesUntilPrompt = 3;
+			try {
+				AppRate.preferences.storeAppURL.ios = CONFIG.ITUNES.id;
+				AppRate.preferences.storeAppURL.android = 'market://details?id=' + CONFIG.id;
+				AppRate.preferences.usesUntilPrompt = 3;
+			} catch (e) {
+				console.log(e);
+			}
 		}
 
 		function startApp() {

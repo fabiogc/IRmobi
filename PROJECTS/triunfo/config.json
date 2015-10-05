@@ -1,16 +1,16 @@
 {
-	"name": "Embraer RI",
-	"id": "com.meumobi.embraer",
-	"description": "Embraer Relações com Investidores",
+	"name": "Triunfo",
+	"id": "",
+	"description": "Triunfo Relações com Investidores",
 	"ITUNES": {
 		"id": ""
 	},
 	"ANALYTICS": {
-		"trackId": "UA-62213315-3"
+		"trackId": ""
 	},
 	"PUSHWOOSH": {
-		"applicationCode": "1C738-F9398",
-		"googleProjectNumber": "914993120772"
+		"applicationCode": "",
+		"googleProjectNumber": ""
 	},
 	"HTTP": {
 		"limit": "10",
@@ -19,9 +19,9 @@
 		"halSupport": false
 	},
 	"STYLE": {
-		"brandPrimary": "#eb780a",
+		"brandPrimary": "",
 		"homeTemplate": "headlines",
-		"webputty": "http://meu-css-manager.appspot.com/css/ahFzfm1ldS1jc3MtbWFuYWdlcnINCxIEUGFnZRiCvowDDA"
+		"webputty": ""
 	},
 	"WELCOME": {
 		"title": "Welcome to InfoBox",
@@ -33,5 +33,4 @@
 			}
 		]
 	}	
-
 }
