@@ -3,8 +3,8 @@
 		"cdnUrl": "http://mobi.comunique-se.com.br",
 		"stocksUrl": "http://stocks.mobi.comunique-se.com.br",
 		"DOMAINS": {
-			"pt": "raiadrogasilpt.int-meumobilesite.com",
-			"en": "raiadrogasilen.int-meumobilesite.com"
+			"pt": "raiadrogasilpt.mobi.comunique-se.com.br",
+			"en": "raiadrogasilen.mobi.comunique-se.com.br"
 		},
 		"apiUrl": "http://mobi.comunique-se.com.br/api/"
 	}

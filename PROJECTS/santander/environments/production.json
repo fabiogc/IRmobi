@@ -3,8 +3,8 @@
 		"cdnUrl": "http://mobi.comunique-se.com.br",
 		"stocksUrl": "http://stocks.mobi.comunique-se.com.br",
 		"DOMAINS": {
-			"pt": "embraerpt.mobi.comunique-se.com.br",
-			"en": "embraeren.mobi.comunique-se.com.br"
+			"pt": "santander-devpt.mobi.comunique-se.com.br",
+			"en": "santander-deven.mobi.comunique-se.com.br"
 		},
 		"apiUrl": "http://mobi.comunique-se.com.br/api/"
 	}

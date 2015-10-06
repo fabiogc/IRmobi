@@ -3,8 +3,8 @@
 		"cdnUrl": "http://mobi.comunique-se.com.br",
 		"stocksUrl": "http://stocks.mobi.comunique-se.com.br",
 		"DOMAINS": {
-			"pt": "cielopt.int-meumobilesite.com",
-			"en": "cieloen.int-meumobilesite.com"
+			"pt": "cielopt.mobi.comunique-se.com.br",
+			"en": "cieloen.mobi.comunique-se.com.br"
 		},
 		"apiUrl": "http://mobi.comunique-se.com.br/api/"
 	}
