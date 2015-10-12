@@ -56,14 +56,10 @@ angular.module('meumobiDirectives').directive('downloadFile', function($rootScop
       };
 
 			scope.shareMedia = function(file) {
-				console.log("Share Media");
-				console.log(file);
 				UtilsService.shareMedia(file);
 			};
-			
+
 			scope.openMedia = function(file) {
-				console.log("Open Media");
-				console.log(file);
 				UtilsService.openMedia(file);
 			};
 

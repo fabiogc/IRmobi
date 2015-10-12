@@ -42,7 +42,9 @@
 							if (confirmed) {
 								console.log("Create Event Confirmed");
 								if (true) { //(device.platform == "Android") {
-									window.plugins.calendar.createEventInteractively(title,address,description,startDate,endDate,success,error);
+									var calOptions = window.plugins.calendar.getCalendarOptions();
+									calOptions.interval = 1;
+									window.plugins.calendar.createEventInteractivelyWithOptions(title,address,description,startDate,endDate,calOptions, success,error);
 								} else {
 									window.plugins.calendar.createEvent(title,address,description,startDate,endDate,success,error);
 								}
@@ -223,26 +225,30 @@
 				}
 			});
 		}
-		
+
 		function openMedia(file) {
-			var that = this;
-			console.log("Open Media: " + file.title);
 			deviceReady(function() {
-				cordova.plugins.fileOpener2.open(
-				    file.path,
-				    'application/pdf', 
-				    { 
-				        error : function(e) { 
-				            console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
-				        },
-				        success : function () {
-				            console.log('file opened successfully');                
-				        }
-				    }
-				);				
+				var uri = file.path;
+				var open = cordova.plugins.disusered.open;
+				
+				function success() {}
+ 
+				function error(code) {
+				  if (code === 1) {
+				    console.log('No file handler found');
+				  } else {
+				    console.log('Undefined error');
+				  }
+				}
+				window.resolveLocalFileSystemURL(
+					uri, 
+					open(uri, success, error), 
+					function(e) {
+						console.log("Error on Local FileSystem Url");
+						console.log(e);
+					});
 			});
 		}
-
 
 		function confirm(message, callback, title) {
 			title = (title != undefined) ? title : 'Confirm';
