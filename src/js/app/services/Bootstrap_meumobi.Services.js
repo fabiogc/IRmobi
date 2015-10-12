@@ -5,7 +5,7 @@
 	.module('meumobi.services.Bootstrap', ['meumobi.services.Cordova'])
 	.factory('BootstrapService', BootstrapService);
 
-	function BootstrapService(deviceReady, $rootScope, UtilsService, CONFIG) {
+	function BootstrapService(deviceReady, $rootScope, UtilsService, CONFIG, LanguageService) {
 		var service = {};
 
 		service.startApp = startApp;
@@ -38,6 +38,7 @@
 				UtilsService.statusBar();
 				UtilsService.initPushwoosh();
 				appRate();
+				LanguageService.loadLanguage();
 			});
 		}
 	}

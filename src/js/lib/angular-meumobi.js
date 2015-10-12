@@ -23,12 +23,10 @@
 		
 			service.getSiteBuilderApiUrl = getSiteBuilderApiUrl;
 			service.getAssetUrl = getAssetUrl;
-			service.getAvailableLanguages = getAvailableLanguages;
-			service.getCurrentLanguage = getCurrentLanguage;
-			service.setCurrentLanguage = setCurrentLanguage;
 			service.getCategoriesTree = getCategoriesTree;
 			service.apiRequest = apiRequest;
 			service.performance = performance;
+			service.setLanguage = setLanguage;
 			
 			service.cdnUrl = that.cdnUrl;
 			service.apiUrl = that.apiUrl;
@@ -36,6 +34,10 @@
 			service.httpTimeout = that.httpTimeout;
 
 			return service;
+			
+			function setLanguage(lang) {
+				currentLanguage = lang;
+			}
 
 			function getSiteBuilderApiUrl(path) {
 				return that.apiUrl + that.domains[currentLanguage] + path;
@@ -43,19 +45,6 @@
 			
 			function getAssetUrl(path) {
 				return that.cdnUrl + path;
-			}
-			
-			function getAvailableLanguages() {
-				return Object.keys(that.domains);
-			}
-			
-			function getCurrentLanguage() {
-				return currentLanguage;
-			}
-			
-			function setCurrentLanguage(lang) {
-				localStorage.language = lang;
-				currentLanguage = lang;
 			}
 			
 			function saveCategories(categories) {

@@ -12,16 +12,17 @@
 		vm.site = null;
 		
 		activate();
-		$translate.use(meumobiSite.getCurrentLanguage());
+		$translate.use(LanguageService.getLanguage());
 		//Select language and reload the site
 		$scope.setLanguage = function(language) {
 			console.log("Click to select language: " + language);
-			if (meumobiSite.getCurrentLanguage() != language ) {
-				meumobiSite.setCurrentLanguage(language);
+			if (LanguageService.getLanguage() != language ) {
+				LanguageService.setLanguage(language);
 				activate();
 				$rootScope.reload();
-				$location.path('/');
+				console.log("Use language: " + language);
 				$translate.use(language);
+				$location.path('/');
 			}
 		}
 		
