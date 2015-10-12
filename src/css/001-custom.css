@@ -1,3 +1,8 @@
+.banner {
+	overflow: hidden;
+	max-height:220px;
+}
+
 .navbar a, .navbar .btn-link {
   color: #fff;
 }
