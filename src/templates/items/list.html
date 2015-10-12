@@ -10,11 +10,11 @@
 				</a>
 				<div class="media-body">
 					<a ng-click="goToItem(item)">
-						<div class="pull-right media-mini text-center text-muted">
+						<div class="pull-right media-mini text-center">
 							<strong class="h4" ng-bind="item.pubdate * 1000 |date:'dd'"></strong><br>
 							<small class="label bg-light" ng-bind="item.pubdate * 1000 |date:'MMM, yyyy'"></small>
 						</div>
-						<p class="h5 text-muted" ng-bind-html="item.title"></p>
+						<p class="h5" ng-bind-html="item.title"></p>
 					</a>
 				</div>
 				</li>

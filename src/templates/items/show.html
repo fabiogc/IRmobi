@@ -11,21 +11,21 @@
 					<img ng-src="{{thumbify(image.path, '80x80_')}}" alt="{{image.title}}">
 				</a>
 			</div>
-			<div class="panel-body text-small"> 
+			<div class="panel-body"> 
         <div ng-repeat="video in socialVideoPlaylist" class="video-wrapper">
           <div class="video-container">
-            <iframe  width="800" height="450" src="{{video.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe  width="800" height="450" ng-src="{{video.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
           </div>
         </div>
-				<p>
-					<audio id="audio" controls autoplay ng-if="audio.length > 0">
-						<source ng-src="{{getTrustedResourceUrl(audio.url)}}" type="{{audio.type}}"></source>
-					</audio>
-					<video id="video" controls autoplay ng-if="video.length > 0">
-						<source ng-src="{{getTrustedResourceUrl(video.url)}}" type="{{video.type}}" />
-					</video>
-				</p>
-				<div class="row text-right" ng-if="item.link">
+
+				<audio id="audio" controls autoplay ng-if="audio.length > 0">
+					<source ng-src="{{getTrustedResourceUrl(audio.url)}}" type="{{audio.type}}"></source>
+				</audio>
+				<video id="video" controls autoplay ng-if="video.length > 0">
+					<source ng-src="{{getTrustedResourceUrl(video.url)}}" type="{{video.type}}" />
+				</video>
+
+				<div class="text-right" ng-if="item.link">
 					<a ng-click="shareFeed(item)" ng-hide="item.groups.length">
 						<span class="btn btn-white">
 							<i class="fa fa-share-alt"></i> {{"Share it" | translate}}

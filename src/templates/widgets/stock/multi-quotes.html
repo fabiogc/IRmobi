@@ -6,7 +6,7 @@
         <div class="line m-l m-r"></div>
         <p class="h1">
           {{mainQuote.LastTradePriceOnly}}
-          <i class="fa {{(parseFloat(mainQuote.ChangeinPercent) < 0) ? 'fa-caret-down text-danger' : 'fa-caret-up text-success'}}"><spam class="text-small">{{mainQuote.ChangeinPercent}}</spam></i>
+          <i class="fa {{(parseFloat(mainQuote.ChangeinPercent) < 0) ? 'fa-caret-down text-danger' : 'fa-caret-up text-success'}}">{{mainQuote.ChangeinPercent}}</i>
         </p>
       </div>
     </section>
@@ -16,13 +16,13 @@
       <div class="panel-body">
         <p ng-repeat-start="quote in quotes|limitTo:3" class="h4">
           {{quote.symbol}} {{quote.LastTradePriceOnly}}
-          <spam class="h3">
-          <i class="fa {{(parseFloat(quote.ChangeinPercent) < 0) ? 'fa-caret-down text-danger' : 'fa-caret-up text-success'}}"><spam class="text-small">{{quote.ChangeinPercent}}</spam></i></spam>
+          <span class="h3">
+          <i class="fa {{(parseFloat(quote.ChangeinPercent) < 0) ? 'fa-caret-down text-danger' : 'fa-caret-up text-success'}}">{{quote.ChangeinPercent}}</i></span>
         </p>
         <div class="line m-l m-r" ng-repeat-end ng-if="!$last"></div>
       </div>
     </section>
   </div>
-  <p class="clearfix col-lg-12 text-small m-b-large"
+  <p class="clearfix col-lg-12 text-small"
 	style="text-align: right;">{{'delay 15´  Source:'|translate}} {{source}}</p>
 </div>
