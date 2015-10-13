@@ -24,7 +24,7 @@
 			
 			return getCategories().then(function() {
 				angular.forEach(vm.categories, function(category, index) {
-					Categories.items(category.id,{page:1}).then(function(response, promise) {
+					Categories.items(category.id,{page:1, order: 'published,DESC'}).then(function(response, promise) {
 						// console.log("Index: " + index + ", Category: " + category.id + ", isFallback: " + response.isFallback);
 						fulfill(response, category.id, index);
 					});

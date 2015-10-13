@@ -52,7 +52,7 @@ angular.module('meumobiControllers').controller('CategoryShowCtrl', ['$scope', '
       Categories.load($routeParams.id).then(function(data) {
         $scope.category = data;
       });
-      Categories.items($routeParams.id, {page: $scope.currentPage}).then(fulfillItems);
+      Categories.items($routeParams.id, {page: $scope.currentPage, order: 'published,DESC'}).then(fulfillItems);
     };
     $scope.$on('reloadData', loadData);//handle reload
     loadData();//first load
