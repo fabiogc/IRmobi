@@ -403,9 +403,9 @@ gulp.task('js', function() {
 	.pipe(sourcemaps.init())
 	.pipe(concat('app.js'))
 	.pipe(ngAnnotate())
-	.pipe(gulpif(!config.debug, uglify()))
+	.pipe(gulpif(!config.debug, uglify({ mangle: false })))
 	.pipe(rename({suffix: '.min'}))
-	.pipe(sourcemaps.write('.'))
+	.pipe(sourcemaps.write())
 	.pipe(gulp.dest(path.join(config.dest, 'js')));
 });
 

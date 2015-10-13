@@ -1,4 +1,4 @@
-angular.module('meumobiServices', ['ngResource', 'ngFileUpload', 'meumobi.services.Settings', 'meumobi.services.meumobiSite']);
+angular.module('meumobiServices', ['ngFileUpload', 'meumobi.services.Settings', 'meumobi.services.meumobiSite']);
 
 angular.module('meumobiServices').factory('Site', ['httpWithFallback', '$q', 'meumobiSite', 'CONFIG', function(httpWithFallback, $q, meumobiSite, CONFIG) {
   var service = {};
@@ -74,8 +74,8 @@ angular.module('meumobiServices').factory('Items', ['$resource', 'Upload','$q', 
   return service;
 }]);
 
-angular.module('meumobiServices').factory('Categories', ['$resource', '$q', 'httpWithFallback', 'CONFIG', 'meumobiSite',
-  function($resource, $q, httpWithFallback, CONFIG, meumobiSite) {
+angular.module('meumobiServices').factory('Categories', ['$q', 'httpWithFallback', 'CONFIG', 'meumobiSite',
+  function($q, httpWithFallback, CONFIG, meumobiSite) {
     var service = {}; 
     service.load = function(id) {
       var deferred = $q.defer();

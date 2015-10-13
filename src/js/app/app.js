@@ -4,6 +4,7 @@ var app =  angular
 
 .module('meumobiApp', [
 	'ngRoute',
+	'ngResource',
 	'ngSanitize',
 	'ngLocale',
 	'ngTouch',
@@ -26,9 +27,8 @@ var app =  angular
 	'pascalprecht.translate',
 	'mediaPlayer',
 	'phonegapCalendar',
-	//'angulartics',
-	//'angulartics.google.analytics.cordova',
-	//'meumobi.analytics',
+	'angulartics',
+	'angulartics.google.analytics.cordova',
 	'angular-adtech',
 	'http-with-fallback',
 	'pushwooshNotification',
@@ -98,16 +98,18 @@ var app =  angular
 		title: 'News'
 	}).
 	when('/events/:id', {
+		controller: 'EventsController',
+		controllerAs: 'vm',
 		templateUrl: 'events/list.html',
-		controller: 'EventListCtrl',
 		canReload: true,
 		resolve: {
 			viewName: resolveCategory
 		}
 	}).
 	when('/events/:id/page/:page', {
+		controller: 'EventsController',
+		controllerAs: 'vm',
 		templateUrl: 'events/list.html',
-		controller: 'EventListCtrl',
 		canReload: true,
 		resolve: {
 			viewName: resolveCategory
@@ -181,20 +183,19 @@ var app =  angular
 	meumobiSiteProvider.setCurrentLanguage = localStorage.language ? localStorage.language : "pt";
 })
 
-/*
+
 	// See http://luisfarzati.github.io/angulartics/#/plugins for details
 	
-.config('googleAnalyticsCordovaProvider', function(googleAnalyticsCordovaProvider, CONFIG) {
+.config(function(googleAnalyticsCordovaProvider, CONFIG) {
+	console.log("Google Analytics TrackId: " + CONFIG.ANALYTICS.trackId);
 	googleAnalyticsCordovaProvider.trackingId = CONFIG.ANALYTICS.trackId;
 	googleAnalyticsCordovaProvider.period = 20; // default: 10 (in seconds)
 	googleAnalyticsCordovaProvider.debug = false; // default: false
 })
-*/
+
 .run(function($rootScope, $route, $location, $translate, APP, IS_APP, BootstrapService) {
 	
 	BootstrapService.startApp();
-	
-	// localStorage.clear();
 	
 	//Set site language
 	// $rootScope.language = Settings.getLanguage();
