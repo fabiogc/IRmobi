@@ -33,7 +33,6 @@
 					var address = striptags(item.address);
 					var success = function(message) {
 						toast(translate("Event Successfully Created!"));
-						AppRate.promptForRating();
 					};
 					var error = function(message) { toast("Error: " + JSON.stringify(message)); };
 
@@ -41,7 +40,7 @@
 						function(confirmed) {
 							if (confirmed) {
 								console.log("Create Event Confirmed");
-								if (true) { //(device.platform == "Android") {
+								if (device.platform == "Android") {
 									var calOptions = window.plugins.calendar.getCalendarOptions();
 									calOptions.interval = 1;
 									window.plugins.calendar.createEventInteractivelyWithOptions(title,address,description,startDate,endDate,calOptions, success,error);
@@ -194,7 +193,6 @@
 
 					//Documentation: https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
 					window.plugins.socialsharing.share(message, subject, img, link);
-					AppRate.promptForRating();
 				}
 			});
 		}

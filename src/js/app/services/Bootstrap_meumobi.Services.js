@@ -27,6 +27,7 @@
 				AppRate.preferences.storeAppURL.ios = CONFIG.ITUNES.id;
 				AppRate.preferences.storeAppURL.android = 'market://details?id=' + CONFIG.id;
 				AppRate.preferences.usesUntilPrompt = 3;
+				AppRate.promptForRating();
 			} catch (e) {
 				console.log(e);
 			}
