@@ -20,8 +20,25 @@
 		service.addEvent2Calendar = addEvent2Calendar;
 		service.confirm = confirm;
 		service.toast = toast;
+		service.saveImage = saveImage;
+		service.loadImage = loadImage;
  
 		return service;
+		
+		
+		function loadImage(url, placeholder) {
+			var src = url;
+			if (localStorage.hasOwnProperty(url)) {
+				console.log("Load from localStorage: " + url);
+				src = localStorage[url];
+			} else if (placeholder != undefined) {
+				console.log("Load from placeholder: " + placeholder);
+				src = placeholder;
+			} else {
+				console.log("Load from Url");
+			}
+			return src;
+		}
 		
 		function addEvent2Calendar(item) {
 			deviceReady(function() {
@@ -185,10 +202,10 @@
 			deviceReady(function() {
 				if (window.plugins && window.plugins.socialsharing) {
 					var subject = item.title;
-					// TODO: to use item.description use html tags and chars, if remove one or both the description will be unreadable, living them show html. Don't know any good solution then we I recommend to not share it (victor.dias) 
-					var message = item.description;
+					// TODO: to use item.description use html tags and chars, if remove one or both the description will be unreadable, living them show html. Don't know any good solution then we I recommend to not share it (victor.dias)
 					//message = message.replace(/(<([^>]+)>)/ig, "");
 
+					var message = subject + "; via @IRmobi App";
 					var link = item.link;
 					var img = (item.images.length > 0) ? that.getImage(item.images[0].path) : null;
 
