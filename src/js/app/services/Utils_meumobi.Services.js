@@ -185,14 +185,15 @@
 			deviceReady(function() {
 				if (window.plugins && window.plugins.socialsharing) {
 					var subject = item.title;
+					// TODO: to use item.description use html tags and chars, if remove one or both the description will be unreadable, living them show html. Don't know any good solution then we I recommend to not share it (victor.dias) 
 					var message = item.description;
-					message = message.replace(/(<([^>]+)>)/ig, "");
+					//message = message.replace(/(<([^>]+)>)/ig, "");
 
 					var link = item.link;
 					var img = (item.images.length > 0) ? that.getImage(item.images[0].path) : null;
 
 					//Documentation: https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
-					window.plugins.socialsharing.share(message, subject, img, link);
+					window.plugins.socialsharing.share(null, subject, img, link);
 				}
 			});
 		}
