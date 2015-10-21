@@ -97,6 +97,7 @@ fs = require('fs');
 gulpif = require('gulp-if');
 zip = require('gulp-zip');
 request = require('request'); // https://github.com/request/request
+preprocess = require('gulp-preprocess');
 
 if (fs.existsSync('./config.js')) {
 	var configFn = require('./config');
@@ -279,6 +280,7 @@ gulp.task('html', function() {
 	return gulp.src(['src/html/**/*.html'])
 	.pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
 	.pipe(replace('@@name', configProject.name))
+	.pipe(preprocess({context: { PROJECT_NAME: configProject.name}}))
 	.pipe(gulp.dest(config.dest));
 });
 
@@ -319,12 +321,14 @@ gulp.task('css', ['webputty'], function() {
 
 
 gulp.task('webputty', function() {
-	return request
-		.get(configProject.STYLE.webputty)
-		.on('error', function (err) {
-			throw new Error(err)
-		})
-		.pipe(fs.createWriteStream(cwd + "/css/webputty.css"));
+	if (configProject.STYLE.webputty) {
+		return request
+			.get(configProject.STYLE.webputty)
+			.on('error', function (err) {
+				throw new Error(err)
+			})
+			.pipe(fs.createWriteStream(cwd + "/css/webputty.css"));
+	}
 });
 
 /*====================================================================
