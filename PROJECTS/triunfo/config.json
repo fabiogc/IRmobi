@@ -6,11 +6,11 @@
 		"id": "976936262"
 	},
 	"ANALYTICS": {
-		"trackId": ""
+		"trackId": "UA-62213315-7"
 	},
 	"PUSHWOOSH": {
-		"applicationCode": "",
-		"googleProjectNumber": ""
+		"applicationCode": "C04E8-7DDEA",
+		"googleProjectNumber": "1055378360957"
 	},
 	"HTTP": {
 		"limit": "10",
@@ -21,7 +21,7 @@
 	"STYLE": {
 		"brandPrimary": "",
 		"homeTemplate": "headlines",
-		"webputty": ""
+		"webputty": "http://meu-css-manager.appspot.com/css/ahFzfm1ldS1jc3MtbWFuYWdlcnIMCxIEUGFnZRixjSAM"
 	},
 	"WELCOME": {
 		"title": "Welcome to InfoBox",
