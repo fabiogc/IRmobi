@@ -54,10 +54,6 @@ angular.module('meumobiDirectives').directive('headlines', ['$location', 'Catego
 			Categories.items(scope.category.id,{page:1}).then(function(response){
 				scope.items = response.data.items;
 		  });
-      scope.goToItem = function(item) {
-        Items.setCurrent(item);
-        $location.path('/items/'+ item._id);
-      };
 		}
 	};
 }]);

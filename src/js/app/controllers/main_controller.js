@@ -5,11 +5,11 @@
 	.module('meumobiApp')
 	.controller('MainController', MainController);
 
-	function MainController($scope, $location, $rootScope, $translate, SiteService, LanguageService, meumobiSite) {
+	function MainController($scope, $location, $rootScope, $translate, SiteService, LanguageService, meumobiSite, UtilsService) {
 
 		var vm = this;
-		vm.categories = [];
-		vm.site = null;
+		//vm.categories = [];
+		//vm.site = null;
 		
 		activate();
 		$translate.use(LanguageService.getLanguage());
@@ -18,6 +18,8 @@
 			console.log("Click to select language: " + language);
 			if (LanguageService.getLanguage() != language ) {
 				LanguageService.setLanguage(language);
+				meumobiSite.setLanguage(language);
+				meumobiSite.resetWebApp();
 				activate();
 				$rootScope.reload();
 				console.log("Use language: " + language);
@@ -28,18 +30,36 @@
 		
 		function activate() {
 			$scope.languages = LanguageService.getAvailableLanguages();
-			meumobiSite.performance()
+			meumobiSite.getWebAppData()
 			.then(function(response) {
-				// Check if logo exists and save it
-				if (response.data.logo != undefined) {
-					UtilsService.saveImage(response.data.logo, meumobiSite.cdnUrl);
-				}
-				vm.categories = meumobiSite.getCategoriesTree(response.data.categories);
-				vm.site = response.data.site;
+				fulfill(response);
 			})
 			.catch(function(response) {
-				console.log(response);
 			})
+		}
+
+		function fulfill(response) {
+			updateDatas(response);
+			// if we have a promise, we will use the same current function when it is fulfilled
+			if (response.promise) {
+				response.promise
+					.then(function(response) {
+						fulfill(response);
+					})
+					.catch(function(response) {
+					})
+			}
+		}
+
+		function updateDatas(response) {
+			var data = {};
+
+			data.cover = response.data.site.photos ? response.data.site.photos[0].path : undefined;
+			data.categories = meumobiSite.getCategoriesTree(response.data.categories);
+			data.site = response.data.site;
+			data.business = response.data.business;
+			
+			angular.copy(data, vm);
 		}
 	}
 })();

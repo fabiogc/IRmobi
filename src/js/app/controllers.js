@@ -3,10 +3,6 @@ angular.module('meumobiControllers', ['meumobi.services.Settings']);
 angular.module('meumobiControllers').controller('LatestItemsCtrl', ['$scope', 'Items', 'CONFIG','$timeout', '$location',
   function($scope, Items, CONFIG, $timeout, $location) {
     $scope.has_breadcrumb = (CONFIG.STYLE.homeTemplate != 'latest');
-    $scope.goToItem = function(item) {
-      Items.setCurrent(item);
-      $location.path('/items/' + item._id);
-    };
     var fulfill = function(response) {
       $scope.items = response.data.items;
       $timeout(function() {
@@ -43,10 +39,6 @@ angular.module('meumobiControllers').controller('CategoryShowCtrl', ['$scope', '
     var fulfillItems = function(response) {
       $scope.items = response.data.items;
       if (response.promise) response.promise.then(fulfillItems);
-    };
-    $scope.goToItem = function(item) {
-      Items.setCurrent(item);
-      $location.path('/items/'+ item._id);
     };
     var loadData = function() {
       Categories.load($routeParams.id).then(function(data) {

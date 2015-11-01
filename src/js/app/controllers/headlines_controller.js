@@ -24,8 +24,8 @@
 			
 			return getCategories().then(function() {
 				angular.forEach(vm.categories, function(category, index) {
-					Categories.items(category.id,{page:1, order: 'published,DESC'}).then(function(response, promise) {
-						// console.log("Index: " + index + ", Category: " + category.id + ", isFallback: " + response.isFallback);
+					Categories.items(category.id,{page:1, order: 'published,DESC'})
+					.then(function(response, promise) {
 						fulfill(response, category.id, index);
 					});
 				})
@@ -41,14 +41,13 @@
 		}
 
 		function updateHeadlines(response, category_id, key) {
-			// console.log("Response category: " + category_id + ", isFallback: " + response.isFallback);
 			if (key==0) {key = "first";}
 			vm.headlines[key] = response.data;
 			return vm.headlines;
 		}
 		
 		function getCategories() {
-			return meumobiSite.performance()
+			return meumobiSite.getWebAppData()
 			.then(function(response) {
 				vm.categories = meumobiSite.getCategoriesTree(response.data.categories);
 				vm.site = response.data.site;

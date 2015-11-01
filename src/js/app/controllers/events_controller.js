@@ -9,7 +9,7 @@
 
 		var vm = this;
 		vm.items = {};
-		vm.category = [];
+		//vm.category = [];
 		vm.site = {};
 		vm.addEvent = function(item) {
 			UtilsService.addEvent2Calendar(item);
@@ -23,16 +23,13 @@
 
 		function activate() {
 			vm.items = {};
-			vm.category = [];
+			meumobiSite
+				.getCategory($routeParams.id)
+				.then(function(category) {
+					vm.category = category;
+				})
 			vm.site = {};
 
-			meumobiSite.apiRequest('/categories/' + $routeParams.id)
-			.then(function(response) {
-				vm.category = response.data;
-			})
-			.catch(function(response) {
-				console.log(response);
-			})
 			Categories.items($routeParams.id, {page: vm.currentPage, order: 'start_date,DESC'})
 			.then(function(response){
 				fulfill(response)

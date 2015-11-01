@@ -17,7 +17,7 @@
 		activate();
 
 		function activate() {
-			meumobiSite.performance()
+			meumobiSite.getWebAppData()
 			.then(function(response) {
 				vm.business = response.data.business;
 				vm.site = response.data.site;
@@ -28,12 +28,12 @@
 		}
 
 		function submitForm(isValid) {
-			$scope.submitted = true;
+			vm.submitted = true;
 			if (isValid) {
 				$http({
 					method: 'POST',
 					url: meumobiSite.getSiteBuilderApiUrl('/mail'),
-					data: $.param($scope.formData),
+					data: $.param(vm.formData),
 					headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json'}
 				})
 				.success(function(data) {

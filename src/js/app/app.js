@@ -13,7 +13,8 @@ var app =  angular
 	'meumobi.services.Settings',
 	'meumobi.services.Language',
 	'meumobiServices',
-	'meumobiFilters',
+	'meumobi.filters.Common',
+	'meumobi.filters.DownloadFiles',
 	'meumobiDirectives',
 	'meumobiControllers',
 	'meumobi.services.Stock',
@@ -32,13 +33,14 @@ var app =  angular
 	'angular-adtech',
 	'http-with-fallback',
 	'pushwooshNotification',
-	'meumobi.services.meumobiSite'
+	'meumobi.services.meumobiSite',
+	'ImgCache'
 ])
 
 .config(function($routeProvider, $locationProvider, $httpProvider, CONFIG) {
 
-	var resolveCategory = function($route, Categories) {
-		return Categories.load($route.current.params.id).then(function(data) {
+	var resolveCategory = function($route, meumobiSite) {
+		return meumobiSite.getCategory($route.current.params.id).then(function(data) {
 			$route.current.$$route.title =  data.title;
 			$route.current.$$route.view = '/category/'+data.id;
 			return data;
@@ -70,16 +72,18 @@ var app =  angular
 	}
 
 	$routeProvider.when('/articles/:id', {
+		controller: 'ItemsListController',
+		controllerAs: 'vm',
 		templateUrl: 'items/list.html',
-		controller: 'CategoryShowCtrl',
 		canReload: true,
 		resolve: {
 			viewName: resolveCategory
 		}
 	}).
 	when('/articles/:id/page/:page', {
+		controller: 'ItemsListController',
+		controllerAs: 'vm',
 		templateUrl: 'items/list.html',
-		controller: 'CategoryShowCtrl',
 		canReload: true,
 		resolve: {
 			viewName: resolveCategory
@@ -123,14 +127,17 @@ var app =  angular
 		canRelaod: true
 	}).
 	when('/items/:id', {
+		controller: 'ItemsShowController',
+		controllerAs: 'vm',
 		templateUrl: 'items/show.html',
-		controller: 'ItemShowCtrl',
 		resolve: {
-			viewName: function($route, Items) {
-				return Items.load($route.current.params.id).then(function(response) {;
-					$route.current.$$route.title =  response.data.title;
-					$route.current.$$route.view = '/category/'+response.data.parent_id;
-					return response;
+			viewName: function($route, meumobiSite) {
+				return meumobiSite.getSelectedItem().then(function(item) {
+					console.log("Items Show");
+					console.log(item);
+					$route.current.$$route.title =  item.title;
+					$route.current.$$route.view = '/items/' + item.id;
+					return item;
 				});
 			}
 		}
@@ -173,7 +180,7 @@ var app =  angular
 		'pt-BR': 'pt',
 		'pt_BR': 'pt'
 	})
-	.fallbackLanguage('pt');
+	.fallbackLanguage('en');
 })
 
 .config(function (meumobiSiteProvider, APP) {
@@ -193,7 +200,20 @@ var app =  angular
 	googleAnalyticsCordovaProvider.debug = false; // default: false
 })
 
-.run(function($rootScope, $route, $location, $translate, APP, IS_APP, BootstrapService) {
+.config(function(ImgCacheProvider) {
+	// or more options at once
+	ImgCacheProvider.setOptions({
+		debug: true,
+		usePersistentCache: true
+	});
+
+	// ImgCache library is initialized automatically,
+	// but set this option if you are using platform like Ionic -
+	// in this case we need init imgcache.js manually after device is ready
+	ImgCacheProvider.manualInit = true;
+})
+
+.run(function($rootScope, $route, $location, $translate, APP, IS_APP, BootstrapService, meumobiSite) {
 	
 	BootstrapService.startApp();
 	
@@ -259,8 +279,13 @@ var app =  angular
 			src = localStorage[path];
 		}
 		return src;
-	}
-  
+	};
+	
+	$rootScope.goToItem = function(item) {
+		meumobiSite.setSelectedItem(item);
+		$location.path('/items/'+ item._id);
+	};
+	
 	//sync data from API 
 	$rootScope.reload = function() {
 		console.log("Reload Data");
@@ -280,7 +305,7 @@ var app =  angular
 		var date = new Date(timestamp * 1000);
 		var now  = new Date();
 		return date > now;
-	}
+	};
 
 	$rootScope.$on('$routeChangeSuccess', function(e, current){
 		//get name from route and send to analytics
