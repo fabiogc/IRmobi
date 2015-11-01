@@ -5,7 +5,7 @@
 	.module('meumobi.services.Bootstrap', ['meumobi.services.Cordova'])
 	.factory('BootstrapService', BootstrapService);
 
-	function BootstrapService(deviceReady, $rootScope, UtilsService, CONFIG, LanguageService) {
+	function BootstrapService(deviceReady, $rootScope, UtilsService, CONFIG, LanguageService, ImgCache, meumobiSite) {
 		var service = {};
 
 		service.startApp = startApp;
@@ -35,11 +35,12 @@
 
 		function startApp() {
 			deviceReady(function() {
-				UtilsService.hideSplashScreen();
+				ImgCache.$init();
 				UtilsService.statusBar();
 				UtilsService.initPushwoosh();
 				appRate();
 				LanguageService.loadLanguage();
+				UtilsService.hideSplashScreen();
 			});
 		}
 	}

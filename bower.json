@@ -20,6 +20,7 @@
     "jquery-1.11.3": "http://code.jquery.com/jquery-1.11.3.js",
     "ng-fastclick": "~1.0.2",
     "ng-file-upload-shim": "~6.0.2",
-    "angular-resource": "~1.4.7"
+    "angular-resource": "~1.4.7",
+    "angular-imgcache": "angular-imgcache.js#~0.1.0"
   }
 }

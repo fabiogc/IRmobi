@@ -23,6 +23,8 @@ var config = {
 			'./bower_components/angular-media-player/dist/angular-media-player.min.js',
 			'./bower_components/angular-locale-pt-br/angular-locale_pt-br.js',
 			'./bower_components/ng-fastclick/dist/index.min.js',
+			'./bower_components/angular-imgcache/angular-imgcache.js',
+			'./bower_components/imgcache.js/js/imgcache.js',
 
       //'./src/js/lib/angular-file-upload.min.js',
       //'./src/js/lib/angularLocalStorage.js',
@@ -277,6 +279,9 @@ gulp.task('html', function() {
 	if (config.cordova) {
 		inject.push('<script src="cordova.js"></script>');
 	}
+	/*if (configProject.STYLE.webputty && config.debug) {
+		inject.push('<link href="' + configProject.STYLE.webputty + '" rel="stylesheet" type="text/css" />');
+	}*/
 	return gulp.src(['src/html/**/*.html'])
 	.pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
 	.pipe(replace('@@name', configProject.name))
@@ -310,6 +315,7 @@ gulp.task('css', ['webputty'], function() {
 			'!./src/css/landing.css'
 		]),
 		gulp.src('./css/**/*', {cwd: cwd})
+		//gulpif(config.debug, gulp.src('!./css/webputty.css', {cwd: cwd}))
   )
   .pipe(concat('app.css'))
   .pipe(cssmin())
