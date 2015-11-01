@@ -1,24 +1,30 @@
-<div class="row m-t">
-	<breadcrumb title="{{vm.category.title}}" link="#/{{vm.category.type}}/{{vm.category.id}}"></breadcrumb>
-	<div class="col-lg-12">
-		<section class="panel">
-			<header class="panel-heading" ng-bind="vm.category.title"></header>
-			<ul class="list-group media-list events" ng-if="vm.items">
-				<li class="list-group-item media" ng-repeat="item in vm.items" ng-class="isFutureDate(item.start_date) ? 'future-event' : 'past-event'">
-				<span ng-if="item.images.length" class="pull-left">
-					<img class="media-object" ng-src="{{thumbify(item.images[0].path, '80x80_')}}" alt="{{item.images[0].title}}">
-				</span>
-				<div class="media-body">
-					<div class="pull-right media-mini text-center">
-						<strong class="h5" ng-bind="item.start_date * 1000 |date:'dd'"></strong><br>
-						<small class="label bg-light" ng-bind="item.start_date * 1000 |date:'MMM, yyyy'"></small>
-					</div>
-					<a ng-if="isFutureDate(item.start_date)" class="h5" ng-click="vm.addEvent(item)" ng-bind-html="item.title"></a>
-          <p ng-if="!isFutureDate(item.start_date)" class="h5" ng-bind-html="item.title"></p>
-				</div>
-				</li>
-			</ul>
-		</section> 
-	</div> <!-- col -->
-	<pagination category="vm.category" current="vm.currentPage" uri="'#/:type/:id/page/:page'"></pagination>
-</div>
+<section class="main padder">
+	<loading-message></loading-message>
+	<div autoscroll="true">
+		<breadcrumb title="{{vm.category.title}}" link="#/{{vm.category.type}}/{{vm.category.id}}"></breadcrumb>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<section class="panel">
+					<header class="panel-heading" ng-bind="vm.category.title" ng-if="vm.category"></header>
+					<ul class="list-group media-list events" ng-if="vm.items">
+						<li class="list-group-item media" ng-repeat="item in vm.items" ng-class="isFutureDate(item.start_date) ? 'future-event' : 'past-event'">
+							<span ng-if="item.images.length" class="pull-left">
+								<img class="media-object" ng-src="{{thumbify(item.images[0].path, '80x80_')}}" alt="{{item.images[0].title}}">
+							</span>
+							<div class="media-body">
+								<div class="pull-right media-mini text-center">
+									<strong class="h5" ng-bind="item.start_date * 1000 |date:'dd'"></strong><br>
+									<small class="label bg-light" ng-bind="item.start_date * 1000 |date:'MMM, yyyy'"></small>
+								</div>
+								<a ng-if="isFutureDate(item.start_date)" class="h5" ng-click="vm.addEvent(item)" ng-bind-html="item.title"></a>
+								<p ng-if="!isFutureDate(item.start_date)" class="h5" ng-bind-html="item.title"></p>
+							</div>
+						</li>
+					</ul>
+				</section> 
+			</div>
+			<pagination category="vm.category" current="vm.currentPage" uri="'#/:type/:id/page/:page'"></pagination>
+		</div>
+	</div>
+</section>

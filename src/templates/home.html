@@ -1,36 +1,38 @@
-<div class="row">
-	<div class="banner">
-		<img class="" ng-if="vm.site.photos" ng-src="{{thumbify(vm.site.photos[0].path)}}" />
-	</div>
-</div>
-<div class="row m-t">
-	<div class="col-sm-6">
-		<article-headlines items="vm.headlines.first.items" category="vm.categories[0]" limit="4" ng-if="vm.headlines.first"></article-headlines>
-	</div> <!-- col -->
-	<div class="col-sm-6" ng-controller="StockController as vm">
-		<div ng-switch on="vm.quotes">
-			<div ng-switch-when="null">
-				Loading Stocks ...
+<section class="main padder" id="home"  img-cache ic-bg="{{getImage(vm.site.photos[0].path)}}" >
+	<loading-message></loading-message>
+	<div autoscroll="true">
+		<div >
+			<div class="row" id="home-first-row">
+				<div class="col-sm-6">
+					<article-headlines items="vm.headlines.first.items" category="vm.categories[0]" limit="4" ng-if="vm.headlines.first"></article-headlines>
+				</div> <!-- col -->
+				<div class="col-sm-6" ng-controller="StockController as vm">
+					<div ng-switch on="vm.quotes">
+						<div ng-switch-when="null">
+							Loading Stocks ...
+						</div>
+						<div ng-switch-default>
+							<single-quote quotes="vm.quotes" source="Yahoo"></single-quote>
+							<!-- <multi-quotes data="quotes"></multi-quotes> -->
+						</div>
+					</div>
+				</div> <!-- col -->
+			</div> <!-- row -->
+
+			<div class="row m-t">
+				<div class="col-sm-6" >
+					<article-headlines items="vm.headlines[1].items" category="vm.categories[1]" limit="4"></article-headlines>
+				</div>
+				<div class="col-sm-6" >
+					<article-headlines items="vm.headlines[2].items" category="vm.categories[2]" limit="4"></article-headlines>
+				</div>
 			</div>
-			<div ng-switch-default>
-				<single-quote quotes="vm.quotes" source="Yahoo"></single-quote>
-				<!-- <multi-quotes data="quotes"></multi-quotes> -->
-			</div>
+			
+			<div class="row m-t" ng-repeat="row in splitedCategories|limitTo:headlinesRows">
+				<div class="col-sm-6" ng-repeat="category in row">
+					<headlines category="category" limit="4"></headlines>
+				</div> <!-- col -->
+			</div> <!-- row -->
 		</div>
-	</div> <!-- col -->
-</div> <!-- row -->
-
-<div class="row m-t">
-	<div class="col-sm-6" >
-		<article-headlines items="vm.headlines[1].items" category="vm.categories[1]" limit="4"></article-headlines>
-	</div>
-	<div class="col-sm-6" >
-		<article-headlines items="vm.headlines[2].items" category="vm.categories[2]" limit="4"></article-headlines>
-	</div>
-</div>
-
-<div class="row m-t" ng-repeat="row in splitedCategories|limitTo:headlinesRows">
-	<div class="col-sm-6" ng-repeat="category in row">
-		<headlines category="category" limit="4"></headlines>
-	</div> <!-- col -->
-</div> <!-- row -->
+	</div><!-- view -->
+</section>
