@@ -1,16 +1,16 @@
 {
-	"name": "Santander",
-	"id": "",
+	"name": "Santander IR",
+	"id": "com.meumobi.irmobi.santander",
 	"description": "Santander Relações com Investidores",
 	"ITUNES": {
-		"id": ""
+		"id": "911383011"
 	},
 	"ANALYTICS": {
-		"trackId": ""
+		"trackId": "UA-62213315-8"
 	},
 	"PUSHWOOSH": {
-		"applicationCode": "",
-		"googleProjectNumber": ""
+		"applicationCode": "150C1-22A69",
+		"googleProjectNumber": "128897325108"
 	},
 	"HTTP": {
 		"limit": "10",
@@ -19,9 +19,9 @@
 		"halSupport": false
 	},
 	"STYLE": {
-		"brandPrimary": "",
+		"brandPrimary": "#FE0000",
 		"homeTemplate": "headlines",
-		"webputty": ""
+		"webputty": "http://meu-css-manager.appspot.com/css/ahFzfm1ldS1jc3MtbWFuYWdlcnIMCxIEUGFnZRjxnwUM"
 	},
 	"WELCOME": {
 		"title": "Welcome to InfoBox",
