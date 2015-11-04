@@ -6,7 +6,8 @@
 	.provider('meumobiSite', meumobiSiteProvider);
 	
 	function meumobiSiteProvider() {
-		var currentLanguage = "pt";
+		var defaultLanguage = "pt";
+		var currentLanguage = null;
 		var currentCategories = null;
 		var selectedItem = null;
 		var data = {};
@@ -32,6 +33,7 @@
 			service.apiRequest = apiRequest;
 			service.performance = performance;
 			service.setLanguage = setLanguage;
+			service.setDefaultLanguage = setDefaultLanguage;
 			
 			service.cdnUrl = that.cdnUrl;
 			service.apiUrl = that.apiUrl;
@@ -62,7 +64,7 @@
 			}
 			
 			function getWebAppData() {
-				if (meuWebApp.hasOwnProperty(data)) {
+				if (meuWebApp.hasOwnProperty("data")) {
 					// nothing todo
 				} else {
 					loadData();
@@ -92,9 +94,25 @@
 			function setLanguage(lang) {
 				currentLanguage = lang;
 			}
+			
+			function setDefaultLanguage(lang) {
+				defaultLanguage = lang;
+			}
+			
+			function getLanguage() {
+				if (localStorage.hasOwnProperty('Settings.language')){
+					currentLanguage = localStorage['Settings.language'];
+				} else {
+					console.log("Current Language is: " + currentLanguage);
+					setLanguage(defaultLanguage);
+					console.log("Current Language is now: " + currentLanguage);
+				}
+				return currentLanguage;
+			}
 
 			function getSiteBuilderApiUrl(path) {
-				return that.apiUrl + that.domains[currentLanguage] + path;
+				var lang = getLanguage();
+				return that.apiUrl + that.domains[lang] + path;
 			}
 			
 			function getAssetUrl(path) {
