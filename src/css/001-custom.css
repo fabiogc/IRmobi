@@ -3,15 +3,15 @@ body {
 }
 
 #home-first-row {
-  padding-top: 25%;
+	padding-top: 25%;
 }
 
 .navbar a, .navbar .btn-link {
-  color: #fff;
+	color: #fff;
 }
 
 .navbar a:hover, .navbar .dropdown.open a {
-  color:#3a5a7a;  
+	color:#3a5a7a;  
 }
 
 .navbar-nav > li {
@@ -19,18 +19,18 @@ body {
 }
 
 .nav.navbar-language > li > a {
-  padding-top: 15px;
-  padding-bottom: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 .slide-nav #nav {
-  position: fixed;
+	position: fixed;
 }
 .nav-primary > ul > li.active > a {
 	border-left: 2px solid #e52e2a;
 }
 
 .quotes i {
-  margin-left: 2px;
+	margin-left: 2px;
 }
 
 .embed-container {
@@ -65,7 +65,7 @@ body {
 }
 
 .item-images a {
-  display: inline-block;
+	display: inline-block;
 }
 
 .video-wrapper {
@@ -93,46 +93,46 @@ body {
 }
 
 .btn-file {
-    position: relative;
-    overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
 .btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 999px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 999px;
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
 }
 
 .capitalize {
-  text-transform: capitalize;
+	text-transform: capitalize;
 }
 
 li.past-event {
-  background-color: #f7f8f9;
+	background-color: #f7f8f9;
 }
 
 /* error messages */
 .form-group .help-block {
-  font-size: 12px;
-  margin-top: 3px;
-  display: none;
+	font-size: 12px;
+	margin-top: 3px;
+	display: none;
 }
 
 .form-group.has-error .form-control {
-  /*border-color: #ff5f5f !important;*/
+	/*border-color: #ff5f5f !important;*/
 }
 
 .form-group.has-error .help-block {
-  display: block;
+	display: block;
 }
 
 .loading-message {
@@ -154,7 +154,7 @@ li.past-event {
 	-ms-animation-iteration-count:1;
 	-ms-transform-origin:50% 0;
 	background-color: #fff;
-	}
+}
 
 @media (min-width: 768px) {
 	.navbar-brand {
@@ -165,24 +165,20 @@ li.past-event {
 
 /* Mobile devices */
 @media (max-width: 767px) {
-  .navbar-language {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  /*Sidebar*/
-  .dropdown-submenu > ul.dropdown-menu, .dropdown-submenu:hover > ul.dropdown-menu  {
-    display: none;
-  }
+	.navbar-language {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	/*Sidebar*/
+	.dropdown-submenu > ul.dropdown-menu, .dropdown-submenu:hover > ul.dropdown-menu  {
+		display: none;
+	}
 
-}
-
-#content section.main {
-  background-position: 0px 50px
 }
 
 .navbar-brand {
-  padding: 0px;
+	padding: 0px;
 }
 
 .navbar-brand img {  
@@ -199,20 +195,39 @@ li.past-event {
 }
 
 @media screen and (min-width: 768px) {
+	
+	section#home {
+		background-attachment: fixed;
+		background-position: 0px 50px;
+	}
+	
 	.navbar-brand img {  
-		left: 10px;   
+		padding-left: 10px;   
 		margin: auto 0px;
 	}
 }
 
-section#content section.main { 
+section#home { 
+	/*
+	=== Tested on SmartPhone Android 4.1 and iOS 9.1
+	background fixed didn't work on iOS
+	and if fixed on Android background-size has no effect
+	It's why we decide to keep scroll and resized at the moment
+	
 	background-attachment: fixed;
-  background-size:contain;
-  background-repeat: no-repeat;
+	background-position: 0px 50px;*/
+	background-size: contain;
+	-webkit-background-size: contain;
+	background-repeat: no-repeat;
 }
 
 section#content {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
+}
+
+header.panel-heading {
+  font-size: 16px;
+  font-weight: 400;
 }
