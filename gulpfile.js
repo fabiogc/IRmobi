@@ -279,9 +279,9 @@ gulp.task('html', function() {
 	if (config.cordova) {
 		inject.push('<script src="cordova.js"></script>');
 	}
-	/*if (configProject.STYLE.webputty && config.debug) {
+	if (configProject.STYLE.webputty && config.debug) {
 		inject.push('<link href="' + configProject.STYLE.webputty + '" rel="stylesheet" type="text/css" />');
-	}*/
+	}
 	return gulp.src(['src/html/**/*.html'])
 	.pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
 	.pipe(replace('@@name', configProject.name))
