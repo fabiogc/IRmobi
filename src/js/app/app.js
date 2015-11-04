@@ -197,13 +197,13 @@ var app =  angular
 	console.log("Google Analytics TrackId: " + CONFIG.ANALYTICS.trackId);
 	googleAnalyticsCordovaProvider.trackingId = CONFIG.ANALYTICS.trackId;
 	googleAnalyticsCordovaProvider.period = 20; // default: 10 (in seconds)
-	googleAnalyticsCordovaProvider.debug = false; // default: false
+	googleAnalyticsCordovaProvider.debug = @@debug; // default: false
 })
 
 .config(function(ImgCacheProvider) {
 	// or more options at once
 	ImgCacheProvider.setOptions({
-		debug: true,
+		debug: @@debug,
 		usePersistentCache: true
 	});
 
@@ -288,7 +288,6 @@ var app =  angular
 	
 	//sync data from API 
 	$rootScope.reload = function() {
-		console.log("Reload Data");
 		$rootScope.$broadcast('reloadData');
 	};
 

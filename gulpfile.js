@@ -402,6 +402,7 @@ gulp.task('js', function() {
 		'!./src/js/lib/pushwoosh-*.js'
 
 	])
+	.pipe(replace('@@debug', config.debug))
 	.pipe(ngFilesort()),
 	gulp.src(['src/templates/**/*.html'])
 	.pipe(replace('@@name', configProject.name))
