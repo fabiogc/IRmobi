@@ -205,14 +205,17 @@
 			states[Connection.CELL] = true;
 			states[Connection.NONE] = false;
 			
-			return states[networState];
+			return states[networkState];
 		}
 
 		function isOnline(done) {
 			deviceReady(function() {
-				if (navigator.connection) {
+				var connection = navigator.connection && navigator.connection.type;
+				if (connection) {
+					console.log("navigator.connection");
 					done(networkState());
 				} else {
+					console.log("navigator.onLine");
 					done(navigator.onLine);
 				}
 			})
@@ -310,8 +313,9 @@
 	
 		function toast(message, success, fail) {
 			deviceReady(function() {
-				if (window.plugins && window.plugins.toast) {
-					window.plugins.toast.showLongBottom(message,
+				var toast = window.plugins && window.plugins.toast;
+				if (toast) {
+					toast.showLongBottom(message,
 						function(resp) {
 							if (success) {
 								success(resp);

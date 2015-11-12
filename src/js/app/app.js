@@ -205,7 +205,7 @@ var app =  angular
 	ImgCacheProvider.manualInit = true;
 })
 
-.run(function($rootScope, $route, $location, $translate, APP, IS_APP, BootstrapService, meumobiSite, UtilsService) {
+.run(function($rootScope, $route, $location, translateFilter, APP, IS_APP, BootstrapService, meumobiSite, UtilsService) {
 	
 	BootstrapService.startApp();
 	
@@ -292,11 +292,6 @@ var app =  angular
 		UtilsService.spinner.hide();
 	});
 
-	$rootScope.canReload = function() {
-		if($route.current)
-			return $route.current.canReload;
-	};
-
 	$rootScope.isActive = function (view) { 
 		return view === $rootScope.activeView;
 	};
@@ -307,9 +302,33 @@ var app =  angular
 		return date > now;
 	};
 
+	$rootScope.toggleCon = function(e) {
+		$rootScope.updateReloadStatus();
+		if (e.type == "offline")
+			UtilsService.toast(translateFilter("connection.offline"));
+		else
+			UtilsService.toast(translateFilter("connection.online"));
+	}
+
+	$rootScope.updateReloadStatus = function() {
+		console.log("updateReloadStatus");
+		if ($route.current) {
+			if ($route.current.canReload) {
+				var online = function(online) {
+					$rootScope.reloadStatus = online ? "enabled" : "offline";
+					console.log(online);
+				}
+				UtilsService.isOnline(online);
+			}
+			else 
+				$rootScope.reloadStatus = "disabled";
+		}
+	}
+
 	$rootScope.$on('$routeChangeSuccess', function(e, current){
 		//get name from route and send to analytics
 		// $analytics.trackPage(current.$$route.title);
 		$rootScope.activeView = current.$$route.view;
+		$rootScope.updateReloadStatus();
 	});
 });

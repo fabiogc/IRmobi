@@ -35,6 +35,7 @@
 	<gap:plugin name="cordova-plugin-apprate" source="npm" />
 	<gap:plugin name="cordova-open" source="npm" version="1.0.9" />
 	
+	<gap:plugin name="cordova-plugin-network-information" source="npm" version="1.0.1" />
 	<gap:plugin name="cordova-plugin-spinnerdialog" source="npm" version="1.3.2" />
 	<gap:plugin name="cordova-plugin-globalization" source="npm" version="1.0.1" />
 	<gap:plugin name="cordova-plugin-inappbrowser" source="npm" version="1.0.1" />

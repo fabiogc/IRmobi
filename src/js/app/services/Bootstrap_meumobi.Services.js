@@ -5,7 +5,7 @@
 	.module('meumobi.services.Bootstrap', ['meumobi.services.Cordova'])
 	.factory('BootstrapService', BootstrapService);
 
-	function BootstrapService(deviceReady, $rootScope, UtilsService, CONFIG, LanguageService, ImgCache, meumobiSite) {
+	function BootstrapService(deviceReady, $rootScope, UtilsService, CONFIG, LanguageService, ImgCache, meumobiSite, DeviceService) {
 		var service = {};
 
 		service.startApp = startApp;
@@ -35,6 +35,8 @@
 
 		function startApp() {
 			deviceReady(function() {
+				document.addEventListener("online", $rootScope.toggleCon, false);
+				document.addEventListener("online", $rootScope.toggleCon, false);
 				UtilsService.spinner.show();
 				ImgCache.$init();
 				UtilsService.statusBar();
