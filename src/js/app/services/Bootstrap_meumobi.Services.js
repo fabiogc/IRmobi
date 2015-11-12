@@ -35,6 +35,7 @@
 
 		function startApp() {
 			deviceReady(function() {
+				UtilsService.spinner.show();
 				ImgCache.$init();
 				UtilsService.statusBar();
 				UtilsService.initPushwoosh();

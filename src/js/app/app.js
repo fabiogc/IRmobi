@@ -9,7 +9,7 @@ var app =  angular
 	'ngLocale',
 	'ngTouch',
 	'ng-fastclick',
-	'meumobi',
+	'meumobi.services.Requests',
 	'meumobi.services.Settings',
 	'meumobi.services.Language',
 	'meumobiServices',
@@ -23,6 +23,7 @@ var app =  angular
 	'meumobi.services.Bootstrap',
 	'meumobi.directives.Stock',
 	'meumobi.directives.Headlines',
+	'meumobi.services.Device',
 	// 'slugifier',
 	// 'truncate',
 	'pascalprecht.translate',
@@ -32,7 +33,6 @@ var app =  angular
 	'angulartics.google.analytics.cordova',
 	'angular-adtech',
 	'http-with-fallback',
-	'pushwooshNotification',
 	'meumobi.services.meumobiSite',
 	'ImgCache'
 ])
@@ -48,7 +48,7 @@ var app =  angular
 	};
 
 	//handle http errors
-	$httpProvider.interceptors.push('interceptor');
+	$httpProvider.interceptors.push('httpInterceptor');
 	//configure routes
 	if (CONFIG.STYLE.homeTemplate == 'latest') {
 		$routeProvider.
@@ -133,8 +133,6 @@ var app =  angular
 		resolve: {
 			viewName: function($route, meumobiSite) {
 				return meumobiSite.getSelectedItem().then(function(item) {
-					console.log("Items Show");
-					console.log(item);
 					$route.current.$$route.title =  item.title;
 					$route.current.$$route.view = '/items/' + item.id;
 					return item;
@@ -158,13 +156,7 @@ var app =  angular
 		redirectTo: '/'
 	});
 })
-/*
-.config(function ($pushNotificationProvider, CONFIG) {
-	$pushNotificationProvider.register(CONFIG.PUSHWOOSH);
-	console.log("Register to Pushwoosh");
-	// console.log(CONFIG.PUSHWOOSH);
-})
-*/
+
 	// See http://codecondo.com/learn-an-easy-way-to-create-a-multilingual-angularjs-app/
 
 .config(function ($translateProvider) {
@@ -213,7 +205,7 @@ var app =  angular
 	ImgCacheProvider.manualInit = true;
 })
 
-.run(function($rootScope, $route, $location, $translate, APP, IS_APP, BootstrapService, meumobiSite) {
+.run(function($rootScope, $route, $location, $translate, APP, IS_APP, BootstrapService, meumobiSite, UtilsService) {
 	
 	BootstrapService.startApp();
 	
@@ -286,10 +278,19 @@ var app =  angular
 		$location.path('/items/'+ item._id);
 	};
 	
-	//sync data from API 
 	$rootScope.reload = function() {
-		$rootScope.$broadcast('reloadData');
-	};
+		$rootScope.$broadcast('reload');
+		UtilsService.spinner.show();
+	}
+	
+	$rootScope.$on('loading:start', function () {
+		
+	});
+
+	$rootScope.$on('loading:stop', function () {
+		//UtilsService.hideSplashScreen();
+		UtilsService.spinner.hide();
+	});
 
 	$rootScope.canReload = function() {
 		if($route.current)

@@ -23,8 +23,34 @@
 		service.saveImage = saveImage;
 		service.loadImage = loadImage;
  
-		return service;
+		var spinner = {
+			show: function () {
+				deviceReady(function() {
+					var spinner = window.plugins && window.plugins.spinnerDialog;
+					if (spinner) {
+						spinner.show();
+					} else {
+						// TODO: Browser fallback
+						console.log("Spinnner.show");
+					}
+				});
+			},
+			hide: function () {
+				deviceReady(function() {
+					var spinner = window.plugins && window.plugins.spinnerDialog;
+					if (spinner) {
+						spinner.hide();
+					} else {
+						// TODO: Browser fallback
+						console.log("Spinnner.hide");
+					}
+				});
+			}
+		};
 		
+		service.spinner = spinner; 
+ 
+		return service;
 		
 		function loadImage(url, placeholder) {
 			var src = url;
@@ -165,8 +191,11 @@
 			}
 		}
 		
-		function isConnectionOnline(type) {
+		function networkState() {
+			var networkState = navigator.connection.type;
+			
 			var states = {};
+			
 			states[Connection.UNKNOWN] = false;
 			states[Connection.ETHERNET] = true;
 			states[Connection.WIFI] = true;
@@ -175,25 +204,18 @@
 			states[Connection.CELL_4G] = true;
 			states[Connection.CELL] = true;
 			states[Connection.NONE] = false;
-			var connection = states[type] ? true : false;	
 			
-			return connection;
+			return states[networState];
 		}
 
 		function isOnline(done) {
 			deviceReady(function() {
-				var connection = false;
 				if (navigator.connection) {
-					console.log("navigator.connection: [BEGIN]" );
-					var networkState = navigator.connection.type;
-					connection = isConnectionOnline(networkState);
-					console.log("navigator.connection: " + connection);
-					done(connection);
+					done(networkState());
 				} else {
-					connection = navigator.onLine;
-					done(connection);
+					done(navigator.onLine);
 				}
-			});
+			})
 		}
 		
 		function shareFeed(item) {

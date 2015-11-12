@@ -12,7 +12,7 @@ angular.module('meumobiServices').provider('files', function(IS_APP) {
     angular.extend(config, params);
   };
 
-  this.$get = function($q, $rootScope,translateFilter, device, MEDIAS) {
+  this.$get = function($q, $rootScope,translateFilter, DeviceService, MEDIAS) {
     var api = {};
     var service = {};
     var localDir;
@@ -21,7 +21,7 @@ angular.module('meumobiServices').provider('files', function(IS_APP) {
      */
     api.getLocalDir = function() {
       if (localDir) return localDir;
-      if (device.isAndroid()) {
+      if (DeviceService.isAndroid()) {
         localDir = cordova.file.externalRootDirectory + config.path;
       } else {
         localDir = cordova.file.dataDirectory;
@@ -140,7 +140,7 @@ angular.module('meumobiServices').provider('files', function(IS_APP) {
       },
       open: function(file) {
         var target = '_blank';
-        if (!device.isIos()) {
+        if (!DeviceService.isIos()) {
           target = '_system';
         }
         window.open(file.path, target, 'location=no,enableViewportScale=yes');

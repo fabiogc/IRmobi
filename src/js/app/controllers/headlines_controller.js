@@ -13,19 +13,16 @@
 		vm.site = {};
 
 		activate();
-
+		
 		// Handle Reload
-		$rootScope.$on('reloadData', activate);
+		$rootScope.$on('reload', activate);
 
 		function activate() {
-			vm.headlines = {};
-			vm.categories = [];
-			vm.site = {};
-			
+
 			return getCategories().then(function() {
 				angular.forEach(vm.categories, function(category, index) {
 					Categories.items(category.id,{page:1, order: 'published,DESC'})
-					.then(function(response, promise) {
+					.then(function(response) {
 						fulfill(response, category.id, index);
 					});
 				})
