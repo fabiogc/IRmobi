@@ -46,15 +46,15 @@
 
 		var vm = this;
 		var socialVideoPlaylist = [];
+		
+		var allowedTypes = ['application/pdf','text/html', 'audio/mpeg', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
 
 		activate();
 
 		function getCategory(id) {
-			console.log("Category id: " + id);
 			meumobiSite
 				.getCategory(id)
 				.then(function(category) {
-					console.log(category);
 					vm.category = category;
 				})
 		}
@@ -76,7 +76,9 @@
 			meumobiSite
 				.getSelectedItem()
 				.then(function(item) {
+
 					vm.item = item;
+					vm.media = item.medias; // findMediasByTypes(item.medias, allowedTypes);
 					getCategory(item.parent_id);
 					getSocialVideos(item);
 					hasAudio(item);
@@ -88,11 +90,11 @@
 			return $sce.trustAsResourceUrl(src);
 		}
 
-		function findMediasByTypes(medias, types) {
+		function findMediasByTypes(media, types) {
 			var results = [];
-			for (var i = 0; i < medias.length; i++) {
-				if (types.indexOf(medias[i].type) > -1) {
-					results.push(medias[i]);
+			for (var i = 0; i < media.length; i++) {
+				if (types.indexOf(media[i].type) > -1) {
+					results.push(media[i]);
 				}
 			}
 			return results;

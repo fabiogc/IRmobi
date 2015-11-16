@@ -18,16 +18,7 @@
 								<small class="block">{{"All files downloaded on App are available here for Sharing and Offline Reading." | translate}}</small>
 							</div>
 						</article>
-						<div class="list-group">
-							<download-file ng-repeat="file in downloadedFiles" file="file"></download-file>
-						</div>
-						<!--ul class="list-group media-list" ng-if="downloadedFiles">
-							<li class="list-group-item media" ng-repeat="file in downloadedFiles">
-								<div class="media-body">
-									<download-file file="file"></download-file> 
-								</div>
-							</li>
-						</ul-->
+						<section ng-repeat="media in downloadedFiles" id="media-list" ng-include="'items/media/details.html'"></section>
 					</section>
 				</section> 
 			</div> <!-- col -->

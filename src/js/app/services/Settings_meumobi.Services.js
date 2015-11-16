@@ -37,6 +37,12 @@
 			label: 'View',
 			extension: 'ppt',
 			download: true,
+		},
+		'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': {
+			class: 'fa-file-excel-o',
+			label: 'View',
+			extension: 'xls',
+			download: true
 		}
 	})
 
