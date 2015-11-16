@@ -229,5 +229,49 @@ section#content {
 
 header.panel-heading {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
+}
+
+ul.media-controls {
+	list-style-type: none;
+	padding: 0;
+	margin: 0
+}
+
+ul.media-controls li {
+	text-decoration: none;
+	display:inline
+}
+
+section#media-list .thumb-large i.fa {
+	 padding: 17px 17px;
+}
+
+section#media-list article {
+	padding: 10px 0;
+}
+
+article.media h5.media-heading {
+	font-weight: 600;
+}
+
+.btn-circle.btn-action > i {
+	width: 40px;
+	height: 40px;
+	padding: 7px 0;
+	line-height: 1.428571429;
+	font-size: 1.33333333em;
+}
+
+.btn-action.btn-cirlcle i {
+	background-color: #eb780a; // Move custom color to meu-css-manager, default #5191d1
+}
+
+.btn-action.btn-cirlcle i.fa:hover, .btn-action.btn-cirlcle i.fa:active {
+	background-color: #ff0000; // default #61a1e1 
+}
+
+section#media-list article.media span.pull-left {
+	margin: 0 10px;
+	background-color: #fff;
 }

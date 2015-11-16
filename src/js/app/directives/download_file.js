@@ -1,10 +1,10 @@
-angular.module('meumobiDirectives').directive('downloadFile', function($rootScope, translateFilter, files, $timeout, $window, IS_APP, MEDIAS, UtilsService) {
+angular.module('meumobiDirectives').directive('downloadFileControls', function($rootScope, translateFilter, files, $timeout, $window, IS_APP, MEDIAS, UtilsService) {
 	return {
 		restrict: 'E',
 		scope: {
       file: '='
 		},
-		template: "<ng-include src=\"'utils/' + file.status + '_file.html'\" />",
+		template: "<ng-include src=\"'utils/' + file.status + '_file_controls.html'\" />",
     link: function(scope) {
       //use a simple link if not on app or file not allowed for download
       if (!IS_APP 
@@ -32,7 +32,7 @@ angular.module('meumobiDirectives').directive('downloadFile', function($rootScop
       $rootScope.$on(fileName + '.finish', function(e,file) {
         $timeout(function() {
           angular.extend(scope.file, file);
-          window.plugins.toast.showShortBottom(translateFilter('Download finished'));
+          UtilsService.toast(translateFilter('Download finished'));
         }, 0);
       });
 
@@ -40,7 +40,7 @@ angular.module('meumobiDirectives').directive('downloadFile', function($rootScop
         $timeout(function() {
           //reset file status
           scope.file.status = files.statuses.download;
-          window.plugins.toast.showShortBottom(translateFilter('Download failed'));
+          UtilsService.toast(translateFilter('Download failed'));
         }, 0);
       });
 
@@ -51,23 +51,25 @@ angular.module('meumobiDirectives').directive('downloadFile', function($rootScop
         files.download(file);
       }
 
-      scope.openFile = function (file) {
-        files.open(file);
+      scope.openInAppBrowser = function (uri, target) {
+				var target = (target != undefined) ? target : '_system';
+				var options = "location=no,enableViewportScale=yes";
+				UtilsService.openInAppBrowser(uri, target, options);
       };
 
-			scope.shareMedia = function(file) {
-				UtilsService.shareMedia(file);
+			scope.shareMedia = function(media) {
+				UtilsService.shareMedia(media);
 			};
 
-			scope.openMedia = function(file) {
-				UtilsService.openMedia(file);
+			scope.openMedia = function(media) {
+				UtilsService.openMedia(media);
 			};
 
       scope.deleteFile = function (file) {
-        navigator.notification.confirm(
+        UtilsService.confirm(
           translateFilter('You want to remove the file?'),
           function(index) {
-            if (index != 1) returm;//stop if not accepted
+            if (index != 1) return;//stop if not accepted
             files.remove(file).then(function(data) {
               $timeout(function() {
                 console.log('removed file');
@@ -75,10 +77,10 @@ angular.module('meumobiDirectives').directive('downloadFile', function($rootScop
               },0);
             }, function() {
               //error was already logged by the service
-              window.plugins.toast.showShortBottom(translateFilter('Error removing the file.'));
+              UtilsService.toast(translateFilter('Error removing the file.'));
             });
           }
-        );
+				);
       };
     }
 	};

@@ -12,7 +12,7 @@ angular.module('meumobiServices').provider('files', function(IS_APP) {
     angular.extend(config, params);
   };
 
-  this.$get = function($q, $rootScope,translateFilter, DeviceService, MEDIAS) {
+  this.$get = function($q, $rootScope,translateFilter, DeviceService, MEDIAS, UtilsService) {
     var api = {};
     var service = {};
     var localDir;
@@ -44,7 +44,7 @@ angular.module('meumobiServices').provider('files', function(IS_APP) {
     };
     //remove file from localstorage
     api.removeFile = function(id) {
-      delete files[id];
+			delete files[id];
       localStorage['files'] = JSON.stringify(files);
     };
     //get files handler
@@ -92,25 +92,21 @@ angular.module('meumobiServices').provider('files', function(IS_APP) {
         /**
          * Download file to local folder.
          */
-        fileTransfer.download(uri, api.getLocalPath(fileName), function(entry) {
-          console.log(JSON.stringify(entry));
-          file.path = entry.nativeURL;
-          api.addFile(fileName, {
-            title: file.title,
-            type: file.type,
-            length: file.length,
-            path: entry.nativeURL
-          });
-          delete fileTransfers[fileName];
-          file.status = statuses.downloaded; 
-          $rootScope.$emit(fileName + '.finish', file);
-          deferred.resolve(file);
-        }, function(error) {
-          console.log(JSON.stringify(error));
-          delete fileTransfers[fileName];
-          $rootScope.$emit(fileName + 'error', error);
-          deferred.reject(error);
-        }, false);
+				fileTransfer.download(uri, api.getLocalPath(fileName), function(entry) {
+					file.path = entry.nativeURL;
+					api.addFile(fileName, file);
+					delete fileTransfers[fileName];
+					file.status = statuses.downloaded; 
+					$rootScope.$emit(fileName + '.finish', file);
+					deferred.resolve(file);
+					UtilsService.openMedia(file);
+				}, function(error) {
+					console.log(JSON.stringify(error));
+					delete fileTransfers[fileName];
+					$rootScope.$emit(fileName + 'error', error);
+					deferred.reject(error);
+				}, false);
+				
         return deferred.promise;
       },
       fileName: function(file) {

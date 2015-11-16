@@ -13,7 +13,7 @@
 		service.isOnline = isOnline;
 		service.hideSplashScreen = hideSplashScreen;
 		service.statusBar = statusBar;
-		service.shareFeed = shareFeed;
+		service.shareItem = shareItem;
 		service.shareMedia = shareMedia;
 		service.openMedia = openMedia;
 		service.initPushwoosh = initPushwoosh;
@@ -22,6 +22,7 @@
 		service.toast = toast;
 		service.saveImage = saveImage;
 		service.loadImage = loadImage;
+		service.openInAppBrowser = openInAppBrowser;
  
 		var spinner = {
 			show: function () {
@@ -51,6 +52,20 @@
 		service.spinner = spinner; 
  
 		return service;
+		
+		function openInAppBrowser(url, target, options) {
+			deviceReady(function() {
+				if (typeof cordova !== "undefined") {
+					var iab = cordova && cordova.InAppBrowser.open;
+					if (iab)
+						window.open = iab;
+				}
+				
+				var name = target ? target : "_blank";
+				var specs = options ? options : "location=yes";
+				var ref = window.open(url, name, specs);
+			})
+		};
 		
 		function loadImage(url, placeholder) {
 			var src = url;
@@ -221,73 +236,77 @@
 			})
 		}
 		
-		function shareFeed(item) {
-			var that = this;
-			console.log("Share Item: " + item.title);
+		function shareItem(item) {
+			var message = item.description;
+			var subject = item.title;
+			var img = (item.thumbnails.length > 0) ? item.thumbnails[0].url : null;
+			var link = item.hasOwnProperty("link") ? item.link : null;
+			message = message.replace(/(<([^>]+)>)/ig, "");
+
+			socialShare(message, subject, img, link);
+		}
+
+		//Documentation: https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
+		// window.plugins.socialsharing.share(message, subject, img, link);
+		// window.plugins.socialsharing.share(message, subject, link)
+		function socialShare(message, subject, img, link) {
+			
 			deviceReady(function() {
-				if (window.plugins && window.plugins.socialsharing) {
-					var subject = item.title;
-					// TODO: to use item.description use html tags and chars, if remove one or both the description will be unreadable, living them show html. Don't know any good solution then we I recommend to not share it (victor.dias)
-					//message = message.replace(/(<([^>]+)>)/ig, "");
-
-					var message = subject + "; via @IRmobi App";
-					var link = item.link;
-					var img = (item.images.length > 0) ? that.getImage(item.images[0].path) : null;
-
-					//Documentation: https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
-					window.plugins.socialsharing.share(null, subject, img, link);
+				var social = window.plugins && window.plugins.socialsharing;
+				// TODO: to use item.description use html tags and chars, if remove one or both the description will be unreadable, living them show html. Don't know any good solution then we I recommend to not share it (victor.dias)
+				//message = message.replace(/(<([^>]+)>)/ig, "");
+				if (social) {
+					subject += "; via @IRmobi App";
+					social.share(message, subject, img, link);
 				}
-			});
+			})
 		}
 		
-		function shareMedia(file) {
-			var that = this;
-			console.log("Share Media: " + file.title);
-			deviceReady(function() {
-				if (window.plugins && window.plugins.socialsharing) {
-					var subject = file.title;
-					var message = "IRmobi: Media Sharing";
-					message = message.replace(/(<([^>]+)>)/ig, "");
+		// sharing a PDF and an image
+		/* window.plugins.socialsharing.share(
+		  'Optional message',
+		  'Optional title',
+		  ['www/manual.pdf','https://www.google.nl/images/srpr/logo4w.png'],
+		  'http://www.myurl.com');
+			*/
+		function shareMedia(media) {
 
-					var link = file.path;
-					// var img = (item.images.length > 0) ? that.getImage(item.images[0].path) : null;
-					console.log("socialSharing: " + link);
-					window.resolveLocalFileSystemURL(link, 
-						function(fileEntry) {
-							console.log("onResolveLocalFileSystemURL Success");
-							console.log(fileEntry);
-							window.plugins.socialsharing.share(null, null, fileEntry.nativeURL)
-						}, function() {
-							console.log("Error on resolveLocalFileSystemURL");
-						});
-					//Documentation: https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
-					// window.plugins.socialsharing.share(message, subject, img, link);
-					// window.plugins.socialsharing.share(message, subject, link)
-				}
-			});
+			var message = media.title;
+			var subject = media.title;
+			var img = null;
+			var link = media.url;
+			
+			// If media is saved locally (media.path) then share it
+			// Else share its link (media.url)
+			// Couldn't share together img and link
+			if (media.hasOwnProperty("path")) {
+				img = media.path;
+			} else if (media.thumbnails.length > 0) 
+				img = media.thumbnails[0].url;
+
+			socialShare(message, subject, img, link);
 		}
 
-		function openMedia(file) {
+		// Get full path of file as param
+		// ex: file:/storage/sdcard/DCIM/Camera/1404177327783.jpg
+		function openMedia(media) {
 			deviceReady(function() {
-				var uri = file.path;
+				// var uri = file.path;
 				var open = cordova.plugins.disusered.open;
-				
-				function success() {}
- 
-				function error(code) {
-				  if (code === 1) {
-				    console.log('No file handler found');
-				  } else {
-				    console.log('Undefined error');
-				  }
+				var path = null;
+
+				var success = function(fileEntry) {
+					path = fileEntry.nativeURL;
 				}
-				window.resolveLocalFileSystemURL(
-					uri, 
-					open(uri, success, error), 
-					function(e) {
-						console.log("Error on Local FileSystem Url");
-						console.log(e);
-					});
+				
+				var error = function(e) {
+					console.log(e);
+					// TODO : disclaimer
+				}
+
+				window.resolveLocalFileSystemURL(media.path, success, error);
+				
+				open(media.path, function(e) {console.log(e)}, error);
 			});
 		}
 

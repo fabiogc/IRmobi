@@ -39,11 +39,9 @@
 							</span>
 						</div>
 						<div ng-bind-html="vm.item.description" data-in-app-browser="_system" data-location="yes" data-gdoc="yes"></div>
-						<div>
-							<div ng-repeat="media in vm.item.medias|filter:mediaFilter">
-								<download-file file="media"></download-file>
-							</div>
-						</div>
+
+						<section ng-repeat="media in vm.media" id="media-list" ng-include="'items/media/details.html'"></section>
+
 					</div>
 				</section> 
 			</div>
