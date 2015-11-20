@@ -20,6 +20,12 @@
 			extension: 'pdf',
 			download: true
 		},
+		'text/html': {
+			class: 'fa-rss',
+			label: 'Open',
+			extension: 'html',
+			download: false
+		},
 		'application/vnd.ms-excel': {
 			class: 'fa-file-excel-o',
 			label: 'View',

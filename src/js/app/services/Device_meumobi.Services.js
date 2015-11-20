@@ -11,7 +11,6 @@
 		service.isAndroid = isAndroid;
 		service.isIOS = isIOS;
 		service.platform = platform;
-		service.isOnline = isOnline;
  
 		return service;
 
@@ -25,10 +24,6 @@
 
 		function platform() {
 			return window.device ? window.device.platform : null;
-		}
-
-		function isOnline() {
-			//TODO
 		}
 	}
 })();
