@@ -22,7 +22,7 @@
 	
 	function bytesToSize() {
 		return function(bytes) {
-			bytes = bytes * 1000;
+			bytes = (bytes != null) ? bytes * 1000 : 0;
 			if (bytes == 0) return '0 Byte';
 			var k = 1000;
 			var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];

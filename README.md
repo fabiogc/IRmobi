@@ -43,7 +43,11 @@ $ gulp release --project=<NAME_OF_PROJECT> --env=<NAME_OF_ENVIRONMENT>
 # Test/Debug in a Web Browser
 $ gulp --project=<NAME_OF_PROJECT> --env=<NAME_OF_ENVIRONMENT>
 
-```
+
+# Troubleshooting
+Due to following issue need to force install of imgcache.js#v1.0rc1
+https://github.com/chrisben/imgcache.js/issues/116
+$ bower install imgcache.js#v1.0rc1
 
 Testing meumobi API
 ----
