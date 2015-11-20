@@ -1,0 +1,11 @@
+{
+	"APP": {
+		"cdnUrl": "http://int.meumobi.com",
+		"stocksUrl": "http://stocks.mobi.comunique-se.com.br",
+		"DOMAINS": {
+			"pt": "infobox.int-meumobi.com",
+			"en": "infobox.int-meumobi.com"
+		},
+		"apiUrl": "http://int.meumobi.com/api/"
+	}
+}

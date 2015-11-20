@@ -1,0 +1,11 @@
+{
+	"APP": {
+		"cdnUrl": "http://mobi.comunique-se.com.br",
+		"stocksUrl": "http://stocks.mobi.comunique-se.com.br",
+		"DOMAINS": {
+			"pt": "biosevpt.mobi.comunique-se.com.br",
+			"en": "bioseven.mobi.comunique-se.com.br"
+		},
+		"apiUrl": "http://mobi.comunique-se.com.br/api/"
+	}
+}
