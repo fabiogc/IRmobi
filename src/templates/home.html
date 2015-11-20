@@ -1,10 +1,10 @@
-<section class="main padder" id="home"  img-cache ic-bg="{{getImage(vm.site.photos[0].path)}}" >
+<section class="main padder" id="home"  img-cache ic-bg="{{vm.cover}}">
 	<loading-message></loading-message>
 	<div autoscroll="true">
 		<div >
 			<div class="row" id="home-first-row">
 				<div class="col-sm-6">
-					<article-headlines items="vm.headlines.first.items" category="vm.categories[0]" limit="4" ng-if="vm.headlines.first"></article-headlines>
+					<article-headlines items="vm.headlines[0].items" category="vm.categories[0]" limit="4" ng-if="vm.headlines[0]"></article-headlines>
 				</div> <!-- col -->
 				<div class="col-sm-6" ng-controller="StockController as vm">
 					<div ng-switch on="vm.quotes">

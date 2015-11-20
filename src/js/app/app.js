@@ -265,14 +265,6 @@ var app =  angular
 
 	$rootScope.parseFloat = parseFloat;
 	
-	$rootScope.getImage = function(path){
-		var src = APP.cdnUrl + path
-		if (localStorage.hasOwnProperty(path)) {
-			src = localStorage[path];
-		}
-		return src;
-	};
-	
 	$rootScope.goToItem = function(item) {
 		meumobiSite.setSelectedItem(item);
 		$location.path('/items/'+ item._id);
@@ -311,7 +303,6 @@ var app =  angular
 	}
 
 	$rootScope.updateReloadStatus = function() {
-		console.log("updateReloadStatus");
 		if ($route.current) {
 			if ($route.current.canReload) {
 				var online = function(online) {

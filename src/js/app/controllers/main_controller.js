@@ -54,11 +54,11 @@
 		function updateDatas(response) {
 			var data = {};
 
-			data.cover = response.data.site.photos ? response.data.site.photos[0].path : undefined;
 			data.categories = meumobiSite.getCategoriesTree(response.data.categories);
 			data.site = response.data.site;
 			data.business = response.data.business;
-			
+			data.logo = meumobiSite.getAssetUrl(data.site.logo);
+
 			angular.copy(data, vm);
 		}
 	}

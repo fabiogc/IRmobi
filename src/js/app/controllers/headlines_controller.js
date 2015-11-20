@@ -8,9 +8,7 @@
 	function HeadlinesController(Site, Categories, $rootScope, meumobiSite) {
 
 		var vm = this;
-		vm.headlines = {};
-		vm.categories = [];
-		vm.site = {};
+		var data = {};
 
 		activate();
 		
@@ -38,16 +36,21 @@
 		}
 
 		function updateHeadlines(response, category_id, key) {
-			if (key==0) {key = "first";}
 			vm.headlines[key] = response.data;
+			
 			return vm.headlines;
 		}
 		
 		function getCategories() {
 			return meumobiSite.getWebAppData()
 			.then(function(response) {
-				vm.categories = meumobiSite.getCategoriesTree(response.data.categories);
-				vm.site = response.data.site;
+				data.categories = meumobiSite.getCategoriesTree(response.data.categories);
+				data.site = response.data.site;
+				var coverPath = response.data.site.photos[0] ? response.data.site.photos[0].path : null;
+				data.cover = coverPath ? meumobiSite.getAssetUrl(coverPath) : coverPath;
+				data.headlines = {};
+				
+				angular.copy(data, vm);
 			})
 			.catch(function(response) {
 				console.log(response);

@@ -13,15 +13,6 @@
 
 		return service;
 
-		function getImage(path){
-			/*
-			if(localStorage["image_"+id]){
-			return localStorage["image_"+id];
-			}
-			*/
-			return APP.cdnUrl + path;
-		}
-
 		function appRate() {
 			try {
 				AppRate.preferences.storeAppURL.ios = CONFIG.ITUNES.id;
@@ -35,15 +26,15 @@
 
 		function startApp() {
 			deviceReady(function() {
-				document.addEventListener("online", $rootScope.toggleCon, false);
-				document.addEventListener("online", $rootScope.toggleCon, false);
 				UtilsService.spinner.show();
+				document.addEventListener("online", $rootScope.toggleCon, false);
+				document.addEventListener("offline", $rootScope.toggleCon, false);
 				ImgCache.$init();
 				UtilsService.statusBar();
-				UtilsService.initPushwoosh();
-				appRate();
 				LanguageService.loadLanguage();
 				UtilsService.hideSplashScreen();
+				UtilsService.initPushwoosh();
+				appRate();
 			});
 		}
 	}

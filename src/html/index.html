@@ -44,10 +44,8 @@
 			</li>
 		</ul>
 		<a class="navbar-brand" ng-click="goTo('/')">
-			<!--img ng-src="{{getImage(vm.site.logo)}}" data-ng-alt="{{vm.site.title}}" width="123"-->
-			<!--img ng-src="{{vm.data.logo}}" data-ng-alt="{{vm.data.site.title}}" width="123" ng-if="vm.data.logo" -->
-			<img img-cache ic-src="{{getImage(vm.site.logo)}}" ng-if="vm.site.logo"/>
-			<span ng-if="!vm.site.logo" ng-bind="vm.site.title"></span>
+			<img img-cache ic-src="{{vm.logo}}" ng-if="vm.logo"/>
+			<span ng-if="!vm.logo" ng-bind="vm.site.title"></span>
 		</a>
 		<button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
 			<i class="fa fa-bars fa-lg"></i>
