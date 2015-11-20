@@ -77,6 +77,7 @@
 				.getSelectedItem()
 				.then(function(item) {
 					vm.item = item;
+					vm.media = item.medias;
 					getCategory(item.parent_id);
 					getSocialVideos(item);
 					hasAudio(item);
@@ -98,8 +99,8 @@
 			return results;
 		}
 
-		$scope.shareFeed = function(item) {
-			UtilsService.shareFeed(item);
+		$scope.shareItem = function(item) {
+			UtilsService.shareItem(item);
 		};
 	
 		vm.audio = {};

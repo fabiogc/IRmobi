@@ -237,76 +237,80 @@
 		}
 		
 		function shareItem(item) {
-			var message = item.description;
-			var subject = item.title;
-			var img = (item.thumbnails.length > 0) ? item.thumbnails[0].url : null;
-			var link = item.hasOwnProperty("link") ? item.link : null;
-			message = message.replace(/(<([^>]+)>)/ig, "");
-
-			socialShare(message, subject, img, link);
-		}
-
-		//Documentation: https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
-		// window.plugins.socialsharing.share(message, subject, img, link);
-		// window.plugins.socialsharing.share(message, subject, link)
-		function socialShare(message, subject, img, link) {
 			
-			deviceReady(function() {
-				var social = window.plugins && window.plugins.socialsharing;
-				// TODO: to use item.description use html tags and chars, if remove one or both the description will be unreadable, living them show html. Don't know any good solution then we I recommend to not share it (victor.dias)
-				//message = message.replace(/(<([^>]+)>)/ig, "");
-				if (social) {
-					subject += "; via @IRmobi App";
-					social.share(message, subject, img, link);
-				}
-			})
+			var options = {};
+			// TODO: to use item.description use html tags and chars, if remove one or both the description will be unreadable, living them show html. Don't know any good solution then we I recommend to not share it (victor.dias)
+			//message = message.replace(/(<([^>]+)>)/ig, "");
+			options.message = item.title;
+			options.subject = item.title;
+			options.img = (item.thumbnails.length > 0) ? item.thumbnails[0].url : null;
+			// TODO: test if we sharing works without link param
+			options.link = item.hasOwnProperty("link") ? item.link : null;
+
+			console.log(options);
+			socialShare(options.message, options.subject, options.img, options.link);
 		}
-		
-		// sharing a PDF and an image
-		/* window.plugins.socialsharing.share(
-		  'Optional message',
-		  'Optional title',
-		  ['www/manual.pdf','https://www.google.nl/images/srpr/logo4w.png'],
-		  'http://www.myurl.com');
-			*/
+
 		function shareMedia(media) {
 
-			var message = media.title;
-			var subject = media.title;
-			var img = null;
-			var link = media.url;
+			var options = {};
+			console.log(media);
+
+			options.message = media.title;
+			options.subject = media.title;
+			options.img = null;
+			options.link = media.url;
 			
 			// If media is saved locally (media.path) then share it
 			// Else share its link (media.url)
-			// Couldn't share together img and link
+			// Couldn't share together local pdf and link
 			if (media.hasOwnProperty("path")) {
-				img = media.path;
-			} else if (media.thumbnails.length > 0) 
-				img = media.thumbnails[0].url;
-
-			socialShare(message, subject, img, link);
+				options.img = media.path;
+				options.link = null;
+			} else if (media.thumbnails.length > 0) {
+				options.img = media.thumbnails[0].url;
+			}
+			
+			console.log(options);
+			socialShare(options.message, options.subject, options.img, options.link);
+		}
+		
+		function socialShare(message, subject, img, link) {
+			deviceReady(function() {
+				var social = window.plugins && window.plugins.socialsharing;
+				if (social) {
+					subject += "; via @RIweb App";
+					social.share(message, subject, img, link);
+				}
+			});
 		}
 
 		// Get full path of file as param
 		// ex: file:/storage/sdcard/DCIM/Camera/1404177327783.jpg
 		function openMedia(media) {
 			deviceReady(function() {
-				// var uri = file.path;
+
 				var open = cordova.plugins.disusered.open;
 				var path = null;
 
 				var success = function(fileEntry) {
-					path = fileEntry.nativeURL;
+					open(fileEntry.nativeURL, function(e) {console.log(e)}, openError);
 				}
 				
 				var error = function(e) {
 					console.log(e);
 					// TODO : disclaimer
 				}
+				
+				var openError = function(code) {
+				  if (code === 1) {
+				    console.log('No file handler found');
+				  } else {
+				    console.log('Undefined error');
+				  }
+				}
 
 				window.resolveLocalFileSystemURL(media.path, success, error);
-				
-				open(media.path, function(e) {console.log(e)}, error);
 			});
 		}
 
